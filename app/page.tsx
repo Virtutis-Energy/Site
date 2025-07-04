@@ -106,9 +106,16 @@ export default function HomePage() {
                 <div className="row content">
                   <div className="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
                     <h3>Economia para o Cliente</h3>
-                    <p id="text-index">
-                      A <strong>Virtutis Energy</strong> é uma fintech de energia solar...
-                    </p>
+                    <p className="" id="text-index">
+                  A <strong>Virtutis Energy</strong> é uma fintech de energia solar que desenvolve, gerencia e aluga
+                  usinas fotovoltaicas próprias. Oferecemos redução de custos com energia elétrica para nossos clientes,
+                  sem a necessidade de que eles paguem pela construção e manutenção de placas solares. Além disso,
+                  proporcionamos aos investidores a oportunidade de participar do desenvolvimento dos sistemas de
+                  geração de energia, oferecendo-lhes participação nos lucros oriundos da locação das usinas.
+                </p>
+                <p id="text-index">Com a <strong>Virtutis Energy</strong>, você aproveita uma solução sustentável que
+                  combina economia, rentabilidade e impacto positivo no meio ambiente. Junte-se a nós e faça parte do
+                  futuro da energia renovável!</p>
                     <div className="info">
                       <a href="03_FE - Clientes.html" className="btn-get-started">Saiba mais</a>
                     </div>
@@ -123,8 +130,10 @@ export default function HomePage() {
                 <div className="row content">
                   <div className="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
                     <h3>Turbine seus Investimentos</h3>
-                    <p id="text-index">
-                      Invista em nossas usinas fotovoltaicas e desfrute de uma rentabilidade de até 2,35% ao mês...
+                    <p className="" id="text-index">
+                      Invista em nossas usinas fotovoltaicas e desfrute de uma rentabilidade de até 2,35% ao mês. Com a
+                      <strong> Virtutis Energy</strong>, você garante economia e rentabilidade em um só lugar. Potencialize
+                      seus investimentos e faça parte do futuro da energia renovável!
                     </p>
                     <div className="info">
                       <a href="04_FE - Investidores.html" className="btn-get-started">Saiba mais</a>
