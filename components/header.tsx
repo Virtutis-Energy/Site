@@ -1,17 +1,19 @@
-// components/Header.tsx
 'use client'
 
+import { useRouter } from "next/navigation"
+
 export default function Header() {
+    const router = useRouter()
   return (
     <header id="header" className="header d-flex align-items-center fixed-top">
         <div className="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-            <a href="../../index.html" className="logo d-flex align-items-center">
+            <button onClick={() => router.push("/")} className="logo d-flex align-items-center">
                 <img src="/img/logo.png" alt="Virtutis" style={{scale: '1.5'}}/>
-            </a>
+            </button>
             <nav id="navmenu" className="navmenu">
                 <ul>
-                    <li className="navbar_home"><a href="../../index.html">Virtutis Energy</a></li>
-                    <li><a href="../../02_FE - SobreNós.html">Sobre nós</a></li>
+                    <li className="navbar_home"><button onClick={() => router.push("/")}></button></li>
+                    <li><button onClick={() => router.push("/sobre")}>Sobre nós</button></li>
                     <li><a href="../../03_FE - Clientes.html">Clientes</a></li>
                     <li><a href="../../04_FE - Investidores.html">Investidores</a></li>
                     <li id="contact-cad"><a href="../../05_FE - Cadastro.html">Cadastre-se</a></li>
