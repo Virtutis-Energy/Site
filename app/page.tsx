@@ -1,9 +1,8 @@
 'use client'
 
-import { useMainScripts } from './hooks/useMainScripts'
 import Script from 'next/script'
 export default function HomePage() {
-  useMainScripts()
+
   return (
     <>
       <header id="navbar-placeholder"></header>
