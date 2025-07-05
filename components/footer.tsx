@@ -1,8 +1,10 @@
 // components/Header.tsx
 'use client'
 import { BsInstagram, BsLinkedin } from 'react-icons/bs'
+import { useRouter } from "next/navigation"
 
 export default function Footer() {
+    const router = useRouter()
   return (
     
     <footer id="footer" className="footer dark-background">
@@ -14,9 +16,9 @@ export default function Footer() {
           <div className="col-lg-6 col-md-3 footer-links">
             <h4>Links úteis</h4>
             <ul>
-              <li><a href="index.html">Virtutis Energy</a></li>
+              <li><a onClick={() => router.push("/")}>Virtutis Energy</a></li>
               <li><a href="06_FE - TrabalheConosco.html">Trabalhe Conosco</a></li>
-              <li><a href="08_FE - PoliticaDePrivacidade.html">Política de Privacidade</a></li>
+              <li><a onClick={() => router.push("/privacidade")}>Política de Privacidade</a></li>
               <li><a href="https://api.whatsapp.com/send?phone=558582351512">Contato</a></li>
             </ul>
           </div>
