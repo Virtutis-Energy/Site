@@ -1,16 +1,18 @@
 'use client'
-
+import { useRouter } from "next/navigation"
 export default function PrivacidadePage() {
+  const router = useRouter()
 return(
 
      <main className="main">
 
-    <div className="page-title dark-background">
+    <div className="page-title dark-background" 
+     style= {{ backgroundImage: "url(img/hero-carousel/hero-carousel-5.jpg)"}}>
       <div className="container position-relative">
         <h1>Política de Privacidade</h1>
         <nav className="breadcrumbs">
           <ol>
-            <li><a href="index.html">Home</a></li>
+            <li><button onClick={() => router.push("/")} style={{fontWeight: 600,color:"white"}}>Home</button></li>
             <li className="current">Política de Privacidade</li>
           </ol>
         </nav>

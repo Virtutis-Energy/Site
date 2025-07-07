@@ -1,6 +1,8 @@
 'use client'
+import { useRouter } from "next/navigation"
 
 export default function SobreNosPage() {
+  const router = useRouter()
 return(
 
     <main className="main">
@@ -10,7 +12,7 @@ return(
         <h1>Sobre nós</h1>
         <nav className="breadcrumbs">
           <ol>
-            <li><a href="index.html">Virtutis Energy</a></li>
+            <li><button onClick={() => router.push("/")} style={{fontWeight: 600,color:"white"}}>Home</button></li>
             <li className="current">Sobre nós</li>
           </ol>
         </nav>

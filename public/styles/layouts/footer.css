@@ -64,7 +64,7 @@
     transition: 0.3s;
   }
   
-  .footer .social-links a:hover {
+  .footer .social-links button:hover {
     color: color-mix(in srgb, var(--contrast-color), transparent 0);
     border-color: color-mix(in srgb, var(--contrast-color), transparent 0);
   }
@@ -102,13 +102,13 @@
     padding-top: 0;
   }
   
-  .footer .footer-links ul a {
+  .footer .footer-links ul button {
     color: color-mix(in srgb, var(--default-color), transparent 30%);
     display: inline-block;
     line-height: 1;
   }
   
-  .footer .footer-links ul a:hover {
+  .footer .footer-links ul button:hover {
     color: color-mix(in srgb, var(--contrast-color), transparent 0)
   }
   
@@ -131,7 +131,7 @@
     font-size: 13px;
   }
   
-  .credits a {
+  .credits button {
     font-weight: 800;
     color: #ffc107;
   }

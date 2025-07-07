@@ -35,6 +35,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <link rel="stylesheet" href="/styles/util/navgationMobile.css" />
       <link rel="stylesheet" href="/styles/util/scrollTop.css" />
       <link rel="stylesheet" href="/styles/util/widgets.css" />
+
+      <link rel="stylesheet" href="/styles/vendor/bootstrap-icons/bootstrap-icons.css" />
     </head>
 
       <body className="index-page">

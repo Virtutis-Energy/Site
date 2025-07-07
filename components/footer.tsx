@@ -16,10 +16,10 @@ export default function Footer() {
           <div className="col-lg-6 col-md-3 footer-links">
             <h4>Links úteis</h4>
             <ul>
-              <li><a onClick={() => router.push("/")}>Virtutis Energy</a></li>
-              <li><a href="06_FE - TrabalheConosco.html">Trabalhe Conosco</a></li>
-              <li><a onClick={() => router.push("/privacidade")}>Política de Privacidade</a></li>
-              <li><a href="https://api.whatsapp.com/send?phone=558582351512">Contato</a></li>
+              <li><button onClick={() => router.push("/")}>Virtutis Energy</button></li>
+              <li><button href="06_FE - TrabalheConosco.html">Trabalhe Conosco</button></li>
+              <li><button onClick={() => router.push("/privacidade")}>Política de Privacidade</button></li>
+              <li><button href="https://api.whatsapp.com/send?phone=558582351512">Contato</button></li>
             </ul>
           </div>
 

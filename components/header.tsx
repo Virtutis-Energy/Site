@@ -14,8 +14,8 @@ export default function Header() {
                 <ul>
                     <li className="navbar_home"><button onClick={() => router.push("/")}></button></li>
                     <li><button onClick={() => router.push("/sobre")}>Sobre nós</button></li>
-                    <li><a href="../../03_FE - Clientes.html">Clientes</a></li>
-                    <li><a href="../../04_FE - Investidores.html">Investidores</a></li>
+                    <li><button onClick={() => router.push("/clientes")}>Clientes</button></li>
+                    <li><button onClick={() => router.push("/investidores")}>Investidores</button></li>
                     <li id="contact-cad"><a href="../../05_FE - Cadastro.html">Cadastre-se</a></li>
                 </ul>
                 <i className="mobile-nav-toggle d-xl-none bi bi-list"></i>
