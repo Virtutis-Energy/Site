@@ -2,42 +2,14 @@
 
 import {useRouter} from "next/navigation"
 import { useState } from 'react'
+import { useEconomia } from "@/hooks/useEconomia"
 
 export default function cliente() {
 
   const router = useRouter()
 
-  const [economia, setEconomia] = useState<string | null>(null)
+  const { economia, handleCalculate } = useEconomia()
 
-const handleCalculate = async () => {
-  const input = document.getElementById('monthlyBill') as HTMLInputElement
-  if (!input || !input.value) return
-
-  // Remove prefixo R$ e formata corretamente
-  const valorLimpo = input.value
-    .replace('R$ ', '')
-    .replace('.', '')
-    .replace(',', '.')
-
-  try {
-    const response = await fetch('http://localhost:8000/investidores/calcular-economia/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ valor_conta: valorLimpo }),
-    })
-
-    const data = await response.json()
-
-    if (data.economia_mensal) {
-      setEconomia(`Economia de aproximadamente R$ ${data.economia_mensal} por mês!`)
-    } else {
-      setEconomia('Erro ao calcular.')
-    }
-  } catch (error) {
-    console.error(error)
-    setEconomia('Erro ao conectar com o servidor.')
-  }
-}
 return(
 
     <main className="main">
