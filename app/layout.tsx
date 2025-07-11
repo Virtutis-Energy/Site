@@ -23,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <link rel="stylesheet" href="/styles/components/04_FE - Investidores.css" />
       <link rel="stylesheet" href="/styles/components/05_FE - Cadastro.css" />
       <link rel="stylesheet" href="/styles/components/06_FE - TrabalheConosco.css" />
+      <link rel="stylesheet" href="/styles/components/07_FE - Subdivisoes.css" />
       <link rel="stylesheet" href="/styles/components/index.css" />
 
       {/* LAYOUTS (Header e Footer) */}
