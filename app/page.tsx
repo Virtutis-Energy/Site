@@ -1,10 +1,22 @@
 'use client'
 
 import Script from 'next/script'
-
+import { useState } from 'react'
+import { useCadastroInvestidor } from '@/hooks/useCadastroInvestidor'
 
 export default function HomePage() {
+const [formData, setFormData] = useState({
+  cpf_cnpj: '',
+  nome: '',
+  email: '',
+  telefone: ''
+})
 
+const { cadastrar, loading, sucesso, erro } = useCadastroInvestidor()
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault()
+  await cadastrar(formData)
+}
   return (
     <>
       <header id="navbar-placeholder"></header>
@@ -59,29 +71,70 @@ export default function HomePage() {
               </div>
 
               <div className="col-lg-5" data-aos="zoom-out" data-aos-delay="200">
-                <form className="php-email-form" id="cadastroForm">
-                  <h3>Realize seu Cadastro</h3>
-                  <div className="row gy-3 mt-2">
-                    <div className="col-12">
-                      <input type="text" name="doc" className="form-control" placeholder="CPF/CNPJ" required
-                        onInput={(e) => e.currentTarget.value = e.currentTarget.value.replace(/[^0-9/.\+\-\s]/g, '')} />
-                    </div>
-                    <div className="col-12">
-                      <input type="text" name="nome" className="form-control" placeholder="Nome" required
-                        onInput={(e) => e.currentTarget.value = e.currentTarget.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '')} />
-                    </div>
-                    <div className="col-12">
-                      <input type="email" name="email" className="form-control" placeholder="Email" required />
-                    </div>
-                    <div className="col-12 mb-3">
-                      <input type="text" name="telefone" className="form-control" placeholder="Telefone" required
-                        onInput={(e) => e.currentTarget.value = e.currentTarget.value.replace(/[^0-9+\-\s]/g, '')} />
-                    </div>
-                    <div className="col-12 text-center">
-                      <button type="submit">Cadastrar-se</button>
-                    </div>
+               <form className="php-email-form" onSubmit={handleSubmit}>
+                <h3>Realize seu Cadastro</h3>
+                <div className="row gy-3 mt-2">
+                  <div className="col-12">
+                    <input
+                      type="text"
+                      name="doc"
+                      className="form-control"
+                      placeholder="CPF/CNPJ"
+                      required
+                      value={formData.cpf_cnpj}
+                      onChange={(e) =>
+                        setFormData({ ...formData, cpf_cnpj: e.target.value.replace(/[^0-9/.\+\-\s]/g, '') })
+                      }
+                    />
                   </div>
-                </form>
+                  <div className="col-12">
+                    <input
+                      type="text"
+                      name="nome"
+                      className="form-control"
+                      placeholder="Nome"
+                      required
+                      value={formData.nome}
+                      onChange={(e) =>
+                        setFormData({ ...formData, nome: e.target.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '') })
+                      }
+                    />
+                  </div>
+                  <div className="col-12">
+                    <input
+                      type="email"
+                      name="email"
+                      className="form-control"
+                      placeholder="Email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    />
+                  </div>
+                  <div className="col-12 mb-3">
+                    <input
+                      type="text"
+                      name="telefone"
+                      className="form-control"
+                      placeholder="Telefone"
+                      required
+                      value={formData.telefone}
+                      onChange={(e) =>
+                        setFormData({ ...formData, telefone: e.target.value.replace(/[^0-9+\-\s]/g, '') })
+                      }
+                    />
+                  </div>
+
+                  {erro && <div className="text-danger text-center">{erro}</div>}
+                  {sucesso && <div className="text-success text-center">Cadastro realizado com sucesso!</div>}
+
+                  <div className="col-12 text-center">
+                    <button type="submit" disabled={loading}>
+                      {loading ? 'Enviando...' : 'Cadastrar-se'}
+                    </button>
+                  </div>
+                </div>
+              </form>
               </div>
             </div>
           </div>
