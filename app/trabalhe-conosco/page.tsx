@@ -1,9 +1,43 @@
 'use client'
-import { useRouter } from "next/navigation"
 
+import { useCadastrarIngressante } from '@/hooks/useCadastroIngressante'
+import { useSubdivisoes } from '@/hooks/useSubdivisoes'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
-export default function TrabalheConosco() {
+export default function FormularioIngressante() {
   const router = useRouter()
+  const { cadastrar, sucesso, erro, loading } = useCadastrarIngressante()
+  const { subdivisoes, loading: loadingSub } = useSubdivisoes()
+
+  const [formData, setFormData] = useState({
+    cpf: '',
+    nome: '',
+    email: '',
+    telefone: '',
+    subdivisoes: [] as number[],
+  })
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target
+
+    if (name === 'subdivisoes') {
+      const id = parseInt(value)
+      setFormData((prev) => {
+        const novaLista = checked
+          ? [...prev.subdivisoes, id]
+          : prev.subdivisoes.filter((item) => item !== id)
+        return { ...prev, subdivisoes: novaLista }
+      })
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }))
+    }
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    await cadastrar(formData)
+  }
 return(
 <main className="main">
 
@@ -50,112 +84,57 @@ return(
         </div>
         <br/>
   <div className="col-lg-12" data-aos="fade-up" data-aos-delay="300">
-  <form action="https://api.sheetmonkey.io/form/3vFnDNvBGyF2W2DTCbNkfL" method="post" className="php-email-form">
-    <br/>
-    <div className="row gy-3">
-
-      <div className="col-12">
-        <input type="text" name="doc" className="form-control w-100" placeholder="CPF" required/>
-
-      </div>
-
-      <div className="col-12">
-        <input type="text" name="nome" className="form-control w-100" placeholder="Nome" required/>
-      </div>
-
-      <div className="col-12">
-        <input type="email" className="form-control w-100" name="email" placeholder="Email" required/>
-      </div>
-
-      <div className="col-12">
-        <input type="text" name="telefone" className="form-control w-100" placeholder="Telefone" required
-          />
-      </div>
-
-      <div className="col-12">
-        <label className="form-label">Subdivisões (pode selecionar mais de uma):</label>
-
-        <div className="form-check">
-          <input className="form-check-input" type="checkbox" name="setor[]" value="Secretaria de Economia"/>
-          <label className="form-check-label">Secretaria de Economia</label>
+   <form onSubmit={handleSubmit} className="php-email-form">
+      <div className="row gy-3">
+        <div className="col-12">
+          <input type="text" name="cpf" placeholder="CPF" required className="form-control" value={formData.cpf} onChange={handleChange} />
+        </div>
+        <div className="col-12">
+          <input type="text" name="nome" placeholder="Nome" required className="form-control" value={formData.nome} onChange={handleChange} />
+        </div>
+        <div className="col-12">
+          <input type="email" name="email" placeholder="Email" required className="form-control" value={formData.email} onChange={handleChange} />
+        </div>
+        <div className="col-12">
+          <input type="text" name="telefone" placeholder="Telefone" required className="form-control" value={formData.telefone} onChange={handleChange} />
         </div>
 
-        <div className="form-check">
-          <input className="form-check-input" type="checkbox" name="setor[]" value="Secretaria de Recursos Humanos"/>
-          <label className="form-check-label">Secretaria de Recursos Humanos</label>
+        <div className="col-12">
+          <label className="form-label">Subdivisões (pode selecionar mais de uma):</label>
+          {loadingSub ? (
+            <p>Carregando subdivisões...</p>
+          ) : (
+            subdivisoes.map((sub) => (
+              <div className="form-check" key={sub.id}>
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  name="subdivisoes"
+                  value={sub.id}
+                  onChange={handleChange}
+                  checked={formData.subdivisoes.includes(sub.id)}
+                />
+                <label className="form-check-label">{sub.nome}</label>
+              </div>
+            ))
+          )}
         </div>
 
-        <div className="form-check">
-          <input className="form-check-input" type="checkbox" name="setor[]" value="Setor Administrativo"/>
-          <label className="form-check-label">Setor Administrativo</label>
+        <div className="col-12">
+          <button onClick={() => router.push('/subdivisoes')} className="setor-link" type="button">
+            Saiba mais sobre o Trabalho Conosco
+          </button>
         </div>
 
-        <div className="form-check">
-          <input className="form-check-input" type="checkbox" name="setor[]" value="Setor Jurídico"/>
-          <label className="form-check-label">Setor Jurídico</label>
-        </div>
-
-        <div className="form-check">
-          <input className="form-check-input" type="checkbox" name="setor[]" value="Setor Estrutural"/>
-          <label className="form-check-label">Setor Estrutural</label>
-        </div>
-
-        <div className="form-check">
-          <input className="form-check-input" type="checkbox" name="setor[]" value="Setor Tecnológico"/>
-          <label className="form-check-label">Setor Tecnológico</label>
-        </div>
-
-        <div className="form-check">
-          <input className="form-check-input" type="checkbox" name="setor[]" value="Setor Comercial"/>
-          <label className="form-check-label">Setor Comercial</label>
-        </div>
-
-        <div className="form-check">
-          <input className="form-check-input" type="checkbox" name="setor[]" value="Departamento de Contabilidade"/>
-          <label className="form-check-label">Departamento de Contabilidade</label>
-        </div>
-
-        <div className="form-check">
-          <input className="form-check-input" type="checkbox" name="setor[]" value="Departamento de Terrenos"/>
-          <label className="form-check-label">Departamento de Terrenos</label>
-        </div>
-
-        <div className="form-check">
-          <input className="form-check-input" type="checkbox" name="setor[]" value="Departamento de Projetos"/>
-          <label className="form-check-label">Departamento de Projetos</label>
-        </div>
-
-        <div className="form-check">
-          <input className="form-check-input" type="checkbox" name="setor[]" value="Departamento de Obras"/>
-          <label className="form-check-label">Departamento de Obras</label>
-        </div>
-
-        <div className="form-check">
-          <input className="form-check-input" type="checkbox" name="setor[]" value="Departamento de Operação"/>
-          <label className="form-check-label">Departamento de Operação</label>
-        </div>
-
-        <div className="form-check">
-          <input className="form-check-input" type="checkbox" name="setor[]" value="Departamento de Clientes"/>
-          <label className="form-check-label">Departamento de Clientes</label>
-        </div>
-
-        <div className="form-check">
-          <input className="form-check-input" type="checkbox" name="setor[]" value="Departamento de Investidores"/>
-          <label className="form-check-label">Departamento de Investidores</label>
+        <div className="col-12 text-center">
+          <button type="submit" disabled={loading}>
+            {loading ? 'Enviando...' : 'Cadastrar-se'}
+          </button>
+          {sucesso && <p className="text-success mt-2">Cadastro realizado com sucesso!</p>}
+          {erro && <p className="text-danger mt-2">{erro}</p>}
         </div>
       </div>
-
-      <div className="col-12">
-        <button  onClick={() => router.push('/subdivisoes')} className="setor-link">Saiba mais sobre o Trabalho Conosco.</button>
-      </div>
-
-      <div className="col-12 text-center">
-        <button type="submit" value="submit">Cadastrar-se</button>
-      </div>
-
-    </div>
-  </form>
+    </form>
 </div>
 
 

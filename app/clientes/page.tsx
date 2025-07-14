@@ -183,7 +183,7 @@ return(
       </div>
       <br/>
       <div className="d-flex justify-content-center " data-aos="fade-up" data-aos-delay="100">
-        <a href="05_FE - Cadastro.html" className="btn-kind">Abra sua conta</a>
+        <a  onClick={() => router.push("/cadastro")} style={{cursor:"pointer"}} className="btn-kind">Abra sua conta</a>
       </div>
     </section>
 

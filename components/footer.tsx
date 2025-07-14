@@ -19,7 +19,7 @@ export default function Footer() {
               <li><button onClick={() => router.push("/")}>Virtutis Energy</button></li>
               <li><button onClick={() => router.push("/trabalhe-conosco")}>Trabalhe Conosco</button></li>
               <li><button onClick={() => router.push("/privacidade")}>Política de Privacidade</button></li>
-              <li><button href="https://api.whatsapp.com/send?phone=558582351512">Contato</button></li>
+              <li><button onClick={() => router.push("https://api.whatsapp.com/send?phone=558582351512")}>Contato</button></li>
             </ul>
           </div>
 
