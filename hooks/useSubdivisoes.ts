@@ -16,7 +16,7 @@ export function useSubdivisoes() {
         const data = await res.json()
         setSubdivisoes(data)
       } catch (e) {
-        console.error('Erro ao carregar subdivisões', e)
+        console.error('Erro ao carregar subdivisões!', e)
       } finally {
         setLoading(false)
       }
