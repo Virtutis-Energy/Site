@@ -19,7 +19,7 @@ export function useCupomValidator(cupom: string) {
       }
 
       try {
-        const response = await fetch(`http://localhost:8000/cupom/validar/?nome=${encodeURIComponent(cupom)}`, {
+        const response = await fetch(`${process.env.NEXT_URL_BACK_END}/cupom/validar/?nome=${encodeURIComponent(cupom)}`, {
           method: 'GET'
         })
 

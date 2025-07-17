@@ -15,7 +15,7 @@ export function useEconomia() {
       .replace(',', '.')
 
     try {
-      const response = await fetch('http://localhost:8000/investidores/calcular-economia/', {
+      const response = await fetch(`${process.env.NEXT_URL_BACK_END}/investidores/calcular-economia/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ valor_conta: valorLimpo }),

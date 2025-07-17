@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import "./envConfig.ts"
+
 export interface IngressantePayload {
   cpf: string
   nome: string
@@ -19,7 +21,7 @@ export function useCadastrarIngressante() {
     setSucesso(false)
 
     try {
-      const response = await fetch('http://localhost:8000/ingressante/cadastrar/', {
+      const response = await fetch(`${process.env.NEXT_URL_BACK_END}/ingressante/cadastrar/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
