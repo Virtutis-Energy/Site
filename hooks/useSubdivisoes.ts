@@ -12,7 +12,7 @@ export function useSubdivisoes() {
   useEffect(() => {
     const fetchSubdivisoes = async () => {
       try {
-        const res = await fetch('http://localhost:8000/ingressante/subdivisoes/listar/')
+        const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACK_END}/ingressante/subdivisoes/listar/`)
         const data = await res.json()
         setSubdivisoes(data)
       } catch (e) {

@@ -29,7 +29,7 @@ export function useSimulacaoInvestimento() {
     cupom?: string
   }) => {
     try {
-      const response = await fetch(`${process.env.NEXT_URL_BACK_END}/investidores/calcular-investimento/`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACK_END}/investidores/calcular-investimento/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ vitis, meses, usina_id, cupom }),

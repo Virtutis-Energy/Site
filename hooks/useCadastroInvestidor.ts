@@ -18,7 +18,7 @@ export function useCadastroInvestidor() {
     setSucesso(false)
 
     try {
-      const response = await fetch(`${process.env.NEXT_URL_BACK_END}/investidores/cadastrar/`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACK_END}/investidores/cadastrar/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
