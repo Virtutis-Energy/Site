@@ -74,7 +74,7 @@ const handleCalculate = () => {
 
             <p>Os Vitis são notas comerciais emitidas pelas usinas da Virtutis Energy, proporcionando uma rentabilidade
               de até 2,35% a.m., em proventos mensais. Com os Vitis, os investidores desfrutam de total liberdade para
-              realizar aportes e cessões conforme desejarem, maximizando sua flexibilidade financeira.
+              realizar aportes e cessões conforme desejarem, maximizando sua flexibilidade financeira!
             </p>
 
             <h6>Faça aqui sua <strong>simulação</strong></h6>
