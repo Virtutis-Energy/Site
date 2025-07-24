@@ -1,5 +1,7 @@
 Project Made By João Holanda Diretor Tech (07/2025)
 
+Development
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
