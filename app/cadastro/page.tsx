@@ -51,7 +51,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                   <i className="bi bi-whatsapp"></i>
                 </a>
                 <h3>WhatsApp</h3>
-                <p>+55 85 98235 1512</p>
+                <p>+55 85 98483 1512</p>
               </div>
             </div>
 
