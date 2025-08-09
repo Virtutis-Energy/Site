@@ -154,7 +154,7 @@ export default function TrabalheConosco() {
               />
               <InfoBox
                 icon="bi bi-people-fill"
-                title="Sócio Colaborador"
+                title="Sócio-Colaborador"
                 description="Participa das atividades estratégicas da empresa, com envolvimento parcial, oferecendo expertise, rede de contatos ou capital."
               />
             </div>

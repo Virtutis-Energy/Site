@@ -156,22 +156,16 @@ const handleCalculate = () => {
                 </div>
 
                 <div className="row mt-4 text-center">
-                  <div className="col-md-4">
+                  <div className="col-md-6">
                     <div className="result-box p-3 border rounded bg-light">
-                      <strong>Total Acumulado</strong><br />
+                      <strong>Proventos Acumulados</strong><br />
                       <span id="totalYield">{totalYield}</span>
                     </div>
                   </div>
-                  <div className="col-md-4">
+                  <div className="col-md-6">
                     <div className="result-box p-3 border rounded bg-light">
                       <strong>Data Final</strong><br />
                       <span id="dateResult">{dateResult}</span>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="result-box p-3 border rounded bg-light">
-                      <strong>Rentabilidade</strong><br />
-                      <span id="yieldPercentage">{yieldPercentage}</span>
                     </div>
                   </div>
                   {graficoDados.length > 0 && (
