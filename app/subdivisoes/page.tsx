@@ -122,14 +122,10 @@ export default function TrabalheConosco() {
               />
               <InfoBox
                 icon="bi bi-chat-left-text-fill"
-                title="Departamento de Clientes"
+                title="Departamento de Usuários"
                 description="Responsável pela comunicação da empresa com os clientes, marketing e atendimento ao mercado."
               />
-              <InfoBox
-                icon="bi bi-currency-dollar"
-                title="Departamento de Investidores"
-                description="Responsável pela comunicação com investidores, captação e fidelização de capital para a Virtutis Energy."
-              />
+    
             </div>
           </Tab>
 
