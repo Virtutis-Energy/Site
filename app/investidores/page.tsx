@@ -151,7 +151,7 @@ const handleCalculate = () => {
 
                 <div className="mt-4">
                   <button className="btn btn-primary w-100" onClick={handleCalculate}>
-                    <i className="bi bi-graph-up-arrow me-2"></i>Calcular Rentabilidade
+                    <i className="bi bi-graph-up-arrow me-2"></i>Simular Investimento
                   </button>
                 </div>
 
