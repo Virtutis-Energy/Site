@@ -2,9 +2,11 @@
 
 import Script from 'next/script'
 import { useState } from 'react'
+import {useRouter} from 'next/navigation'
 import { useCadastroInvestidor } from '@/hooks/useCadastroInvestidor'
 
 export default function HomePage() {
+const router = useRouter()
 const [formData, setFormData] = useState({
   cpf_cnpj: '',
   nome: '',
@@ -35,7 +37,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                     exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                   </p>
-                  <div><a href="05_FE - Cadastro.html" className="btn-get-started">Abra sua conta</a></div>
+                  <div><button onClick={() => { router.push("/cadastro")}} className="btn-get-started">Abra sua conta</button></div>
                 </div>
               </div>
             </div>
@@ -172,7 +174,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                   combina economia, rentabilidade e impacto positivo no meio ambiente. Junte-se a nós e faça parte do
                   futuro da energia renovável!</p>
                     <div className="info">
-                      <a href="03_FE - Clientes.html" className="btn-get-started">Saiba mais</a>
+                      <button onClick={() => { router.push("/clientes")}} className="btn-get-started">Saiba mais</button>
                     </div>
                   </div>
                   <div className="col-lg-6 order-1 order-lg-2 text-center mb-4">
@@ -191,7 +193,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                       seus investimentos e faça parte do futuro da energia renovável!
                     </p>
                     <div className="info">
-                      <a href="04_FE - Investidores.html" className="btn-get-started">Saiba mais</a>
+                      <button onClick={() => { router.push("/investidores")}} className="btn-get-started">Saiba mais</button>
                     </div>
                   </div>
                   <div className="col-lg-6 order-1 order-lg-2 text-center mb-4">
