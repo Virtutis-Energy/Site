@@ -14,7 +14,6 @@ export default function HomePage() {
     telefone: ''
   })
 
-  const mensagem = encodeURIComponent("Olá, gostaria de mais informações de serviços");
   const { cadastrar, loading, sucesso, erro } = useCadastroInvestidor()
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -39,14 +38,16 @@ export default function HomePage() {
                     exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                   </p>
                   <div>
-                    <a
-                      href={`https://wa.me/5585988887777?text=${mensagem}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-get-started"
-                    >
-                      Baixe o App
-                    </a>
+                    <div>
+                      <a
+                        href="https://wa.me/5585984831512?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20de%20servi%C3%A7os"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-get-started"
+                      >
+                        Baixe o App
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>

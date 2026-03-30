@@ -48,7 +48,7 @@ export default function Header() {
                         <li><button onClick={() => { router.push("/investidores"); closeMobileNav(); }}>Investidores</button></li>
                         <li id="contact-cad">
                             <a
-                                href="https://wa.me/5585988887777?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20de%20servi%C3%A7os"
+                                href="https://wa.me/5585984831512?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20de%20servi%C3%A7os"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={closeMobileNav}
