@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { getBackendUrl, parseJsonResponse } from '@/lib/backend'
 
 export function useEconomia() {
   const [economia, setEconomia] = useState<string | null>(null)
@@ -15,13 +16,13 @@ export function useEconomia() {
       .replace(',', '.')
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACK_END}/investidores/calcular-economia/`, {
+      const response = await fetch(getBackendUrl('/investidores/calcular-economia/'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ valor_conta: valorLimpo }),
       })
 
-      const data = await response.json()
+      const data = await parseJsonResponse<{ economia_mensal?: string }>(response)
 
       if (data.economia_mensal) {
         setEconomia(`Economia de aproximadamente R$ ${data.economia_mensal} por mês!`)
@@ -30,7 +31,7 @@ export function useEconomia() {
       }
     } catch (error) {
       console.error(error)
-      setEconomia('Erro ao conectar com o servidor.')
+      setEconomia(error instanceof Error ? error.message : 'Erro ao conectar com o servidor.')
     }
   }
 

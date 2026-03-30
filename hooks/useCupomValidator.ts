@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { getBackendUrl, parseJsonResponse } from '@/lib/backend'
 
 interface CupomResponse {
   valido: boolean
@@ -19,11 +20,11 @@ export function useCupomValidator(cupom: string) {
       }
 
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACK_END}/cupom/validar/?nome=${encodeURIComponent(cupom)}`, {
+        const response = await fetch(getBackendUrl(`/cupom/validar/?nome=${encodeURIComponent(cupom)}`), {
           method: 'GET'
         })
 
-        const data: CupomResponse = await response.json()
+        const data = await parseJsonResponse<CupomResponse>(response)
 
         if (data.valido && data.percent_discount) {
           setCupomValido(true)
@@ -33,6 +34,7 @@ export function useCupomValidator(cupom: string) {
           setDesconto(0)
         }
       } catch (err) {
+        console.error(err)
         setCupomValido(false)
         setDesconto(0)
       }

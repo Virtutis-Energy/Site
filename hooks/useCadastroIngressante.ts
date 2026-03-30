@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { getBackendUrl, parseJsonResponse } from '@/lib/backend'
 
 export interface IngressantePayload {
   cpf: string
@@ -19,13 +20,16 @@ export function useCadastrarIngressante() {
     setSucesso(false)
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACK_END}/ingressante/cadastrar/`, {
+      const response = await fetch(getBackendUrl('/ingressante/cadastrar/'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       })
 
-      const result = await response.json()
+      const result = await parseJsonResponse<{
+        success?: boolean
+        errors?: Record<string, string> | string
+      }>(response)
 
       if (response.ok && result.success) {
         setSucesso(true)
@@ -37,7 +41,7 @@ export function useCadastrarIngressante() {
         )
       }
     } catch (e) {
-      setErro('Erro de conexão com o servidor.')
+      setErro(e instanceof Error ? e.message : 'Erro de conexão com o servidor.')
     } finally {
       setLoading(false)
     }

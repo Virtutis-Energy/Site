@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { getBackendUrl, parseJsonResponse } from '@/lib/backend'
 
 export interface Subdivisao {
   id: number
@@ -12,8 +13,8 @@ export function useSubdivisoes() {
   useEffect(() => {
     const fetchSubdivisoes = async () => {
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL_BACK_END}/ingressante/subdivisoes/listar/`)
-        const data = await res.json()
+        const res = await fetch(getBackendUrl('/ingressante/subdivisoes/listar/'))
+        const data = await parseJsonResponse<Subdivisao[]>(res)
         setSubdivisoes(data)
       } catch (e) {
         console.error('Erro ao carregar subdivisões!', e)

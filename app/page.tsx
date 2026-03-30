@@ -2,29 +2,30 @@
 
 import Script from 'next/script'
 import { useState } from 'react'
-import {useRouter} from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useCadastroInvestidor } from '@/hooks/useCadastroInvestidor'
 
 export default function HomePage() {
-const router = useRouter()
-const [formData, setFormData] = useState({
-  cpf_cnpj: '',
-  nome: '',
-  email: '',
-  telefone: ''
-})
+  const router = useRouter()
+  const [formData, setFormData] = useState({
+    cpf_cnpj: '',
+    nome: '',
+    email: '',
+    telefone: ''
+  })
 
-const { cadastrar, loading, sucesso, erro } = useCadastroInvestidor()
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault()
-  await cadastrar(formData)
-}
+  const mensagem = encodeURIComponent("Olá, gostaria de mais informações de serviços");
+  const { cadastrar, loading, sucesso, erro } = useCadastroInvestidor()
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    await cadastrar(formData)
+  }
   return (
     <>
       <header id="navbar-placeholder"></header>
 
       <main className="main">
-        {/* Hero Section */} 
+        {/* Hero Section */}
         <section id="hero" className="hero section dark-background">
           <div className="info d-flex align-items-center">
             <div className="container">
@@ -37,7 +38,16 @@ const handleSubmit = async (e: React.FormEvent) => {
                     incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                     exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                   </p>
-                  <div><button onClick={() => { router.push("/cadastro")}} className="btn-get-started">Abra sua conta</button></div>
+                  <div>
+                    <a
+                      href={`https://wa.me/5585988887777?text=${mensagem}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-get-started"
+                    >
+                      Baixe o App
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -73,70 +83,70 @@ const handleSubmit = async (e: React.FormEvent) => {
               </div>
 
               <div className="col-lg-5" data-aos="zoom-out" data-aos-delay="200">
-               <form className="php-email-form" onSubmit={handleSubmit}>
-                <h3>Realize seu Cadastro</h3>
-                <div className="row gy-3 mt-2">
-                  <div className="col-12">
-                    <input
-                      type="text"
-                      name="doc"
-                      className="form-control"
-                      placeholder="CPF/CNPJ"
-                      required
-                      value={formData.cpf_cnpj}
-                      onChange={(e) =>
-                        setFormData({ ...formData, cpf_cnpj: e.target.value.replace(/[^0-9/.\+\-\s]/g, '') })
-                      }
-                    />
-                  </div>
-                  <div className="col-12">
-                    <input
-                      type="text"
-                      name="nome"
-                      className="form-control"
-                      placeholder="Nome"
-                      required
-                      value={formData.nome}
-                      onChange={(e) =>
-                        setFormData({ ...formData, nome: e.target.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '') })
-                      }
-                    />
-                  </div>
-                  <div className="col-12">
-                    <input
-                      type="email"
-                      name="email"
-                      className="form-control"
-                      placeholder="Email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    />
-                  </div>
-                  <div className="col-12 mb-3">
-                    <input
-                      type="text"
-                      name="telefone"
-                      className="form-control"
-                      placeholder="Telefone"
-                      required
-                      value={formData.telefone}
-                      onChange={(e) =>
-                        setFormData({ ...formData, telefone: e.target.value.replace(/[^0-9+\-\s]/g, '') })
-                      }
-                    />
-                  </div>
+                <form className="php-email-form" onSubmit={handleSubmit}>
+                  <h3>Realize seu Cadastro</h3>
+                  <div className="row gy-3 mt-2">
+                    <div className="col-12">
+                      <input
+                        type="text"
+                        name="doc"
+                        className="form-control"
+                        placeholder="CPF/CNPJ"
+                        required
+                        value={formData.cpf_cnpj}
+                        onChange={(e) =>
+                          setFormData({ ...formData, cpf_cnpj: e.target.value.replace(/[^0-9/.\+\-\s]/g, '') })
+                        }
+                      />
+                    </div>
+                    <div className="col-12">
+                      <input
+                        type="text"
+                        name="nome"
+                        className="form-control"
+                        placeholder="Nome"
+                        required
+                        value={formData.nome}
+                        onChange={(e) =>
+                          setFormData({ ...formData, nome: e.target.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '') })
+                        }
+                      />
+                    </div>
+                    <div className="col-12">
+                      <input
+                        type="email"
+                        name="email"
+                        className="form-control"
+                        placeholder="Email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      />
+                    </div>
+                    <div className="col-12 mb-3">
+                      <input
+                        type="text"
+                        name="telefone"
+                        className="form-control"
+                        placeholder="Telefone"
+                        required
+                        value={formData.telefone}
+                        onChange={(e) =>
+                          setFormData({ ...formData, telefone: e.target.value.replace(/[^0-9+\-\s]/g, '') })
+                        }
+                      />
+                    </div>
 
-                  {erro && <div className="text-danger text-center">{erro}</div>}
-                  {sucesso && <div className="text-success text-center">Cadastro realizado com sucesso!</div>}
+                    {erro && <div className="text-danger text-center">{erro}</div>}
+                    {sucesso && <div className="text-success text-center">Cadastro realizado com sucesso!</div>}
 
-                  <div className="col-12 text-center">
-                    <button type="submit" disabled={loading}>
-                      {loading ? 'Enviando...' : 'Cadastrar-se'}
-                    </button>
+                    <div className="col-12 text-center">
+                      <button type="submit" disabled={loading}>
+                        {loading ? 'Enviando...' : 'Cadastrar-se'}
+                      </button>
+                    </div>
                   </div>
-                </div>
-              </form>
+                </form>
               </div>
             </div>
           </div>
@@ -164,17 +174,17 @@ const handleSubmit = async (e: React.FormEvent) => {
                   <div className="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
                     <h3>Economia para o Cliente</h3>
                     <p className="" id="text-index">
-                  A <strong>Virtutis Energy</strong> é uma fintech de energia solar que desenvolve, gerencia e aluga
-                  usinas fotovoltaicas próprias. Oferecemos redução de custos com energia elétrica para nossos clientes,
-                  sem a necessidade de que eles paguem pela construção e manutenção de placas solares. Além disso,
-                  proporcionamos aos investidores a oportunidade de participar do desenvolvimento dos sistemas de
-                  geração de energia, oferecendo-lhes participação nos lucros oriundos da locação das usinas.
-                </p>
-                <p id="text-index">Com a <strong>Virtutis Energy</strong>, você aproveita uma solução sustentável que
-                  combina economia, rentabilidade e impacto positivo no meio ambiente. Junte-se a nós e faça parte do
-                  futuro da energia renovável!</p>
+                      A <strong>Virtutis Energy</strong> é uma fintech de energia solar que desenvolve, gerencia e aluga
+                      usinas fotovoltaicas próprias. Oferecemos redução de custos com energia elétrica para nossos clientes,
+                      sem a necessidade de que eles paguem pela construção e manutenção de placas solares. Além disso,
+                      proporcionamos aos investidores a oportunidade de participar do desenvolvimento dos sistemas de
+                      geração de energia, oferecendo-lhes participação nos lucros oriundos da locação das usinas.
+                    </p>
+                    <p id="text-index">Com a <strong>Virtutis Energy</strong>, você aproveita uma solução sustentável que
+                      combina economia, rentabilidade e impacto positivo no meio ambiente. Junte-se a nós e faça parte do
+                      futuro da energia renovável!</p>
                     <div className="info">
-                      <button onClick={() => { router.push("/clientes")}} className="btn-get-started">Saiba mais</button>
+                      <button onClick={() => { router.push("/clientes") }} className="btn-get-started">Saiba mais</button>
                     </div>
                   </div>
                   <div className="col-lg-6 order-1 order-lg-2 text-center mb-4">
@@ -193,7 +203,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                       seus investimentos e faça parte do futuro da energia renovável!
                     </p>
                     <div className="info">
-                      <button onClick={() => { router.push("/investidores")}} className="btn-get-started">Saiba mais</button>
+                      <button onClick={() => { router.push("/investidores") }} className="btn-get-started">Saiba mais</button>
                     </div>
                   </div>
                   <div className="col-lg-6 order-1 order-lg-2 text-center mb-4">
@@ -210,18 +220,18 @@ const handleSubmit = async (e: React.FormEvent) => {
       <a href="#" id="scroll-top" className="scroll-top d-flex align-items-center justify-content-center">
         <i className="bi bi-arrow-up-short"></i>
       </a>
-    
 
-    <Script src="/styles/vendor/aos/aos.js" strategy="afterInteractive" />
-    <Script src="/styles/vendor/glightbox/js/glightbox.min.js" strategy="afterInteractive" />
-    <Script src="/styles/vendor/imagesloaded/imagesloaded.pkgd.min.js" strategy="afterInteractive" />
-    <Script src="/styles/vendor/isotope-layout/isotope.pkgd.min.js" strategy="afterInteractive" />
-    <Script src="/styles/vendor/swiper/swiper-bundle.min.js" strategy="afterInteractive" />
-    <Script src="/styles/vendor/purecounter/purecounter_vanilla.js" strategy="afterInteractive" />
-    <Script
-  src="/styles/vendor/bootstrap/js/bootstrap.bundle.min.js"
-  strategy="afterInteractive"
-/>
-      </>
+
+      <Script src="/styles/vendor/aos/aos.js" strategy="afterInteractive" />
+      <Script src="/styles/vendor/glightbox/js/glightbox.min.js" strategy="afterInteractive" />
+      <Script src="/styles/vendor/imagesloaded/imagesloaded.pkgd.min.js" strategy="afterInteractive" />
+      <Script src="/styles/vendor/isotope-layout/isotope.pkgd.min.js" strategy="afterInteractive" />
+      <Script src="/styles/vendor/swiper/swiper-bundle.min.js" strategy="afterInteractive" />
+      <Script src="/styles/vendor/purecounter/purecounter_vanilla.js" strategy="afterInteractive" />
+      <Script
+        src="/styles/vendor/bootstrap/js/bootstrap.bundle.min.js"
+        strategy="afterInteractive"
+      />
+    </>
   )
 }

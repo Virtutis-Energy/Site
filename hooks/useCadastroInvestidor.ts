@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { getBackendUrl, parseJsonResponse } from '@/lib/backend'
 
 interface CadastroData {
   cpf_cnpj: string
@@ -18,13 +19,13 @@ export function useCadastroInvestidor() {
     setSucesso(false)
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACK_END}/investidores/cadastrar/`, {
+      const response = await fetch(getBackendUrl('/investidores/cadastrar/'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       })
 
-      const resposta = await response.json()
+      const resposta = await parseJsonResponse<{ errors?: unknown; error?: string }>(response)
 
       if (response.ok) {
         setSucesso(true)
@@ -32,7 +33,7 @@ export function useCadastroInvestidor() {
         setErro(resposta.errors ? JSON.stringify(resposta.errors) : resposta.error || 'Erro ao cadastrar')
       }
     } catch (e) {
-      setErro('Erro ao enviar os dados.')
+      setErro(e instanceof Error ? e.message : 'Erro ao enviar os dados.')
     } finally {
       setLoading(false)
     }

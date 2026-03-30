@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { getBackendUrl, parseJsonResponse } from '@/lib/backend'
 
 interface CalculoResult {
   total_acumulado: number
@@ -29,13 +30,13 @@ export function useSimulacaoInvestimento() {
     cupom?: string
   }) => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_URL_BACK_END}/investidores/calcular-investimento/`, {
+      const response = await fetch(getBackendUrl('/investidores/calcular-investimento/'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ vitis, meses, usina_id, cupom }),
       })
 
-      const data: CalculoResult & { erro?: string } = await response.json()
+      const data = await parseJsonResponse<CalculoResult & { erro?: string }>(response)
 
       if (data.erro) {
         alert('Erro: ' + data.erro)
@@ -51,7 +52,7 @@ export function useSimulacaoInvestimento() {
       setGraficoDados(data.valorizacao || [])
     } catch (error) {
       console.error('Erro ao calcular investimento:', error)
-      alert('Erro ao se comunicar com o servidor.')
+      alert(error instanceof Error ? error.message : 'Erro ao se comunicar com o servidor.')
     }
   }
 

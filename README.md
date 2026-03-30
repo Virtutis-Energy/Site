@@ -4,19 +4,50 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+Recommended Node.js version:
+
+```bash
+22
+```
+
+If you use `nvm`, run:
+
+```bash
+nvm use
+```
+
+Create your environment file before starting the app:
+
+```bash
+cp .env.example .env.local
+```
+
+Set the backend URL in `.env.local`:
+
+```bash
+NEXT_PUBLIC_URL_BACK_END=http://localhost:8000
+```
+
 First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Notes
+
+- The `dev` script already disables Node experimental Web Storage to avoid `localStorage.getItem is not a function` during `next dev` in some environments.
+- The frontend requires `NEXT_PUBLIC_URL_BACK_END` to be configured. If the API URL is missing or incorrect, requests may return HTML instead of JSON.
+- If port `3000` is already in use, stop old Next.js processes before starting a new one.
+
+To stop stale dev servers:
+
+```bash
+pkill -f "next dev" || true
+pkill -f "node /code/node_modules/.bin/next" || true
+```
 
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
