@@ -22,18 +22,20 @@ export function useSimulacaoInvestimento() {
     vitis,
     meses,
     usina_id,
+    nivel,
     cupom,
   }: {
     vitis: number
     meses: number
     usina_id: string
+    nivel: number
     cupom?: string
   }) => {
     try {
       const response = await fetch(getBackendUrl('/investidores/calcular-investimento/'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ vitis, meses, usina_id, cupom }),
+        body: JSON.stringify({ vitis, meses, usina_id, nivel, cupom }),
       })
 
       const data = await parseJsonResponse<CalculoResult & { erro?: string }>(response)

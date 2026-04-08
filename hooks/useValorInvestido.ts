@@ -20,5 +20,5 @@ export function useValorInvestido(
 
     const total = (quantidade * valorUnitario) * (1 - desconto / 100)
     return `R$ ${total.toFixed(2).replace('.', ',')}`
-  }, [usinas, usinaId, quantidade, desconto]) // 👈 adiciona desconto aqui
+  }, [usinas, usinaId, quantidade, desconto])
 }

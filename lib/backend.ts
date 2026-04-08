@@ -1,5 +1,5 @@
-const BACKEND_URL = process.env.NEXT_PUBLIC_URL_BACK_END?.trim()
-
+//const BACKEND_URL = process.env.NEXT_PUBLIC_URL_BACK_END?.trim()
+const BACKEND_URL = "https://virtutis-website-backend-412f7c9b0ac2.herokuapp.com"
 export function getBackendUrl(path: string) {
   if (!BACKEND_URL) {
     throw new Error('NEXT_PUBLIC_URL_BACK_END nao esta configurada.')

@@ -7,8 +7,8 @@ export default function Footer() {
     const router = useRouter()
   return (
     
-    <footer id="footer" className="footer dark-background">
-
+<footer id="footer" className="footer dark-background bg-dark-blue">
+  
     <div className="container footer-top">
       <div className="row gy-4">
         <div className="col-lg-6 col-md-6 footer-about">
@@ -23,7 +23,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="social-links d-flex mt-4">
+          <div className="social-links d-flex mt-4 ">
             <a href="https://www.instagram.com/virtutisenergy" target="_blank">
             <BsInstagram size={24} />
             </a>
@@ -44,7 +44,6 @@ export default function Footer() {
           <img src="/img/LOGO_white.png" className="logo-tec"/>
         </div>
        
-
       </div>
     </div>
 

@@ -59,6 +59,7 @@
 }
 
 .dark-background {
+  --dark-blue:#02083b;
   --background-color: #060606;
   --default-color: #ffffff;
   --heading-color: #ffffff;

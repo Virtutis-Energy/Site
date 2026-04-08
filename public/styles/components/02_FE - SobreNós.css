@@ -4,13 +4,20 @@
 .about .inner-title {
     font-size: 2.75rem;
     font-weight: 700;
-    margin: 30px 0;
+    margin-bottom: 20px;
+    
+  }
+
+  .text-latim {
+    text-align: justify;
+    line-height: 1.7;
+    hyphens: auto;
   }
   
   @media (min-width: 991px) {
     .about .inner-title {
       max-width: 65%;
-      margin: 0 0 80px 0;
+      margin: 0 0 20px 0;
     }
   }
   
