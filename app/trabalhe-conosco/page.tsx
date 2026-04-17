@@ -10,6 +10,21 @@ export default function FormularioIngressante() {
   const { cadastrar, sucesso, erro, loading } = useCadastrarIngressante()
   const { subdivisoes, loading: loadingSub } = useSubdivisoes()
 
+  const ordemSubdivisoes = [
+    'Secretaria de Economia',
+    'Secretaria de Recursos humanos',
+    'Setor Administrativo',
+    'Setor Jurídico',
+    'Setor Estrutural',
+    'Setor Tecnológico',
+    'Setor Comercial',
+    'Departamento de Contabilidade',
+    'Departamento de Terrenos',
+    'Departamento de Projetos',
+    'Departamento de Obras',
+    'Departamento de Operação',
+  ]
+
   const [formData, setFormData] = useState({
     cpf: '',
     nome: '',
@@ -19,7 +34,7 @@ export default function FormularioIngressante() {
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target
+    const { name, value, checked } = e.target
 
     if (name === 'subdivisoes') {
       const id = parseInt(value)
@@ -27,6 +42,7 @@ export default function FormularioIngressante() {
         const novaLista = checked
           ? [...prev.subdivisoes, id]
           : prev.subdivisoes.filter((item) => item !== id)
+
         return { ...prev, subdivisoes: novaLista }
       })
     } else {
@@ -38,111 +54,177 @@ export default function FormularioIngressante() {
     e.preventDefault()
     await cadastrar(formData)
   }
-return(
-<main className="main">
 
-    <div className="page-title dark-background"
-      style={{backgroundImage: 'url(/img/hero-carousel/hero-carousel-5.jpg)'}}>
-      <div className="container position-relative">
-        <h1>Trabalhe Conosco</h1>
-        <nav className="breadcrumbs">
-          <ol>
-            <li>
-              <button onClick={() => router.push('/')} style={{color:'white'}}>Home</button>
+  const subdivisoesOrdenadas = [...subdivisoes].sort((a, b) => {
+    const indexA = ordemSubdivisoes.indexOf(a.nome)
+    const indexB = ordemSubdivisoes.indexOf(b.nome)
+
+    if (indexA === -1 && indexB === -1) {
+      return a.nome.localeCompare(b.nome, 'pt-BR')
+    }
+
+    if (indexA === -1) return 1
+    if (indexB === -1) return -1
+
+    return indexA - indexB
+  })
+
+  return (
+    <main className="main">
+      <div
+        className="page-title dark-background"
+        style={{ backgroundImage: 'url(/img/hero-carousel/hero-carousel-5.jpg)' }}
+      >
+        <div className="container position-relative">
+          <h1>Trabalhe Conosco</h1>
+          <nav className="breadcrumbs">
+            <ol>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => router.push('/')}
+                  style={{ color: 'white' }}
+                >
+                  Home
+                </button>
               </li>
-            <li className="current">Trabalhe Conosco</li>
-          </ol>
-        </nav>
+              <li className="current">Trabalhe Conosco</li>
+            </ol>
+          </nav>
+        </div>
       </div>
-    </div>
 
-   
-    <section id="contact" className="contact section">
-
-      <div className="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div className="row gy-4">
-
-          <div className="col-lg-6">
-            <div className="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up"
-              data-aos-delay="200">
-              <i className="bi bi-geo-alt"></i>
-              <h3>Filial VE.1 - Ceará</h3>
-              <p>Av. Humberto Monte s/n, Fortaleza, CE</p>
-            </div>
-          </div>
-          
-          <div className="col-lg-6">
-            <div className="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up"
-              data-aos-delay="200">
-              <i className="bi bi-geo-alt"></i>
-              <h3>Matriz</h3>
-              <p>Av. Barão de Studart, 1980 - Aldeota, Fortaleza - CE, 60120-024</p>
-            </div>
-          </div>
-          
-        </div>
-        <br/>
-  <div className="col-lg-12" data-aos="fade-up" data-aos-delay="300">
-   <form onSubmit={handleSubmit} className="php-email-form">
-      <div className="row gy-3">
-        <div className="col-12">
-          <input type="text" name="cpf" placeholder="CPF" required className="form-control" value={formData.cpf} onChange={handleChange} />
-        </div>
-        <div className="col-12">
-          <input type="text" name="nome" placeholder="Nome" required className="form-control" value={formData.nome} onChange={handleChange} />
-        </div>
-        <div className="col-12">
-          <input type="email" name="email" placeholder="Email" required className="form-control" value={formData.email} onChange={handleChange} />
-        </div>
-        <div className="col-12">
-          <input type="text" name="telefone" placeholder="Telefone" required className="form-control" value={formData.telefone} onChange={handleChange} />
-        </div>
-
-        <div className="col-12">
-          <label className="form-label">Subdivisões (pode selecionar mais de uma):</label>
-          {loadingSub ? (
-            <p>Carregando subdivisões...</p>
-          ) : (
-            subdivisoes.map((sub) => (
-              <div className="form-check" key={sub.id}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  name="subdivisoes"
-                  value={sub.id}
-                  onChange={handleChange}
-                  checked={formData.subdivisoes.includes(sub.id)}
-                />
-                <label className="form-check-label">{sub.nome}</label>
+      <section id="contact" className="contact section">
+        <div className="container" data-aos="fade-up" data-aos-delay="100">
+          <div className="row gy-4">
+            <div className="col-lg-6">
+              <div
+                className="info-item d-flex flex-column justify-content-center align-items-center"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                <i className="bi bi-geo-alt"></i>
+                <h3>Filial VE.1 - Ceará</h3>
+                <p>Av. Humberto Monte s/n, Fortaleza, CE</p>
               </div>
-            ))
-          )}
+            </div>
+
+            <div className="col-lg-6">
+              <div
+                className="info-item d-flex flex-column justify-content-center align-items-center"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                <i className="bi bi-geo-alt"></i>
+                <h3>Matriz</h3>
+                <p>Av. Barão de Studart, 1980 - Aldeota, Fortaleza - CE, 60120-024</p>
+              </div>
+            </div>
+          </div>
+
+          <br />
+
+          <div className="col-lg-12" data-aos="fade-up" data-aos-delay="300">
+            <form onSubmit={handleSubmit} className="php-email-form">
+              <div className="row gy-3">
+                <div className="col-12">
+                  <input
+                    type="text"
+                    name="cpf"
+                    placeholder="CPF"
+                    required
+                    className="form-control"
+                    value={formData.cpf}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="col-12">
+                  <input
+                    type="text"
+                    name="nome"
+                    placeholder="Nome"
+                    required
+                    className="form-control"
+                    value={formData.nome}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="col-12">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    required
+                    className="form-control"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="col-12">
+                  <input
+                    type="text"
+                    name="telefone"
+                    placeholder="Telefone"
+                    required
+                    className="form-control"
+                    value={formData.telefone}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="col-12">
+                  <label className="form-label">
+                    Subdivisões (pode selecionar mais de uma):
+                  </label>
+
+                  {loadingSub ? (
+                    <p>Carregando subdivisões...</p>
+                  ) : (
+                    subdivisoesOrdenadas.map((sub) => (
+                      <div className="form-check" key={sub.id}>
+                        <input
+                          className="form-check-input"
+                          type="checkbox"
+                          name="subdivisoes"
+                          value={sub.id}
+                          onChange={handleChange}
+                          checked={formData.subdivisoes.includes(sub.id)}
+                        />
+                        <label className="form-check-label">{sub.nome}</label>
+                      </div>
+                    ))
+                  )}
+                </div>
+
+                <div className="col-12">
+                  <button
+                    onClick={() => router.push('/subdivisoes')}
+                    className="setor-link"
+                    type="button"
+                  >
+                    Saiba mais sobre o Trabalho Conosco
+                  </button>
+                </div>
+
+                <div className="col-12 text-center">
+                  <button type="submit" disabled={loading}>
+                    {loading ? 'Enviando...' : 'Cadastrar-se'}
+                  </button>
+
+                  {sucesso && (
+                    <p className="text-success mt-2">Cadastro realizado com sucesso!</p>
+                  )}
+
+                  {erro && <p className="text-danger mt-2">{erro}</p>}
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-
-        <div className="col-12">
-          <button onClick={() => router.push('/subdivisoes')} className="setor-link" type="button">
-            Saiba mais sobre o Trabalho Conosco
-          </button>
-        </div>
-
-        <div className="col-12 text-center">
-          <button type="submit" disabled={loading}>
-            {loading ? 'Enviando...' : 'Cadastrar-se'}
-          </button>
-          {sucesso && <p className="text-success mt-2">Cadastro realizado com sucesso!</p>}
-          {erro && <p className="text-danger mt-2">{erro}</p>}
-        </div>
-      </div>
-    </form>
-</div>
-
-
-
-        </div>
-
-    </section>
-
-  </main>
-    
-)}
+      </section>
+    </main>
+  )
+}

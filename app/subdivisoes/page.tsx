@@ -134,22 +134,22 @@ export default function TrabalheConosco() {
             <div className="row gy-4 justify-content-center">
               <InfoBox
                 icon="bi bi-mortarboard-fill"
-                title="Estagiário"
+                title="Estagiário I"
                 description="Colabora com rotinas operacionais e participa de projetos práticos para seu desenvolvimento acadêmico e profissional dentro da Virtutis Energy."
               />
               <InfoBox
                 icon="bi bi-award-fill"
-                title="Bolsista"
+                title="Estagoário II"
                 description="Atua em projetos de pesquisa, inovação ou desenvolvimento institucional, recebendo incentivo mediante desempenho técnico e científico."
               />
               <InfoBox
                 icon="bi bi-lightbulb-fill"
-                title="Trainee"
+                title="Funcinário I"
                 description="Integra o time da Virtutis em diversas áreas com foco em aprendizado intensivo e progressão para cargos estratégicos."
               />
               <InfoBox
                 icon="bi bi-person-vcard-fill"
-                title="Funcionário"
+                title="Funcionário II"
                 description="Desempenha funções técnicas e administrativas dentro de sua área, contribuindo diretamente com os resultados da empresa."
               />
               <InfoBox

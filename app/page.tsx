@@ -212,7 +212,7 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div>Saiba mais sobre o Trabalho Conosco
           </div>
         </section>
       </main>
