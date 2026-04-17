@@ -152,30 +152,30 @@ export default function TrabalheConosco() {
                 icon="bi bi-mortarboard-fill"
                 title="Estagiário"
                 subtitle="Nível I"
-                description="Colabora com rotinas operacionais e participa de projetos práticos para seu desenvolvimento acadêmico e profissional dentro da Virtutis Energy."
+                description="Colabora com rotinas operacionais com um carga horária mínima de 8 horas semanais, participando de projetos práticos para seu desenvolvimento acadêmico e profissional dentro da Virtutis Energy."
               />
               <InfoBox
                 icon="bi bi-award-fill"
                 title="Estagiário"
                 subtitle="Nível II"
-                description="Atua em projetos de pesquisa, inovação ou desenvolvimento institucional, recebendo incentivo mediante desempenho técnico e científico."
+                description="Atua em projetos de pesquisa, inovação ou desenvolvimento institucional, com uma carga horária mínima de 12 horas semanais, recebendo incentivo mediante desempenho técnico e científico."
               />
               <InfoBox
                 icon="bi bi-lightbulb-fill"
                 title="Funcionário"
                 subtitle="Nível I"
-                description="Integra o time da Virtutis Energy em diversas áreas com foco em aprendizado intensivo e progressão para cargos estratégicos."
+                description="Integra o time da Virtutis Energy em diversas áreas com foco em aprendizado intensivo e progressão para cargos estratégicos,  com uma carga horária mínima de 16 horas semanais."
               />
               <InfoBox
                 icon="bi bi-person-vcard-fill"
                 title="Funcionário"
                 subtitle="Nível II"
-                description="Desempenha funções técnicas e administrativas dentro de sua área, contribuindo diretamente com os resultados da empresa."
+                description="Desempenha funções técnicas e administrativas dentro de sua área, contribuindo diretamente com os resultados da empresa,  com uma carga horária mínima de 20 horas semanais."
               />
               <InfoBox
                 icon="bi bi-people-fill"
                 title="Sócio Colaborador"
-                description="Participa das atividades estratégicas da empresa, com envolvimento parcial, oferecendo expertise, rede de contatos ou capital."
+                description="Participa das atividades estratégicas da empresa, com envolvimento parcial, oferecendo expertise, rede de contatos ou capital,  com uma carga horária mínima de 24 horas semanais."
               />
             </div>
           </Tab>

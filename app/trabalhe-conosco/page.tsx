@@ -12,16 +12,16 @@ export default function FormularioIngressante() {
 
   const ordemSubdivisoes = [
     'Secretaria de Economia',
-    'Secretaria de Recursos humanos',
+    'Secretaria de Recursos Humanos',
     'Setor Administrativo',
     'Setor Jurídico',
     'Setor Estrutural',
     'Setor Tecnológico',
     'Setor Comercial',
     'Departamento de Contabilidade',
-    'Departamento de Terrenos',
-    'Departamento de Projetos',
-    'Departamento de Obras',
+    'Departamento de Terreno',
+    'Departamento de Projeto',
+    'Departamento de Obra',
     'Departamento de Operação',
   ]
 
