@@ -11,18 +11,18 @@ export default function FormularioIngressante() {
   const { subdivisoes, loading: loadingSub } = useSubdivisoes()
 
   const ordemSubdivisoes = [
-    'Secretaria de Economia ',
-    'Secretaria de Recursos Humanos ',
-    'Setor Administrativo ',
-    'Setor Jurídico ',
-    'Setor Estrutural ',
-    'Setor Tecnológico ',
-    'Setor Comercial ',
+    'Secretaria de Economia',
+    'Secretaria de Recursos Humanos',
+    'Setor Administrativo',
+    'Setor Jurídico',
+    'Setor Estrutural',
+    'Setor Tecnológico',
+    'Setor Comercial',
     'Departamento de Contabilidade',
-    'Departamento de Terreno ',
-    'Departamento de Projeto ',
-    'Departamento de Obra ',
-    'Departamento de Operação ',
+    'Departamento de Terrenos',
+    'Departamento de Projetos',
+    'Departamento de Obras',
+    'Departamento de Operação',
   ]
 
   const [formData, setFormData] = useState({
@@ -38,6 +38,7 @@ export default function FormularioIngressante() {
 
     if (name === 'subdivisoes') {
       const id = parseInt(value)
+
       setFormData((prev) => {
         const novaLista = checked
           ? [...prev.subdivisoes, id]
@@ -55,19 +56,11 @@ export default function FormularioIngressante() {
     await cadastrar(formData)
   }
 
-  const subdivisoesOrdenadas = [...subdivisoes].sort((a, b) => {
-    const indexA = ordemSubdivisoes.indexOf(a.nome)
-    const indexB = ordemSubdivisoes.indexOf(b.nome)
-
-    if (indexA === -1 && indexB === -1) {
-      return a.nome.localeCompare(b.nome, 'pt-BR')
-    }
-
-    if (indexA === -1) return 1
-    if (indexB === -1) return -1
-
-    return indexA - indexB
-  })
+  const subdivisoesOrdenadas = ordemSubdivisoes
+    .map((nomeOrdem) =>
+      subdivisoes.find((sub) => sub.nome.trim() === nomeOrdem.trim())
+    )
+    .filter((sub): sub is (typeof subdivisoes)[number] => Boolean(sub))
 
   return (
     <main className="main">
@@ -206,7 +199,7 @@ export default function FormularioIngressante() {
                     type="button"
                     style={{
                       textDecoration: 'underline',
-                      cursor: 'poniter',
+                      cursor: 'pointer',
                     }}
                   >
                     Saiba mais sobre o Trabalho Conosco
