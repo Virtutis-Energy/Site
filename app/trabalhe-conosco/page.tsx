@@ -204,6 +204,10 @@ export default function FormularioIngressante() {
                     onClick={() => router.push('/subdivisoes')}
                     className="setor-link"
                     type="button"
+                    style={{
+                      textDecoration: 'underline',
+                      cursor: 'poniter',
+                    }}
                   >
                     Saiba mais sobre o Trabalho Conosco
                   </button>
