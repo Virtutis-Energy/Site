@@ -1,4 +1,5 @@
 'use client'
+
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { Tabs, Tab } from 'react-bootstrap'
@@ -6,17 +7,20 @@ import { Tabs, Tab } from 'react-bootstrap'
 function InfoBox({
   icon,
   title,
+  subtitle,
   description,
 }: {
   icon: string
   title: string
+  subtitle?: string
   description: string
 }) {
   return (
     <div className="col-lg-6 col-md-6">
-      <div className="info-item d-flex flex-column justify-content-center align-items-center px-5 text-center">
+      <div className="info-item d-flex flex-column justify-content-center align-items-center px-5 text-center h-100">
         <i className={icon}></i>
-        <h3>{title}</h3>
+        <h3 className="info-box-title">{title}</h3>
+        {subtitle && <span className="info-box-subtitle">{subtitle}</span>}
         <p>{description}</p>
       </div>
     </div>
@@ -38,7 +42,18 @@ export default function TrabalheConosco() {
           <nav className="breadcrumbs">
             <ol>
               <li>
-                <button onClick={() => router.push('/')} style={{color:'white'}}>Home</button>
+                <button
+                  onClick={() => router.push('/')}
+                  style={{
+                    color: 'white',
+                    background: 'none',
+                    border: 'none',
+                    padding: 0,
+                    cursor: 'pointer',
+                  }}
+                >
+                  Home
+                </button>
               </li>
               <li className="current">Trabalhe Conosco</li>
             </ol>
@@ -47,15 +62,18 @@ export default function TrabalheConosco() {
       </div>
 
       <div className="container py-5">
-        <Tabs activeKey={key} onSelect={(k) => setKey(k || 'cargos')} className="mb-4 justify-content-center">
-          {/* --- CARGOS --- */}
+        <Tabs
+          activeKey={key}
+          onSelect={(k) => setKey(k || 'cargos')}
+          className="mb-4 justify-content-center"
+        >
           <Tab eventKey="cargos" title="Cargos">
             <h3 className="titulo-subdivisao">Sócio-Administração</h3>
             <div className="row gy-4 justify-content-center">
               <InfoBox
                 icon="bi bi-person-fill-gear"
                 title="Secretaria de Economia"
-                description="Designada a estabelecer o controle financeiro da Virtutis Energy, destinando e acompanhando recursos voltados às Secretarias, os Setores e os Departamentos, seguindo planejamento prévio correspondente à estratégia de crescimento da empresa."
+                description="Designada a estabelecer o controle financeiro da Virtutis Energy, destinando e acompanhando recursos voltados às Secretarias, aos Setores e aos Departamentos, seguindo planejamento prévio correspondente à estratégia de crescimento da empresa."
               />
               <InfoBox
                 icon="bi bi-file-earmark-text-fill"
@@ -69,7 +87,7 @@ export default function TrabalheConosco() {
               <InfoBox
                 icon="bi bi-person-fill-gear"
                 title="Setor Administrativo"
-                description="Designado a gerenciar a empresa, por meio do controle de frequência e produtividade dos membros das secretarias, setores e departamentos."
+                description="Designado a gerenciar a empresa por meio do controle de frequência e produtividade dos membros das secretarias, setores e departamentos."
               />
               <InfoBox
                 icon="bi bi-file-earmark-text-fill"
@@ -79,7 +97,7 @@ export default function TrabalheConosco() {
               <InfoBox
                 icon="bi bi-building-gear"
                 title="Setor Estrutural"
-                description="Dedica-se à estruturação material, à realização de parcerias e à promoção pessoal/profissional dos membros da empresa."
+                description="Dedica-se à estruturação material, à realização de parcerias e à promoção pessoal e profissional dos membros da empresa."
               />
               <InfoBox
                 icon="bi bi-cpu-fill"
@@ -103,12 +121,12 @@ export default function TrabalheConosco() {
               <InfoBox
                 icon="bi bi-file-earmark-text-fill"
                 title="Departamento de Terrenos"
-                description="Prospecção e adequação dos terrenos para as Usinas da Filial, regularização, limpeza e análise técnica."
+                description="Responsável pela prospecção e adequação dos terrenos para as usinas da filial, incluindo regularização, limpeza e análise técnica."
               />
               <InfoBox
                 icon="bi bi-building-gear"
                 title="Departamento de Projetos"
-                description="Desenvolve os projetos Básico e Executivo das usinas, detalhando layout e conexão à rede elétrica."
+                description="Desenvolve os projetos básico e executivo das usinas, detalhando layout e conexão à rede elétrica."
               />
               <InfoBox
                 icon="bi bi-cpu-fill"
@@ -118,49 +136,80 @@ export default function TrabalheConosco() {
               <InfoBox
                 icon="bi bi-speedometer2"
                 title="Departamento de Operação"
-                description="Conduz o relacionamento com clientes, acompanha performance das usinas e divulga atualizações."
+                description="Conduz o relacionamento com clientes, acompanha a performance das usinas e divulga atualizações."
               />
               <InfoBox
                 icon="bi bi-chat-left-text-fill"
                 title="Departamento de Usuários"
                 description="Responsável pela comunicação da empresa com os clientes, marketing e atendimento ao mercado."
               />
-    
             </div>
           </Tab>
 
-          {/* --- VÍNCULOS --- */}
           <Tab eventKey="vinculos" title="Vínculos">
             <div className="row gy-4 justify-content-center">
               <InfoBox
                 icon="bi bi-mortarboard-fill"
-                title="Estagiário I"
+                title="Estagiário"
+                subtitle="Nível I"
                 description="Colabora com rotinas operacionais e participa de projetos práticos para seu desenvolvimento acadêmico e profissional dentro da Virtutis Energy."
               />
               <InfoBox
                 icon="bi bi-award-fill"
-                title="Estagoário II"
+                title="Estagiário"
+                subtitle="Nível II"
                 description="Atua em projetos de pesquisa, inovação ou desenvolvimento institucional, recebendo incentivo mediante desempenho técnico e científico."
               />
               <InfoBox
                 icon="bi bi-lightbulb-fill"
-                title="Funcinário I"
-                description="Integra o time da Virtutis em diversas áreas com foco em aprendizado intensivo e progressão para cargos estratégicos."
+                title="Funcionário"
+                subtitle="Nível I"
+                description="Integra o time da Virtutis Energy em diversas áreas com foco em aprendizado intensivo e progressão para cargos estratégicos."
               />
               <InfoBox
                 icon="bi bi-person-vcard-fill"
-                title="Funcionário II"
+                title="Funcionário"
+                subtitle="Nível II"
                 description="Desempenha funções técnicas e administrativas dentro de sua área, contribuindo diretamente com os resultados da empresa."
               />
               <InfoBox
                 icon="bi bi-people-fill"
-                title="Sócio-Colaborador"
+                title="Sócio Colaborador"
                 description="Participa das atividades estratégicas da empresa, com envolvimento parcial, oferecendo expertise, rede de contatos ou capital."
               />
             </div>
           </Tab>
         </Tabs>
       </div>
+
+      <style jsx>{`
+        .info-item {
+          min-height: 260px;
+          border-radius: 18px;
+        }
+
+        .info-box-title {
+          margin: 12px 0 0 0;
+          font-size: 1.35rem;
+          font-weight: 700;
+          color: #1c2430;
+          line-height: 1.2;
+        }
+
+        .info-box-subtitle {
+          display: block;
+          margin-top: 4px;
+          margin-bottom: 10px;
+          font-size: 0.95rem;
+          font-weight: 500;
+          color: #6b7280;
+          line-height: 1.2;
+        }
+
+        .info-item p {
+          margin-top: 6px;
+        }
+      `}</style>
     </div>
   )
 }
