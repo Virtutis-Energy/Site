@@ -188,7 +188,8 @@ export default function TrabalheConosco() {
 
 
 
-      <style jsx>{`
+      <style jsx>{
+      `
   .info-item {
     min-height: 260px;
     border-radius: 18px;
