@@ -11,18 +11,18 @@ export default function FormularioIngressante() {
   const { subdivisoes, loading: loadingSub } = useSubdivisoes()
 
   const ordemSubdivisoes = [
-    'Secretaria de Economia',
-    'Secretaria de Recursos Humanos',
-    'Setor Administrativo',
-    'Setor Jurídico',
-    'Setor Estrutural',
-    'Setor Tecnológico',
-    'Setor Comercial',
+    'Secretaria de Economia ',
+    'Secretaria de Recursos Humanos ',
+    'Setor Administrativo ',
+    'Setor Jurídico ',
+    'Setor Estrutural ',
+    'Setor Tecnológico ',
+    'Setor Comercial ',
     'Departamento de Contabilidade',
-    'Departamento de Terreno',
-    'Departamento de Projeto',
-    'Departamento de Obra',
-    'Departamento de Operação',
+    'Departamento de Terreno ',
+    'Departamento de Projeto ',
+    'Departamento de Obra ',
+    'Departamento de Operação ',
   ]
 
   const [formData, setFormData] = useState({

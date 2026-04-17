@@ -189,33 +189,62 @@ export default function TrabalheConosco() {
 
 
       <style jsx>{`
-        .info-item {
-          min-height: 260px;
-          border-radius: 18px;
-        }
+  .info-item {
+    min-height: 260px;
+    border-radius: 18px;
+  }
 
-        .info-box-title {
-          margin: 12px 0 0 0;
-          font-size: 1.35rem;
-          font-weight: 700;
-          color: #1c2430;
-          line-height: 1.2;
-        }
+  .info-box-title {
+    margin: 12px 0 0 0;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #1c2430;
+    line-height: 1.2;
+    text-align: left;
+  }
 
-        .info-box-subtitle {
-          display: block;
-          margin-top: 4px;
-          margin-bottom: 10px;
-          font-size: 0.95rem;
-          font-weight: 500;
-          color: #6b7280;
-          line-height: 1.2;
-        }
+  .info-box-subtitle {
+    display: block;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #6b7280;
+    line-height: 1.2;
+    text-align: left;
+  }
 
-        .info-item p {
-          margin-top: 6px;
-        }
-      `}</style>
+  .info-item p {
+    margin-top: 6px;
+    margin-bottom: 0;
+    text-align: left;
+    line-height: 1.6;
+    word-break: normal;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  @media (max-width: 768px) {
+    .info-item {
+      min-height: auto;
+      padding: 20px 18px;
+    }
+
+    .info-box-title {
+      font-size: 1.2rem;
+    }
+
+    .info-box-subtitle {
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+
+    .info-item p {
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+  }
+`}</style>
     </div>
   )
 }
