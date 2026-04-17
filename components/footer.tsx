@@ -1,4 +1,3 @@
-// components/Header.tsx
 'use client'
 import { BsInstagram, BsLinkedin } from 'react-icons/bs'
 import { useRouter } from "next/navigation"
