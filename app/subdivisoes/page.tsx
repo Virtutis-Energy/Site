@@ -138,11 +138,6 @@ export default function TrabalheConosco() {
                 title="Departamento de Operação"
                 description="Conduz o relacionamento com clientes, acompanha a performance das usinas e divulga atualizações."
               />
-              <InfoBox
-                icon="bi bi-chat-left-text-fill"
-                title="Departamento de Usuários"
-                description="Responsável pela comunicação da empresa com os clientes, marketing e atendimento ao mercado."
-              />
             </div>
           </Tab>
 
@@ -174,7 +169,7 @@ export default function TrabalheConosco() {
               />
               <InfoBox
                 icon="bi bi-people-fill"
-                title="Sócio Colaborador"
+                title="Sócio-Colaborador"
                 description="Participa das atividades estratégicas da empresa, com envolvimento parcial, oferecendo expertise, rede de contatos ou capital,  com uma carga horária mínima de 24 horas semanais."
               />
             </div>
