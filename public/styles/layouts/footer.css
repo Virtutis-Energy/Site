@@ -17,7 +17,7 @@
   
   .footer:before {
     content: "";
-    background: linear-gradient(#02083b, #060606);
+    background: linear-gradient(#060606);
     position: absolute;
     inset: 0;
   }
