@@ -10,6 +10,8 @@
     const { cadastrar, sucesso, erro, loading } = useCadastrarIngressante()
     const { subdivisoes, loading: loadingSub } = useSubdivisoes()
 
+    // lista ordenada das subdivisões 
+    
     const ordemSubdivisoes = [
       'Secretaria de Economia',
       'Secretaria de Recursos Humanos',
