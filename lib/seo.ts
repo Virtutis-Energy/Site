@@ -16,3 +16,5 @@ export function buildPageMetadata(locale: LocaleSegment, route: RouteKey, title:
     },
   }
 }
+
+// teste teste

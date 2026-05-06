@@ -14,3 +14,4 @@ export const subdivisionNameAliases: Record<SubdivisionKey, string[]> = {
   worksDepartment: ['Departamento de Obra', 'Departamento de Obras'],
   operationsDepartment: ['Departamento de Operação'],
 }
+
