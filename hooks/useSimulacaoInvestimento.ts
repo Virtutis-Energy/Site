@@ -24,12 +24,16 @@ export function useSimulacaoInvestimento() {
     usina_id,
     nivel,
     cupom,
+    errorPrefix,
+    serverError,
   }: {
     vitis: number
     meses: number
     usina_id: string
     nivel: number
     cupom?: string
+    errorPrefix: string
+    serverError: string
   }) => {
     try {
       const response = await fetch(getBackendUrl('/investidores/calcular-investimento/'), {
@@ -41,7 +45,7 @@ export function useSimulacaoInvestimento() {
       const data = await parseJsonResponse<CalculoResult & { erro?: string }>(response)
 
       if (data.erro) {
-        alert('Erro: ' + data.erro)
+        alert(`${errorPrefix}: ${data.erro}`)
         return
       }
 
@@ -54,7 +58,7 @@ export function useSimulacaoInvestimento() {
       setGraficoDados(data.valorizacao || [])
     } catch (error) {
       console.error('Erro ao calcular investimento:', error)
-      alert(error instanceof Error ? error.message : 'Erro ao se comunicar com o servidor.')
+      alert(error instanceof Error ? error.message : serverError)
     }
   }
 

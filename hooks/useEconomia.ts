@@ -3,7 +3,13 @@
 import { useState } from 'react'
 import { getBackendUrl, parseJsonResponse } from '@/lib/backend'
 
-export function useEconomia() {
+interface EconomiaMessages {
+  economyResult: (value: string) => string
+  calculationError: string
+  serverError: string
+}
+
+export function useEconomia(messages: EconomiaMessages) {
   const [economia, setEconomia] = useState<string | null>(null)
 
   const handleCalculate = async () => {
@@ -25,13 +31,13 @@ export function useEconomia() {
       const data = await parseJsonResponse<{ economia_mensal?: string }>(response)
 
       if (data.economia_mensal) {
-        setEconomia(`Economia de aproximadamente R$ ${data.economia_mensal} por mês!`)
+        setEconomia(messages.economyResult(data.economia_mensal))
       } else {
-        setEconomia('Erro ao calcular.')
+        setEconomia(messages.calculationError)
       }
     } catch (error) {
       console.error(error)
-      setEconomia(error instanceof Error ? error.message : 'Erro ao conectar com o servidor.')
+      setEconomia(error instanceof Error ? error.message : messages.serverError)
     }
   }
 

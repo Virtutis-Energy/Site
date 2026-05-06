@@ -1,9 +1,12 @@
 'use client'
 import { BsInstagram, BsLinkedin } from 'react-icons/bs'
 import { useRouter } from "next/navigation"
+import { useLanguage } from './LanguageProvider'
+import { getLocalizedPath } from '@/lib/i18n'
 
 export default function Footer() {
     const router = useRouter()
+    const { localeSegment, t } = useLanguage()
   return (
     
 <footer id="footer" className="footer dark-background bg-dark-blue">
@@ -13,12 +16,12 @@ export default function Footer() {
         <div className="col-lg-6 col-md-6 footer-about">
 
           <div className="col-lg-6 col-md-3 footer-links">
-            <h4>Links úteis</h4>
+            <h4>{t.common.usefulLinks}</h4>
             <ul>
-              <li><button onClick={() => router.push("/")}>Virtutis Energy</button></li>
-              <li><button onClick={() => router.push("/trabalhe-conosco")}>Trabalhe Conosco</button></li>
-              <li><button onClick={() => router.push("/privacidade")}>Política de Privacidade</button></li>
-              <li><button onClick={() => router.push("https://api.whatsapp.com/send?phone=558582351512")}>Contato</button></li>
+              <li><button onClick={() => router.push(getLocalizedPath(localeSegment, 'home'))}>Virtutis Energy</button></li>
+              <li><button onClick={() => router.push(getLocalizedPath(localeSegment, 'workWithUs'))}>{t.common.workWithUs}</button></li>
+              <li><button onClick={() => router.push(getLocalizedPath(localeSegment, 'privacy'))}>{t.common.privacy}</button></li>
+              <li><button onClick={() => router.push("https://api.whatsapp.com/send?phone=558582351512")}>{t.common.contact}</button></li>
             </ul>
           </div>
 
@@ -34,12 +37,12 @@ export default function Footer() {
         </div>
 
         <div className="footer-contact col mb-5">
-          <h4>Endereço</h4>
-          <p>Av. Humberto Monte s/n</p>
-          <p>Bloco 334 - Condomínio de Empreendedorismo e Inovação</p>
-          <p>Campus do Pici - Universidade Federal do Ceará</p>
-          <p>Pici, Fortaleza - CE. CEP: 60440-593</p>
-          <p className="mb-4">40.121.761/0001-16</p>
+          <h4>{t.common.address}</h4>
+          <p>{t.footer.addressLine1}</p>
+          <p>{t.footer.addressLine2}</p>
+          <p>{t.footer.addressLine3}</p>
+          <p>{t.footer.addressLine4}</p>
+          <p className="mb-4">{t.footer.taxId}</p>
           <img src="/img/LOGO_white.png" className="logo-tec"/>
         </div>
        
@@ -47,7 +50,7 @@ export default function Footer() {
     </div>
 
     <div className="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong className="px-1 sitename">Virtutis Energy</strong> <span>All Rights Reserved</span></p>
+      <p>© <span>Copyright</span> <strong className="px-1 sitename">Virtutis Energy</strong> <span>{t.common.allRightsReserved}</span></p>
 
     </div>
 

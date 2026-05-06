@@ -26,16 +26,26 @@ ChartJS.register(
 
 interface InvestChartProps {
   data: number[]
+  monthLabel: (month: number) => string
+  datasetLabel: string
+  yAxisLabel: string
+  xAxisLabel: string
 }
 
-export function InvestChart({ data }: InvestChartProps) {
-  const labels = data.map((_, i) => `Mês ${i + 1}`)
+export function InvestChart({
+  data,
+  monthLabel,
+  datasetLabel,
+  yAxisLabel,
+  xAxisLabel,
+}: InvestChartProps) {
+  const labels = data.map((_, i) => monthLabel(i + 1))
 
   const chartData = {
     labels,
     datasets: [
       {
-        label: 'Rendimento total',
+        label: datasetLabel,
         data,
         fill: true,
         backgroundColor: 'rgba(54, 162, 235, 0.2)',
@@ -57,13 +67,13 @@ export function InvestChart({ data }: InvestChartProps) {
       y: {
         title: {
           display: true,
-          text: 'Rendimento Acumulado (R$)',
+          text: yAxisLabel,
         },
       },
       x: {
         title: {
           display: true,
-          text: 'Meses',
+          text: xAxisLabel,
         },
       },
     },

@@ -1,8 +1,6 @@
 // app/layout.tsx
 import './globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Header from '@/components/header'
-import Footer from '@/components/footer'
 
 import { roboto, openSans, poppins } from './fonts' // seu novo arquivo de fontes
 
@@ -40,11 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <link rel="stylesheet" href="/styles/vendor/bootstrap-icons/bootstrap-icons.css" />
     </head>
 
-      <body className="index-page">
-        <Header />
-        {children}
-        <Footer />
-      </body>
+      <body className="index-page">{children}</body>
       
     </html>
   )

@@ -1,11 +1,19 @@
 'use client'
 
-import { useRouter } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import { useState, useEffect } from "react"
+import { useLanguage } from './LanguageProvider'
+import {
+    getLocalizedPath,
+    getLocalizedPathFromPathname,
+    type LocaleSegment,
+} from '@/lib/i18n'
 
 export default function Header() {
     const router = useRouter()
+    const pathname = usePathname()
     const [mobileNavActive, setMobileNavActive] = useState(false)
+    const { localeSegment, t } = useLanguage()
 
     // Função equivalente ao mobileNavToogle do vanilla JS
     const toggleMobileNav = () => {
@@ -33,28 +41,122 @@ export default function Header() {
         }
     }, [mobileNavActive])
 
+    const switchLocale = (targetLocale: LocaleSegment) => {
+        router.push(getLocalizedPathFromPathname(pathname, targetLocale))
+        closeMobileNav()
+    }
+
     return (
         <header id="header" className="header d-flex align-items-center fixed-top">
             <div className="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-                <button onClick={() => router.push("/")} className="logo d-flex align-items-center">
+                <button onClick={() => router.push(getLocalizedPath(localeSegment, 'home'))} className="logo d-flex align-items-center">
                     <img src="/img/logo.png" alt="Virtutis" style={{ scale: '1.5' }} />
                 </button>
 
                 <nav id="navmenu" className="navmenu">
                     <ul>
-                        <li><button onClick={() => { router.push("/"); closeMobileNav(); }}>Home</button></li>
-                        <li><button onClick={() => { router.push("/sobre"); closeMobileNav(); }}>Sobre nós</button></li>
-                        <li><button onClick={() => { router.push("/clientes"); closeMobileNav(); }}>Clientes</button></li>
-                        <li><button onClick={() => { router.push("/investidores"); closeMobileNav(); }}>Investidores</button></li>
+                        <li><button onClick={() => { router.push(getLocalizedPath(localeSegment, 'home')); closeMobileNav(); }}>{t.common.home}</button></li>
+                        <li><button onClick={() => { router.push(getLocalizedPath(localeSegment, 'about')); closeMobileNav(); }}>{t.common.about}</button></li>
+                        <li><button onClick={() => { router.push(getLocalizedPath(localeSegment, 'clients')); closeMobileNav(); }}>{t.common.clients}</button></li>
+                        <li><button onClick={() => { router.push(getLocalizedPath(localeSegment, 'investors')); closeMobileNav(); }}>{t.common.investors}</button></li>
                         <li id="contact-cad">
                             <a
-                                href="https://wa.me/5585984831512?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20de%20servi%C3%A7os"
+                                href={t.header.whatsappText}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={closeMobileNav}
                             >
-                                Fale Conosco
+                                {t.common.contact}
                             </a>
+                        </li>
+                        <li>
+                            <div
+                                aria-label={t.header.languageSwitcherLabel}
+                                style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '0.35rem',
+                                    marginLeft: '1rem',
+                                }}
+                            >
+                                <button
+                                    type="button"
+                                    onClick={() => switchLocale('pt-br')}
+                                    style={{
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        gap: '0.45rem',
+                                        fontWeight: localeSegment === 'pt-br' ? 700 : 500,
+                                        opacity: localeSegment === 'pt-br' ? 1 : 0.7,
+                                    }}
+                                >
+                                    <span
+                                        aria-hidden="true"
+                                        style={{
+                                            width: '1.6rem',
+                                            height: '1.6rem',
+                                            borderRadius: '999px',
+                                            display: 'inline-flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            overflow: 'hidden',
+                                            boxShadow: '0 0 0 1px rgba(255,255,255,0.25)',
+                                            flexShrink: 0,
+                                        }}
+                                    >
+                                        <img
+                                            src="/img/country/brazil.jpeg"
+                                            alt=""
+                                            style={{
+                                                width: '100%',
+                                                height: '100%',
+                                                objectFit: 'cover',
+                                                display: 'block',
+                                            }}
+                                        />
+                                    </span>
+                                    {t.common.portuguese}
+                                </button>
+                                <span style={{ color: '#fff', opacity: 0.6 }}>/</span>
+                                <button
+                                    type="button"
+                                    onClick={() => switchLocale('en-us')}
+                                    style={{
+                                        display: 'inline-flex',
+                                        alignItems: 'center',
+                                        gap: '0.45rem',
+                                        fontWeight: localeSegment === 'en-us' ? 700 : 500,
+                                        opacity: localeSegment === 'en-us' ? 1 : 0.7,
+                                    }}
+                                >
+                                    <span
+                                        aria-hidden="true"
+                                        style={{
+                                            width: '1.6rem',
+                                            height: '1.6rem',
+                                            borderRadius: '999px',
+                                            display: 'inline-flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            overflow: 'hidden',
+                                            boxShadow: '0 0 0 1px rgba(255,255,255,0.25)',
+                                            flexShrink: 0,
+                                        }}
+                                    >
+                                        <img
+                                            src="/img/country/eua.jpeg"
+                                            alt=""
+                                            style={{
+                                                width: '100%',
+                                                height: '100%',
+                                                objectFit: 'cover',
+                                                display: 'block',
+                                            }}
+                                        />
+                                    </span>
+                                    {t.common.english}
+                                </button>
+                            </div>
                         </li>
                     </ul>
                 </nav>
