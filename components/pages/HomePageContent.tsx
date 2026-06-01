@@ -2,14 +2,12 @@
 
 import Script from 'next/script'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { useCadastroInvestidor } from '@/hooks/useCadastroInvestidor'
 import { useLanguage } from '@/components/LanguageProvider'
-import { getLocalizedPath } from '@/lib/i18n'
+import HomeAudienceTabs from '@/components/home/HomeAudienceTabs'
 
 export default function HomePageContent() {
-  const router = useRouter()
-  const { localeSegment, t } = useLanguage()
+  const { t } = useLanguage()
   const [formData, setFormData] = useState({
     cpf_cnpj: '',
     nome: '',
@@ -204,63 +202,7 @@ export default function HomePageContent() {
           </div>
         </section>
 
-        <section id="features" className="features section">
-          <div className="container">
-            <ul className="nav nav-tabs row g-2 d-flex" data-aos="fade-up" data-aos-delay="100" role="tablist">
-              <li className="nav-item col-6" role="presentation">
-                <a className="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1" aria-selected="true" role="tab">
-                  <h4>{t.home.customerTab}</h4>
-                </a>
-              </li>
-              <li className="nav-item col-6" role="presentation">
-                <a className="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2" aria-selected="false" role="tab">
-                  <h4>{t.home.investorTab}</h4>
-                </a>
-              </li>
-            </ul>
-
-            <div className="tab-content" data-aos="fade-up" data-aos-delay="200">
-              <div className="tab-pane fade active show" id="features-tab-1" role="tabpanel">
-                <div className="row content">
-                  <div className="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-                    <h3>{t.home.customerFeatureTitle}</h3>
-                    <p className="" id="text-index">
-                      {t.home.customerFeatureText1}
-                    </p>
-                    <p id="text-index">{t.home.customerFeatureText2}</p>
-                    <div className="info">
-                      <button onClick={() => router.push(getLocalizedPath(localeSegment, 'clients'))} className="btn-get-started">
-                        {t.common.learnMore}
-                      </button>
-                    </div>
-                  </div>
-                  <div className="col-lg-6 order-1 order-lg-2 text-center mb-4">
-                    <img src="/img/hero-carousel/ft2.jpg" alt="" width="500" className="img-fluid" />
-                  </div>
-                </div>
-              </div>
-
-              <div className="tab-pane fade" id="features-tab-2" role="tabpanel">
-                <div className="row content">
-                  <div className="col-lg-6 order-2 order-lg-1 mt-3 mt-lg-0 d-flex flex-column justify-content-center">
-                    <h3>{t.home.investorFeatureTitle}</h3>
-                    <p className="" id="text-index">
-                      {t.home.investorFeatureText}
-                    </p>
-                    <div className="info">
-                      <button onClick={() => router.push(getLocalizedPath(localeSegment, 'investors'))} className="btn-get-started">
-                        {t.common.learnMore}
-                      </button>
-                    </div>
-                  </div>
-                  <div className="col-lg-6 order-1 order-lg-2 text-center mb-4">
-                    <img src="/img/hero-carousel/ft1.jpg" width="500" className="img-fluid" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <HomeAudienceTabs />
       </main>
 
       <a href="#" id="scroll-top" className="scroll-top d-flex align-items-center justify-content-center">

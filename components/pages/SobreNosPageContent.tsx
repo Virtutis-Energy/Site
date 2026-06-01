@@ -30,7 +30,7 @@ export default function SobreNosPageContent() {
         <div className="container">
           <div className="row position-relative">
             <div className="col-lg-7 about-img" data-aos="zoom-out" data-aos-delay="200">
-              <img src="img/hero-carousel/about.jpg" alt="About" />
+              <img src="/img/hero-carousel/about.jpg" alt="About" />
             </div>
             <div className="col-lg-7" data-aos="fade-up" data-aos-delay="100">
               <h2 className="inner-title">{t.aboutPage.title}</h2>
@@ -52,7 +52,11 @@ export default function SobreNosPageContent() {
                 </ul>
 
                 <p className="text-index">{t.aboutPage.body}</p>
-                <p className="text-latim fw-semibold">{t.aboutPage.latin}</p>
+                <div className="text-latim fw-semibold">
+                  {t.aboutPage.latin.split('\n\n').map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
               </div>
             </div>
           </div>

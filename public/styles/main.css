@@ -454,6 +454,30 @@ section,
   margin-bottom: 0;
 }
 
+.features .home-audience-tabs .nav-link {
+  width: 100%;
+  min-height: 64px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+}
+
+.features .home-audience-image {
+  width: min(100%, 500px);
+  aspect-ratio: 5 / 3;
+  object-fit: cover;
+}
+
+@media (max-width: 575px) {
+  .features .home-audience-tabs {
+    gap: 0.5rem 0;
+  }
+
+  .features .home-audience-tabs .nav-link {
+    min-height: 52px;
+  }
+}
+
 /*--------------------------------------------------------------
 # Projects Section
 --------------------------------------------------------------*/

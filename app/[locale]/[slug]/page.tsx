@@ -3,6 +3,7 @@ import type { ComponentType } from 'react'
 import SobreNosPageContent from '@/components/pages/SobreNosPageContent'
 import ClientesPageContent from '@/components/pages/ClientesPageContent'
 import InvestidoresPageContent from '@/components/pages/InvestidoresPageContent'
+import AssociadoPageContent from '@/components/pages/AssociadoPageContent'
 import CadastroPageContent from '@/components/pages/CadastroPageContent'
 import PrivacidadePageContent from '@/components/pages/PrivacidadePageContent'
 import FormularioIngressanteContent from '@/components/pages/FormularioIngressanteContent'
@@ -21,6 +22,7 @@ const pageComponents: Record<Exclude<RouteKey, 'home'>, ComponentType> = {
   about: SobreNosPageContent,
   clients: ClientesPageContent,
   investors: InvestidoresPageContent,
+  associate: AssociadoPageContent,
   signUp: CadastroPageContent,
   privacy: PrivacidadePageContent,
   workWithUs: FormularioIngressanteContent,
@@ -37,6 +39,8 @@ function getPageTitle(locale: LocaleSegment, routeKey: RouteKey) {
       return t.clientsPage.title
     case 'investors':
       return t.investorsPage.title
+    case 'associate':
+      return t.associatePage.title
     case 'signUp':
       return t.signUpPage.title
     case 'privacy':

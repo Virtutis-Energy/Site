@@ -11,6 +11,7 @@ export const translations = {
       about: 'Sobre nós',
       clients: 'Clientes',
       investors: 'Investidores',
+      associate: 'Associado',
       contact: 'Fale Conosco',
       privacy: 'Política de Privacidade',
       workWithUs: 'Trabalhe Conosco',
@@ -56,6 +57,7 @@ export const translations = {
       formTitle: 'Realize seu Cadastro',
       customerTab: 'Cliente',
       investorTab: 'Investidor',
+      associateTab: 'Associado',
       customerFeatureTitle: 'Economia para o Cliente',
       customerFeatureText1:
         'A Virtutis Energy é uma fintech de energia solar que desenvolve, gerencia e aluga usinas fotovoltaicas próprias. Oferecemos redução de custos com energia elétrica para nossos clientes, sem a necessidade de que eles paguem pela construção e manutenção de placas solares. Além disso, proporcionamos aos investidores a oportunidade de participar do desenvolvimento dos sistemas de geração de energia, oferecendo-lhes participação nos lucros oriundos da locação das usinas.',
@@ -64,6 +66,15 @@ export const translations = {
       investorFeatureTitle: 'Turbine seus Investimentos',
       investorFeatureText:
         'Invista em nossas usinas fotovoltaicas e desfrute de uma rentabilidade de até 2,35% ao mês. Com a Virtutis Energy, você garante economia e rentabilidade em um só lugar. Potencialize seus investimentos e faça parte do futuro da energia renovável!',
+      associateFeatureTitle: 'Faça parte como Associado',
+      associateFeatureText:
+        'Como associado da Virtutis Energy, você participa do desenvolvimento de projetos de energia renovável, contribui com rotinas estratégicas e acompanha de perto a expansão das nossas usinas fotovoltaicas. É uma oportunidade para aprender, colaborar com equipes multidisciplinares e gerar impacto positivo no setor de energia sustentável.',
+    },
+    associatePage: {
+      title: 'Associado',
+      headline: 'Faça parte da Virtutis Energy',
+      body:
+        'Associados colaboram com projetos, setores e rotinas que sustentam o crescimento da Virtutis Energy. Atuando em áreas estratégicas, eles desenvolvem experiência prática, contribuem para a expansão das usinas fotovoltaicas e participam de uma operação focada em economia, rentabilidade e impacto ambiental positivo.',
     },
     forms: {
       cpfCnpj: 'CPF/CNPJ',
@@ -83,7 +94,7 @@ export const translations = {
       body:
         'Desde o início, a Virtutis Energy tem se esforçado para se estabelecer como uma referência no mercado energético. Em 2021, estruturamos setores e departamentos estratégicos para direcionar nossas atividades, com foco especial no mercado de energia elétrica. Sob a coordenação de uma direção geral e gerência local, a base sólida da Virtutis Energy começou a se formar.',
       latin:
-        'Veni, Sancte Spiritus, et emitte caelitus lucis tuae radium. Veni, pater pauperum, veni, dator munerum, veni, lumen cordium. Consolator optime, dulcis hospes animae, dulce refrigerium. In labore requies, in aestu temperies, in fletu solatium. O lux beatissima, reple cordis intima tuorum fidelium. Sine tuo numine, nihil est in homine, nihil est innoxium. Lava quod est sordidum, riga quod est aridum, sana quod est saucium. Flecte quod est rigidum, fove quod est frigidum, rege quod est devium. Da tuis fidelibus, in te confidentibus, sacrum septenarium. Da virtutis meritum, da salutis exitum, da perenne gaudium. Amen. Alleluia.',
+        'Veni, Sancte Spiritus, et emitte caelitus lucis tuae radium.\n\nVeni, pater pauperum, veni, dator munerum, veni, lumen cordium.\n\nConsolator optime, dulcis hospes animae, dulce refrigerium. In labore requies, in aestu temperies, in fletu solatium.\n\nO lux beatissima, reple cordis intima tuorum fidelium. Sine tuo numine, nihil est in homine, nihil est innoxium.\n\nLava quod est sordidum, riga quod est aridum, sana quod est saucium. Flecte quod est rigidum, fove quod est frigidum, rege quod est devium.\n\nDa tuis fidelibus, in te confidentibus, sacrum septenarium. Da virtutis meritum, da salutis exitum, da perenne gaudium.\n\nAmen. Alleluia.',
     },
     clientsPage: {
       title: 'Clientes',
@@ -289,6 +300,7 @@ export const translations = {
       about: 'About us',
       clients: 'Clients',
       investors: 'Investors',
+      associate: 'Associate',
       contact: 'Contact us',
       privacy: 'Privacy Policy',
       workWithUs: 'Work with Us',
@@ -320,7 +332,7 @@ export const translations = {
     },
     home: {
       heroTitle: 'Virtutis Energy',
-      heroSubtitle: 'Powering Better Energy!',
+      heroSubtitle: 'Generating Better Energy!',
       heroText:
         'Renewable energy solutions for people who want to lower electricity costs and invest in photovoltaic plants with monthly returns.',
       aboutTitle: 'About Virtutis Energy',
@@ -334,6 +346,7 @@ export const translations = {
       formTitle: 'Complete your registration',
       customerTab: 'Client',
       investorTab: 'Investor',
+      associateTab: 'Associate',
       customerFeatureTitle: 'Savings for Clients',
       customerFeatureText1:
         'Virtutis Energy is a solar energy fintech that develops, manages, and leases its own photovoltaic plants. We help our clients reduce electricity costs without needing to pay for the construction and maintenance of solar panels. We also provide investors with the opportunity to participate in the development of energy generation systems and share in the profits from plant leasing.',
@@ -342,6 +355,15 @@ export const translations = {
       investorFeatureTitle: 'Boost Your Investments',
       investorFeatureText:
         'Invest in our photovoltaic plants and enjoy returns of up to 2.35% per month. With Virtutis Energy, you get savings and profitability in one place. Strengthen your investments and be part of the future of renewable energy!',
+      associateFeatureTitle: 'Join as an Associate',
+      associateFeatureText:
+        'As a Virtutis Energy associate, you take part in renewable energy projects, support strategic routines, and follow the expansion of our photovoltaic plants closely. It is an opportunity to learn, collaborate with multidisciplinary teams, and create positive impact in sustainable energy.',
+      },
+    associatePage: {
+      title: 'Associate',
+      headline: 'Be part of Virtutis Energy',
+      body:
+        'Associates collaborate with projects, departments, and routines that support Virtutis Energy growth. Working in strategic areas, they build practical experience, contribute to the expansion of photovoltaic plants, and take part in an operation focused on savings, profitability, and positive environmental impact.',
     },
     forms: {
       cpfCnpj: 'CPF/CNPJ',
@@ -361,7 +383,7 @@ export const translations = {
       body:
         'From the beginning, Virtutis Energy has worked to establish itself as a benchmark in the energy market. In 2021, we structured strategic sectors and departments to guide our activities, with special focus on the electric energy market. Under the coordination of general leadership and local management, the solid foundation of Virtutis Energy began to take shape.',
       latin:
-        'Veni, Sancte Spiritus, et emitte caelitus lucis tuae radium. Veni, pater pauperum, veni, dator munerum, veni, lumen cordium. Consolator optime, dulcis hospes animae, dulce refrigerium. In labore requies, in aestu temperies, in fletu solatium. O lux beatissima, reple cordis intima tuorum fidelium. Sine tuo numine, nihil est in homine, nihil est innoxium. Lava quod est sordidum, riga quod est aridum, sana quod est saucium. Flecte quod est rigidum, fove quod est frigidum, rege quod est devium. Da tuis fidelibus, in te confidentibus, sacrum septenarium. Da virtutis meritum, da salutis exitum, da perenne gaudium. Amen. Alleluia.',
+        'Veni, Sancte Spiritus, et emitte caelitus lucis tuae radium.\n\nVeni, pater pauperum, veni, dator munerum, veni, lumen cordium.\n\nConsolator optime, dulcis hospes animae, dulce refrigerium. In labore requies, in aestu temperies, in fletu solatium.\n\nO lux beatissima, reple cordis intima tuorum fidelium. Sine tuo numine, nihil est in homine, nihil est innoxium.\n\nLava quod est sordidum, riga quod est aridum, sana quod est saucium. Flecte quod est rigidum, fove quod est frigidum, rege quod est devium.\n\nDa tuis fidelibus, in te confidentibus, sacrum septenarium. Da virtutis meritum, da salutis exitum, da perenne gaudium.\n\nAmen. Alleluia.',
     },
     clientsPage: {
       title: 'Clients',

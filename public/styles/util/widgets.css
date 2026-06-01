@@ -240,7 +240,8 @@
     max-width: 98% !important
   }
   
-  #text-index {
+  #text-index,
+  .text-index {
     text-align: justify;
   }
   

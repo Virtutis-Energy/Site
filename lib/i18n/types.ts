@@ -12,6 +12,7 @@ export type RouteKey =
   | 'about'
   | 'clients'
   | 'investors'
+  | 'associate'
   | 'signUp'
   | 'privacy'
   | 'workWithUs'
