@@ -134,7 +134,7 @@ export default function HomePageContent() {
 
               <div className="col-lg-5 d-flex align-items-center justify-content-center" data-aos="zoom-out" data-aos-delay="200">
                 <div className="home-open-account-image-wrap">
-                  <img src="/img/hero-carousel/ft2.jpg" alt={t.home.openAccountTitle} className="img-fluid home-open-account-image" />
+                  <img src="/img/hero-carousel/ft1.jpg" alt={t.home.openAccountTitle} className="img-fluid home-open-account-image" />
                 </div>
               </div>
             </div>
