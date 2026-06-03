@@ -59,6 +59,7 @@ export default function Header() {
                         <li><button onClick={() => { router.push(getLocalizedPath(localeSegment, 'about')); closeMobileNav(); }}>{t.common.about}</button></li>
                         <li><button onClick={() => { router.push(getLocalizedPath(localeSegment, 'clients')); closeMobileNav(); }}>{t.common.clients}</button></li>
                         <li><button onClick={() => { router.push(getLocalizedPath(localeSegment, 'investors')); closeMobileNav(); }}>{t.common.investors}</button></li>
+                        <li><button onClick={() => { router.push(getLocalizedPath(localeSegment, 'associate')); closeMobileNav(); }}>{t.common.associate}</button></li>
                         <li id="contact-cad">
                             <a
                                 href={t.header.whatsappText}

@@ -93,3 +93,71 @@
 .get-started .php-email-form button[type=submit]:hover {
   outline-color: var(--accent-color);
 }
+
+.home-open-account-image-wrap {
+  width: min(100%, 460px);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--default-color), transparent 96%);
+}
+
+.home-open-account-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.associate-page p,
+.associate-page #text-index {
+  text-align: center;
+}
+
+.associate-page .alt-services-2 .icon-box {
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.associate-page .alt-services-2 .icon-box i {
+  margin-right: 0;
+  margin-bottom: 12px;
+}
+
+.associate-page .services .service-item .icon {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 28px;
+}
+
+.associate-page .associate-service-card,
+.associate-page .associate-result-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.associate-page .associate-plant-meta {
+  margin-top: 12px;
+  font-weight: 700;
+  color: var(--heading-color);
+}
+
+.associate-page .associate-calculator-copy {
+  width: 100%;
+}
+
+@media (max-width: 991px) {
+  .home-open-account-image-wrap {
+    width: min(100%, 560px);
+  }
+
+  .get-started .content {
+    text-align: center;
+  }
+
+  .get-started .content h3:after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

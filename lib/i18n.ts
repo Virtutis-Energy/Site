@@ -72,9 +72,51 @@ export const translations = {
     },
     associatePage: {
       title: 'Associado',
-      headline: 'Faça parte da Virtutis Energy',
+      headline: 'Área do Associado',
       body:
-        'Associados colaboram com projetos, setores e rotinas que sustentam o crescimento da Virtutis Energy. Atuando em áreas estratégicas, eles desenvolvem experiência prática, contribuem para a expansão das usinas fotovoltaicas e participam de uma operação focada em economia, rentabilidade e impacto ambiental positivo.',
+        'Esta área reúne informações iniciais sobre usinas, níveis de operação, locações e proventos. Os textos e números abaixo são provisórios e podem ser substituídos quando os dados oficiais forem definidos.',
+      feature1Title: 'Níveis de usina',
+      feature1Text:
+        'As opções são carregadas a partir da base de usinas e exibidas com dados temporários para conferência.',
+      feature2Title: 'Locações disponíveis',
+      feature2Text:
+        'Espaço reservado para organizar a disponibilidade de energia destinada aos clientes.',
+      feature3Title: 'Seleção operacional',
+      feature3Text:
+        'O associado pode selecionar uma usina e visualizar uma simulação simples por nível.',
+      feature4Title: 'Proventos estimados',
+      feature4Text:
+        'Cálculo provisório com valor base de R$ 1.392,05 multiplicado pelo nível escolhido.',
+      plantsTitle: 'Níveis e usinas',
+      plantsText:
+        'Lista baseada nos níveis de operação disponíveis. Use estes cards como conteúdo temporário até inserir as informações reais.',
+      plantLabel: 'Usina',
+      plantDescription: (power: string) =>
+        `Informações provisórias da usina ${power}. Substitua este texto por potência, localização, disponibilidade e status real.`,
+      referenceValue: 'Valor de referência:',
+      choosePlant: 'Escolher usina',
+      calculatorTitle: 'Simulação provisória',
+      calculatorText:
+        'Use este formulário como base temporária para visualizar locação, nível do associado e provento estimado.',
+      baseLeaseLabel: 'Valor base da locação:',
+      baseLevelLabel: 'Valor base do nível:',
+      currentPlantLabel: 'Usina atual:',
+      selectedPlant: 'Usina selecionada',
+      associateLevel: 'Nível do associado',
+      leasedEnergy: 'Energia disponibilizada para locação (kWh)',
+      levelLabel: (level: number) => `Nível ${level} x ${level}`,
+      leaseRevenue: 'Locação',
+      levelRevenue: 'Provento',
+      totalRevenue: 'Total',
+      service1Title: 'Locações',
+      service1Text:
+        'Área temporária para descrever como as usinas serão disponibilizadas aos clientes.',
+      service2Title: 'Pagamentos',
+      service2Text:
+        'Área temporária para detalhar regras de pagamento e repasse de proventos ao associado.',
+      service3Title: 'Operação',
+      service3Text:
+        'Área temporária para registrar observações de operação, disponibilidade e acompanhamento das usinas.',
     },
     forms: {
       cpfCnpj: 'CPF/CNPJ',
@@ -320,7 +362,7 @@ export const translations = {
     header: {
       downloadApp: 'Download the App',
       whatsappText:
-        'https://wa.me/5585984831512?text=Hello%2C%20I%20would%20like%20more%20information%20about%20your%20services',
+        'https://wa.me/5585984831512?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20de%20servi%C3%A7os',
       languageSwitcherLabel: 'Language',
     },
     footer: {
@@ -332,7 +374,7 @@ export const translations = {
     },
     home: {
       heroTitle: 'Virtutis Energy',
-      heroSubtitle: 'Generating Better Energy!',
+      heroSubtitle: 'Generating The Best Energy!',
       heroText:
         'Renewable energy solutions for people who want to lower electricity costs and invest in photovoltaic plants with monthly returns.',
       aboutTitle: 'About Virtutis Energy',
@@ -361,9 +403,51 @@ export const translations = {
       },
     associatePage: {
       title: 'Associate',
-      headline: 'Be part of Virtutis Energy',
+      headline: 'Associate Area',
       body:
-        'Associates collaborate with projects, departments, and routines that support Virtutis Energy growth. Working in strategic areas, they build practical experience, contribute to the expansion of photovoltaic plants, and take part in an operation focused on savings, profitability, and positive environmental impact.',
+        'This area gathers initial information about plants, operating levels, leases, and returns. The text and numbers below are temporary and can be replaced when official data is defined.',
+      feature1Title: 'Plant levels',
+      feature1Text:
+        'Options are loaded from the plant base and shown with temporary data for review.',
+      feature2Title: 'Available leases',
+      feature2Text:
+        'Reserved space to organize energy availability intended for clients.',
+      feature3Title: 'Operational selection',
+      feature3Text:
+        'Associates can select a plant and view a simple simulation by level.',
+      feature4Title: 'Estimated returns',
+      feature4Text:
+        'Temporary calculation using a base value of R$ 1,392.05 multiplied by the selected level.',
+      plantsTitle: 'Levels and plants',
+      plantsText:
+        'List based on available operating levels. Use these cards as temporary content until real information is inserted.',
+      plantLabel: 'Plant',
+      plantDescription: (power: string) =>
+        `Temporary information for plant ${power}. Replace this text with real capacity, location, availability, and status.`,
+      referenceValue: 'Reference value:',
+      choosePlant: 'Choose plant',
+      calculatorTitle: 'Temporary simulation',
+      calculatorText:
+        'Use this form as a temporary base to view leasing, associate level, and estimated return.',
+      baseLeaseLabel: 'Base leasing value:',
+      baseLevelLabel: 'Base level value:',
+      currentPlantLabel: 'Current plant:',
+      selectedPlant: 'Selected plant',
+      associateLevel: 'Associate level',
+      leasedEnergy: 'Energy available for leasing (kWh)',
+      levelLabel: (level: number) => `Level ${level} x ${level}`,
+      leaseRevenue: 'Leasing',
+      levelRevenue: 'Return',
+      totalRevenue: 'Total',
+      service1Title: 'Leases',
+      service1Text:
+        'Temporary area to describe how plants will be made available to clients.',
+      service2Title: 'Payments',
+      service2Text:
+        'Temporary area to detail payment rules and return transfers to associates.',
+      service3Title: 'Operation',
+      service3Text:
+        'Temporary area to register operation notes, availability, and plant monitoring.',
     },
     forms: {
       cpfCnpj: 'CPF/CNPJ',

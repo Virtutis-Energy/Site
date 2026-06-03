@@ -12,7 +12,7 @@ export default function ClientesPageContent() {
 
   return (
     <main className="main">
-      <div className="page-title dark-background" style={{ backgroundImage: 'url(img/hero-carousel/hero-carousel-1.jpg)' }}>
+      <div className="page-title dark-background" style={{ backgroundImage: 'url(/img/hero-carousel/ft2.jpg)' }}>
         <div className="container position-relative">
           <h1>{t.clientsPage.title}</h1>
           <nav className="breadcrumbs">
@@ -82,7 +82,7 @@ export default function ClientesPageContent() {
             </div>
 
             <div className="features-image col-lg-5 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="200">
-              <img src="img/hero-carousel/hero-carousel-4.jpg" alt="" />
+              <img src="/img/hero-carousel/ft2.jpg" alt="" />
             </div>
           </div>
         </div>
@@ -143,8 +143,10 @@ export default function ClientesPageContent() {
           </div>
         </div>
         <br />
-        <div className="d-flex justify-content-center " data-aos="fade-up" data-aos-delay="100">
-          <a onClick={() => router.push(getLocalizedPath(localeSegment, 'signUp'))} style={{ cursor: 'pointer' }} className="btn-kind">{t.common.openAccount}</a>
+        <div className="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+          <a href="https://wa.me/5585984831512?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20de%20servi%C3%A7os" target="_blank" rel="noopener noreferrer" className="btn-kind">
+            {t.common.openAccount}
+          </a>
         </div>
       </section>
     </main>

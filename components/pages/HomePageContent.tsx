@@ -132,71 +132,10 @@ export default function HomePageContent() {
                 </div>
               </div>
 
-              <div className="col-lg-5" data-aos="zoom-out" data-aos-delay="200">
-                <form className="php-email-form" onSubmit={handleSubmit}>
-                  <h3>{t.home.formTitle}</h3>
-                  <div className="row gy-3 mt-2">
-                    <div className="col-12">
-                      <input
-                        type="text"
-                        name="doc"
-                        className="form-control"
-                        placeholder={t.forms.cpfCnpj}
-                        required
-                        value={formData.cpf_cnpj}
-                        onChange={(e) =>
-                          setFormData({ ...formData, cpf_cnpj: e.target.value.replace(/[^0-9/.\+\-\s]/g, '') })
-                        }
-                      />
-                    </div>
-                    <div className="col-12">
-                      <input
-                        type="text"
-                        name="nome"
-                        className="form-control"
-                        placeholder={t.forms.name}
-                        required
-                        value={formData.nome}
-                        onChange={(e) =>
-                          setFormData({ ...formData, nome: e.target.value.replace(/[^A-Za-zÀ-ÿ\s]/g, '') })
-                        }
-                      />
-                    </div>
-                    <div className="col-12">
-                      <input
-                        type="email"
-                        name="email"
-                        className="form-control"
-                        placeholder={t.forms.email}
-                        required
-                        value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      />
-                    </div>
-                    <div className="col-12 mb-3">
-                      <input
-                        type="text"
-                        name="telefone"
-                        className="form-control"
-                        placeholder={t.forms.phone}
-                        required
-                        value={formData.telefone}
-                        onChange={(e) =>
-                          setFormData({ ...formData, telefone: e.target.value.replace(/[^0-9+\-\s]/g, '') })
-                        }
-                      />
-                    </div>
-
-                    {erro && <div className="text-danger text-center">{erro}</div>}
-                    {sucesso && <div className="text-success text-center">{t.common.successMessage}</div>}
-
-                    <div className="col-12 text-center">
-                      <button type="submit" disabled={loading}>
-                        {loading ? t.common.sending : t.common.submit}
-                      </button>
-                    </div>
-                  </div>
-                </form>
+              <div className="col-lg-5 d-flex align-items-center justify-content-center" data-aos="zoom-out" data-aos-delay="200">
+                <div className="home-open-account-image-wrap">
+                  <img src="/img/hero-carousel/ft2.jpg" alt={t.home.openAccountTitle} className="img-fluid home-open-account-image" />
+                </div>
               </div>
             </div>
           </div>
