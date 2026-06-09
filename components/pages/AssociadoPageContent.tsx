@@ -4,39 +4,27 @@ import { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useLanguage } from '@/components/LanguageProvider'
 import { getLocalizedPath } from '@/lib/i18n'
-import { useNiveisOperacao } from '@/hooks/useNiveisOperacao'
 
-const BASE_LEASE_VALUE = 0.4
-const BASE_LEVEL_VALUE = 1392.05
-const fallbackPlants = [
-  { id: 'q0', nome: 'Q0', valor_vitis: 0 },
-  { id: '20', nome: '20', valor_vitis: 20 },
-  { id: '30', nome: '30', valor_vitis: 30 },
-  { id: '40', nome: '40', valor_vitis: 40 },
-  { id: '50', nome: '50', valor_vitis: 50 },
-  { id: '60', nome: '60', valor_vitis: 60 },
+const BASE_ASSOCIATE_REVENUE = 1392.05
+const VITIS_UNIT_VALUE = 3.2
+const plantOptions = [
+  { id: '20', nome: '20 kW', power: 20, fraction: 1 / 3, vitis: 40, rentalPrice: 22.24 },
+  { id: '40', nome: '40 kW', power: 40, fraction: 2 / 3, vitis: 80, rentalPrice: 44.48 },
+  { id: '60', nome: '60 kW', power: 60, fraction: 1, vitis: 120, rentalPrice: 66.73 },
 ]
-
-function getSuggestedEnergy(plantName: string) {
-  const numericPower = Number(plantName.replace(/\D/g, ''))
-  return numericPower > 0 ? numericPower * 100 : 1000
-}
+const plantLevels = [1, 2, 3]
 
 export default function AssociadoPageContent() {
   const router = useRouter()
   const { localeSegment, t } = useLanguage()
-  const { usinas } = useNiveisOperacao()
-  const plantOptions = usinas.length ? usinas : fallbackPlants
-  const [selectedPlant, setSelectedPlant] = useState(fallbackPlants[0].id)
-  const [leasedEnergy, setLeasedEnergy] = useState(1000)
+  const [selectedPlant, setSelectedPlant] = useState(plantOptions[0].id)
   const [associateLevel, setAssociateLevel] = useState(1)
 
   useEffect(() => {
-    if (plantOptions.length && !plantOptions.some((plant) => plant.id === selectedPlant)) {
+    if (!plantOptions.some((plant) => plant.id === selectedPlant)) {
       setSelectedPlant(plantOptions[0].id)
-      setLeasedEnergy(getSuggestedEnergy(plantOptions[0].nome))
     }
-  }, [plantOptions, selectedPlant])
+  }, [selectedPlant])
 
   const selectedPlantData = plantOptions.find((plant) => plant.id === selectedPlant) ?? plantOptions[0]
 
@@ -49,9 +37,9 @@ export default function AssociadoPageContent() {
     [localeSegment]
   )
 
-  const leaseRevenue = leasedEnergy * BASE_LEASE_VALUE
-  const levelRevenue = BASE_LEVEL_VALUE * associateLevel
-  const totalRevenue = leaseRevenue + levelRevenue
+  const leaseRevenue = selectedPlantData.rentalPrice
+  const vitisRevenue = selectedPlantData.vitis * VITIS_UNIT_VALUE
+  const associateRevenue = BASE_ASSOCIATE_REVENUE * selectedPlantData.fraction * associateLevel
 
   return (
     <main className="main associate-page">
@@ -136,19 +124,7 @@ export default function AssociadoPageContent() {
                   </div>
                   <h3>{t.associatePage.plantLabel} {plant.nome}</h3>
                   <p id="text-index">{t.associatePage.plantDescription(plant.nome)}</p>
-                  {plant.valor_vitis > 0 && (
-                    <p className="associate-plant-meta">{t.associatePage.referenceValue} {formatter.format(plant.valor_vitis)}</p>
-                  )}
-                  <button
-                    type="button"
-                    className="btn-get-started mt-3"
-                    onClick={() => {
-                      setSelectedPlant(plant.id)
-                      setLeasedEnergy(getSuggestedEnergy(plant.nome))
-                    }}
-                  >
-                    {t.associatePage.choosePlant}
-                  </button>
+                  <p className="associate-plant-meta">{t.associatePage.referenceValue} {t.associatePage.powerSummary(plant.power, plant.vitis)}</p>
                 </div>
               </div>
             ))}
@@ -164,9 +140,9 @@ export default function AssociadoPageContent() {
                 <h3>{t.associatePage.calculatorTitle}</h3>
                 <p>{t.associatePage.calculatorText}</p>
                 <p>
-                  <strong>{t.associatePage.baseLeaseLabel}</strong> {formatter.format(BASE_LEASE_VALUE)}
+                  <strong>{t.associatePage.baseLeaseLabel}</strong> {t.associatePage.baseLeaseText}
                   <br />
-                  <strong>{t.associatePage.baseLevelLabel}</strong> {formatter.format(BASE_LEVEL_VALUE)}
+                  <strong>{t.associatePage.baseLevelLabel}</strong> {t.associatePage.baseLevelText}
                   <br />
                   <strong>{t.associatePage.currentPlantLabel}</strong> {selectedPlantData?.nome}
                 </p>
@@ -183,11 +159,7 @@ export default function AssociadoPageContent() {
                       className="form-select"
                       value={selectedPlant}
                       onChange={(event) => {
-                        const nextPlant = plantOptions.find((plant) => plant.id === event.target.value)
                         setSelectedPlant(event.target.value)
-                        if (nextPlant) {
-                          setLeasedEnergy(getSuggestedEnergy(nextPlant.nome))
-                        }
                       }}
                     >
                       {plantOptions.map((plant) => (
@@ -204,43 +176,44 @@ export default function AssociadoPageContent() {
                       value={associateLevel}
                       onChange={(event) => setAssociateLevel(Number(event.target.value))}
                     >
-                      {[0, 1, 2, 3].map((level) => (
+                      {plantLevels.map((level) => (
                         <option value={level} key={level}>{t.associatePage.levelLabel(level)}</option>
                       ))}
                     </select>
                   </div>
 
                   <div className="col-md-12">
-                    <label htmlFor="leasedEnergy" className="form-label">{t.associatePage.leasedEnergy}</label>
-                    <input
-                      id="leasedEnergy"
-                      type="number"
-                      min="0"
-                      step="100"
-                      className="form-control"
-                      value={leasedEnergy}
-                      onChange={(event) => setLeasedEnergy(Number(event.target.value))}
-                    />
+                    <div className="service-item associate-result-card position-relative h-100 text-center">
+                      <h3>{t.associatePage.leasedEnergy}</h3>
+                      <p id="text-index">{t.associatePage.powerSummary(selectedPlantData.power, selectedPlantData.vitis)}</p>
+                    </div>
                   </div>
 
-                  <div className="col-md-4">
+                  <div className="col-md-3">
                     <div className="service-item associate-result-card position-relative h-100 text-center">
                       <h3>{t.associatePage.leaseRevenue}</h3>
                       <p id="text-index">{formatter.format(leaseRevenue)}</p>
                     </div>
                   </div>
 
-                  <div className="col-md-4">
+                  <div className="col-md-3">
                     <div className="service-item associate-result-card position-relative h-100 text-center">
-                      <h3>{t.associatePage.levelRevenue}</h3>
-                      <p id="text-index">{formatter.format(levelRevenue)}</p>
+                      <h3>{t.associatePage.vitisRevenue}</h3>
+                      <p id="text-index">{formatter.format(vitisRevenue)}</p>
                     </div>
                   </div>
 
-                  <div className="col-md-4">
+                  <div className="col-md-3">
                     <div className="service-item associate-result-card position-relative h-100 text-center">
-                      <h3>{t.associatePage.totalRevenue}</h3>
-                      <p id="text-index">{formatter.format(totalRevenue)}</p>
+                      <h3>{t.associatePage.levelRevenue}</h3>
+                      <p id="text-index">{formatter.format(associateRevenue)}</p>
+                    </div>
+                  </div>
+
+                  <div className="col-md-3">
+                    <div className="service-item associate-result-card position-relative h-100 text-center">
+                      <h3>{t.associatePage.managementFee}</h3>
+                      <p id="text-index">{t.associatePage.managementFeePending}</p>
                     </div>
                   </div>
                 </div>
