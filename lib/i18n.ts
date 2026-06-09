@@ -92,7 +92,7 @@ export const translations = {
         'Escolha uma potência para visualizar uma simulação resumida. Os cards mostram apenas a lógica principal de cada faixa, sem abrir todos os valores de composição.',
       plantLabel: 'Usina',
       plantDescription: (power: string) =>
-        `Faixa operacional de ${power}, vinculada aos níveis 1, 2 e 3 da área do associado.`,
+        `Faixa operacional de ${power}, vinculada aos níveis de usinas 1, 2 e 3 da área do associado.`,
       referenceValue: 'Resumo:',
       choosePlant: 'Escolher potência',
       calculatorTitle: 'Simulação do associado',
