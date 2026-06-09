@@ -87,7 +87,7 @@ export const translations = {
       feature4Title: 'Faturamento do associado',
       feature4Text:
         'O faturamento estimado combina potência e nível selecionados, usando a base operacional definida para a simulação.',
-      plantsTitle: 'Potências e níveis',
+      plantsTitle: 'Potências e Níveis',
       plantsText:
         'Escolha uma potência para visualizar uma simulação resumida. Os cards mostram apenas a lógica principal de cada faixa, sem abrir todos os valores de composição.',
       plantLabel: 'Usina',
