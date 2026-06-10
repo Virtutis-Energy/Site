@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { getBackendUrl, parseJsonResponse } from '@/lib/backend'
+import { getBackendUrl, hasBackendUrl, parseJsonResponse } from '@/lib/backend'
 
 interface CupomResponse {
   valido: boolean
@@ -15,6 +15,12 @@ export function useCupomValidator(cupom: string) {
     const validarCupom = async () => {
       if (cupom.trim() === '') {
         setCupomValido(null)
+        setDesconto(0)
+        return
+      }
+
+      if (!hasBackendUrl()) {
+        setCupomValido(false)
         setDesconto(0)
         return
       }

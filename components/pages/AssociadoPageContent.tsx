@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useLanguage } from '@/components/LanguageProvider'
 import { getLocalizedPath } from '@/lib/i18n'
+import { useNiveisOperacao } from '@/hooks/useNiveisOperacao'
 
 const BASE_ASSOCIATE_REVENUE = 1392.05
 const VITIS_UNIT_VALUE = 3.2
@@ -17,16 +18,33 @@ const plantLevels = [1, 2, 3]
 export default function AssociadoPageContent() {
   const router = useRouter()
   const { localeSegment, t } = useLanguage()
+  const { usinas, backendUnavailable } = useNiveisOperacao()
   const [selectedPlant, setSelectedPlant] = useState(plantOptions[0].id)
   const [associateLevel, setAssociateLevel] = useState(1)
 
-  useEffect(() => {
-    if (!plantOptions.some((plant) => plant.id === selectedPlant)) {
-      setSelectedPlant(plantOptions[0].id)
+  const availablePlants = useMemo(() => {
+    if (!usinas.length) {
+      return plantOptions
     }
-  }, [selectedPlant])
 
-  const selectedPlantData = plantOptions.find((plant) => plant.id === selectedPlant) ?? plantOptions[0]
+    return usinas.map((usina, index) => {
+      const fallbackPlant = plantOptions[index] ?? plantOptions[plantOptions.length - 1]
+
+      return {
+        ...fallbackPlant,
+        id: String(usina.id),
+        nome: usina.nome,
+      }
+    })
+  }, [usinas])
+
+  useEffect(() => {
+    if (!availablePlants.some((plant) => plant.id === selectedPlant)) {
+      setSelectedPlant(availablePlants[0].id)
+    }
+  }, [availablePlants, selectedPlant])
+
+  const selectedPlantData = availablePlants.find((plant) => plant.id === selectedPlant) ?? availablePlants[0]
 
   const formatter = useMemo(
     () =>
@@ -116,7 +134,7 @@ export default function AssociadoPageContent() {
           </div>
 
           <div className="row gy-4">
-            {plantOptions.map((plant, index) => (
+            {availablePlants.map((plant, index) => (
               <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay={`${(index + 1) * 100}`} key={plant.id}>
                 <div className="service-item associate-service-card position-relative text-center">
                   <div className="icon mx-auto">
@@ -146,6 +164,11 @@ export default function AssociadoPageContent() {
                   <br />
                   <strong>{t.associatePage.currentPlantLabel}</strong> {selectedPlantData?.nome}
                 </p>
+                {backendUnavailable && (
+                  <div className="alert alert-warning mt-3 mb-0" role="alert">
+                    {t.associatePage.backendConfigError}
+                  </div>
+                )}
               </div>
             </div>
 
@@ -162,10 +185,13 @@ export default function AssociadoPageContent() {
                         setSelectedPlant(event.target.value)
                       }}
                     >
-                      {plantOptions.map((plant) => (
+                      {availablePlants.map((plant) => (
                         <option value={plant.id} key={plant.id}>{t.associatePage.plantLabel} {plant.nome}</option>
                       ))}
                     </select>
+                    {backendUnavailable && (
+                      <p className="mt-2 mb-0">{t.associatePage.selectPlantGuidance}</p>
+                    )}
                   </div>
 
                   <div className="col-md-6">

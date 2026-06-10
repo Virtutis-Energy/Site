@@ -1,8 +1,12 @@
 const BACKEND_URL = process.env.NEXT_PUBLIC_URL_BACK_END?.trim();
 
+export function hasBackendUrl() {
+  return Boolean(BACKEND_URL)
+}
+
 export function getBackendUrl(path: string) {
   if (!BACKEND_URL) {
-    throw new Error('NEXT_PUBLIC_URL_BACK_END nao esta configurada.')
+    throw new Error('A API do servidor nao esta configurada.')
   }
 
   const normalizedBase = BACKEND_URL.endsWith('/') ? BACKEND_URL.slice(0, -1) : BACKEND_URL
@@ -19,7 +23,7 @@ export async function parseJsonResponse<T>(response: Response): Promise<T> {
   } catch {
     if (rawBody.trim().startsWith('<')) {
       throw new Error(
-        'A API retornou HTML em vez de JSON. Verifique a NEXT_PUBLIC_URL_BACK_END e se o backend esta rodando.'
+        'A API do servidor retornou HTML em vez de JSON. Verifique se a API esta configurada e em execucao.'
       )
     }
 

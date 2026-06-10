@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { getBackendUrl, parseJsonResponse } from '@/lib/backend'
+import { getBackendUrl, hasBackendUrl, parseJsonResponse } from '@/lib/backend'
 
 interface CalculoResult {
   total_acumulado: number
@@ -36,6 +36,11 @@ export function useSimulacaoInvestimento() {
     serverError: string
   }) => {
     try {
+      if (!hasBackendUrl()) {
+        alert('A API do servidor nao esta configurada.')
+        return
+      }
+
       const response = await fetch(getBackendUrl('/investidores/calcular-investimento/'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

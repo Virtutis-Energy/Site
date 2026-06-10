@@ -10,16 +10,19 @@ import { useCupomValidator } from '@/hooks/useCupomValidator'
 import { InvestChart } from '@/components/RendimentoChart'
 import { useLanguage } from '@/components/LanguageProvider'
 import { getLocalizedPath } from '@/lib/i18n'
+import { hasBackendUrl } from '@/lib/backend'
 
 export default function InvestidoresPageContent() {
   const router = useRouter()
   const { localeSegment, t } = useLanguage()
-  const { usinas } = useNiveisOperacao()
+  const { usinas, backendUnavailable } = useNiveisOperacao()
+  const plantLevels = [1, 2, 3]
+  const backendConfigured = hasBackendUrl()
 
   const [usinaSelecionada, setUsinaSelecionada] = useState<string>('default')
   const [quantidadeVitisInput, setQuantidadeVitisInput] = useState<string>('')
   const [mesesInput, setMesesInput] = useState<string>('')
-  const [fatorNivelInput, setFatorNivelInput] = useState<string>('')
+  const [fatorNivelInput, setFatorNivelInput] = useState<string>('1')
   const [cupom, setCupom] = useState<string>('')
 
   const { cupomValido, desconto } = useCupomValidator(cupom)
@@ -32,7 +35,12 @@ export default function InvestidoresPageContent() {
   const { totalYield, dateResult, graficoDados, calcular } = useSimulacaoInvestimento()
 
   const handleCalculate = () => {
-    if (!quantidadeVitis || !meses || usinaSelecionada === 'default') {
+    if (!backendConfigured) {
+      alert(t.investorsPage.backendConfigError)
+      return
+    }
+
+    if (!quantidadeVitis || !meses || usinaSelecionada === 'default' || !nivel) {
       alert(t.investorsPage.fillFieldsAlert)
       return
     }
@@ -69,14 +77,58 @@ export default function InvestidoresPageContent() {
               <h3>{t.investorsPage.headline}</h3>
               <h5>{t.investorsPage.vitisTitle}</h5>
               <p>{t.investorsPage.vitisText}</p>
+              <h5 className="mt-4">{t.investorsPage.levelsTitle}</h5>
+              <p>{t.investorsPage.levelsIntro}</p>
+
+              <div className="row mt-2">
+                <div className="col-lg-6 icon-box d-flex">
+                  <i className="bi bi-1-circle flex-shrink-0"></i>
+                  <div>
+                    <h4>{t.investorsPage.level1Title}</h4>
+                    <p>{t.investorsPage.level1Text}</p>
+                  </div>
+                </div>
+
+                <div className="col-lg-6 icon-box d-flex">
+                  <i className="bi bi-2-circle flex-shrink-0"></i>
+                  <div>
+                    <h4>{t.investorsPage.level2Title}</h4>
+                    <p>{t.investorsPage.level2Text}</p>
+                  </div>
+                </div>
+
+                <div className="col-lg-12 icon-box d-flex">
+                  <i className="bi bi-3-circle flex-shrink-0"></i>
+                  <div>
+                    <h4>{t.investorsPage.level3Title}</h4>
+                    <p>{t.investorsPage.level3Text}</p>
+                  </div>
+                </div>
+              </div>
+
+              <p className="mt-3">{t.investorsPage.levelsGuidance}</p>
               <h6>{t.investorsPage.simulatePrompt}</h6>
 
-              <select className="form-select mb-3 mt-3 w-60" value={usinaSelecionada} onChange={(e) => setUsinaSelecionada(e.target.value)}>
+              <select
+                className="form-select mb-3 mt-3 w-60"
+                value={usinaSelecionada}
+                onChange={(e) => setUsinaSelecionada(e.target.value)}
+              >
                 <option value="default">{t.investorsPage.selectPlant}</option>
                 {usinas.map((usina) => (
                   <option key={usina.id} value={usina.id}>{usina.nome}</option>
                 ))}
               </select>
+
+              {usinaSelecionada === 'default' && (
+                <p className="mb-3">{t.investorsPage.selectPlantGuidance}</p>
+              )}
+
+              {backendUnavailable && (
+                <div className="alert alert-warning mb-3" role="alert">
+                  {t.investorsPage.backendConfigError}
+                </div>
+              )}
 
               <div className="card shadow-sm p-4">
                 <h5 className="mb-4">
@@ -98,7 +150,7 @@ export default function InvestidoresPageContent() {
                       placeholder="Ex: 1"
                       value={quantidadeVitisInput}
                       onChange={(e) => setQuantidadeVitisInput(e.target.value)}
-                      disabled={usinaSelecionada === 'default'}
+                      disabled={usinaSelecionada === 'default' || backendUnavailable}
                     />
                   </div>
 
@@ -111,20 +163,26 @@ export default function InvestidoresPageContent() {
                       placeholder="Ex: 1"
                       value={mesesInput}
                       onChange={(e) => setMesesInput(e.target.value)}
+                      disabled={backendUnavailable}
                     />
                   </div>
                 </div>
 
                 <div className="col-md-4 pt-2">
                   <label htmlFor="fatorNivelInput" className="form-label">{t.investorsPage.plantLevel}</label>
-                  <input
-                    type="number"
-                    className="form-control"
+                  <select
+                    className="form-select"
                     id="fatorNivelInput"
-                    placeholder="Ex: 1"
                     value={fatorNivelInput}
                     onChange={(e) => setFatorNivelInput(e.target.value)}
-                  />
+                    disabled={usinaSelecionada === 'default' || backendUnavailable}
+                  >
+                    {plantLevels.map((level) => (
+                      <option key={level} value={String(level)}>
+                        {t.investorsPage.levelOption(level)}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 <div className="row mt-4">
@@ -137,6 +195,7 @@ export default function InvestidoresPageContent() {
                       placeholder={t.investorsPage.optional}
                       value={cupom}
                       onChange={(e) => setCupom(e.target.value)}
+                      disabled={backendUnavailable}
                     />
 
                     {cupom !== '' && (
@@ -148,7 +207,7 @@ export default function InvestidoresPageContent() {
                 </div>
 
                 <div className="mt-4">
-                  <button className="btn btn-primary w-100" onClick={handleCalculate}>
+                  <button className="btn btn-primary w-100" onClick={handleCalculate} disabled={backendUnavailable}>
                     <i className="bi bi-graph-up-arrow me-2"></i>{t.investorsPage.simulateButton}
                   </button>
                 </div>
