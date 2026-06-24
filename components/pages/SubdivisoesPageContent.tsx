@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
-import { Tabs, Tab } from 'react-bootstrap'
 import { useLanguage } from '@/components/LanguageProvider'
 import { getLocalizedPath } from '@/lib/i18n'
 
@@ -62,8 +61,33 @@ export default function SubdivisoesPageContent() {
       </div>
 
       <div className="container py-5">
-        <Tabs activeKey={key} onSelect={(k) => setKey(k || 'cargos')} className="mb-4 justify-content-center">
-          <Tab eventKey="cargos" title={t.subdivisionsPage.positionsTab}>
+        <div className="subdivision-tabs mb-4" role="tablist" aria-label={t.subdivisionsPage.title}>
+          <button
+            type="button"
+            className={`subdivision-tab${key === 'cargos' ? ' is-active' : ''}`}
+            onClick={() => setKey('cargos')}
+            role="tab"
+            aria-selected={key === 'cargos'}
+            aria-controls="subdivision-panel-cargos"
+            id="subdivision-tab-cargos"
+          >
+            {t.subdivisionsPage.positionsTab}
+          </button>
+          <button
+            type="button"
+            className={`subdivision-tab${key === 'vinculos' ? ' is-active' : ''}`}
+            onClick={() => setKey('vinculos')}
+            role="tab"
+            aria-selected={key === 'vinculos'}
+            aria-controls="subdivision-panel-vinculos"
+            id="subdivision-tab-vinculos"
+          >
+            {t.subdivisionsPage.rolesTab}
+          </button>
+        </div>
+
+        {key === 'cargos' ? (
+          <div role="tabpanel" id="subdivision-panel-cargos" aria-labelledby="subdivision-tab-cargos">
             <h3 className="titulo-subdivisao">{t.subdivisionsPage.partnerAdmin}</h3>
             <div className="row gy-4 justify-content-center">
               <InfoBox icon="bi bi-person-fill-gear" title={t.subdivisionsPage.secretaryEconomy} description={t.subdivisionsPage.secretaryEconomyDesc} />
@@ -87,9 +111,9 @@ export default function SubdivisoesPageContent() {
               <InfoBox icon="bi bi-cpu-fill" title={t.subdivisionsPage.worksDepartment} description={t.subdivisionsPage.worksDepartmentDesc} />
               <InfoBox icon="bi bi-speedometer2" title={t.subdivisionsPage.operationsDepartment} description={t.subdivisionsPage.operationsDepartmentDesc} />
             </div>
-          </Tab>
-
-          <Tab eventKey="vinculos" title={t.subdivisionsPage.rolesTab}>
+          </div>
+        ) : (
+          <div role="tabpanel" id="subdivision-panel-vinculos" aria-labelledby="subdivision-tab-vinculos">
             <div className="row gy-4 justify-content-center">
               <InfoBox icon="bi bi-mortarboard-fill" title={t.subdivisionsPage.intern} subtitle={t.subdivisionsPage.levelI} description={t.subdivisionsPage.internLevelIDesc} />
               <InfoBox icon="bi bi-award-fill" title={t.subdivisionsPage.intern} subtitle={t.subdivisionsPage.levelII} description={t.subdivisionsPage.internLevelIIDesc} />
@@ -97,11 +121,39 @@ export default function SubdivisoesPageContent() {
               <InfoBox icon="bi bi-person-vcard-fill" title={t.subdivisionsPage.employee} subtitle={t.subdivisionsPage.levelII} description={t.subdivisionsPage.employeeLevelIIDesc} />
               <InfoBox icon="bi bi-people-fill" title={t.subdivisionsPage.partnerCollaborator} description={t.subdivisionsPage.partnerCollaboratorDesc} />
             </div>
-          </Tab>
-        </Tabs>
+          </div>
+        )}
       </div>
 
       <style jsx>{`
+        .subdivision-tabs {
+          display: flex;
+          justify-content: center;
+          gap: 12px;
+          flex-wrap: wrap;
+        }
+
+        .subdivision-tab {
+          border: 1px solid rgba(10, 97, 79, 0.16);
+          background: #ffffff;
+          color: #1c2430;
+          border-radius: 999px;
+          padding: 12px 22px;
+          font-size: 0.98rem;
+          font-weight: 600;
+          transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .subdivision-tab.is-active {
+          background: #0b6b57;
+          color: #ffffff;
+          border-color: #0b6b57;
+        }
+
+        .subdivision-tab:hover {
+          transform: translateY(-1px);
+        }
+
         .info-item {
           min-height: 260px;
           border-radius: 18px;
@@ -138,6 +190,14 @@ export default function SubdivisoesPageContent() {
         }
 
         @media (max-width: 768px) {
+          .subdivision-tabs {
+            gap: 10px;
+          }
+
+          .subdivision-tab {
+            width: 100%;
+          }
+
           .info-item {
             min-height: auto;
             padding: 20px 18px;

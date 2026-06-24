@@ -33,10 +33,10 @@
     padding: 40px;
     background-color: color-mix(in srgb, var(--default-color), transparent 96%);
   }
-  
+
   @media (min-width: 991px) {
     .about .our-story {
-      padding-right: 35%;
+      padding-right: 40px;
     }
   }
   
@@ -95,6 +95,8 @@
   .about .about-img {
     min-height: 400px;
     position: relative;
+    overflow: hidden;
+    border-radius: 24px;
   }
   
   @media (min-width: 992px) {
@@ -115,4 +117,233 @@
     object-fit: cover;
     object-position: center;
     z-index: 1;
+  }
+
+  .about-highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin: 1.75rem 0;
+  }
+
+  .about-highlight-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 18px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(229, 243, 239, 0.95) 100%);
+    box-shadow: 0 12px 30px rgba(5, 55, 45, 0.08);
+  }
+
+  .about-highlight-card__value {
+    font-size: 2rem;
+    line-height: 1;
+    font-weight: 700;
+    color: #0b6b57;
+  }
+
+  .about-highlight-card__label {
+    font-size: 0.92rem;
+    line-height: 1.45;
+    color: color-mix(in srgb, var(--default-color), transparent 22%);
+  }
+
+  .world-presence-card {
+    padding: 28px;
+    border-radius: 28px;
+    background: linear-gradient(180deg, #ffffff 0%, #f5fbf8 100%);
+    box-shadow: 0 18px 44px rgba(8, 43, 36, 0.09);
+  }
+
+  .world-presence-card__header {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 24px;
+  }
+
+  .world-presence-card__header h3 {
+    margin: 8px 0 0;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  .world-presence-card__eyebrow {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #0b6b57;
+  }
+
+  .world-presence-card__badge {
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(11, 107, 87, 0.08);
+    color: #0b6b57;
+    font-size: 0.88rem;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .world-presence-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+
+  .world-map-shell {
+    border-radius: 24px;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at top, rgba(255, 255, 255, 0.95), transparent 42%),
+      linear-gradient(180deg, #eef8f5 0%, #def2eb 100%);
+    border: 1px solid rgba(11, 107, 87, 0.08);
+  }
+
+  .world-map-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .world-map-sphere {
+    fill: url(#ocean-fill);
+    stroke: rgba(12, 97, 80, 0.1);
+    stroke-width: 1.4;
+  }
+
+  .world-map-graticule {
+    fill: none;
+    stroke: rgba(17, 115, 92, 0.09);
+    stroke-width: 0.85;
+    stroke-linecap: round;
+    stroke-dasharray: 3 7;
+  }
+
+  .world-country {
+    fill: url(#country-fill);
+    stroke: rgba(11, 107, 87, 0.16);
+    stroke-width: 0.85;
+    transition: fill 0.2s ease, transform 0.2s ease;
+  }
+
+  .world-country--highlighted {
+    fill: url(#highlight-fill);
+    stroke: rgba(8, 79, 64, 0.65);
+    stroke-width: 1.1;
+    filter: drop-shadow(0 6px 14px rgba(8, 92, 72, 0.22));
+  }
+
+  .world-map-marker__line {
+    fill: none;
+    stroke: rgba(11, 107, 87, 0.35);
+    stroke-width: 1.6;
+    stroke-dasharray: 3 5;
+  }
+
+  .world-map-marker__pulse {
+    fill: rgba(0, 184, 148, 0.12);
+    animation: aboutMarkerPulse 2.2s infinite;
+  }
+
+  .world-map-marker__halo {
+    fill: rgba(0, 184, 148, 0.18);
+  }
+
+  .world-map-marker__dot {
+    fill: #00b894;
+    stroke: #ffffff;
+    stroke-width: 4;
+  }
+
+  .world-map-label {
+    font-size: 13px;
+    font-weight: 700;
+    fill: #0f5a4a;
+    paint-order: stroke;
+    stroke: rgba(255, 255, 255, 0.95);
+    stroke-width: 6px;
+    stroke-linejoin: round;
+    dominant-baseline: middle;
+  }
+
+  .world-presence-countries {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .country-chip {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 16px;
+    background: #ffffff;
+    border: 1px solid rgba(11, 107, 87, 0.09);
+  }
+
+  .country-chip__dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #00b894;
+    box-shadow: 0 0 0 6px rgba(0, 184, 148, 0.12);
+    flex: 0 0 auto;
+  }
+
+  @keyframes aboutMarkerPulse {
+    0% {
+      transform: scale(0.85);
+      opacity: 0.75;
+    }
+
+    70% {
+      transform: scale(1.45);
+      opacity: 0;
+    }
+
+    100% {
+      transform: scale(1.45);
+      opacity: 0;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .about-highlight-grid,
+    .world-presence-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .world-presence-card__header {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .about .inner-title {
+      font-size: 2.15rem;
+    }
+
+    .about .our-story,
+    .world-presence-card {
+      padding: 24px;
+    }
+
+    .about-highlight-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .world-presence-card__header h3 {
+      font-size: 1.55rem;
+    }
+
+    .world-map-label {
+      font-size: 11px;
+    }
   }

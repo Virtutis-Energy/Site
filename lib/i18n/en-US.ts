@@ -43,7 +43,7 @@ export const enUSTranslations: Translation = {
       'Renewable energy solutions for people who want to lower electricity costs and invest in photovoltaic plants with monthly returns.',
     aboutTitle: 'About Virtutis Energy',
     aboutText:
-      'Virtutis Energy is an energy fintech that develops and manages distributed microgeneration photovoltaic plants, providing lower electricity costs to clients through plant leasing and monthly financial returns to investors.',
+      'Virtutis Energy is a global fintech with international reach, connecting technology, energy, and financial services to operate across several continents and expand in strategic markets.',
     openAccountTitle: 'Open your account',
     openAccountText:
       'If you are interested in lowering your electricity costs or investing in renewable energy, Virtutis Energy is the right choice. We want to get to know you better and help you benefit from our innovative solutions. Fill out the form with your details and our team will contact you to discuss how we can meet your needs.',
@@ -132,15 +132,22 @@ export const enUSTranslations: Translation = {
   aboutPage: {
     title: 'About us',
     since: 'Since 2020',
-    story: 'Our history',
+    story: 'A global fintech in expansion',
     intro:
-      'The history of Virtutis Energy reflects our commitment to innovation and sustainability in the electric power sector. Founded on December 15, 2020, the company was born with the mission of transforming the way energy is produced, distributed, and consumed.',
-    bullet1: 'We combine technology and environmental preservation',
-    bullet2: 'Between 2022 and 2023 we launched our first branch',
+      'Virtutis Energy is a global fintech that combines technology, operations, and market intelligence to deliver scalable solutions in different countries. Our institutional presentation reflects that vision: a company built to grow beyond borders and connect opportunities across continents.',
+    bullet1: 'International presence across markets in the Americas, Europe, Asia, Africa, and Oceania',
+    bullet2: 'Structured expansion with focus on scale, technology, and local relationships',
+    bullet3: 'An app and operating model prepared to serve users in multiple countries',
     body:
-      'From the beginning, Virtutis Energy has worked to establish itself as a benchmark in the energy market. In 2021, we structured strategic sectors and departments to guide our activities, with special focus on the electric energy market. Under the coordination of general leadership and local management, the solid foundation of Virtutis Energy began to take shape.',
-    latin:
-      'Veni, Sancte Spiritus, et emitte caelitus lucis tuae radium.\n\nVeni, pater pauperum, veni, dator munerum, veni, lumen cordium.\n\nConsolator optime, dulcis hospes animae, dulce refrigerium. In labore requies, in aestu temperies, in fletu solatium.\n\nO lux beatissima, reple cordis intima tuorum fidelium. Sine tuo numine, nihil est in homine, nihil est innoxium.\n\nLava quod est sordidum, riga quod est aridum, sana quod est saucium. Flecte quod est rigidum, fove quod est frigidum, rege quod est devium.\n\nDa tuis fidelibus, in te confidentibus, sacrum septenarium. Da virtutis meritum, da salutis exitum, da perenne gaudium.\n\nAmen. Alleluia.',
+      'Today, Virtutis positions its brand as a fintech with a global vocation, able to operate with institutional consistency, regional awareness, and long-term vision. Our proposal is to consolidate a strong international presence through unified communication, a consistent digital experience, and the capacity to scale in strategic markets.',
+    footprint:
+      'Our app reinforces that international reach and highlights Virtutis across different countries. The brand ecosystem already connects with operations and opportunities in South Africa, Belgium, Chile, Portugal, Colombia, Brazil, the United States, Hong Kong, Macau, China, Singapore, and Australia.',
+    stat1Value: '5',
+    stat1Label: 'continents with strategic presence',
+    stat2Value: '12',
+    stat2Label: 'countries highlighted on the global map',
+    stat3Value: '1',
+    stat3Label: 'app connecting international markets',
   },
   clientsPage: {
     title: 'Clients',

@@ -41,7 +41,7 @@ export const ptBRTranslations = {
       'Soluções em energia renovável para quem quer economizar na conta de luz e investir em usinas fotovoltaicas com retorno mensal.',
     aboutTitle: 'Sobre a Virtutis Energy',
     aboutText:
-      'A Virtutis Energy é uma fintech de energia que desenvolve e gerencia usinas fotovoltaicas de microgeração distribuída, proporcionando, a partir de sua locação, redução dos custos com eletricidade a seus clientes e retorno financeiro mensal a seus investidores.',
+      'A Virtutis Energy é uma fintech global com atuação internacional, conectando tecnologia, energia e serviços financeiros para operar em vários continentes e expandir sua presença em mercados estratégicos.',
     openAccountTitle: 'Abra sua conta',
     openAccountText:
       'Se você está interessado em reduzir seus custos com eletricidade ou investir em energia renovável, a Virtutis Energy é a escolha certa. Queremos conhecê-lo melhor e ajudá-lo a aproveitar nossas soluções inovadoras. Preencha o formulário com seus dados, e nossa equipe entrará em contato com você para discutir como podemos atender às suas necessidades.',
@@ -130,15 +130,22 @@ export const ptBRTranslations = {
   aboutPage: {
     title: 'Sobre nós',
     since: 'Desde 2020',
-    story: 'Nossa história',
+    story: 'Uma fintech global em expansão',
     intro:
-      'A história da Virtutis Energy reflete nosso compromisso com a inovação e a sustentabilidade no setor de energia elétrica. Fundada em 15 de dezembro de 2020, a empresa nasceu com a missão de transformar a maneira como a energia é produzida, distribuída e consumida.',
-    bullet1: 'Combinamos tecnologia e preservação ambiental',
-    bullet2: 'Entre 2022 e 2023 implementamos nossa primeira filial',
+      'A Virtutis Energy é uma fintech global que integra tecnologia, operação e inteligência de mercado para entregar soluções escaláveis em diferentes países. Nossa apresentação institucional reflete essa visão: uma empresa construída para crescer além das fronteiras e conectar oportunidades em vários continentes.',
+    bullet1: 'Atuação internacional com presença em mercados da América, Europa, Ásia, África e Oceania',
+    bullet2: 'Expansão estruturada com foco em escala, tecnologia e relacionamento local',
+    bullet3: 'Aplicativo e operação preparados para atender usuários em múltiplos países',
     body:
-      'Desde o início, a Virtutis Energy tem se esforçado para se estabelecer como uma referência no mercado energético. Em 2021, estruturamos setores e departamentos estratégicos para direcionar nossas atividades, com foco especial no mercado de energia elétrica. Sob a coordenação de uma direção geral e gerência local, a base sólida da Virtutis Energy começou a se formar.',
-    latin:
-      'Veni, Sancte Spiritus, et emitte caelitus lucis tuae radium.\n\nVeni, pater pauperum, veni, dator munerum, veni, lumen cordium.\n\nConsolator optime, dulcis hospes animae, dulce refrigerium. In labore requies, in aestu temperies, in fletu solatium.\n\nO lux beatissima, reple cordis intima tuorum fidelium. Sine tuo numine, nihil est in homine, nihil est innoxium.\n\nLava quod est sordidum, riga quod est aridum, sana quod est saucium. Flecte quod est rigidum, fove quod est frigidum, rege quod est devium.\n\nDa tuis fidelibus, in te confidentibus, sacrum septenarium. Da virtutis meritum, da salutis exitum, da perenne gaudium.\n\nAmen. Alleluia.',
+      'Hoje, a Virtutis posiciona sua marca como uma fintech com vocação global, capaz de operar com consistência institucional, leitura de contexto regional e visão de longo prazo. Nossa proposta é consolidar uma presença internacional sólida, com comunicação unificada, experiência digital consistente e capacidade de expansão em mercados estratégicos.',
+    footprint:
+      'Nosso aplicativo acompanha essa presença internacional e reforça a atuação da Virtutis entre diferentes países. O ecossistema da marca já dialoga com operações e oportunidades na África do Sul, Bélgica, Chile, Portugal, Colômbia, Brasil, Estados Unidos, Hong Kong, Macau, China, Singapura e Austrália.',
+    stat1Value: '5',
+    stat1Label: 'continentes com presença estratégica',
+    stat2Value: '12',
+    stat2Label: 'países destacados no mapa global',
+    stat3Value: '1',
+    stat3Label: 'aplicativo conectando mercados internacionais',
   },
   clientsPage: {
     title: 'Clientes',
