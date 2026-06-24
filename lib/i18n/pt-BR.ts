@@ -24,7 +24,7 @@ export const ptBRTranslations = {
   header: {
     downloadApp: 'Baixe o App',
     whatsappText:
-      'https://wa.me/5585984831512?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20de%20servi%C3%A7os',
+      'https://wa.me/5585984831512?text=Hello%2C%20I%20would%20like%20to%20download%20the%20Virtutis%20Energy%20app%21',
     languageSwitcherLabel: 'Idioma',
   },
   footer: {

@@ -17,16 +17,24 @@ export function getBackendUrl(path: string) {
 
 export async function parseJsonResponse<T>(response: Response): Promise<T> {
   const rawBody = await response.text()
+  const responseDescription = `${response.status} ${response.statusText} (${response.url})`
+  let data: T
 
   try {
-    return JSON.parse(rawBody) as T
+    data = JSON.parse(rawBody) as T
   } catch {
     if (rawBody.trim().startsWith('<')) {
       throw new Error(
-        'A API do servidor retornou HTML em vez de JSON. Verifique se a API esta configurada e em execucao.'
+        `A API do servidor retornou HTML em vez de JSON: ${responseDescription}. Verifique se a URL da API esta correta e se o servidor esta ativo.`
       )
     }
 
-    throw new Error('A resposta da API nao esta em JSON valido.')
+    throw new Error(`A resposta da API nao esta em JSON valido: ${responseDescription}.`)
   }
+
+  if (!response.ok) {
+    throw new Error(`A API retornou erro ${responseDescription}.`)
+  }
+
+  return data
 }

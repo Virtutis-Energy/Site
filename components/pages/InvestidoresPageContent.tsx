@@ -58,7 +58,7 @@ export default function InvestidoresPageContent() {
 
   return (
     <main className="main">
-      <div className="page-title dark-background" style={{ backgroundImage: "url('/img/hero-carousel/hero-carousel-6.jpg')" }}>
+      <div className="page-title dark-background" style={{ backgroundImage: "url('/img/hero-carousel/hero-carousel-3.jpg')" }}>
         <div className="container position-relative">
           <h1>{t.investorsPage.title}</h1>
           <nav className="breadcrumbs">
