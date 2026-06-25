@@ -13,6 +13,27 @@
     filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.8));
 }
 
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: min(64vh, 620px);
+    min-height: 410px;
+    pointer-events: none;
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(255, 255, 255, 0.98) 20%,
+        rgba(255, 255, 255, 0.86) 36%,
+        rgba(255, 255, 255, 0.58) 52%,
+        rgba(255, 255, 255, 0.24) 66%,
+        rgba(255, 255, 255, 0) 82%
+    );
+    z-index: 2;
+}
+
 #name-hero {
     color: var(--accent-color);
     font-size: 56px;

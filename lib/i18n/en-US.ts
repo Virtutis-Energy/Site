@@ -43,7 +43,7 @@ export const enUSTranslations: Translation = {
       'Renewable energy solutions for people who want to lower electricity costs and invest in photovoltaic plants with monthly returns.',
     aboutTitle: 'About Virtutis Energy',
     aboutText:
-      'Virtutis Energy is an energy company that connects technology and solar energy through digital solutions. With its application already downloaded in different countries, the company expands its international presence and strengthens its operations in strategic markets, combining innovation, sustainability, and energy management.',
+      'Virtutis Energy is a global fintech with international reach, connecting technology, energy, and financial services to operate across several continents and expand in strategic markets.',
     openAccountTitle: 'Open your account',
     openAccountText:
       'If you are interested in lowering your electricity costs or investing in renewable energy, Virtutis Energy is the right choice. We want to get to know you better and help you benefit from our innovative solutions. Fill out the form with your details and our team will contact you to discuss how we can meet your needs.',

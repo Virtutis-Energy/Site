@@ -178,7 +178,7 @@ export default function WorldPresenceMap() {
             <span className="world-presence-countries__check" aria-hidden="true">
               <img src="/img/logo.png" alt="" />
             </span>
-            <span>{isEnglish ? 'Countries with users of the Virtutis energy app' : 'Países com usuários do app da Virtutis Energy'}</span>
+            <span>{isEnglish ? 'Countries with users of the Virtutis Energy app' : 'Países com usuários do app da Virtutis Energy'}</span>
             <i className={`bi ${isCountryListOpen ? 'bi-chevron-up' : 'bi-chevron-down'}`} aria-hidden="true"></i>
           </button>
 

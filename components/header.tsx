@@ -6,6 +6,7 @@ import { useLanguage } from './LanguageProvider'
 import {
     getLocalizedPath,
     getLocalizedPathFromPathname,
+    getRouteKeyFromPath,
     type LocaleSegment,
 } from '@/lib/i18n'
 
@@ -13,7 +14,9 @@ export default function Header() {
     const router = useRouter()
     const pathname = usePathname()
     const [mobileNavActive, setMobileNavActive] = useState(false)
+    const [scrolled, setScrolled] = useState(false)
     const { localeSegment, t } = useLanguage()
+    const isHomePage = getRouteKeyFromPath(pathname) === 'home'
 
     // Função equivalente ao mobileNavToogle do vanilla JS
     const toggleMobileNav = () => {
@@ -41,13 +44,29 @@ export default function Header() {
         }
     }, [mobileNavActive])
 
+    useEffect(() => {
+        const toggleScrolled = () => {
+            setScrolled(window.scrollY > 48)
+        }
+
+        toggleScrolled()
+        window.addEventListener('scroll', toggleScrolled, { passive: true })
+
+        return () => {
+            window.removeEventListener('scroll', toggleScrolled)
+        }
+    }, [])
+
     const switchLocale = (targetLocale: LocaleSegment) => {
         router.push(getLocalizedPathFromPathname(pathname, targetLocale))
         closeMobileNav()
     }
 
     return (
-        <header id="header" className="header d-flex align-items-center fixed-top">
+        <header
+            id="header"
+            className={`header d-flex align-items-center fixed-top${isHomePage ? ' header-home' : ''}${scrolled ? ' header-scrolled' : ''}`}
+        >
             <div className="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
                 <button onClick={() => router.push(getLocalizedPath(localeSegment, 'home'))} className="logo d-flex align-items-center">
                     <img src="/img/logo.png" alt="Virtutis" style={{ scale: '1.5' }} />
