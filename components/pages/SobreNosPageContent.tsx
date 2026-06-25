@@ -5,6 +5,24 @@ import { useLanguage } from '@/components/LanguageProvider'
 import { getLocalizedPath } from '@/lib/i18n'
 import WorldPresenceMap from '@/components/about/WorldPresenceMap'
 
+const latinPrayer = [
+  ['Veni, Sancte Spiritus,', 'et emitte caelitus', 'lucis tuae radium.'],
+  ['Veni, pater pauperum,', 'veni, dator munerum', 'veni, lumen cordium.'],
+  ['Consolator optime,', 'dulcis hospes animae,', 'dulce refrigerium.'],
+  ['In labore requies,', 'in aestu temperies', 'in fletu solatium.'],
+  ['O lux beatissima,', 'reple cordis intima', 'tuorum fidelium.'],
+  ['Sine tuo numine,', 'nihil est in homine,', 'nihil est innoxium.'],
+  ['Lava quod est sordidum,', 'riga quod est aridum,', 'sana quod est saucium.'],
+  ['Flecte quod est rigidum,', 'fove quod est frigidum,', 'rege quod est devium.'],
+  ['Da tuis fidelibus,', 'in te confidentibus,', 'sacrum septenarium.'],
+  ['Da virtutis meritum,', 'da salutis exitum,', 'da perenne gaudium.', 'Amen. Alleluia.'],
+]
+
+const latinPrayerColumns = [
+  latinPrayer.slice(0, 5),
+  latinPrayer.slice(5),
+]
+
 export default function SobreNosPageContent() {
   const router = useRouter()
   const { localeSegment, t } = useLanguage()
@@ -74,6 +92,28 @@ export default function SobreNosPageContent() {
                 <p className="text-index">{t.aboutPage.body}</p>
                 <p className="text-index">{t.aboutPage.footprint}</p>
               </div>
+            </div>
+          </div>
+
+          <div className="about-latin-feature" data-aos="fade-up" data-aos-delay="150">
+            <div className="text-latim" lang="la">
+              {latinPrayerColumns.map((column, index) => (
+                <div className="text-latim__column" key={`latin-column-${index}`}>
+                  {column.map((stanza) => (
+                    <p key={stanza.join(' ')}>
+                      {stanza.map((line) => (
+                        <span key={line}>
+                          {line}
+                          <br />
+                        </span>
+                      ))}
+                    </p>
+                  ))}
+                </div>
+              ))}
+            </div>
+            <div className="about-latin-feature__image">
+              <img src="/img/hero-carousel/peaceImage.png" alt="Peace" />
             </div>
           </div>
 

@@ -102,16 +102,16 @@
   text-decoration: underline;
 }
 
-.hero-image {
+.work-with-us-hero-image {
   position: relative;
   display: inline-block;
 }
 
-.hero-image img {
+.work-with-us-hero-image img {
   display: block;
 }
 
-.hero-image::after {
+.work-with-us-hero-image::after {
   content: "";
   position: absolute;
   top: 0;

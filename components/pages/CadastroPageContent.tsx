@@ -25,7 +25,7 @@ export default function CadastroPageContent() {
 
   return (
     <main className="main">
-      <div className="page-title dark-background" style={{ backgroundImage: 'url(/img/hero-carousel/hero-carousel-5.jpg)' }}>
+      <div className="page-title dark-background" style={{ backgroundImage: 'url(/img/hero-carousel/hero-carousel-1.jpg)' }}>
         <div className="container position-relative">
           <h1>{t.signUpPage.title}</h1>
           <nav className="breadcrumbs">

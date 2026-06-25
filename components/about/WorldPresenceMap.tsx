@@ -42,6 +42,7 @@ export default function WorldPresenceMap() {
   const { locale } = useLanguage()
   const isEnglish = locale === 'en-US'
   const [topology, setTopology] = useState<TopologyData | null>(null)
+  const [isCountryListOpen, setIsCountryListOpen] = useState(false)
 
   useEffect(() => {
     let ignore = false
@@ -115,7 +116,7 @@ export default function WorldPresenceMap() {
       <div className="world-presence-card__header">
         <div>
           <span className="world-presence-card__eyebrow">{isEnglish ? 'International presence' : 'Presença internacional'}</span>
-          <h3>{isEnglish ? 'Virtutis on a real world map' : 'Virtutis em um mapa-múndi real'}</h3>
+          <h3>{isEnglish ? 'Virtutis Energy on a real world map' : 'Virtutis Energy em um mapa-múndi real'}</h3>
         </div>
         <div className="world-presence-card__badge">{isEnglish ? '12 highlighted countries' : '12 países destacados'}</div>
       </div>
@@ -125,17 +126,17 @@ export default function WorldPresenceMap() {
           <svg className="world-map-svg" viewBox="0 0 1000 520" role="img" aria-label={isEnglish ? 'Real world map with highlighted countries' : 'Mapa mundial real com países destacados'}>
             <defs>
               <linearGradient id="ocean-fill" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#f3fbf9" />
-                <stop offset="50%" stopColor="#dff4ee" />
-                <stop offset="100%" stopColor="#cae9e0" />
+                <stop offset="0%" stopColor="#f6f7ff" />
+                <stop offset="50%" stopColor="#e7e9ff" />
+                <stop offset="100%" stopColor="#d8dcff" />
               </linearGradient>
               <linearGradient id="country-fill" x1="0%" y1="0%" x2="0%" y2="100%">
                 <stop offset="0%" stopColor="#ffffff" />
-                <stop offset="100%" stopColor="#e7f5f0" />
+                <stop offset="100%" stopColor="#eef0ff" />
               </linearGradient>
               <linearGradient id="highlight-fill" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#08b98c" />
-                <stop offset="100%" stopColor="#0b6b57" />
+                <stop offset="0%" stopColor="#263f9a" />
+                <stop offset="100%" stopColor="#02083b" />
               </linearGradient>
             </defs>
 
@@ -168,12 +169,29 @@ export default function WorldPresenceMap() {
         </div>
 
         <div className="world-presence-countries">
-          {markers.map((marker) => (
-            <div key={marker.key} className="country-chip">
-              <span className="country-chip__dot" />
-              <span>{isEnglish ? marker.countryEn : marker.countryPt}</span>
+          <button
+            type="button"
+            className="world-presence-countries__toggle"
+            aria-expanded={isCountryListOpen}
+            onClick={() => setIsCountryListOpen((current) => !current)}
+          >
+            <span className="world-presence-countries__check" aria-hidden="true">
+              <img src="/img/logo.png" alt="" />
+            </span>
+            <span>{isEnglish ? 'Countries with users of the Virtutis energy app' : 'Países com usuários do app da Virtutis Energy'}</span>
+            <i className={`bi ${isCountryListOpen ? 'bi-chevron-up' : 'bi-chevron-down'}`} aria-hidden="true"></i>
+          </button>
+
+          {isCountryListOpen && (
+            <div className="world-presence-countries__list">
+              {markers.map((marker) => (
+                <div key={marker.key} className="country-chip">
+                  <span className="country-chip__dot" />
+                  <span>{isEnglish ? marker.countryEn : marker.countryPt}</span>
+                </div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
       </div>
     </div>

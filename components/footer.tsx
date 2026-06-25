@@ -1,5 +1,4 @@
 'use client'
-import { BsInstagram, BsLinkedin } from 'react-icons/bs'
 import { useRouter } from "next/navigation"
 import { useLanguage } from './LanguageProvider'
 import { getLocalizedPath } from '@/lib/i18n'
@@ -27,11 +26,11 @@ export default function Footer() {
 
           <div className="social-links d-flex mt-4 ">
             <a href="https://www.instagram.com/virtutisenergy" target="_blank">
-            <BsInstagram size={24} />
+            <i className="bi bi-instagram" style={{ fontSize: '24px' }}></i>
             </a>
 
             <a href="https://www.linkedin.com/company/virtutis-energy/" target="_blank">
-            <BsLinkedin size={24} />
+            <i className="bi bi-linkedin" style={{ fontSize: '24px' }}></i>
             </a>
           </div>
         </div>
@@ -43,7 +42,7 @@ export default function Footer() {
           <p>{t.footer.addressLine3}</p>
           <p>{t.footer.addressLine4}</p>
           <p className="mb-4">{t.footer.taxId}</p>
-          <img src="/img/LOGO_white.png" className="logo-tec"/>
+          <img src="/img/LOGO_white.png" className="logo-tec" alt="Virtutis Energy" />
         </div>
        
       </div>

@@ -9,16 +9,56 @@
   }
 
   .text-latim {
-    margin-top: 1rem;
-    padding-left: 1rem;
-    border-left: 3px solid var(--nav-dropdown-hover-color);
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding: 28px 0 28px 24px;
+    border-left: 4px solid var(--accent-color);
+  }
+
+  .text-latim__column {
+    min-width: 0;
   }
 
   .text-latim p {
-    margin-bottom: 0.85rem;
+    margin-bottom: 1.05rem;
     text-align: left;
-    line-height: 1.75;
+    line-height: 1.65;
     hyphens: auto;
+    color: color-mix(in srgb, #323131, transparent 8%);
+  }
+
+  .text-latim p:last-child {
+    
+    margin-bottom: 0;
+  }
+
+  .about-latin-feature {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+    gap: 32px;
+    align-items: center;
+    margin-top: 56px;
+    padding: 32px;
+    border-radius: 24px;
+    background: linear-gradient(180deg, #ffffff 0%, color-mix(in srgb, var(--accent-color), transparent 96%) 100%);
+    box-shadow: 0 18px 44px rgba(2, 8, 59, 0.08);
+  }
+
+  .about-latin-feature__image {
+    overflow: hidden;
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow: 0 18px 44px rgba(2, 8, 59, 0.14);
+  }
+
+  .about-latin-feature__image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 760px;
+    object-fit: contain;
+    object-position: center;
   }
 
   
@@ -132,15 +172,15 @@
     gap: 4px;
     padding: 18px;
     border-radius: 18px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(229, 243, 239, 0.95) 100%);
-    box-shadow: 0 12px 30px rgba(5, 55, 45, 0.08);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, color-mix(in srgb, var(--accent-color), transparent 94%) 100%);
+    box-shadow: 0 12px 30px rgba(2, 8, 59, 0.08);
   }
 
   .about-highlight-card__value {
     font-size: 2rem;
     line-height: 1;
     font-weight: 700;
-    color: #0b6b57;
+    color: var(--accent-color);
   }
 
   .about-highlight-card__label {
@@ -152,8 +192,8 @@
   .world-presence-card {
     padding: 28px;
     border-radius: 28px;
-    background: linear-gradient(180deg, #ffffff 0%, #f5fbf8 100%);
-    box-shadow: 0 18px 44px rgba(8, 43, 36, 0.09);
+    background: linear-gradient(180deg, #ffffff 0%, color-mix(in srgb, var(--accent-color), transparent 96%) 100%);
+    box-shadow: 0 18px 44px rgba(2, 8, 59, 0.09);
   }
 
   .world-presence-card__header {
@@ -176,14 +216,14 @@
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #0b6b57;
+    color: var(--accent-color);
   }
 
   .world-presence-card__badge {
     padding: 10px 14px;
     border-radius: 999px;
-    background: rgba(11, 107, 87, 0.08);
-    color: #0b6b57;
+    background: color-mix(in srgb, var(--accent-color), transparent 92%);
+    color: var(--accent-color);
     font-size: 0.88rem;
     font-weight: 700;
     white-space: nowrap;
@@ -191,8 +231,8 @@
 
   .world-presence-layout {
     display: grid;
-    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
-    gap: 24px;
+    grid-template-columns: minmax(0, 2fr) minmax(300px, 0.85fr);
+    gap: 44px;
     align-items: start;
   }
 
@@ -201,8 +241,8 @@
     overflow: hidden;
     background:
       radial-gradient(circle at top, rgba(255, 255, 255, 0.95), transparent 42%),
-      linear-gradient(180deg, #eef8f5 0%, #def2eb 100%);
-    border: 1px solid rgba(11, 107, 87, 0.08);
+      linear-gradient(180deg, color-mix(in srgb, var(--accent-color), transparent 96%) 0%, color-mix(in srgb, var(--accent-color), transparent 90%) 100%);
+    border: 1px solid rgba(2, 8, 59, 0.08);
   }
 
   .world-map-svg {
@@ -213,13 +253,13 @@
 
   .world-map-sphere {
     fill: url(#ocean-fill);
-    stroke: rgba(12, 97, 80, 0.1);
+    stroke: rgba(2, 8, 59, 0.1);
     stroke-width: 1.4;
   }
 
   .world-map-graticule {
     fill: none;
-    stroke: rgba(17, 115, 92, 0.09);
+    stroke: rgba(2, 8, 59, 0.09);
     stroke-width: 0.85;
     stroke-linecap: round;
     stroke-dasharray: 3 7;
@@ -227,36 +267,36 @@
 
   .world-country {
     fill: url(#country-fill);
-    stroke: rgba(11, 107, 87, 0.16);
+    stroke: rgba(2, 8, 59, 0.16);
     stroke-width: 0.85;
     transition: fill 0.2s ease, transform 0.2s ease;
   }
 
   .world-country--highlighted {
     fill: url(#highlight-fill);
-    stroke: rgba(8, 79, 64, 0.65);
+    stroke: rgba(2, 8, 59, 0.65);
     stroke-width: 1.1;
-    filter: drop-shadow(0 6px 14px rgba(8, 92, 72, 0.22));
+    filter: drop-shadow(0 6px 14px rgba(2, 8, 59, 0.22));
   }
 
   .world-map-marker__line {
     fill: none;
-    stroke: rgba(11, 107, 87, 0.35);
+    stroke: rgba(2, 8, 59, 0.35);
     stroke-width: 1.6;
     stroke-dasharray: 3 5;
   }
 
   .world-map-marker__pulse {
-    fill: rgba(0, 184, 148, 0.12);
+    fill: rgba(2, 8, 59, 0.12);
     animation: aboutMarkerPulse 2.2s infinite;
   }
 
   .world-map-marker__halo {
-    fill: rgba(0, 184, 148, 0.18);
+    fill: rgba(2, 8, 59, 0.18);
   }
 
   .world-map-marker__dot {
-    fill: #00b894;
+    fill: var(--accent-color);
     stroke: #ffffff;
     stroke-width: 4;
   }
@@ -264,7 +304,7 @@
   .world-map-label {
     font-size: 13px;
     font-weight: 700;
-    fill: #0f5a4a;
+    fill: var(--accent-color);
     paint-order: stroke;
     stroke: rgba(255, 255, 255, 0.95);
     stroke-width: 6px;
@@ -273,6 +313,58 @@
   }
 
   .world-presence-countries {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-content: start;
+    gap: 12px;
+  }
+
+  .world-presence-countries__toggle {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid rgba(2, 8, 59, 0.12);
+    border-radius: 16px;
+    background: #ffffff;
+    color: color-mix(in srgb, var(--default-color), transparent 8%);
+    font-weight: 700;
+    line-height: 1.35;
+    text-align: left;
+    box-shadow: 0 12px 28px rgba(2, 8, 59, 0.06);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .world-presence-countries__toggle:hover,
+  .world-presence-countries__toggle:focus-visible {
+    border-color: rgba(2, 8, 59, 0.28);
+    box-shadow: 0 16px 34px rgba(2, 8, 59, 0.1);
+  }
+
+  .world-presence-countries__check {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid rgba(2, 8, 59, 0.12);
+    flex: 0 0 auto;
+  }
+
+  .world-presence-countries__check img {
+    display: block;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .world-presence-countries__list {
     display: grid;
     grid-template-columns: 1fr;
     gap: 12px;
@@ -285,15 +377,15 @@
     padding: 14px 16px;
     border-radius: 16px;
     background: #ffffff;
-    border: 1px solid rgba(11, 107, 87, 0.09);
+    border: 1px solid rgba(2, 8, 59, 0.09);
   }
 
   .country-chip__dot {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #00b894;
-    box-shadow: 0 0 0 6px rgba(0, 184, 148, 0.12);
+    background: var(--accent-color);
+    box-shadow: 0 0 0 6px rgba(2, 8, 59, 0.12);
     flex: 0 0 auto;
   }
 
@@ -316,8 +408,17 @@
 
   @media (max-width: 991px) {
     .about-highlight-grid,
+    .about-latin-feature,
     .world-presence-layout {
       grid-template-columns: 1fr;
+    }
+
+    .about-latin-feature {
+      gap: 24px;
+    }
+
+    .about-latin-feature__image img {
+      max-height: none;
     }
 
     .world-presence-card__header {
@@ -331,8 +432,14 @@
     }
 
     .about .our-story,
+    .about-latin-feature,
     .world-presence-card {
       padding: 24px;
+    }
+
+    .text-latim {
+      grid-template-columns: 1fr;
+      padding: 20px 0 20px 18px;
     }
 
     .about-highlight-grid {
