@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getBackendUrl, parseJsonResponse } from '@/lib/backend'
+import { localSubdivisoes } from '@/lib/localData'
 
 export interface Subdivisao {
   id: number
@@ -7,7 +8,7 @@ export interface Subdivisao {
 }
 
 export function useSubdivisoes() {
-  const [subdivisoes, setSubdivisoes] = useState<Subdivisao[]>([])
+  const [subdivisoes, setSubdivisoes] = useState<Subdivisao[]>(localSubdivisoes)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -17,7 +18,7 @@ export function useSubdivisoes() {
         const data = await parseJsonResponse<Subdivisao[]>(res)
         setSubdivisoes(data)
       } catch (e) {
-        console.error('Erro ao carregar subdivisões!', e)
+        console.warn('Usando subdivisões locais porque a API não respondeu.', e)
       } finally {
         setLoading(false)
       }

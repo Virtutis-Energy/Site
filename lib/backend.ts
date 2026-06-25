@@ -1,4 +1,5 @@
 const BACKEND_URL = process.env.NEXT_PUBLIC_URL_BACK_END?.trim();
+const BACKEND_PROXY_PATH = '/api/backend'
 
 export function hasBackendUrl() {
   return Boolean(BACKEND_URL)
@@ -9,8 +10,13 @@ export function getBackendUrl(path: string) {
     throw new Error('A API do servidor nao esta configurada.')
   }
 
-  const normalizedBase = BACKEND_URL.endsWith('/') ? BACKEND_URL.slice(0, -1) : BACKEND_URL
   const normalizedPath = path.startsWith('/') ? path : `/${path}`
+
+  if (typeof window !== 'undefined') {
+    return `${BACKEND_PROXY_PATH}${normalizedPath}`
+  }
+
+  const normalizedBase = BACKEND_URL.endsWith('/') ? BACKEND_URL.slice(0, -1) : BACKEND_URL
 
   return `${normalizedBase}${normalizedPath}`
 }
@@ -33,7 +39,14 @@ export async function parseJsonResponse<T>(response: Response): Promise<T> {
   }
 
   if (!response.ok) {
-    throw new Error(`A API retornou erro ${responseDescription}.`)
+    const apiError = data as {
+      error?: string
+      detail?: string
+      backendUrl?: string
+    }
+    const details = [apiError.error, apiError.detail, apiError.backendUrl].filter(Boolean).join(' ')
+
+    throw new Error(`A API retornou erro ${responseDescription}.${details ? ` ${details}` : ''}`)
   }
 
   return data
