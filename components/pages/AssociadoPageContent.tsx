@@ -120,7 +120,7 @@ export default function AssociadoPageContent() {
             </div>
 
             <div className="features-image col-lg-5 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="200">
-              <img src="/img/hero-carousel/ft2.jpg" alt={t.associatePage.title} />
+              <img src="/img/hero-carousel/hero-carousel-6.jpg" alt={t.associatePage.title} />
             </div>
           </div>
         </div>
