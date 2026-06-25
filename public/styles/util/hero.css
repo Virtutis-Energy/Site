@@ -10,6 +10,7 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    filter: drop-shadow(0px 10px 10px rgba(0, 0, 0, 0.8));
 }
 
 #name-hero {
@@ -277,5 +278,4 @@
     height: 100%;
     object-fit: cover;
     object-position: center 45%;
-    opacity: 0.9;
 }
