@@ -41,7 +41,7 @@ export const ptBRTranslations = {
       'Soluções em energia renovável para quem quer economizar na conta de luz e investir em usinas fotovoltaicas com retorno mensal.',
     aboutTitle: 'Sobre a Virtutis Energy',
     aboutText:
-      'A Virtutis Energy é uma fintech global com atuação internacional, conectando tecnologia, energia e serviços financeiros para operar em vários continentes e expandir sua presença em mercados estratégicos.',
+      'A Virtutis Energy é uma empresa de energia que conecta tecnologia e energia solar por meio de soluções digitais. Com seu aplicativo já baixado em diferentes países, a empresa amplia sua presença internacional e fortalece sua atuação em mercados estratégicos, unindo inovação, sustentabilidade e gestão energética..',
     openAccountTitle: 'Abra sua conta',
     openAccountText:
       'Se você está interessado em reduzir seus custos com eletricidade ou investir em energia renovável, a Virtutis Energy é a escolha certa. Queremos conhecê-lo melhor e ajudá-lo a aproveitar nossas soluções inovadoras. Preencha o formulário com seus dados, e nossa equipe entrará em contato com você para discutir como podemos atender às suas necessidades.',
