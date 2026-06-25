@@ -42,7 +42,7 @@ export default function HomeAudienceTabs() {
       label: t.home.associateTab,
       title: t.home.associateFeatureTitle,
       paragraphs: [t.home.associateFeatureText],
-      image: '/img/hero-carousel/ft2.jpg',
+      image: 'public/img/hero-carousel/hero-carousel-6.jpg',
       imageAlt: t.home.associateFeatureTitle,
       route: 'associate',
     },
