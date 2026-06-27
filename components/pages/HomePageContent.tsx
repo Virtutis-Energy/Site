@@ -5,6 +5,7 @@ import { useState } from 'react'
 import { useCadastroInvestidor } from '@/hooks/useCadastroInvestidor'
 import { useLanguage } from '@/components/LanguageProvider'
 import HomeAudienceTabs from '@/components/home/HomeAudienceTabs'
+import DigitalEcosystemSection from '@/components/home/DigitalEcosystemSection'
 
 export default function HomePageContent() {
   const { t } = useLanguage()
@@ -115,13 +116,8 @@ export default function HomePageContent() {
         <section id="get-started" className="get-started section">
           <div className="container">
             <div className="row justify-content-between gy-4">
-              <div className="sobre col-lg-12 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">
-                <div className="content">
-                  <h3>{t.home.aboutTitle}</h3>
-                  <p id="text-index" className="fs-6">
-                    {t.home.aboutText}
-                  </p>
-                </div>
+              <div className="col-12">
+                <DigitalEcosystemSection />
               </div>
 
               <div className="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="100">

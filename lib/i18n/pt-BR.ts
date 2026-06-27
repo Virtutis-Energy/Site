@@ -39,9 +39,39 @@ export const ptBRTranslations = {
     heroSubtitle: 'Gerando a Melhor Energia!',
     heroText:
       'Soluções em energia renovável para quem quer economizar na conta de luz e investir em usinas fotovoltaicas com retorno mensal.',
-    aboutTitle: 'Sobre a Virtutis Energy',
+    aboutEyebrow: 'Ecossistema digital Virtutis',
+    aboutTitle: 'Energia, tecnologia e experiência digital em um só ecossistema.',
     aboutText:
-      'A Virtutis Energy é uma fintech global com atuação internacional, conectando tecnologia, energia e serviços financeiros para operar em vários continentes e expandir sua presença em mercados estratégicos.',
+      'A Virtutis Energy conecta usuários, investidores e usinas fotovoltaicas por meio de uma experiência digital moderna, segura e intuitiva. Pelo aplicativo, é possível acompanhar saldo, movimentações, oportunidades, rendimentos e conteúdos do ecossistema Virtutis com praticidade e visão global.',
+    aboutPrimaryCta: 'Conhecer o aplicativo',
+    aboutSecondaryCta: 'Abrir sua conta',
+    aboutStatLabelTop: 'Ecossistema conectado',
+    aboutStatValueTop: 'App, energia e finanças em uma jornada digital.',
+    aboutStatLabelBottom: 'Experiência em expansão',
+    aboutStatValueBottom: 'Operação moderna com visão global e acesso intuitivo.',
+    aboutAppAlt: 'Tela do aplicativo da Virtutis Energy em um smartphone',
+    aboutHighlights: [
+      {
+        title: 'Acompanhe seu saldo',
+        text: 'Visualize movimentações, entradas e saídas com praticidade.',
+        icon: 'bi bi-wallet2',
+      },
+      {
+        title: 'Gerencie oportunidades',
+        text: 'Realize depósitos com mais praticidade e segurança.',
+        icon: 'bi bi-graph-up-arrow',
+      },
+      {
+        title: 'Tudo pelo aplicativo',
+        text: 'Converta valores entre moedas de forma rápida e intuitiva.',
+        icon: 'bi bi-phone',
+      },
+      {
+        title: 'Experiência em expansão',
+        text: 'Movimente seu saldo com controle, agilidade e segurança.',
+        icon: 'bi bi-globe-americas',
+      },
+    ],
     openAccountTitle: 'Abra sua conta',
     openAccountText:
       'Se você está interessado em reduzir seus custos com eletricidade ou investir em energia renovável, a Virtutis Energy é a escolha certa. Queremos conhecê-lo melhor e ajudá-lo a aproveitar nossas soluções inovadoras. Preencha o formulário com seus dados, e nossa equipe entrará em contato com você para discutir como podemos atender às suas necessidades.',

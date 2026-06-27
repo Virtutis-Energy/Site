@@ -41,9 +41,39 @@ export const enUSTranslations: Translation = {
     heroSubtitle: 'Generating the Best Energy!',
     heroText:
       'Renewable energy solutions for people who want to lower electricity costs and invest in photovoltaic plants with monthly returns.',
-    aboutTitle: 'About Virtutis Energy',
+    aboutEyebrow: 'Virtutis digital ecosystem',
+    aboutTitle: 'Energy, technology, and digital experience in one ecosystem.',
     aboutText:
-      'Virtutis Energy is a global fintech with international reach, connecting technology, energy, and financial services to operate across several continents and expand in strategic markets.',
+      'Virtutis Energy connects users, investors, and photovoltaic plants through a modern, secure, and intuitive digital experience. Through the app, users can follow balances, transactions, opportunities, returns, and ecosystem content with convenience and a global view.',
+    aboutPrimaryCta: 'Explore the app',
+    aboutSecondaryCta: 'Open your account',
+    aboutStatLabelTop: 'Connected ecosystem',
+    aboutStatValueTop: 'App, energy, and finance within one digital journey.',
+    aboutStatLabelBottom: 'Experience in expansion',
+    aboutStatValueBottom: 'A modern operation with global vision and intuitive access.',
+    aboutAppAlt: 'Virtutis Energy app screen displayed on a smartphone',
+    aboutHighlights: [
+      {
+        title: 'Track your balance',
+        text: 'Track your balance and your transactions with ease.',
+        icon: 'bi bi-wallet2',
+      },
+      {
+        title: 'Manage opportunities',
+        text: 'Make deposits with more convenience and security.',
+        icon: 'bi bi-graph-up-arrow',
+      },
+      {
+        title: 'Everything in the app',
+        text: 'Convert values between currencies quickly and intuitively.',
+        icon: 'bi bi-phone',
+      },
+      {
+        title: 'Experience in expansion',
+        text: 'Move your balance with control, agility, and security.',
+        icon: 'bi bi-globe-americas',
+      },
+    ],
     openAccountTitle: 'Open your account',
     openAccountText:
       'If you are interested in lowering your electricity costs or investing in renewable energy, Virtutis Energy is the right choice. We want to get to know you better and help you benefit from our innovative solutions. Fill out the form with your details and our team will contact you to discuss how we can meet your needs.',
