@@ -16,10 +16,8 @@ export default function DigitalEcosystemSection() {
             <span className="virtutis-ecosystem-badge">{t.home.aboutEyebrow}</span>
 
             <h3 id="virtutis-ecosystem-title">
-              Energia, tecnologia
-              <br />
-              e experiência digital
-              <br />
+              Energia, tecnologia e finanças
+              <br />              
               em um só ecossistema.
             </h3>
 
@@ -71,7 +69,10 @@ export default function DigitalEcosystemSection() {
 
       <style jsx>{`
         .virtutis-ecosystem-section {
-          padding: 16px 0 8px;
+          position: relative;
+          isolation: isolate;
+          z-index: 0;
+          padding: 16px 0 52px;
         }
 
         .virtutis-ecosystem-shell {
@@ -84,18 +85,7 @@ export default function DigitalEcosystemSection() {
           margin: 0 auto;
           padding: 24px 26px;
           border-radius: 26px;
-          overflow: hidden;
-          background: #ffffff;
-          border: 1px solid rgba(163, 181, 203, 0.18);
-        }
-
-        .virtutis-ecosystem-shell::before {
-          content: '';
-          position: absolute;
-          inset: 14px;
-          border-radius: 20px;
-          border: 1px solid rgba(163, 181, 203, 0.18);
-          pointer-events: none;
+          overflow: visible;
         }
 
         .virtutis-ecosystem-copy {
@@ -129,12 +119,16 @@ export default function DigitalEcosystemSection() {
 
         .virtutis-ecosystem-copy h3 {
           margin: 14px 0 12px;
-          max-width: 15ch;
+          max-width: 22ch;
           color: #02083b;
           font-size: clamp(1.75rem, 3vw, 2.7rem);
           line-height: 1;
           letter-spacing: -0.04em;
           text-wrap: balance;
+        }
+
+        .whitespace-nowrap {
+          white-space: nowrap;
         }
 
         .virtutis-ecosystem-description {
@@ -243,6 +237,8 @@ export default function DigitalEcosystemSection() {
           align-items: center;
           justify-content: center;
           z-index: 1;
+          padding: 18px 16px 26px;
+          overflow: visible;
         }
 
         .virtutis-ecosystem-phone {
@@ -292,6 +288,7 @@ export default function DigitalEcosystemSection() {
 
           .virtutis-ecosystem-visual {
             min-height: 360px;
+            padding: 16px 14px 24px;
           }
         }
 
@@ -302,7 +299,7 @@ export default function DigitalEcosystemSection() {
           }
 
           .virtutis-ecosystem-copy h3 {
-            max-width: 14ch;
+            max-width: 20ch;
           }
 
           .virtutis-ecosystem-visual {
@@ -328,7 +325,7 @@ export default function DigitalEcosystemSection() {
 
         @media (max-width: 767px) {
           .virtutis-ecosystem-section {
-            padding: 10px 0 2px;
+            padding: 10px 0 34px;
           }
 
           .virtutis-ecosystem-shell {
@@ -340,6 +337,11 @@ export default function DigitalEcosystemSection() {
           .virtutis-ecosystem-description {
             font-size: 0.92rem;
             line-height: 1.65;
+          }
+
+          .virtutis-ecosystem-copy h3 {
+            max-width: 19ch;
+            font-size: clamp(1.5rem, 7vw, 2rem);
           }
 
           .virtutis-ecosystem-actions {
@@ -356,6 +358,7 @@ export default function DigitalEcosystemSection() {
 
           .virtutis-ecosystem-visual {
             min-height: 290px;
+            padding: 12px 10px 20px;
           }
 
           .virtutis-ecosystem-phone {
