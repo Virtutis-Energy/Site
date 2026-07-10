@@ -18,16 +18,23 @@ export default function DigitalEcosystemSection() {
             <h3 id="virtutis-ecosystem-title">{t.home.aboutHeadline}</h3>
 
             <p className="virtutis-ecosystem-description">{t.home.aboutText}</p>
+          </div>
 
-            <div className="virtutis-ecosystem-actions">
-              <a
-                href={t.header.whatsappText}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="virtutis-ecosystem-button virtutis-ecosystem-button--primary"
-              >
-                {t.home.aboutPrimaryCta}
-              </a>
+          <div className="virtutis-ecosystem-showcase" data-aos="fade-up" data-aos-delay="110">
+            <div className="virtutis-ecosystem-visual" data-aos="fade-left" data-aos-delay="130">
+              <div className="virtutis-ecosystem-phone">
+                <img
+                  src={telaApp.src}
+                  width={telaApp.width}
+                  height={telaApp.height}
+                  alt={t.home.aboutAppAlt}
+                  className="virtutis-ecosystem-phone-image"
+                />
+              </div>
+
+              <div className="virtutis-ecosystem-mascot" aria-hidden="true">
+                <Image src={vitinho} alt="" priority={false} className="virtutis-ecosystem-mascot-image" />
+              </div>
             </div>
 
             <div className="virtutis-ecosystem-highlights">
@@ -43,21 +50,16 @@ export default function DigitalEcosystemSection() {
                 </article>
               ))}
             </div>
-          </div>
 
-          <div className="virtutis-ecosystem-visual" data-aos="fade-left" data-aos-delay="130">
-            <div className="virtutis-ecosystem-phone">
-              <img
-                src={telaApp.src}
-                width={telaApp.width}
-                height={telaApp.height}
-                alt={t.home.aboutAppAlt}
-                className="virtutis-ecosystem-phone-image"
-              />
-            </div>
-
-            <div className="virtutis-ecosystem-mascot" aria-hidden="true">
-              <Image src={vitinho} alt="" priority={false} className="virtutis-ecosystem-mascot-image" />
+            <div className="virtutis-ecosystem-actions">
+              <a
+                href={t.header.whatsappText}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="virtutis-ecosystem-button virtutis-ecosystem-button--primary"
+              >
+                {t.home.aboutPrimaryCta}
+              </a>
             </div>
           </div>
         </div>
@@ -73,10 +75,9 @@ export default function DigitalEcosystemSection() {
 
         .virtutis-ecosystem-shell {
           position: relative;
-          display: grid;
-          grid-template-columns: minmax(0, 1.02fr) minmax(280px, 0.98fr);
-          gap: 28px;
-          align-items: center;
+          display: flex;
+          flex-direction: column;
+          gap: 26px;
           max-width: 1180px;
           margin: 0 auto;
           padding: 24px 26px;
@@ -87,6 +88,16 @@ export default function DigitalEcosystemSection() {
         .virtutis-ecosystem-copy {
           position: relative;
           z-index: 1;
+          width: 100%;
+          max-width: 62ch;
+        }
+
+        .virtutis-ecosystem-showcase {
+          display: grid;
+          grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+          gap: 26px;
+          align-items: center;
+          width: 100%;
         }
 
         .virtutis-ecosystem-badge {
@@ -136,8 +147,11 @@ export default function DigitalEcosystemSection() {
         .virtutis-ecosystem-actions {
           display: flex;
           flex-wrap: wrap;
+          grid-column: 2;
           gap: 10px;
-          margin-top: 20px;
+          margin-top: 4px;
+          align-items: center;
+          justify-content: flex-start;
         }
 
         .virtutis-ecosystem-button {
@@ -178,8 +192,8 @@ export default function DigitalEcosystemSection() {
         .virtutis-ecosystem-highlights {
           display: grid;
           grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 10px;
-          margin-top: 20px;
+          gap: 12px;
+          align-content: center;
         }
 
         .virtutis-ecosystem-highlight {
@@ -226,23 +240,43 @@ export default function DigitalEcosystemSection() {
 
         .virtutis-ecosystem-visual {
           position: relative;
-          min-height: 400px;
+          min-height: 100%;
           display: flex;
           align-items: center;
           justify-content: center;
           z-index: 1;
-          padding: 18px 16px 26px;
+          width: 100%;
+          max-width: 320px;
+          min-width: 0;
+          margin-inline: auto;
+          padding: 18px 12px 26px;
           overflow: visible;
         }
 
         .virtutis-ecosystem-phone {
           position: relative;
           z-index: 2;
-          width: min(100%, 258px);
+          width: min(100%, clamp(220px, 30vw, 282px));
           display: flex;
           align-items: center;
           justify-content: center;
-          transform: translateX(-6px);
+          margin: 0 auto;
+          transform: none;
+        }
+
+        .virtutis-ecosystem-phone::after {
+          content: '';
+          position: absolute;
+          left: 50%;
+          bottom: 8px;
+          width: 72%;
+          height: 22px;
+          transform: translateX(-50%);
+          border-radius: 999px;
+          background: rgba(2, 8, 59, 0.14);
+          filter: blur(14px);
+          z-index: 0;
+          pointer-events: none;
         }
 
         .virtutis-ecosystem-phone-image {
@@ -253,15 +287,13 @@ export default function DigitalEcosystemSection() {
           object-fit: contain;
           display: block;
           max-width: 100%;
-          filter:
-            drop-shadow(0 35px 55px rgba(2, 8, 59, 0.28))
-            drop-shadow(0 12px 22px rgba(26, 46, 93, 0.18));
+          filter: drop-shadow(0 10px 18px rgba(2, 8, 59, 0.12));
         }
 
         .virtutis-ecosystem-mascot {
           position: absolute;
-          left: calc(50% + 96px);
-          bottom: 46px;
+          left: calc(50% + 92px);
+          bottom: 36px;
           z-index: 3;
           width: clamp(72px, 15%, 98px);
           transform: rotate(-1deg);
@@ -280,24 +312,32 @@ export default function DigitalEcosystemSection() {
             padding: 22px;
           }
 
+          .virtutis-ecosystem-showcase {
+            grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+            gap: 22px;
+          }
+
           .virtutis-ecosystem-visual {
-            min-height: 360px;
-            padding: 16px 14px 24px;
+            max-width: 286px;
+            padding: 14px 12px 22px;
           }
         }
 
         @media (max-width: 991px) {
           .virtutis-ecosystem-shell {
-            grid-template-columns: 1fr;
             padding: 22px;
           }
 
-          .virtutis-ecosystem-copy h3 {
+          .virtutis-ecosystem-showcase {
+            grid-template-columns: minmax(200px, 248px) minmax(0, 1fr);
+            gap: 18px;
+            align-items: stretch;
           }
 
           .virtutis-ecosystem-visual {
-            order: 2;
-            min-height: 340px;
+            min-height: 100%;
+            max-width: 248px;
+            padding-top: 10px;
           }
 
           .virtutis-ecosystem-highlights {
@@ -305,14 +345,13 @@ export default function DigitalEcosystemSection() {
           }
 
           .virtutis-ecosystem-phone {
-            width: min(100%, 228px);
-            transform: translateX(-4px);
+            width: min(100%, 240px);
           }
 
           .virtutis-ecosystem-mascot {
-            left: calc(50% + 84px);
-            bottom: 42px;
-            width: 80px;
+            left: calc(50% + 72px);
+            bottom: 30px;
+            width: 72px;
           }
         }
 
@@ -327,6 +366,11 @@ export default function DigitalEcosystemSection() {
             border-radius: 24px;
           }
 
+          .virtutis-ecosystem-showcase {
+            grid-template-columns: 1fr;
+            gap: 18px;
+          }
+
           .virtutis-ecosystem-description {
             font-size: 0.92rem;
             line-height: 1.65;
@@ -337,31 +381,100 @@ export default function DigitalEcosystemSection() {
           }
 
           .virtutis-ecosystem-actions {
-            flex-direction: column;
+            grid-column: 1;
+            justify-content: center;
+            margin-top: 2px;
           }
 
           .virtutis-ecosystem-button {
-            width: 100%;
+            width: min(100%, 280px);
           }
 
           .virtutis-ecosystem-highlights {
             grid-template-columns: 1fr;
+            order: 2;
           }
 
           .virtutis-ecosystem-visual {
-            min-height: 290px;
-            padding: 12px 10px 20px;
+            order: 1;
+            min-height: 270px;
+            max-width: 240px;
+            padding: 8px 10px 16px;
           }
 
           .virtutis-ecosystem-phone {
-            width: min(100%, 184px);
-            transform: none;
+            width: min(100%, 208px);
           }
 
           .virtutis-ecosystem-mascot {
-            left: calc(50% + 62px);
-            bottom: 28px;
-            width: 56px;
+            left: calc(50% + 58px);
+            bottom: 18px;
+            width: 50px;
+          }
+        }
+
+        @media (max-width: 430px) {
+          .virtutis-ecosystem-shell {
+            gap: 18px;
+            padding: 16px 14px;
+            border-radius: 20px;
+          }
+
+          .virtutis-ecosystem-copy {
+            text-align: left;
+          }
+
+          .virtutis-ecosystem-badge {
+            font-size: 0.7rem;
+            padding: 7px 11px;
+          }
+
+          .virtutis-ecosystem-copy h3 {
+            margin: 12px 0 10px;
+            font-size: clamp(1.38rem, 7.2vw, 1.82rem);
+            line-height: 1.08;
+          }
+
+          .virtutis-ecosystem-description {
+            font-size: 0.9rem;
+            line-height: 1.62;
+          }
+
+          .virtutis-ecosystem-actions {
+            margin-top: 18px;
+          }
+
+          .virtutis-ecosystem-button {
+            width: 100%;
+            min-height: 44px;
+          }
+
+          .virtutis-ecosystem-highlight {
+            padding: 10px 11px;
+            border-radius: 16px;
+          }
+
+          .virtutis-ecosystem-highlight p {
+            max-width: none;
+          }
+
+          .virtutis-ecosystem-visual {
+            min-height: 248px;
+            padding-bottom: 8px;
+          }
+
+          .virtutis-ecosystem-phone {
+            width: min(100%, 188px);
+          }
+
+          .virtutis-ecosystem-phone-image {
+            filter: drop-shadow(0 8px 14px rgba(2, 8, 59, 0.1));
+          }
+
+          .virtutis-ecosystem-mascot {
+            left: calc(50% + 46px);
+            bottom: 10px;
+            width: 42px;
           }
         }
       `}</style>
