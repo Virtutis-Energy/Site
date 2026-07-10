@@ -41,7 +41,7 @@ export const enUSTranslations: Translation = {
     heroSubtitle: 'Generating the Best Energy!',
     heroText:
       'Renewable energy solutions for people who want to lower electricity costs and invest in photovoltaic plants with monthly returns.',
-    aboutEyebrow: 'Virtutis digital ecosystem',
+    aboutEyebrow: 'Virtutis Energy digital ecosystem',
     aboutTitle: 'Energy, technology, and digital experience in one ecosystem.',
     aboutHeadline: 'Energy, technology, and finance in one ecosystem.',
     aboutText:
@@ -53,7 +53,7 @@ export const enUSTranslations: Translation = {
     aboutStatLabelBottom: 'Experience in expansion',
     aboutStatValueBottom: 'A modern operation with global vision and intuitive access.',
     aboutAppAlt: 'Virtutis Energy app screen displayed on a smartphone',
-    audienceSelectorLabel: 'Select how you want to connect with Virtutis',
+    audienceSelectorLabel: 'Select how you want to connect with Virtutis Energy',
     aboutHighlights: [
       {
         title: 'Track your balance',
@@ -190,9 +190,9 @@ export const enUSTranslations: Translation = {
     bullet2: 'Structured expansion with focus on scale, technology, and local relationships',
     bullet3: 'An app and operating model prepared to serve users in multiple countries',
     body:
-      'Today, Virtutis positions its brand as a fintech with a global vocation, able to operate with institutional consistency, regional awareness, and long-term vision. Our proposal is to consolidate a strong international presence through unified communication, a consistent digital experience, and the capacity to scale in strategic markets.',
+      'Today, Virtutis Energy positions its brand as a fintech with a global vocation, able to operate with institutional consistency, regional awareness, and long-term vision. Our proposal is to consolidate a strong international presence through unified communication, a consistent digital experience, and the capacity to scale in strategic markets.',
     footprint:
-      'Our app reinforces that international reach and highlights Virtutis across different countries. The brand ecosystem already connects with operations and opportunities in South Africa, Belgium, Chile, Portugal, Colombia, Brazil, the United States, Hong Kong, Macau, China, Singapore, and Australia.',
+      'Our app reinforces that international reach and highlights Virtutis Energy across different countries. The brand ecosystem already connects with operations and opportunities in South Africa, Belgium, Chile, Portugal, Colombia, Brazil, the United States, Hong Kong, Macau, China, Singapore, and Australia.',
     stat1Value: '5',
     stat1Label: 'continents with strategic presence',
     stat2Value: '12',

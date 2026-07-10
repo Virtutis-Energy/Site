@@ -36,7 +36,7 @@ export default function WorldPresenceMap() {
       <div className="world-presence-card__header">
         <div>
           <span className="world-presence-card__eyebrow">{isEnglish ? 'International presence' : 'Presença internacional'}</span>
-          <h3>{isEnglish ? 'Virtutis footprint across key markets' : 'Atuação da Virtutis em mercados estratégicos'}</h3>
+          <h3>{isEnglish ? 'Virtutis Energy footprint across key markets' : 'Atuação da Virtutis Energy em mercados estratégicos'}</h3>
         </div>
         <div className="world-presence-card__badge">{isEnglish ? '11 highlighted countries' : '11 países destacados'}</div>
       </div>

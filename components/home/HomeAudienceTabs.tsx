@@ -156,15 +156,7 @@ export default function HomeAudienceTabs() {
         }
 
         .home-audience-selector-label::after {
-          content: '';
-          position: absolute;
-          left: 50%;
-          bottom: 0;
-          width: 74px;
-          height: 3px;
-          border-radius: 999px;
-          transform: translateX(-50%);
-          background: linear-gradient(90deg, rgba(2, 8, 59, 0.15) 0%, rgba(23, 49, 106, 0.9) 50%, rgba(2, 8, 59, 0.15) 100%);
+          content: none;
         }
 
         .home-audience-tabs {

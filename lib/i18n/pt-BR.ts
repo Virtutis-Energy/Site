@@ -39,11 +39,11 @@ export const ptBRTranslations = {
     heroSubtitle: 'Gerando a Melhor Energia!',
     heroText:
       'Soluções em energia renovável para quem quer economizar na conta de luz e investir em usinas fotovoltaicas com retorno mensal.',
-    aboutEyebrow: 'Ecossistema digital Virtutis',
+    aboutEyebrow: 'Ecossistema Digital Virtutis Energy',
     aboutTitle: 'Energia, tecnologia e experiência digital em um só ecossistema.',
     aboutHeadline: 'Energia, tecnologia e finanças em um só ecossistema.',
     aboutText:
-      'A Virtutis Energy conecta usuários, investidores e usinas fotovoltaicas por meio de uma experiência digital moderna, segura e intuitiva. Pelo aplicativo, é possível acompanhar saldo, movimentações, oportunidades, rendimentos e conteúdos do ecossistema Virtutis com praticidade e visão global.',
+      'A Virtutis Energy conecta usuários, investidores e usinas fotovoltaicas por meio de uma experiência digital moderna, segura e intuitiva. Pelo aplicativo, é possível acompanhar saldo, movimentações, oportunidades, rendimentos e conteúdos do ecossistema Virtutis Energy com praticidade e visão global.',
     aboutPrimaryCta: 'Conhecer o aplicativo',
     aboutSecondaryCta: 'Abrir sua conta',
     aboutStatLabelTop: 'Ecossistema conectado',
@@ -51,7 +51,7 @@ export const ptBRTranslations = {
     aboutStatLabelBottom: 'Experiência em expansão',
     aboutStatValueBottom: 'Operação moderna com visão global e acesso intuitivo.',
     aboutAppAlt: 'Tela do aplicativo da Virtutis Energy em um smartphone',
-    audienceSelectorLabel: 'Selecione como deseja se conectar à Virtutis',
+    audienceSelectorLabel: 'Selecione como deseja se conectar à Virtutis Energy',
     aboutHighlights: [
       {
         title: 'Acompanhe seu saldo',
@@ -109,9 +109,9 @@ export const ptBRTranslations = {
     investorFeatureBenefits: ['Oportunidades em Vitis', 'Acompanhamento de aportes', 'Energia renovável'],
     associateFeatureTitle: 'Faça parte como Associado',
     associateFeatureText:
-      'Como associado, você acompanha de perto o desenvolvimento da Virtutis Energy e participa de iniciativas ligadas à expansão das nossas usinas fotovoltaicas.',
+      'O associado é o proprietário de uma usina fotovoltaica que associa sua geração ao aplicativo da Virtutis Energy, tornando sua usina disponível para locação por clientes.',
     associateFeatureText2:
-      'É uma oportunidade de aprender, colaborar com equipes multidisciplinares e contribuir para projetos de impacto no setor de energia sustentável.',
+      'Com essa integração, a usina passa a fazer parte do ecossistema digital da empresa, permitindo o acompanhamento das locações, da operação e das oportunidades de faturamento geradas pela energia disponibilizada.',
     associateFeatureBenefits: ['Participação estratégica', 'Aprendizado e colaboração', 'Impacto sustentável'],
   },
   associatePage: {
@@ -188,9 +188,9 @@ export const ptBRTranslations = {
     bullet2: 'Expansão estruturada com foco em escala, tecnologia e relacionamento local',
     bullet3: 'Aplicativo e operação preparados para atender usuários em múltiplos países',
     body:
-      'Hoje, a Virtutis posiciona sua marca como uma fintech com vocação global, capaz de operar com consistência institucional, leitura de contexto regional e visão de longo prazo. Nossa proposta é consolidar uma presença internacional sólida, com comunicação unificada, experiência digital consistente e capacidade de expansão em mercados estratégicos.',
+      'Hoje, a Virtutis Energy posiciona sua marca como uma fintech com vocação global, capaz de operar com consistência institucional, leitura de contexto regional e visão de longo prazo. Nossa proposta é consolidar uma presença internacional sólida, com comunicação unificada, experiência digital consistente e capacidade de expansão em mercados estratégicos.',
     footprint:
-      'Nosso aplicativo acompanha essa presença internacional e reforça a atuação da Virtutis entre diferentes países. O ecossistema da marca já dialoga com operações e oportunidades na África do Sul, Bélgica, Chile, Portugal, Colômbia, Brasil, Estados Unidos, Hong Kong, Macau, China, Singapura e Austrália.',
+      'Nosso aplicativo acompanha essa presença internacional e reforça a atuação da Virtutis Energy entre diferentes países. O ecossistema da marca já dialoga com operações e oportunidades na África do Sul, Bélgica, Chile, Portugal, Colômbia, Brasil, Estados Unidos, Hong Kong, Macau, China, Singapura e Austrália.',
     stat1Value: '5',
     stat1Label: 'continentes com presença estratégica',
     stat2Value: '12',

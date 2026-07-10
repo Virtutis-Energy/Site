@@ -14,14 +14,7 @@
 }
 
 .get-started .content h3:after {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 60px;
-  height: 4px;
-  background: var(--nav-dropdown-hover-color);
-  left: 0;
-  bottom: 0;
+  content: none;
 }
 
 .get-started .content p {
