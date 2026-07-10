@@ -115,7 +115,6 @@ export default function DigitalEcosystemSection() {
 
         .virtutis-ecosystem-copy h3 {
           margin: 14px 0 12px;
-          max-width: 22ch;
           color: #02083b;
           font-size: clamp(1.75rem, 3vw, 2.7rem);
           line-height: 1;
@@ -128,7 +127,6 @@ export default function DigitalEcosystemSection() {
         }
 
         .virtutis-ecosystem-description {
-          max-width: 58ch;
           margin: 0;
           color: #1a2e5d;
           font-size: 0.96rem;
@@ -220,10 +218,10 @@ export default function DigitalEcosystemSection() {
           margin: 0;
           color: #1a2e5d;
           font-size: 0.84rem;
-          line-height: 1.35;
+          line-height: 1.45;
           text-align: left;
           text-wrap: pretty;
-          max-width: 26ch;
+          max-width: 30ch;
         }
 
         .virtutis-ecosystem-visual {
@@ -295,7 +293,6 @@ export default function DigitalEcosystemSection() {
           }
 
           .virtutis-ecosystem-copy h3 {
-            max-width: 20ch;
           }
 
           .virtutis-ecosystem-visual {
@@ -336,7 +333,6 @@ export default function DigitalEcosystemSection() {
           }
 
           .virtutis-ecosystem-copy h3 {
-            max-width: 19ch;
             font-size: clamp(1.5rem, 7vw, 2rem);
           }
 

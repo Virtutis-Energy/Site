@@ -2,20 +2,29 @@
 
 import Script from 'next/script'
 import { useState } from 'react'
-import { LuLayoutDashboard, LuShieldCheck, LuTarget } from 'react-icons/lu'
+import {
+  LuLayoutDashboard,
+  LuShieldCheck,
+  LuTarget,
+} from 'react-icons/lu'
 import { useCadastroInvestidor } from '@/hooks/useCadastroInvestidor'
 import { useLanguage } from '@/components/LanguageProvider'
 import HomeAudienceTabs from '@/components/home/HomeAudienceTabs'
 import DigitalEcosystemSection from '@/components/home/DigitalEcosystemSection'
 
 export default function HomePageContent() {
-  const { t } = useLanguage()
+  const { t, localeSegment } = useLanguage()
   const [formData, setFormData] = useState({
     cpf_cnpj: '',
     nome: '',
     email: '',
     telefone: '',
   })
+
+  // Troque aqui caso o link oficial de download do app mude no futuro.
+  const downloadAppHref = t.header.whatsappText
+  const openAccountDownloadLabel =
+    localeSegment === 'pt-br' ? 'Baixar o App' : t.header.downloadApp
 
   const { cadastrar, loading, sucesso, erro } = useCadastroInvestidor()
 
@@ -41,6 +50,55 @@ export default function HomePageContent() {
       text: t.home.openAccountExperienceText,
     },
   ]
+
+  const companyIntroContent =
+    localeSegment === 'pt-br'
+      ? {
+          title: 'A Virtutis Energy conecta o futuro da energia',
+          lead:
+            'Somos uma fintech global que une tecnologia, energia solar e serviços financeiros para aproximar pessoas, empresas e investidores de soluções sustentáveis em mercados estratégicos.',
+          supporting: '',
+          cards: [
+            {
+              title: 'Atuação Global',
+              text: 'Presença em expansão para conectar a Virtutis Energy a novos mercados.',
+              icon: 'bi bi-globe-americas',
+            },
+            {
+              title: 'Energia Limpa',
+              text: 'Soluções ligadas à geração solar e à sustentabilidade.',
+              icon: 'bi bi-sun',
+            },
+            {
+              title: 'Experiência Digital',
+              text: 'Tecnologia para simplificar o acesso aos serviços da Virtutis Energy.',
+              icon: 'bi bi-phone',
+            },
+          ],
+        }
+      : {
+          title: 'Virtutis Energy connects the future of energy',
+          lead:
+            'We are a global fintech that brings together technology, solar energy, and financial services to connect people, companies, and investors with sustainable solutions in strategic markets.',
+          supporting: '',
+          cards: [
+            {
+              title: 'Global Reach',
+              text: 'An expanding presence that connects Virtutis Energy to new markets.',
+              icon: 'bi bi-globe-americas',
+            },
+            {
+              title: 'Clean Energy',
+              text: 'Solutions connected to solar generation and sustainability.',
+              icon: 'bi bi-sun',
+            },
+            {
+              title: 'Digital Experience',
+              text: 'Technology that simplifies access to Virtutis Energy services.',
+              icon: 'bi bi-phone',
+            },
+          ],
+        }
 
   return (
     <>
@@ -136,6 +194,32 @@ export default function HomePageContent() {
           <div className="container">
             <div className="row justify-content-between gy-4 home-open-account-section">
               <div className="col-12">
+                <section className="home-company-intro" aria-labelledby="home-company-intro-title">
+                  <div className="home-company-intro__top" data-aos="fade-up" data-aos-delay="70">
+                    <div className="home-company-intro__heading">
+                      <h2 id="home-company-intro-title">{companyIntroContent.title}</h2>
+                    </div>
+
+                    <div className="home-company-intro__copy">
+                      <p className="home-company-intro__lead">{companyIntroContent.lead}</p>
+                      {companyIntroContent.supporting ? (
+                        <p className="home-company-intro__supporting">{companyIntroContent.supporting}</p>
+                      ) : null}
+                    </div>
+                  </div>
+
+                  <div className="home-company-intro__grid" data-aos="fade-up" data-aos-delay="110">
+                    {companyIntroContent.cards.map((card) => (
+                      <article key={card.title} className="home-company-intro__card">
+                        <h3>{card.title}</h3>
+                        <p>{card.text}</p>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+              </div>
+
+              <div className="col-12">
                 <DigitalEcosystemSection />
               </div>
 
@@ -158,6 +242,17 @@ export default function HomePageContent() {
                         </div>
                       </article>
                     ))}
+                  </div>
+
+                  <div className="home-open-account-actions">
+                    <a
+                      href={downloadAppHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="btn-get-started"
+                    >
+                      {openAccountDownloadLabel}
+                    </a>
                   </div>
                 </div>
               </div>
@@ -199,6 +294,130 @@ export default function HomePageContent() {
           margin-top: 6px;
         }
 
+        .home-company-intro {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          width: 100%;
+          max-width: 1140px;
+          margin: 0 auto;
+          padding: 34px 34px 30px;
+          align-items: stretch;
+          background: #ffffff;
+          border: 1px solid rgba(26, 46, 93, 0.1);
+          border-radius: 32px;
+          box-shadow: 0 12px 30px rgba(11, 36, 84, 0.04);
+        }
+
+        .home-company-intro__top {
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 14px;
+        }
+
+        .home-company-intro__heading {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          width: 100%;
+          max-width: 780px;
+        }
+
+        .home-company-intro__copy {
+          width: 100%;
+          max-width: 64ch;
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          margin: 0;
+        }
+
+        .home-company-intro__heading h2 {
+          margin: 0;
+          position: relative;
+          display: inline-flex;
+          align-items: center;
+          justify-content: flex-start;
+          padding: 0 0 16px;
+          color: #02083b;
+          font-size: clamp(2.2rem, 3.6vw, 2.95rem);
+          line-height: 1.08;
+          letter-spacing: -0.045em;
+          font-weight: 780;
+          text-align: left;
+          max-width: 24ch;
+          text-wrap: balance;
+        }
+
+        .home-company-intro__heading h2::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 78px;
+          height: 4px;
+          border-radius: 999px;
+          background: linear-gradient(90deg, rgba(2, 8, 59, 0.9) 0%, rgba(23, 49, 106, 0.42) 100%);
+        }
+
+        .home-company-intro__lead,
+        .home-company-intro__supporting {
+          margin: 0;
+          width: 100%;
+          color: #1a2e5d;
+          font-size: 0.98rem;
+          line-height: 1.74;
+          text-align: left;
+          text-wrap: pretty;
+        }
+
+        .home-company-intro__supporting {
+          margin-top: 12px;
+        }
+
+        .home-company-intro__grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 16px;
+          align-items: stretch;
+          padding-top: 18px;
+          border-top: 1px solid rgba(26, 46, 93, 0.1);
+        }
+
+        .home-company-intro__card {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          min-height: 100%;
+          padding: 4px 8px 0 0;
+          background: transparent;
+          border: 0;
+          border-right: 1px solid rgba(26, 46, 93, 0.1);
+        }
+
+        .home-company-intro__card:last-child {
+          border-right: 0;
+        }
+
+        .home-company-intro__card h3 {
+          margin: 0 0 12px;
+          color: #02083b;
+          font-size: 1.08rem;
+          line-height: 1.25;
+          font-weight: 700;
+        }
+
+        .home-company-intro__card p {
+          margin: 0;
+          max-width: 29ch;
+          color: #36507a;
+          font-size: 0.92rem;
+          line-height: 1.62;
+          text-align: left;
+          text-wrap: pretty;
+        }
+
         .home-open-account-panel {
           display: flex;
           flex-direction: column;
@@ -223,6 +442,29 @@ export default function HomePageContent() {
           font-size: 1rem;
           line-height: 1.75;
           text-align: left;
+        }
+
+        .home-open-account-actions {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-top: 12px;
+          justify-content: flex-start;
+        }
+
+        .home-open-account-actions :global(.btn-get-started) {
+          margin: 0;
+          box-shadow: 0 14px 28px rgba(2, 8, 59, 0.22);
+          transition:
+            box-shadow 0.26s ease,
+            transform 0.26s ease;
+        }
+
+        @media (hover: hover) and (pointer: fine) {
+          .home-open-account-actions :global(.btn-get-started):hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 34px rgba(2, 8, 59, 0.28);
+          }
         }
 
         .home-open-account-cards {
@@ -308,10 +550,12 @@ export default function HomePageContent() {
 
         .home-open-account-card p {
           margin: 0;
+          max-width: 42ch;
           color: #36507a;
           font-size: 0.91rem;
           line-height: 1.58;
           text-align: left;
+          text-wrap: pretty;
         }
 
         .home-open-account-visual-card {
@@ -358,12 +602,51 @@ export default function HomePageContent() {
         }
 
         @media (max-width: 1199px) {
+          .home-company-intro__grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+          }
+
           .home-open-account-image {
             min-height: 350px;
           }
         }
 
         @media (max-width: 991px) {
+          .home-company-intro {
+            gap: 20px;
+            padding: 30px 24px 26px;
+            border-radius: 28px;
+          }
+
+          .home-company-intro__top {
+            gap: 14px;
+          }
+
+          .home-company-intro__grid {
+            grid-template-columns: 1fr;
+            gap: 18px;
+          }
+
+          .home-company-intro__copy {
+            max-width: 72ch;
+          }
+
+          .home-company-intro__heading h2 {
+            font-size: clamp(1.95rem, 5vw, 2.45rem);
+            max-width: 20ch;
+          }
+
+          .home-company-intro__card {
+            padding: 0 0 18px;
+            border-right: 0;
+            border-bottom: 1px solid rgba(26, 46, 93, 0.1);
+          }
+
+          .home-company-intro__card:last-child {
+            padding-bottom: 0;
+            border-bottom: 0;
+          }
+
           .home-open-account-section {
             margin-top: 0;
           }
@@ -390,6 +673,49 @@ export default function HomePageContent() {
         }
 
         @media (max-width: 767px) {
+          .home-company-intro {
+            gap: 18px;
+            padding: 24px 18px 22px;
+            border-radius: 24px;
+          }
+
+          .home-company-intro__top {
+            gap: 16px;
+          }
+
+          .home-company-intro__heading h2 {
+            margin-bottom: 12px;
+            line-height: 1.06;
+            max-width: 15ch;
+          }
+
+          .home-company-intro__heading h2::after {
+            width: 64px;
+          }
+
+          .home-company-intro__lead,
+          .home-company-intro__supporting {
+            width: 100%;
+            max-width: 35ch;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            text-align: left;
+          }
+
+          .home-company-intro__card {
+            padding: 0 0 16px;
+          }
+
+          .home-company-intro__card h3 {
+            font-size: 1rem;
+          }
+
+          .home-company-intro__card p {
+            max-width: none;
+            font-size: 0.9rem;
+            line-height: 1.55;
+          }
+
           .home-open-account-copy h3 {
             line-height: 1.06;
           }
@@ -397,6 +723,11 @@ export default function HomePageContent() {
           .home-open-account-subtitle {
             font-size: 0.96rem;
             line-height: 1.7;
+          }
+
+          .home-open-account-actions :global(.btn-get-started) {
+            width: 100%;
+            justify-content: center;
           }
 
           .home-open-account-card {

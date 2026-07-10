@@ -250,10 +250,12 @@ export default function HomeAudienceTabs() {
 
         .home-audience-copy p {
           margin-bottom: 0;
+          max-width: 50ch;
           color: #36507a;
           font-size: 0.95rem;
           line-height: 1.56;
           text-align: left !important;
+          text-wrap: pretty;
         }
 
         .home-audience-copy p + p {
@@ -386,6 +388,7 @@ export default function HomeAudienceTabs() {
           .home-audience-copy p {
             font-size: 0.91rem;
             line-height: 1.5;
+            max-width: none;
           }
 
           .home-audience-benefits {
