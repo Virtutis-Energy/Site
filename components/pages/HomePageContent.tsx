@@ -56,7 +56,7 @@ export default function HomePageContent() {
       ? {
           title: 'A Virtutis Energy conecta o futuro da energia',
           lead:
-            'Somos uma fintech global que une tecnologia, energia solar e serviços financeiros para aproximar pessoas, empresas e investidores de soluções sustentáveis em mercados estratégicos.',
+            'Somos uma fintech global que une tecnologia, energia solar e serviços financeiros para aproximar pessoas, empresas e investidores de soluções digitais voltadas à energia limpa, gestão energética e expansão internacional da Virtutis Energy.',
           supporting: '',
           cards: [
             {
@@ -352,14 +352,7 @@ export default function HomePageContent() {
         }
 
         .home-company-intro__heading h2::after {
-          content: '';
-          position: absolute;
-          left: 0;
-          bottom: 0;
-          width: 78px;
-          height: 4px;
-          border-radius: 999px;
-          background: linear-gradient(90deg, rgba(2, 8, 59, 0.9) 0%, rgba(23, 49, 106, 0.42) 100%);
+          content: none;
         }
 
         .home-company-intro__lead,
@@ -603,6 +596,7 @@ export default function HomePageContent() {
           font-weight: 600;
           line-height: 1.3;
           letter-spacing: 0.01em;
+          white-space: nowrap;
           box-shadow: 0 10px 20px rgba(2, 8, 59, 0.14);
         }
 
@@ -784,8 +778,9 @@ export default function HomePageContent() {
             left: 12px;
             right: 12px;
             bottom: 12px;
-            font-size: 0.72rem;
-            padding: 8px 11px;
+            font-size: 0.64rem;
+            padding: 8px 10px;
+            letter-spacing: 0;
           }
         }
 
@@ -872,8 +867,9 @@ export default function HomePageContent() {
 
           .home-open-account-visual-badge {
             max-width: calc(100% - 24px);
-            font-size: 0.68rem;
-            line-height: 1.25;
+            font-size: 0.58rem;
+            line-height: 1.2;
+            padding: 7px 9px;
           }
         }
       `}</style>

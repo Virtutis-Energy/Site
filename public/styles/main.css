@@ -299,21 +299,12 @@ section,
   position: relative;
 }
 
-.section-title h2:before,
 .section-title h2:after {
-  content: "";
-  width: 50px;
-  height: 2px;
-  background: var(--accent-color);
-  display: inline-block;
+  content: none;
 }
 
 .section-title h2:before {
-  margin: 0 15px 10px 0;
-}
-
-.section-title h2:after {
-  margin: 0 0 10px 15px;
+  content: none;
 }
 
 .section-title p {
@@ -425,14 +416,7 @@ section,
 }
 
 .features .tab-pane h3:after {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: var(--nav-dropdown-hover-color);
-  left: 0;
-  bottom: 0;
+  content: none;
 }
 
 .features .tab-pane ul {
