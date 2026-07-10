@@ -316,6 +316,71 @@ export default function DigitalEcosystemSection() {
           }
         }
 
+        @media (max-width: 1024px) {
+          .virtutis-ecosystem-shell {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+          }
+
+          .virtutis-ecosystem-copy {
+            display: contents;
+          }
+
+          .virtutis-ecosystem-badge {
+            order: 1;
+            align-self: center;
+            white-space: nowrap;
+            font-size: 0.7rem;
+            padding: 7px 11px;
+          }
+
+          .virtutis-ecosystem-copy h3 {
+            order: 2;
+            text-align: left;
+            box-sizing: border-box;
+            margin: 12px 0 10px;
+            width: min(calc(100% - 20px), 36rem);
+            max-width: 36rem;
+            margin-inline: auto;
+            align-self: center;
+            padding-inline: 10px;
+            line-height: 1.08;
+          }
+
+          .virtutis-ecosystem-description {
+            order: 3;
+            text-align: left;
+            box-sizing: border-box;
+            width: min(calc(100% - 20px), 36rem);
+            max-width: 36rem;
+            margin: 0 auto;
+            align-self: center;
+            padding-inline: 10px;
+            text-wrap: pretty;
+          }
+
+          .virtutis-ecosystem-visual {
+            order: 4;
+            align-self: center;
+            margin-top: 6px;
+          }
+
+          .virtutis-ecosystem-actions {
+            order: 5;
+            justify-content: center;
+            margin-top: 4px;
+          }
+
+          .virtutis-ecosystem-button {
+            width: min(100%, 280px);
+          }
+
+          .virtutis-ecosystem-highlights {
+            order: 6;
+          }
+        }
+
         @media (max-width: 767px) {
           .virtutis-ecosystem-section {
             padding: 10px 0 34px;
@@ -328,12 +393,19 @@ export default function DigitalEcosystemSection() {
           }
 
           .virtutis-ecosystem-description {
-            font-size: 0.92rem;
-            line-height: 1.65;
+            font-size: 0.9rem;
+            line-height: 1.54;
+            width: min(calc(100% - 16px), 31rem);
+            max-width: 31rem;
+            padding-inline: 8px;
           }
 
           .virtutis-ecosystem-copy h3 {
-            font-size: clamp(1.5rem, 7vw, 2rem);
+            width: min(calc(100% - 16px), 31rem);
+            max-width: 31rem;
+            font-size: clamp(1.42rem, 5.9vw, 1.9rem);
+            line-height: 1.12;
+            padding-inline: 8px;
           }
 
           .virtutis-ecosystem-actions {
@@ -362,6 +434,24 @@ export default function DigitalEcosystemSection() {
             left: calc(50% + 62px);
             bottom: 28px;
             width: 56px;
+          }
+        }
+
+        @media (max-width: 430px) {
+          .virtutis-ecosystem-copy h3 {
+            width: min(calc(100% - 12px), 28rem);
+            max-width: 28rem;
+            font-size: clamp(1.34rem, 5.4vw, 1.72rem);
+            line-height: 1.14;
+            padding-inline: 6px;
+          }
+
+          .virtutis-ecosystem-description {
+            width: min(calc(100% - 12px), 28rem);
+            max-width: 28rem;
+            padding-inline: 6px;
+            font-size: 0.88rem;
+            line-height: 1.5;
           }
         }
       `}</style>

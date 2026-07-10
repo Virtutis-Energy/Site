@@ -144,7 +144,14 @@ export default function HomePageContent() {
                     </div>
                     <div
                       className="hero-subtitle-wrap"
-                      style={{ width: '100%', textAlign: 'center', display: 'block' }}
+                      style={{
+                        width: '100%',
+                        maxWidth: '100%',
+                        textAlign: 'center',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
                     >
                       <span
                         className="subtext"
@@ -152,35 +159,36 @@ export default function HomePageContent() {
                         style={{
                           display: 'block',
                           width: '100%',
+                          maxWidth: 'none',
                           textAlign: 'center',
                           margin: 0,
-                          textWrap: 'balance',
+                          whiteSpace: 'nowrap',
                         }}
                       >
                         {t.home.heroSubtitle}
                       </span>
                     </div>
+                    <div
+                      style={{
+                        width: '100%',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        marginTop: '6px',
+                      }}
+                    >
+                      <a
+                        href={t.header.whatsappText}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-get-started"
+                        style={{ marginLeft: 'auto', marginRight: 'auto' }}
+                      >
+                        {t.header.downloadApp}
+                      </a>
+                    </div>
                   </div>
                   <p id="invisible-text">{t.home.heroText}</p>
-                  <div
-                    style={{
-                      width: '100%',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      marginTop: '14px',
-                    }}
-                  >
-                    <a
-                      href={t.header.whatsappText}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-get-started"
-                      style={{ marginLeft: 'auto', marginRight: 'auto' }}
-                    >
-                      {t.header.downloadApp}
-                    </a>
-                  </div>
                 </div>
               </div>
             </div>
@@ -611,6 +619,35 @@ export default function HomePageContent() {
         }
 
         @media (max-width: 991px) {
+          .home-open-account-section {
+            display: flex;
+            flex-direction: column;
+          }
+
+          .home-open-account-section > .col-lg-7 {
+            display: contents;
+          }
+
+          .home-open-account-panel {
+            display: contents;
+          }
+
+          .home-open-account-copy {
+            order: 1;
+          }
+
+          .col-lg-5.order-1.order-lg-2 {
+            order: 2;
+          }
+
+          .home-open-account-actions {
+            order: 3;
+          }
+
+          .home-open-account-cards {
+            order: 4;
+          }
+
           .home-company-intro {
             gap: 20px;
             padding: 30px 24px 26px;
@@ -658,6 +695,7 @@ export default function HomePageContent() {
 
           .home-open-account-copy {
             max-width: none;
+            padding-inline: 12px;
           }
 
           .home-open-account-copy h3 {
@@ -670,6 +708,16 @@ export default function HomePageContent() {
 
           .home-open-account-actions {
             justify-content: center;
+            margin-top: 14px;
+            margin-bottom: 8px;
+          }
+
+          .home-open-account-actions :global(.btn-get-started) {
+            width: min(100%, 240px);
+            min-height: 42px;
+            padding: 10px 18px;
+            justify-content: center;
+            text-align: center;
           }
 
           .home-open-account-image {
@@ -731,38 +779,44 @@ export default function HomePageContent() {
 
           .home-open-account-actions {
             justify-content: center;
+            margin-top: 14px;
+            margin-bottom: 10px;
           }
 
           .home-open-account-actions :global(.btn-get-started) {
-            width: min(100%, 280px);
+            width: min(100%, 240px);
+            min-height: 42px;
+            padding: 10px 18px;
             justify-content: center;
             text-align: center;
           }
 
           .home-open-account-card {
-            padding: 18px 16px;
-            border-radius: 20px;
+            gap: 10px;
+            padding: 12px 12px;
+            border-radius: 16px;
           }
 
           .home-open-account-card-index {
-            width: 38px;
-            min-width: 38px;
-            height: 38px;
-            border-radius: 12px;
+            width: 30px;
+            min-width: 30px;
+            height: 30px;
+            border-radius: 10px;
           }
 
           .home-open-account-card-index :global(svg) {
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
           }
 
           .home-open-account-card h4 {
-            font-size: 0.98rem;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
           }
 
           .home-open-account-card p {
-            font-size: 0.9rem;
-            line-height: 1.55;
+            font-size: 0.84rem;
+            line-height: 1.42;
           }
 
           .home-open-account-visual-card {
@@ -827,33 +881,36 @@ export default function HomePageContent() {
           }
 
           .home-open-account-cards {
-            gap: 12px;
+            gap: 8px;
           }
 
           .home-open-account-card {
             grid-template-columns: 1fr;
-            gap: 12px;
-            padding: 16px 14px;
+            gap: 8px;
+            padding: 11px 11px;
           }
 
           .home-open-account-card-index {
-            width: 36px;
-            min-width: 36px;
-            height: 36px;
+            width: 28px;
+            min-width: 28px;
+            height: 28px;
           }
 
           .home-open-account-card h4 {
-            margin-bottom: 6px;
+            margin-bottom: 4px;
+            font-size: 0.88rem;
           }
 
           .home-open-account-card p {
             max-width: none;
-            font-size: 0.88rem;
-            line-height: 1.5;
+            font-size: 0.82rem;
+            line-height: 1.4;
           }
 
           .home-open-account-actions :global(.btn-get-started) {
-            width: 100%;
+            width: min(100%, 240px);
+            min-height: 40px;
+            padding: 9px 16px;
             margin-inline: 0;
           }
 
