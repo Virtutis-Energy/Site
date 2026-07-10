@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { LuHandshake, LuHouse, LuTrendingUp } from 'react-icons/lu'
 import { useLanguage } from '@/components/LanguageProvider'
+import usinaAssociado from '@/assets/usina-associado.jpeg'
 import { getLocalizedPath, type RouteKey } from '@/lib/i18n'
 
 type AudienceTab = {
@@ -50,7 +51,7 @@ export default function HomeAudienceTabs() {
       title: t.home.associateFeatureTitle,
       paragraphs: [t.home.associateFeatureText, t.home.associateFeatureText2],
       benefits: t.home.associateFeatureBenefits,
-      image: '/img/hero-carousel/hero-carousel-6.jpg',
+      image: usinaAssociado.src,
       imageAlt: t.home.associateFeatureTitle,
       route: 'associate',
       icon: LuHandshake,
