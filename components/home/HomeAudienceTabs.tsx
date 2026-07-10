@@ -288,6 +288,10 @@ export default function HomeAudienceTabs() {
           padding-top: 14px;
         }
 
+        .home-audience-cta :global(.btn-get-started) {
+          margin: 0;
+        }
+
         .home-audience-visual {
           display: flex;
           align-items: center;
@@ -325,6 +329,27 @@ export default function HomeAudienceTabs() {
         }
 
         @media (max-width: 991px) {
+          .home-audience-tabs {
+            max-width: 100%;
+          }
+
+          .home-audience-content-card {
+            padding: 12px 4px;
+          }
+
+          .home-audience-copy {
+            padding: 0 12px;
+          }
+
+          .home-audience-copy p {
+            max-width: 60ch;
+          }
+
+          .home-audience-cta {
+            display: flex;
+            justify-content: flex-start;
+          }
+
           .home-audience-image-wrap {
             max-width: 470px;
             min-height: 280px;
@@ -356,6 +381,11 @@ export default function HomeAudienceTabs() {
             border-radius: 18px;
           }
 
+          .home-audience-tabs :global(.nav-item) {
+            flex: 0 0 100%;
+            max-width: 100%;
+          }
+
           .home-audience-tab {
             min-height: 56px;
             border-radius: 14px;
@@ -383,6 +413,7 @@ export default function HomeAudienceTabs() {
           .home-audience-copy h3 {
             font-size: 1.35rem;
             margin-bottom: 10px;
+            text-align: left;
           }
 
           .home-audience-copy p {
@@ -403,7 +434,13 @@ export default function HomeAudienceTabs() {
           }
 
           .home-audience-cta {
+            justify-content: center;
             padding-top: 12px;
+          }
+
+          .home-audience-cta :global(.btn-get-started) {
+            width: min(100%, 260px);
+            text-align: center;
           }
 
           .home-audience-image-wrap {
@@ -414,6 +451,52 @@ export default function HomeAudienceTabs() {
 
           .home-audience-image {
             min-height: 230px;
+          }
+        }
+
+        @media (max-width: 430px) {
+          .home-audience-selector-wrap {
+            margin-bottom: 14px;
+          }
+
+          .home-audience-tab__inner {
+            gap: 8px;
+          }
+
+          .home-audience-tab__text {
+            font-size: 0.9rem;
+          }
+
+          .home-audience-content-card {
+            padding: 8px 0;
+          }
+
+          .home-audience-copy {
+            padding: 0 6px;
+          }
+
+          .home-audience-copy h3 {
+            font-size: 1.26rem;
+            line-height: 1.12;
+          }
+
+          .home-audience-copy p {
+            font-size: 0.89rem;
+            line-height: 1.52;
+          }
+
+          .home-audience-benefits {
+            gap: 6px;
+          }
+
+          .home-audience-benefit {
+            width: fit-content;
+            max-width: 100%;
+          }
+
+          .home-audience-image-wrap,
+          .home-audience-image {
+            min-height: 210px;
           }
         }
       `}</style>

@@ -292,6 +292,7 @@ export default function HomePageContent() {
           isolation: isolate;
           z-index: 1;
           margin-top: 6px;
+          overflow: clip;
         }
 
         .home-company-intro {
@@ -422,6 +423,7 @@ export default function HomePageContent() {
           display: flex;
           flex-direction: column;
           gap: 24px;
+          width: 100%;
         }
 
         .home-open-account-copy {
@@ -472,6 +474,7 @@ export default function HomePageContent() {
           grid-template-columns: 1fr;
           gap: 14px;
           max-width: 640px;
+          width: 100%;
         }
 
         .home-open-account-card {
@@ -561,6 +564,7 @@ export default function HomePageContent() {
         .home-open-account-visual-card {
           width: 100%;
           max-width: 438px;
+          margin-inline: auto;
         }
 
         .home-open-account-visual-media {
@@ -576,6 +580,7 @@ export default function HomePageContent() {
           min-height: 390px;
           border-radius: 0;
           object-fit: cover;
+          object-position: center;
         }
 
         .home-open-account-visual-badge {
@@ -653,6 +658,8 @@ export default function HomePageContent() {
 
           .home-open-account-panel {
             gap: 20px;
+            max-width: 100%;
+            margin-inline: auto;
           }
 
           .home-open-account-copy {
@@ -665,6 +672,10 @@ export default function HomePageContent() {
 
           .home-open-account-visual-card {
             max-width: 420px;
+          }
+
+          .home-open-account-actions {
+            justify-content: center;
           }
 
           .home-open-account-image {
@@ -684,9 +695,8 @@ export default function HomePageContent() {
           }
 
           .home-company-intro__heading h2 {
-            margin-bottom: 12px;
             line-height: 1.06;
-            max-width: 15ch;
+            max-width: 17ch;
           }
 
           .home-company-intro__heading h2::after {
@@ -696,7 +706,7 @@ export default function HomePageContent() {
           .home-company-intro__lead,
           .home-company-intro__supporting {
             width: 100%;
-            max-width: 35ch;
+            max-width: none;
             font-size: 0.95rem;
             line-height: 1.7;
             text-align: left;
@@ -725,9 +735,14 @@ export default function HomePageContent() {
             line-height: 1.7;
           }
 
-          .home-open-account-actions :global(.btn-get-started) {
-            width: 100%;
+          .home-open-account-actions {
             justify-content: center;
+          }
+
+          .home-open-account-actions :global(.btn-get-started) {
+            width: min(100%, 280px);
+            justify-content: center;
+            text-align: center;
           }
 
           .home-open-account-card {
@@ -757,7 +772,7 @@ export default function HomePageContent() {
           }
 
           .home-open-account-visual-card {
-            max-width: 100%;
+            max-width: min(100%, 360px);
             border-radius: 18px;
           }
 
@@ -771,6 +786,94 @@ export default function HomePageContent() {
             bottom: 12px;
             font-size: 0.72rem;
             padding: 8px 11px;
+          }
+        }
+
+        @media (max-width: 430px) {
+          .home-company-intro {
+            gap: 16px;
+            padding: 20px 14px 18px;
+            border-radius: 20px;
+          }
+
+          .home-company-intro__heading h2 {
+            font-size: clamp(1.6rem, 7.6vw, 2rem);
+            line-height: 1.1;
+            max-width: 16ch;
+          }
+
+          .home-company-intro__grid {
+            gap: 16px;
+            padding-top: 16px;
+          }
+
+          .home-company-intro__card h3 {
+            margin-bottom: 8px;
+            font-size: 0.96rem;
+          }
+
+          .home-company-intro__card p {
+            font-size: 0.88rem;
+            line-height: 1.52;
+          }
+
+          .home-open-account-panel {
+            gap: 18px;
+          }
+
+          .home-open-account-copy h3 {
+            font-size: clamp(1.6rem, 7.4vw, 1.95rem);
+          }
+
+          .home-open-account-subtitle {
+            margin-top: 12px;
+            font-size: 0.92rem;
+            line-height: 1.62;
+          }
+
+          .home-open-account-cards {
+            gap: 12px;
+          }
+
+          .home-open-account-card {
+            grid-template-columns: 1fr;
+            gap: 12px;
+            padding: 16px 14px;
+          }
+
+          .home-open-account-card-index {
+            width: 36px;
+            min-width: 36px;
+            height: 36px;
+          }
+
+          .home-open-account-card h4 {
+            margin-bottom: 6px;
+          }
+
+          .home-open-account-card p {
+            max-width: none;
+            font-size: 0.88rem;
+            line-height: 1.5;
+          }
+
+          .home-open-account-actions :global(.btn-get-started) {
+            width: 100%;
+            margin-inline: 0;
+          }
+
+          .home-open-account-visual-card {
+            max-width: min(100%, 320px);
+          }
+
+          .home-open-account-image {
+            min-height: 238px;
+          }
+
+          .home-open-account-visual-badge {
+            max-width: calc(100% - 24px);
+            font-size: 0.68rem;
+            line-height: 1.25;
           }
         }
       `}</style>
