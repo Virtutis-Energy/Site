@@ -43,6 +43,7 @@ export const enUSTranslations: Translation = {
       'Renewable energy solutions for people who want to lower electricity costs and invest in photovoltaic plants with monthly returns.',
     aboutEyebrow: 'Virtutis digital ecosystem',
     aboutTitle: 'Energy, technology, and digital experience in one ecosystem.',
+    aboutHeadline: 'Energy, technology, and finance in one ecosystem.',
     aboutText:
       'Virtutis Energy connects users, investors, and photovoltaic plants through a modern, secure, and intuitive digital experience. Through the app, users can follow balances, transactions, opportunities, returns, and ecosystem content with convenience and a global view.',
     aboutPrimaryCta: 'Explore the app',
@@ -52,6 +53,7 @@ export const enUSTranslations: Translation = {
     aboutStatLabelBottom: 'Experience in expansion',
     aboutStatValueBottom: 'A modern operation with global vision and intuitive access.',
     aboutAppAlt: 'Virtutis Energy app screen displayed on a smartphone',
+    audienceSelectorLabel: 'Select how you want to connect with Virtutis',
     aboutHighlights: [
       {
         title: 'Track your balance',
@@ -75,25 +77,44 @@ export const enUSTranslations: Translation = {
       },
     ],
     openAccountTitle: 'Open your account',
+    openAccountSubtitle:
+      'Sign up with Virtutis Energy and access solar energy solutions, power plant leasing, and Vitis investment opportunities through the app.',
+    openAccountImageBadge: 'Energy, technology, and investment in one place',
+    openAccountReasonTitle: 'Why create your account?',
+    openAccountReasonText:
+      'Get a personalized account based on your profile, with access to opportunities, solutions, and information tailored to your needs inside the Virtutis Energy app.',
+    openAccountAppTitle: 'What can you do in the app?',
+    openAccountAppText:
+      'Explore opportunities, check plant information, and view contributions, proceeds, and transactions in an organized environment.',
+    openAccountExperienceTitle: 'What is the experience like?',
+    openAccountExperienceText:
+      'A simple, clear, and secure digital journey designed to support decision-making and keep important information within reach.',
     openAccountText:
       'If you are interested in lowering your electricity costs or investing in renewable energy, Virtutis Energy is the right choice. We want to get to know you better and help you benefit from our innovative solutions. Fill out the form with your details and our team will contact you to discuss how we can meet your needs.',
     openAccountNote:
       'By signing up, the user will gain access to our plant leasing and investment proposals.',
     formTitle: 'Complete your registration',
-    customerTab: 'Client',
+    customerTab: 'Customer',
     investorTab: 'Investor',
     associateTab: 'Associate',
-    customerFeatureTitle: 'Savings for Clients',
+    customerFeatureTitle: 'Savings for Customers',
     customerFeatureText1:
-      'Virtutis Energy is a solar energy fintech that develops, manages, and leases its own photovoltaic plants. We help our clients reduce electricity costs without needing to pay for the construction and maintenance of solar panels. We also provide investors with the opportunity to participate in the development of energy generation systems and share in the profits from plant leasing.',
+      'Virtutis Energy offers solar energy solutions to lower electricity costs without requiring the customer to build, install, or maintain a private structure.',
     customerFeatureText2:
-      'With Virtutis Energy, you get a sustainable solution that combines savings, profitability, and positive environmental impact. Join us and be part of the future of renewable energy!',
-    investorFeatureTitle: 'Boost Your Investments',
+      'Through our photovoltaic plants, we connect savings, sustainability, and convenience in a simple and accessible experience.',
+    customerFeatureBenefits: ['Energy savings', 'No private construction required', 'Sustainable solution'],
+    investorFeatureTitle: 'Investment in Vitis',
     investorFeatureText:
-      'Invest in our photovoltaic plants and enjoy returns of up to 2.35% per month. With Virtutis Energy, you get savings and profitability in one place. Strengthen your investments and be part of the future of renewable energy!',
+      'Virtutis Energy connects investors to Vitis opportunities linked to renewable energy generation projects.',
+    investorFeatureText2:
+      'Through the app, you can follow plant information, contributions, proceeds, and transactions in an organized and transparent way.',
+    investorFeatureBenefits: ['Vitis opportunities', 'Contribution tracking', 'Renewable energy'],
     associateFeatureTitle: 'Join as an Associate',
     associateFeatureText:
-      'As a Virtutis Energy associate, you take part in renewable energy projects, support strategic routines, and follow the expansion of our photovoltaic plants closely. It is an opportunity to learn, collaborate with multidisciplinary teams, and create positive impact in sustainable energy.',
+      'As an associate, you stay close to the development of Virtutis Energy and take part in initiatives linked to the expansion of our photovoltaic plants.',
+    associateFeatureText2:
+      'It is an opportunity to learn, collaborate with multidisciplinary teams, and contribute to impactful projects in sustainable energy.',
+    associateFeatureBenefits: ['Strategic participation', 'Learning and collaboration', 'Sustainable impact'],
   },
   associatePage: {
     title: 'Associate',

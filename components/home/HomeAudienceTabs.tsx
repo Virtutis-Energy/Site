@@ -25,42 +25,33 @@ export default function HomeAudienceTabs() {
     {
       id: 'customer',
       label: t.home.customerTab,
-      title: 'Economia para o Cliente',
-      paragraphs: [
-        'A Virtutis Energy oferece soluções em energia solar para reduzir custos na conta de luz, sem que o cliente precise construir, instalar ou manter uma estrutura própria.',
-        'Por meio das nossas usinas fotovoltaicas, conectamos economia, sustentabilidade e praticidade em uma experiência simples e acessível.',
-      ],
-      benefits: ['Economia em energia', 'Sem obra própria', 'Solução sustentável'],
+      title: t.home.customerFeatureTitle,
+      paragraphs: [t.home.customerFeatureText1, t.home.customerFeatureText2],
+      benefits: t.home.customerFeatureBenefits,
       image: '/img/hero-carousel/ft2.jpg',
-      imageAlt: 'Economia para o Cliente',
+      imageAlt: t.home.customerFeatureTitle,
       route: 'clients',
       icon: LuHouse,
     },
     {
       id: 'investor',
       label: t.home.investorTab,
-      title: 'Investimento em Vitis',
-      paragraphs: [
-        'A Virtutis Energy conecta investidores a oportunidades em Vitis, vinculadas a projetos de geração de energia renovável.',
-        'Pelo app, é possível acompanhar informações sobre usinas, aportes, proventos e movimentações de forma organizada e transparente.',
-      ],
-      benefits: ['Oportunidades em Vitis', 'Acompanhamento de aportes', 'Energia renovável'],
+      title: t.home.investorFeatureTitle,
+      paragraphs: [t.home.investorFeatureText, t.home.investorFeatureText2],
+      benefits: t.home.investorFeatureBenefits,
       image: '/img/hero-carousel/ft1.jpg',
-      imageAlt: 'Investimento em Vitis',
+      imageAlt: t.home.investorFeatureTitle,
       route: 'investors',
       icon: LuTrendingUp,
     },
     {
       id: 'associate',
       label: t.home.associateTab,
-      title: 'Faça parte como Associado',
-      paragraphs: [
-        'Como associado, você acompanha de perto o desenvolvimento da Virtutis Energy e participa de iniciativas ligadas à expansão das nossas usinas fotovoltaicas.',
-        'É uma oportunidade de aprender, colaborar com equipes multidisciplinares e contribuir para projetos de impacto no setor de energia sustentável.',
-      ],
-      benefits: ['Participação estratégica', 'Aprendizado e colaboração', 'Impacto sustentável'],
+      title: t.home.associateFeatureTitle,
+      paragraphs: [t.home.associateFeatureText, t.home.associateFeatureText2],
+      benefits: t.home.associateFeatureBenefits,
       image: '/img/hero-carousel/hero-carousel-6.jpg',
-      imageAlt: 'Faça parte como Associado',
+      imageAlt: t.home.associateFeatureTitle,
       route: 'associate',
       icon: LuHandshake,
     },
@@ -70,7 +61,7 @@ export default function HomeAudienceTabs() {
     <section id="features" className="features section">
       <div className="container">
         <div className="home-audience-selector-wrap" data-aos="fade-up" data-aos-delay="100">
-          <p className="home-audience-selector-label">Selecione como deseja se conectar à Virtutis</p>
+          <p className="home-audience-selector-label">{t.home.audienceSelectorLabel}</p>
 
           <ul className="nav nav-tabs row g-2 d-flex home-audience-tabs" role="tablist">
           {tabs.map((tab, index) => {
@@ -243,6 +234,9 @@ export default function HomeAudienceTabs() {
         }
 
         .home-audience-copy {
+          display: flex;
+          flex-direction: column;
+          height: 100%;
           padding: 4px 12px 4px 16px;
         }
 
@@ -288,7 +282,8 @@ export default function HomeAudienceTabs() {
         }
 
         .home-audience-cta {
-          margin-top: 14px;
+          margin-top: auto;
+          padding-top: 14px;
         }
 
         .home-audience-visual {
@@ -301,7 +296,7 @@ export default function HomeAudienceTabs() {
           width: 100%;
           max-width: 420px;
           min-height: 300px;
-          border-radius: 22px;
+          border-radius: 0;
           overflow: hidden;
           background: transparent;
         }
@@ -311,6 +306,7 @@ export default function HomeAudienceTabs() {
           width: 100%;
           height: 100%;
           min-height: 300px;
+          border-radius: 0;
           object-fit: cover;
           object-position: center;
         }
@@ -404,12 +400,12 @@ export default function HomeAudienceTabs() {
           }
 
           .home-audience-cta {
-            margin-top: 12px;
+            padding-top: 12px;
           }
 
           .home-audience-image-wrap {
             max-width: 100%;
-            border-radius: 20px;
+            border-radius: 0;
             min-height: 230px;
           }
 

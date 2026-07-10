@@ -15,11 +15,7 @@ export default function DigitalEcosystemSection() {
           <div className="virtutis-ecosystem-copy" data-aos="fade-right" data-aos-delay="80">
             <span className="virtutis-ecosystem-badge">{t.home.aboutEyebrow}</span>
 
-            <h3 id="virtutis-ecosystem-title">
-              Energia, tecnologia e finanças
-              <br />              
-              em um só ecossistema.
-            </h3>
+            <h3 id="virtutis-ecosystem-title">{t.home.aboutHeadline}</h3>
 
             <p className="virtutis-ecosystem-description">{t.home.aboutText}</p>
 

@@ -26,22 +26,19 @@ export default function HomePageContent() {
 
   const openAccountCards = [
     {
-      title: 'Por que criar sua conta?',
+      title: t.home.openAccountReasonTitle,
       icon: LuTarget,
-      text:
-        'Tenha uma conta personalizada de acordo com o seu perfil, com acesso a oportunidades, soluções e informações direcionadas às suas necessidades dentro do app da Virtutis Energy.',
+      text: t.home.openAccountReasonText,
     },
     {
-      title: 'O que você pode fazer no app?',
+      title: t.home.openAccountAppTitle,
       icon: LuLayoutDashboard,
-      text:
-        'Explorar oportunidades, consultar informações das usinas, visualizar aportes, proventos e movimentações de forma organizada em um só ambiente.',
+      text: t.home.openAccountAppText,
     },
     {
-      title: 'Como é a experiência?',
+      title: t.home.openAccountExperienceTitle,
       icon: LuShieldCheck,
-      text:
-        'Uma jornada digital simples, clara e segura, pensada para facilitar sua tomada de decisão e manter suas informações sempre acessíveis.',
+      text: t.home.openAccountExperienceText,
     },
   ]
 
@@ -146,16 +143,14 @@ export default function HomePageContent() {
                 <div className="home-open-account-panel">
                   <div className="home-open-account-copy">
                     <h3>{t.home.openAccountTitle}</h3>
-                    <p className="home-open-account-subtitle">
-                      Cadastre-se na Virtutis Energy e acesse pelo app soluções em energia solar, locação de usinas e oportunidades de investimento em Vitis.
-                    </p>
+                    <p className="home-open-account-subtitle">{t.home.openAccountSubtitle}</p>
                   </div>
 
                   <div className="home-open-account-cards">
                     {openAccountCards.map((card) => (
                       <article key={card.title} className="home-open-account-card">
                         <div className="home-open-account-card-index">
-                          <card.icon aria-hidden="true" />
+                          <card.icon aria-hidden={true} />
                         </div>
                         <div className="home-open-account-card-content">
                           <h4>{card.title}</h4>
@@ -172,7 +167,7 @@ export default function HomePageContent() {
                   <div className="home-open-account-visual-media">
                     <img src="/img/hero-carousel/ft1.jpg" alt={t.home.openAccountTitle} className="img-fluid home-open-account-image" />
                     <div className="home-open-account-visual-badge">
-                      Energia, tecnologia e investimento em um só lugar
+                      {t.home.openAccountImageBadge}
                     </div>
                   </div>
                 </div>
@@ -327,7 +322,7 @@ export default function HomePageContent() {
         .home-open-account-visual-media {
           position: relative;
           overflow: hidden;
-          border-radius: 20px;
+          border-radius: 0;
           min-height: 100%;
         }
 
@@ -335,6 +330,7 @@ export default function HomePageContent() {
           display: block;
           width: 100%;
           min-height: 390px;
+          border-radius: 0;
           object-fit: cover;
         }
 

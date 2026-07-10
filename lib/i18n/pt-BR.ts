@@ -41,6 +41,7 @@ export const ptBRTranslations = {
       'Soluções em energia renovável para quem quer economizar na conta de luz e investir em usinas fotovoltaicas com retorno mensal.',
     aboutEyebrow: 'Ecossistema digital Virtutis',
     aboutTitle: 'Energia, tecnologia e experiência digital em um só ecossistema.',
+    aboutHeadline: 'Energia, tecnologia e finanças em um só ecossistema.',
     aboutText:
       'A Virtutis Energy conecta usuários, investidores e usinas fotovoltaicas por meio de uma experiência digital moderna, segura e intuitiva. Pelo aplicativo, é possível acompanhar saldo, movimentações, oportunidades, rendimentos e conteúdos do ecossistema Virtutis com praticidade e visão global.',
     aboutPrimaryCta: 'Conhecer o aplicativo',
@@ -50,6 +51,7 @@ export const ptBRTranslations = {
     aboutStatLabelBottom: 'Experiência em expansão',
     aboutStatValueBottom: 'Operação moderna com visão global e acesso intuitivo.',
     aboutAppAlt: 'Tela do aplicativo da Virtutis Energy em um smartphone',
+    audienceSelectorLabel: 'Selecione como deseja se conectar à Virtutis',
     aboutHighlights: [
       {
         title: 'Acompanhe seu saldo',
@@ -73,6 +75,18 @@ export const ptBRTranslations = {
       },
     ],
     openAccountTitle: 'Abra sua conta',
+    openAccountSubtitle:
+      'Cadastre-se na Virtutis Energy e acesse pelo app soluções em energia solar, locação de usinas e oportunidades de investimento em Vitis.',
+    openAccountImageBadge: 'Energia, tecnologia e investimento em um só lugar',
+    openAccountReasonTitle: 'Por que criar sua conta?',
+    openAccountReasonText:
+      'Tenha uma conta personalizada de acordo com o seu perfil, com acesso a oportunidades, soluções e informações direcionadas às suas necessidades dentro do app da Virtutis Energy.',
+    openAccountAppTitle: 'O que você pode fazer no app?',
+    openAccountAppText:
+      'Explorar oportunidades, consultar informações das usinas, visualizar aportes, proventos e movimentações de forma organizada em um só ambiente.',
+    openAccountExperienceTitle: 'Como é a experiência?',
+    openAccountExperienceText:
+      'Uma jornada digital simples, clara e segura, pensada para facilitar sua tomada de decisão e manter suas informações sempre acessíveis.',
     openAccountText:
       'Se você está interessado em reduzir seus custos com eletricidade ou investir em energia renovável, a Virtutis Energy é a escolha certa. Queremos conhecê-lo melhor e ajudá-lo a aproveitar nossas soluções inovadoras. Preencha o formulário com seus dados, e nossa equipe entrará em contato com você para discutir como podemos atender às suas necessidades.',
     openAccountNote:
@@ -83,15 +97,22 @@ export const ptBRTranslations = {
     associateTab: 'Associado',
     customerFeatureTitle: 'Economia para o Cliente',
     customerFeatureText1:
-      'A Virtutis Energy é uma fintech de energia solar que desenvolve, gerencia e aluga usinas fotovoltaicas próprias. Oferecemos redução de custos com energia elétrica para nossos clientes, sem a necessidade de que eles paguem pela construção e manutenção de placas solares. Além disso, proporcionamos aos investidores a oportunidade de participar do desenvolvimento dos sistemas de geração de energia, oferecendo-lhes participação nos lucros oriundos da locação das usinas.',
+      'A Virtutis Energy oferece soluções em energia solar para reduzir custos na conta de luz, sem que o cliente precise construir, instalar ou manter uma estrutura própria.',
     customerFeatureText2:
-      'Com a Virtutis Energy, você aproveita uma solução sustentável que combina economia, rentabilidade e impacto positivo no meio ambiente. Junte-se a nós e faça parte do futuro da energia renovável!',
-    investorFeatureTitle: 'Turbine seus Investimentos',
+      'Por meio das nossas usinas fotovoltaicas, conectamos economia, sustentabilidade e praticidade em uma experiência simples e acessível.',
+    customerFeatureBenefits: ['Economia em energia', 'Sem obra própria', 'Solução sustentável'],
+    investorFeatureTitle: 'Investimento em Vitis',
     investorFeatureText:
-      'Invista em nossas usinas fotovoltaicas e desfrute de uma rentabilidade de até 2,35% ao mês. Com a Virtutis Energy, você garante economia e rentabilidade em um só lugar. Potencialize seus investimentos e faça parte do futuro da energia renovável!',
+      'A Virtutis Energy conecta investidores a oportunidades em Vitis, vinculadas a projetos de geração de energia renovável.',
+    investorFeatureText2:
+      'Pelo app, é possível acompanhar informações sobre usinas, aportes, proventos e movimentações de forma organizada e transparente.',
+    investorFeatureBenefits: ['Oportunidades em Vitis', 'Acompanhamento de aportes', 'Energia renovável'],
     associateFeatureTitle: 'Faça parte como Associado',
     associateFeatureText:
-      'Como associado da Virtutis Energy, você participa do desenvolvimento de projetos de energia renovável, contribui com rotinas estratégicas e acompanha de perto a expansão das nossas usinas fotovoltaicas. É uma oportunidade para aprender, colaborar com equipes multidisciplinares e gerar impacto positivo no setor de energia sustentável.',
+      'Como associado, você acompanha de perto o desenvolvimento da Virtutis Energy e participa de iniciativas ligadas à expansão das nossas usinas fotovoltaicas.',
+    associateFeatureText2:
+      'É uma oportunidade de aprender, colaborar com equipes multidisciplinares e contribuir para projetos de impacto no setor de energia sustentável.',
+    associateFeatureBenefits: ['Participação estratégica', 'Aprendizado e colaboração', 'Impacto sustentável'],
   },
   associatePage: {
     title: 'Associado',
