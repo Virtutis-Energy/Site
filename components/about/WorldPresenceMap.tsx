@@ -12,6 +12,7 @@ type Marker = {
   labelOffset: [number, number]
   countryPt: string
   countryEn: string
+  countryEs: string
 }
 
 type TopologyData = {
@@ -22,18 +23,18 @@ type TopologyData = {
 }
 
 const markers: Marker[] = [
-  { key: 'us', countryId: '840', coordinates: [-98.5, 39.8], labelOffset: [-58, -18], countryPt: 'Estados Unidos', countryEn: 'United States' },
-  { key: 'colombia', countryId: '170', coordinates: [-74.1, 4.7], labelOffset: [-58, -8], countryPt: 'Colômbia', countryEn: 'Colombia' },
-  { key: 'brazil', countryId: '076', coordinates: [-51.9, -14.2], labelOffset: [16, 18], countryPt: 'Brasil', countryEn: 'Brazil' },
-  { key: 'chile', countryId: '152', coordinates: [-71.5, -35.7], labelOffset: [-44, 12], countryPt: 'Chile', countryEn: 'Chile' },
-  { key: 'belgium', countryId: '056', coordinates: [4.5, 50.7], labelOffset: [12, -18], countryPt: 'Bélgica', countryEn: 'Belgium' },
-  { key: 'portugal', countryId: '620', coordinates: [-8.2, 39.4], labelOffset: [-56, -18], countryPt: 'Portugal', countryEn: 'Portugal' },
-  { key: 'south-africa', countryId: '710', coordinates: [24.7, -29.0], labelOffset: [14, 16], countryPt: 'África do Sul', countryEn: 'South Africa' },
-  { key: 'china', countryId: '156', coordinates: [104.1, 35.9], labelOffset: [14, -18], countryPt: 'China', countryEn: 'China' },
-  { key: 'hong-kong', countryId: '344', coordinates: [114.17, 22.32], labelOffset: [14, -10], countryPt: 'Hong Kong', countryEn: 'Hong Kong' },
-  { key: 'macau', countryId: '446', coordinates: [113.54, 22.2], labelOffset: [14, 0], countryPt: 'Macau', countryEn: 'Macau' },
-  { key: 'singapore', countryId: '702', coordinates: [103.82, 1.35], labelOffset: [14, 10], countryPt: 'Singapura', countryEn: 'Singapore' },
-  { key: 'australia', countryId: '036', coordinates: [134.5, -25.7], labelOffset: [16, 20], countryPt: 'Austrália', countryEn: 'Australia' },
+  { key: 'us', countryId: '840', coordinates: [-98.5, 39.8], labelOffset: [-58, -18], countryPt: 'Estados Unidos', countryEn: 'United States', countryEs: 'Estados Unidos' },
+  { key: 'colombia', countryId: '170', coordinates: [-74.1, 4.7], labelOffset: [-58, -8], countryPt: 'Colômbia', countryEn: 'Colombia', countryEs: 'Colombia' },
+  { key: 'brazil', countryId: '076', coordinates: [-51.9, -14.2], labelOffset: [16, 18], countryPt: 'Brasil', countryEn: 'Brazil', countryEs: 'Brasil' },
+  { key: 'chile', countryId: '152', coordinates: [-71.5, -35.7], labelOffset: [-44, 12], countryPt: 'Chile', countryEn: 'Chile', countryEs: 'Chile' },
+  { key: 'belgium', countryId: '056', coordinates: [4.5, 50.7], labelOffset: [12, -18], countryPt: 'Bélgica', countryEn: 'Belgium', countryEs: 'Bélgica' },
+  { key: 'portugal', countryId: '620', coordinates: [-8.2, 39.4], labelOffset: [-56, -18], countryPt: 'Portugal', countryEn: 'Portugal', countryEs: 'Portugal' },
+  { key: 'south-africa', countryId: '710', coordinates: [24.7, -29.0], labelOffset: [14, 16], countryPt: 'África do Sul', countryEn: 'South Africa', countryEs: 'Sudáfrica' },
+  { key: 'china', countryId: '156', coordinates: [104.1, 35.9], labelOffset: [14, -18], countryPt: 'China', countryEn: 'China', countryEs: 'China' },
+  { key: 'hong-kong', countryId: '344', coordinates: [114.17, 22.32], labelOffset: [14, -10], countryPt: 'Hong Kong', countryEn: 'Hong Kong', countryEs: 'Hong Kong' },
+  { key: 'macau', countryId: '446', coordinates: [113.54, 22.2], labelOffset: [14, 0], countryPt: 'Macau', countryEn: 'Macau', countryEs: 'Macao' },
+  { key: 'singapore', countryId: '702', coordinates: [103.82, 1.35], labelOffset: [14, 10], countryPt: 'Singapura', countryEn: 'Singapore', countryEs: 'Singapur' },
+  { key: 'australia', countryId: '036', coordinates: [134.5, -25.7], labelOffset: [16, 20], countryPt: 'Austrália', countryEn: 'Australia', countryEs: 'Australia' },
 ]
 
 const highlightedCountryIds = new Set(markers.map((marker) => marker.countryId))
@@ -41,6 +42,7 @@ const highlightedCountryIds = new Set(markers.map((marker) => marker.countryId))
 export default function WorldPresenceMap() {
   const { locale } = useLanguage()
   const isEnglish = locale === 'en-US'
+  const isSpanish = locale === 'es-ES'
   const [topology, setTopology] = useState<TopologyData | null>(null)
   const [isCountryListOpen, setIsCountryListOpen] = useState(false)
 
@@ -115,15 +117,15 @@ export default function WorldPresenceMap() {
     <div className="world-presence-card" data-aos="fade-up" data-aos-delay="150">
       <div className="world-presence-card__header">
         <div>
-          <span className="world-presence-card__eyebrow">{isEnglish ? 'International presence' : 'Presença internacional'}</span>
-          <h3>{isEnglish ? 'Virtutis Energy on a real world map' : 'Virtutis Energy em um mapa-múndi real'}</h3>
+          <span className="world-presence-card__eyebrow">{isEnglish ? 'International presence' : isSpanish ? 'Presencia internacional' : 'Presença internacional'}</span>
+          <h3>{isEnglish ? 'Virtutis Energy on a real world map' : isSpanish ? 'Virtutis Energy en un mapa mundial real' : 'Virtutis Energy em um mapa-múndi real'}</h3>
         </div>
-        <div className="world-presence-card__badge">{isEnglish ? '12 highlighted countries' : '12 países destacados'}</div>
+        <div className="world-presence-card__badge">{isEnglish ? '12 highlighted countries' : isSpanish ? '12 países destacados' : '12 países destacados'}</div>
       </div>
 
       <div className="world-presence-layout">
         <div className="world-map-shell">
-          <svg className="world-map-svg" viewBox="0 0 1000 520" role="img" aria-label={isEnglish ? 'Real world map with highlighted countries' : 'Mapa mundial real com países destacados'}>
+          <svg className="world-map-svg" viewBox="0 0 1000 520" role="img" aria-label={isEnglish ? 'Real world map with highlighted countries' : isSpanish ? 'Mapa mundial real con países destacados' : 'Mapa mundial real com países destacados'}>
             <defs>
               <linearGradient id="ocean-fill" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#f6f7ff" />
@@ -161,7 +163,7 @@ export default function WorldPresenceMap() {
                 <circle className="world-map-marker__halo" cx={marker.x} cy={marker.y} r="8.5" />
                 <circle className="world-map-marker__dot" cx={marker.x} cy={marker.y} r="4.5" />
                 <text className="world-map-label" x={marker.labelX} y={marker.labelY}>
-                  {isEnglish ? marker.countryEn : marker.countryPt}
+                  {isEnglish ? marker.countryEn : isSpanish ? marker.countryEs : marker.countryPt}
                 </text>
               </g>
             ))}
@@ -178,7 +180,7 @@ export default function WorldPresenceMap() {
             <span className="world-presence-countries__check" aria-hidden="true">
               <img src="/img/logo.png" alt="" />
             </span>
-            <span>{isEnglish ? 'Countries with users of the Virtutis Energy app' : 'Países com usuários do app da Virtutis Energy'}</span>
+            <span>{isEnglish ? 'Countries with users of the Virtutis Energy app' : isSpanish ? 'Países con usuarios de la app de Virtutis Energy' : 'Países com usuários do app da Virtutis Energy'}</span>
             <i className={`bi ${isCountryListOpen ? 'bi-chevron-up' : 'bi-chevron-down'}`} aria-hidden="true"></i>
           </button>
 
@@ -187,7 +189,7 @@ export default function WorldPresenceMap() {
               {markers.map((marker) => (
                 <div key={marker.key} className="country-chip">
                   <span className="country-chip__dot" />
-                  <span>{isEnglish ? marker.countryEn : marker.countryPt}</span>
+                  <span>{isEnglish ? marker.countryEn : isSpanish ? marker.countryEs : marker.countryPt}</span>
                 </div>
               ))}
             </div>

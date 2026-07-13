@@ -12,9 +12,8 @@ export function buildPageMetadata(locale: LocaleSegment, route: RouteKey, title:
       languages: {
         'pt-BR': getLocalizedPath('pt-br', route),
         'en-US': getLocalizedPath('en-us', route),
+        'es-ES': getLocalizedPath('es', route),
       },
     },
   }
 }
-
-// teste teste

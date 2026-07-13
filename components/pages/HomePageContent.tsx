@@ -7,6 +7,7 @@ import {
   LuShieldCheck,
   LuTarget,
 } from 'react-icons/lu'
+import imagemCelular from '@/assets/imagem_celular.png'
 import { useCadastroInvestidor } from '@/hooks/useCadastroInvestidor'
 import { useLanguage } from '@/components/LanguageProvider'
 import HomeAudienceTabs from '@/components/home/HomeAudienceTabs'
@@ -23,8 +24,7 @@ export default function HomePageContent() {
 
   // Troque aqui caso o link oficial de download do app mude no futuro.
   const downloadAppHref = t.header.whatsappText
-  const openAccountDownloadLabel =
-    localeSegment === 'pt-br' ? 'Baixar o App' : t.header.downloadApp
+  const openAccountDownloadLabel = t.header.downloadApp
 
   const { cadastrar, loading, sucesso, erro } = useCadastroInvestidor()
 
@@ -76,29 +76,53 @@ export default function HomePageContent() {
             },
           ],
         }
-      : {
-          title: 'Virtutis Energy connects the future of energy',
-          lead:
-            'We are a global fintech that brings together technology, solar energy, and financial services to connect people, companies, and investors with sustainable solutions in strategic markets.',
-          supporting: '',
-          cards: [
-            {
-              title: 'Global Reach',
-              text: 'An expanding presence that connects Virtutis Energy to new markets.',
-              icon: 'bi bi-globe-americas',
-            },
-            {
-              title: 'Clean Energy',
-              text: 'Solutions connected to solar generation and sustainability.',
-              icon: 'bi bi-sun',
-            },
-            {
-              title: 'Digital Experience',
-              text: 'Technology that simplifies access to Virtutis Energy services.',
-              icon: 'bi bi-phone',
-            },
-          ],
-        }
+      : localeSegment === 'es'
+        ? {
+            title: 'Virtutis Energy conecta el futuro de la energía',
+            lead:
+              'Somos una fintech global que une tecnología, energía solar y servicios financieros para acercar personas, empresas e inversionistas a soluciones digitales orientadas a la energía limpia, la gestión energética y la expansión internacional de Virtutis Energy.',
+            supporting: '',
+            cards: [
+              {
+                title: 'Presencia Global',
+                text: 'Presencia en expansión para conectar Virtutis Energy con nuevos mercados.',
+                icon: 'bi bi-globe-americas',
+              },
+              {
+                title: 'Energía Limpia',
+                text: 'Soluciones vinculadas a la generación solar y a la sostenibilidad.',
+                icon: 'bi bi-sun',
+              },
+              {
+                title: 'Experiencia Digital',
+                text: 'Tecnología para simplificar el acceso a los servicios de Virtutis Energy.',
+                icon: 'bi bi-phone',
+              },
+            ],
+          }
+        : {
+            title: 'Virtutis Energy connects the future of energy',
+            lead:
+              'We are a global fintech that brings together technology, solar energy, and financial services to connect people, companies, and investors with sustainable solutions in strategic markets.',
+            supporting: '',
+            cards: [
+              {
+                title: 'Global Reach',
+                text: 'An expanding presence that connects Virtutis Energy to new markets.',
+                icon: 'bi bi-globe-americas',
+              },
+              {
+                title: 'Clean Energy',
+                text: 'Solutions connected to solar generation and sustainability.',
+                icon: 'bi bi-sun',
+              },
+              {
+                title: 'Digital Experience',
+                text: 'Technology that simplifies access to Virtutis Energy services.',
+                icon: 'bi bi-phone',
+              },
+            ],
+          }
 
   return (
     <>
@@ -194,7 +218,10 @@ export default function HomePageContent() {
             </div>
           </div>
           <div className="hero-image">
-            <img src="/img/hero-carousel/ft1.jpg" alt="Hero Image" className="img-fluid" />
+            <picture>
+              <source media="(max-width: 1024px)" srcSet={imagemCelular.src} />
+              <img src="/img/hero-carousel/ft1.jpg" alt="Hero Image" className="img-fluid" />
+            </picture>
           </div>
         </section>
 

@@ -9,11 +9,13 @@ import {
 export const localeSegmentToLocale: Record<LocaleSegment, Locale> = {
   'pt-br': 'pt-BR',
   'en-us': 'en-US',
+  es: 'es-ES',
 }
 
 export const localeToSegment: Record<Locale, LocaleSegment> = {
   'pt-BR': 'pt-br',
   'en-US': 'en-us',
+  'es-ES': 'es',
 }
 
 export const routeSlugs: Record<LocaleSegment, Record<RouteKey, string>> = {
@@ -38,6 +40,17 @@ export const routeSlugs: Record<LocaleSegment, Record<RouteKey, string>> = {
     privacy: 'privacy-policy',
     workWithUs: 'work-with-us',
     subdivisions: 'departments',
+  },
+  es: {
+    home: '',
+    about: 'sobre-nosotros',
+    clients: 'clientes',
+    investors: 'inversionistas',
+    associate: 'asociado',
+    signUp: 'registro',
+    privacy: 'privacidad',
+    workWithUs: 'trabaja-con-nosotros',
+    subdivisions: 'subdivisiones',
   },
 }
 
