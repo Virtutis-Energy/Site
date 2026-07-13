@@ -1,5 +1,5 @@
-export const locales = ['pt-BR', 'en-US'] as const
-export const localeSegments = ['pt-br', 'en-us'] as const
+export const locales = ['pt-BR', 'en-US', 'es-ES'] as const
+export const localeSegments = ['pt-br', 'en-us', 'es'] as const
 
 export type Locale = (typeof locales)[number]
 export type LocaleSegment = (typeof localeSegments)[number]

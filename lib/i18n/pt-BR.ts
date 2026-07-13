@@ -19,7 +19,8 @@ export const ptBRTranslations = {
     openAccount: 'Abra sua conta',
     monthLabel: (month: number) => `Mês ${month}`,
     portuguese: 'PT',
-    english: 'ENG',
+    english: 'EN',
+    spanish: 'ES',
   },
   header: {
     downloadApp: 'Baixe o App',

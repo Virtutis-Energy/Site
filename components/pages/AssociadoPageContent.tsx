@@ -48,7 +48,7 @@ export default function AssociadoPageContent() {
 
   const formatter = useMemo(
     () =>
-      new Intl.NumberFormat(localeSegment === 'pt-br' ? 'pt-BR' : 'en-US', {
+      new Intl.NumberFormat(localeSegment === 'pt-br' ? 'pt-BR' : localeSegment === 'es' ? 'es-ES' : 'en-US', {
         style: 'currency',
         currency: 'BRL',
       }),

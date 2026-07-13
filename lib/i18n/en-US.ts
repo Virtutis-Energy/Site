@@ -21,7 +21,8 @@ export const enUSTranslations: Translation = {
     openAccount: 'Download the App',
     monthLabel: (month: number) => `Month ${month}`,
     portuguese: 'PT',
-    english: 'ENG',
+    english: 'EN',
+    spanish: 'ES',
   },
   header: {
     downloadApp: 'Download the App',
