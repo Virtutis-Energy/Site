@@ -299,6 +299,16 @@ export const enUSTranslations: Translation = {
     learnMore: 'Learn more about working with us',
     branchAddress: 'Humberto Monte Ave, no number, Fortaleza, CE',
     headOfficeAddress: 'Barao de Studart Ave, 1980 - Aldeota, Fortaleza - CE, 60120-024',
+    introTitle: 'Be part of Virtutis Energy',
+    introText:
+      'We are looking for people who want to grow in a multidisciplinary environment connected to solar energy, technology, and innovation. Here, different teams work together to build solutions that drive Virtutis Energy expansion.',
+    introAccent: 'Connect your talent to a company that brings together energy, technology, and impact.',
+    unitsTitle: 'Our locations',
+    formTitle: 'Candidate information',
+    formIntro: 'Fill in your details so we can get to know your profile better.',
+    areasTitle: 'Areas of interest',
+    areasIntro: 'You can select more than one area of activity.',
+    submitCta: 'Submit application',
   },
   subdivisionsPage: {
     title: 'Work with Us',
