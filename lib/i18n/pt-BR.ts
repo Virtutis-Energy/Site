@@ -297,6 +297,16 @@ export const ptBRTranslations = {
     learnMore: 'Saiba mais sobre o Trabalho Conosco',
     branchAddress: 'Av. Humberto Monte s/n, Fortaleza, CE',
     headOfficeAddress: 'Av. Barão de Studart, 1980 - Aldeota, Fortaleza - CE, 60120-024',
+    introTitle: 'Faça parte da Virtutis Energy',
+    introText:
+      'Buscamos pessoas que queiram crescer em um ambiente multidisciplinar, conectado à energia solar, tecnologia e inovação. Aqui, diferentes áreas trabalham juntas para construir soluções que impulsionam a expansão da Virtutis Energy.',
+    introAccent: 'Conecte seu talento a uma empresa que une energia, tecnologia e impacto.',
+    unitsTitle: 'Nossas unidades',
+    formTitle: 'Dados do candidato',
+    formIntro: 'Preencha suas informações para que possamos conhecer melhor seu perfil.',
+    areasTitle: 'Áreas de interesse',
+    areasIntro: 'Você pode selecionar mais de uma área de atuação.',
+    submitCta: 'Enviar candidatura',
   },
   subdivisionsPage: {
     title: 'Trabalhe Conosco',
