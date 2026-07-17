@@ -1,10 +1,12 @@
 'use client'
 
+import Image from 'next/image'
 import { useEffect, useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
+
 import { useLanguage } from '@/components/LanguageProvider'
-import { getLocalizedPath } from '@/lib/i18n'
 import { useNiveisOperacao } from '@/hooks/useNiveisOperacao'
+import { getLocalizedPath } from '@/lib/i18n'
 
 const BASE_ASSOCIATE_REVENUE = 1392.05
 const VITIS_UNIT_VALUE = 3.2
@@ -14,13 +16,16 @@ const plantOptions = [
   { id: '60', nome: '60 kW', power: 60, fraction: 1, vitis: 120, rentalPrice: 66.73 },
 ]
 const plantLevels = [1, 2, 3]
+const stepIcons = ['bi bi-building-add', 'bi bi-diagram-3', 'bi bi-bar-chart-line'] as const
+const trackingIcons = ['bi bi-lightning-charge', 'bi bi-link-45deg', 'bi bi-cash-coin', 'bi bi-grid-1x2'] as const
 
 export default function AssociadoPageContent() {
   const router = useRouter()
   const { localeSegment, t } = useLanguage()
-  const { usinas, backendUnavailable } = useNiveisOperacao()
+  const { usinas } = useNiveisOperacao()
   const [selectedPlant, setSelectedPlant] = useState(plantOptions[0].id)
   const [associateLevel, setAssociateLevel] = useState(1)
+  const [activeFaq, setActiveFaq] = useState(0)
 
   const availablePlants = useMemo(() => {
     if (!usinas.length) {
@@ -59,15 +64,40 @@ export default function AssociadoPageContent() {
   const vitisRevenue = selectedPlantData.vitis * VITIS_UNIT_VALUE
   const associateRevenue = BASE_ASSOCIATE_REVENUE * selectedPlantData.fraction * associateLevel
 
+  const steps = [
+    { title: t.associatePage.step1Title, text: t.associatePage.step1Text },
+    { title: t.associatePage.step2Title, text: t.associatePage.step2Text },
+    { title: t.associatePage.step3Title, text: t.associatePage.step3Text },
+  ]
+
+  const trackingItems = [
+    { title: t.associatePage.service1Title, text: t.associatePage.service1Text },
+    { title: t.associatePage.service2Title, text: t.associatePage.service2Text },
+    { title: t.associatePage.service3Title, text: t.associatePage.service3Text },
+    { title: t.associatePage.service4Title, text: t.associatePage.service4Text },
+  ]
+
+  const faqs = [
+    { question: t.associatePage.faq1Question, answer: t.associatePage.faq1Answer },
+    { question: t.associatePage.faq2Question, answer: t.associatePage.faq2Answer },
+    { question: t.associatePage.faq3Question, answer: t.associatePage.faq3Answer },
+    { question: t.associatePage.faq4Question, answer: t.associatePage.faq4Answer },
+    { question: t.associatePage.faq6Question, answer: t.associatePage.faq6Answer },
+  ]
+
+  const scrollToSimulator = () => {
+    document.getElementById('associate-simulator')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
   return (
-    <main className="main associate-page">
+    <main className="main">
       <div className="page-title dark-background" style={{ backgroundImage: 'url(/img/hero-carousel/ft2.jpg)' }}>
         <div className="container position-relative">
-          <h1>{t.associatePage.title}</h1>
+          <h1 style={{ color: '#1A2E5D', opacity: 1 }}>{t.associatePage.title}</h1>
           <nav className="breadcrumbs">
             <ol>
               <li>
-                <button type="button" onClick={() => router.push(getLocalizedPath(localeSegment, 'home'))} style={{ color: 'white' }}>
+                <button type="button" onClick={() => router.push(getLocalizedPath(localeSegment, 'home'))} style={{ color: 'white', fontWeight: 600 }}>
                   {t.common.home}
                 </button>
               </li>
@@ -77,218 +107,727 @@ export default function AssociadoPageContent() {
         </div>
       </div>
 
-      <section id="alt-services-2" className="alt-services-2 section">
+      <section className="associate-page section">
         <div className="container">
-          <div className="row justify-content-around gy-4">
-            <div className="col-lg-6 d-flex flex-column justify-content-center align-items-center text-center order-2 order-lg-1" data-aos="fade-up" data-aos-delay="100">
-              <h3>{t.associatePage.headline}</h3>
+          <div className="associate-hero-card" data-aos="fade-up" data-aos-delay="100">
+            <div className="associate-hero-copy">
+              <span className="associate-kicker">{t.associatePage.title}</span>
+              <h2>{t.associatePage.headline}</h2>
               <p>{t.associatePage.body}</p>
-
-              <div className="row mt-4">
-                <div className="col-lg-6 icon-box d-flex">
-                  <i className="bi bi-lightning-charge flex-shrink-0"></i>
-                  <div>
-                    <h4>{t.associatePage.feature1Title}</h4>
-                    <p>{t.associatePage.feature1Text}</p>
-                  </div>
-                </div>
-
-                <div className="col-lg-6 icon-box d-flex">
-                  <i className="bi bi-building-check flex-shrink-0"></i>
-                  <div>
-                    <h4>{t.associatePage.feature2Title}</h4>
-                    <p>{t.associatePage.feature2Text}</p>
-                  </div>
-                </div>
-
-                <div className="col-lg-6 icon-box d-flex">
-                  <i className="bi bi-ui-checks-grid flex-shrink-0"></i>
-                  <div>
-                    <h4>{t.associatePage.feature3Title}</h4>
-                    <p>{t.associatePage.feature3Text}</p>
-                  </div>
-                </div>
-
-                <div className="col-lg-6 icon-box d-flex">
-                  <i className="bi bi-cash-coin flex-shrink-0"></i>
-                  <div>
-                    <h4>{t.associatePage.feature4Title}</h4>
-                    <p>{t.associatePage.feature4Text}</p>
-                  </div>
-                </div>
-              </div>
+              <button type="button" className="associate-primary-button" onClick={scrollToSimulator}>
+                {t.associatePage.heroCta}
+              </button>
             </div>
 
-            <div className="features-image col-lg-5 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="200">
-              <img src="/img/hero-carousel/hero-carousel-6.jpg" alt={t.associatePage.title} />
+            <div className="associate-hero-media">
+              <Image
+                src="/img/hero-carousel/hero-carousel-6.jpg"
+                alt={t.associatePage.title}
+                className="associate-hero-image"
+                width={680}
+                height={460}
+              />
             </div>
           </div>
-        </div>
-      </section>
 
-      <section id="associate-plants" className="services section light-background">
-        <div className="container">
-          <div className="section-title text-center mb-4" data-aos="fade-up">
-            <h2>{t.associatePage.plantsTitle}</h2>
-            <p>{t.associatePage.plantsText}</p>
-          </div>
-
-          <div className="row gy-4">
-            {availablePlants.map((plant, index) => (
-              <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay={`${(index + 1) * 100}`} key={plant.id}>
-                <div className="service-item associate-service-card position-relative text-center">
-                  <div className="icon mx-auto">
-                    <i className="fa-solid fa-solar-panel"></i>
-                  </div>
-                  <h3>{t.associatePage.plantLabel} {plant.nome}</h3>
-                  <p id="text-index">{t.associatePage.plantDescription(plant.nome)}</p>
-                  <p className="associate-plant-meta">{t.associatePage.referenceValue} {t.associatePage.powerSummary(plant.power, plant.vitis)}</p>
-                </div>
+          <div className="associate-intro-grid" data-aos="fade-up" data-aos-delay="140">
+            <article className="associate-info-card">
+              <div className="associate-section-heading">
+                <h3>{t.associatePage.whatTitle}</h3>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+              <p>{t.associatePage.whatText}</p>
+              <p className="associate-support-text">{t.associatePage.whatSupport}</p>
+            </article>
 
-      <section id="associate-calculator" className="get-started section">
-        <div className="container">
-          <div className="row justify-content-between gy-4">
-            <div className="col-lg-5 d-flex align-items-center text-center text-lg-start" data-aos="fade-up">
-              <div className="content associate-calculator-copy">
+            <article className="associate-summary-card">
+              <div className="associate-summary-item">
+                <span>{t.associatePage.currentPlantLabel}</span>
+                <strong>{selectedPlantData.nome}</strong>
+              </div>
+              <div className="associate-summary-item">
+                <span>{t.associatePage.referenceValue}</span>
+                <strong>{selectedPlantData.vitis} Vitis</strong>
+              </div>
+              <div className="associate-summary-item">
+                <span>{t.associatePage.associateLevel}</span>
+                <strong>{t.associatePage.levelLabel(associateLevel)}</strong>
+              </div>
+            </article>
+          </div>
+
+          <div className="associate-journey-section" data-aos="fade-up" data-aos-delay="180">
+            <div className="associate-section-heading associate-section-heading-centered">
+              <h3>{t.associatePage.journeyTitle}</h3>
+              <p>{t.associatePage.journeyText}</p>
+            </div>
+
+            <div className="associate-journey-grid">
+              {steps.map((step, index) => (
+                <article key={step.title} className="associate-step-card">
+                  <span className="associate-step-icon" aria-hidden="true">
+                    <i className={stepIcons[index]}></i>
+                  </span>
+                  <h4>{step.title}</h4>
+                  <p>{step.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div id="associate-simulator" className="associate-simulator-card" data-aos="fade-up" data-aos-delay="220">
+            <div className="associate-simulator-copy">
+              <div className="associate-section-heading">
                 <h3>{t.associatePage.calculatorTitle}</h3>
-                <p>{t.associatePage.calculatorText}</p>
-                <p>
-                  <strong>{t.associatePage.baseLeaseLabel}</strong> {t.associatePage.baseLeaseText}
-                  <br />
-                  <strong>{t.associatePage.baseLevelLabel}</strong> {t.associatePage.baseLevelText}
-                  <br />
-                  <strong>{t.associatePage.currentPlantLabel}</strong> {selectedPlantData?.nome}
-                </p>
-                {backendUnavailable && (
-                  <div className="alert alert-warning mt-3 mb-0" role="alert">
-                    {t.associatePage.backendConfigError}
-                  </div>
-                )}
+                <p className="associate-simulator-lead">{t.associatePage.calculatorText}</p>
               </div>
-            </div>
-
-            <div className="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-              <form className="php-email-form">
-                <div className="row gy-3">
-                  <div className="col-md-6">
-                    <label htmlFor="associatePlant" className="form-label">{t.associatePage.selectedPlant}</label>
-                    <select
-                      id="associatePlant"
-                      className="form-select"
-                      value={selectedPlant}
-                      onChange={(event) => {
-                        setSelectedPlant(event.target.value)
-                      }}
-                    >
-                      {availablePlants.map((plant) => (
-                        <option value={plant.id} key={plant.id}>{t.associatePage.plantLabel} {plant.nome}</option>
-                      ))}
-                    </select>
-                    {backendUnavailable && (
-                      <p className="mt-2 mb-0">{t.associatePage.selectPlantGuidance}</p>
-                    )}
-                  </div>
-
-                  <div className="col-md-6">
-                    <label htmlFor="associateLevel" className="form-label">{t.associatePage.associateLevel}</label>
-                    <select
-                      id="associateLevel"
-                      className="form-select"
-                      value={associateLevel}
-                      onChange={(event) => setAssociateLevel(Number(event.target.value))}
-                    >
-                      {plantLevels.map((level) => (
-                        <option value={level} key={level}>{t.associatePage.levelLabel(level)}</option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div className="col-md-12">
-                    <div className="service-item associate-result-card position-relative h-100 text-center">
-                      <h3>{t.associatePage.leasedEnergy}</h3>
-                      <p id="text-index">{t.associatePage.powerSummary(selectedPlantData.power, selectedPlantData.vitis)}</p>
-                    </div>
-                  </div>
-
-                  <div className="col-md-3">
-                    <div className="service-item associate-result-card position-relative h-100 text-center">
-                      <h3>{t.associatePage.leaseRevenue}</h3>
-                      <p id="text-index">{formatter.format(leaseRevenue)}</p>
-                    </div>
-                  </div>
-
-                  <div className="col-md-3">
-                    <div className="service-item associate-result-card position-relative h-100 text-center">
-                      <h3>{t.associatePage.vitisRevenue}</h3>
-                      <p id="text-index">{formatter.format(vitisRevenue)}</p>
-                    </div>
-                  </div>
-
-                  <div className="col-md-3">
-                    <div className="service-item associate-result-card position-relative h-100 text-center">
-                      <h3>{t.associatePage.levelRevenue}</h3>
-                      <p id="text-index">{formatter.format(associateRevenue)}</p>
-                    </div>
-                  </div>
-
-                  <div className="col-md-3">
-                    <div className="service-item associate-result-card position-relative h-100 text-center">
-                      <h3>{t.associatePage.managementFee}</h3>
-                      <p id="text-index">{t.associatePage.managementFeePending}</p>
-                    </div>
-                  </div>
+              <p className="associate-simulator-intro">{t.associatePage.calculatorIntro}</p>
+              <div className="associate-inline-notes">
+                <div className="associate-inline-note-card">
+                  <span>{t.associatePage.baseLeaseLabel}</span>
+                  <strong>{t.associatePage.baseLeaseText}</strong>
                 </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="services section light-background">
-        <div className="container">
-          <div className="row gy-4">
-            <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-              <div className="service-item associate-service-card position-relative text-center">
-                <div className="icon mx-auto">
-                  <i className="fa-solid fa-location-dot"></i>
+                <div className="associate-inline-note-card">
+                  <span>{t.associatePage.baseLevelLabel}</span>
+                  <strong>{t.associatePage.baseLevelText}</strong>
                 </div>
-                <h3>{t.associatePage.service1Title}</h3>
-                <p id="text-index">{t.associatePage.service1Text}</p>
               </div>
+              <p className="associate-note">{t.associatePage.simulatorNote}</p>
             </div>
 
-            <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-              <div className="service-item associate-service-card position-relative text-center">
-                <div className="icon mx-auto">
-                  <i className="fa-solid fa-hand-holding-dollar"></i>
+            <div className="associate-simulator-panel">
+              <div className="associate-form-grid">
+                <div className="associate-field">
+                  <label htmlFor="associatePlant" className="associate-label">
+                    {t.associatePage.selectedPlantLabel}
+                  </label>
+                  <select
+                    id="associatePlant"
+                    className="form-select associate-select"
+                    value={selectedPlant}
+                    onChange={(event) => setSelectedPlant(event.target.value)}
+                  >
+                    {availablePlants.map((plant) => (
+                      <option value={plant.id} key={plant.id}>
+                        {t.associatePage.plantLabel} {plant.nome}
+                      </option>
+                    ))}
+                  </select>
                 </div>
-                <h3>{t.associatePage.service2Title}</h3>
-                <p id="text-index">{t.associatePage.service2Text}</p>
+
+                <div className="associate-field">
+                  <label htmlFor="associateLevel" className="associate-label">
+                    {t.associatePage.associateLevel}
+                  </label>
+                  <select
+                    id="associateLevel"
+                    className="form-select associate-select"
+                    value={associateLevel}
+                    onChange={(event) => setAssociateLevel(Number(event.target.value))}
+                  >
+                    {plantLevels.map((level) => (
+                      <option value={level} key={level}>
+                        {t.associatePage.levelLabel(level)}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
-            </div>
 
-            <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-              <div className="service-item associate-service-card position-relative text-center">
-                <div className="icon mx-auto">
-                  <i className="fa-solid fa-chart-line"></i>
-                </div>
-                <h3>{t.associatePage.service3Title}</h3>
-                <p id="text-index">{t.associatePage.service3Text}</p>
+              <p className="associate-help-text">{t.associatePage.selectPlantGuidance}</p>
+
+              <div className="associate-results-grid">
+                <article className="associate-result-card associate-result-card-wide">
+                  <span>{t.associatePage.leasedEnergy}</span>
+                  <strong>{t.associatePage.powerSummary(selectedPlantData.power, selectedPlantData.vitis)}</strong>
+                </article>
+                <article className="associate-result-card">
+                  <span>{t.associatePage.leaseRevenue}</span>
+                  <strong>{formatter.format(leaseRevenue)}</strong>
+                </article>
+                <article className="associate-result-card">
+                  <span>{t.associatePage.vitisRevenue}</span>
+                  <strong>{formatter.format(vitisRevenue)}</strong>
+                </article>
+                <article className="associate-result-card">
+                  <span>{t.associatePage.levelRevenue}</span>
+                  <strong>{formatter.format(associateRevenue)}</strong>
+                </article>
+                <article className="associate-result-card">
+                  <span>{t.associatePage.managementFee}</span>
+                  <strong>{t.associatePage.managementFeePending}</strong>
+                </article>
               </div>
             </div>
           </div>
+
+          <div className="associate-tracking-section" data-aos="fade-up" data-aos-delay="260">
+            <div className="associate-section-heading associate-section-heading-centered">
+              <h3>{t.associatePage.trackingTitle}</h3>
+              <p>{t.associatePage.trackingText}</p>
+            </div>
+
+            <div className="associate-tracking-grid">
+              {trackingItems.map((item, index) => (
+                <article key={item.title} className="associate-tracking-card">
+                  <span className="associate-tracking-icon" aria-hidden="true">
+                    <i className={trackingIcons[index]}></i>
+                  </span>
+                  <h4>{item.title}</h4>
+                  <p>{item.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="associate-faq-section" data-aos="fade-up" data-aos-delay="300">
+            <div className="associate-section-heading associate-section-heading-centered">
+              <h3>{t.associatePage.faqTitle}</h3>
+              <p>{t.associatePage.faqText}</p>
+            </div>
+
+            <div className="associate-faq-list">
+              {faqs.map((faq, index) => {
+                const isOpen = activeFaq === index
+
+                return (
+                  <div key={faq.question} className={`associate-faq-item${isOpen ? ' is-open' : ''}`}>
+                    <button
+                      type="button"
+                      className="associate-faq-trigger"
+                      aria-expanded={isOpen}
+                      aria-controls={`associate-faq-panel-${index}`}
+                      onClick={() => setActiveFaq(isOpen ? -1 : index)}
+                    >
+                      <span>{faq.question}</span>
+                      <i className={`bi ${isOpen ? 'bi-dash-lg' : 'bi-plus-lg'}`}></i>
+                    </button>
+                    <div id={`associate-faq-panel-${index}`} className="associate-faq-panel" hidden={!isOpen}>
+                      <p>{faq.answer}</p>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
         </div>
-        <br />
-        <div className="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
-          <a href="https://wa.me/5585984831512?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20de%20servi%C3%A7os" target="_blank" rel="noopener noreferrer" className="btn-kind">
-            {t.common.openAccount}
-          </a>
-        </div>
+
+        <style jsx>{`
+          .associate-page {
+            background:
+              radial-gradient(circle at top left, rgba(11, 31, 61, 0.05), transparent 34%),
+              linear-gradient(180deg, #ffffff 0%, #f6f9fc 100%);
+            padding-bottom: clamp(2.25rem, 4vw, 3.5rem);
+          }
+
+          .associate-hero-card,
+          .associate-info-card,
+          .associate-summary-card,
+          .associate-simulator-card {
+            background: rgba(255, 255, 255, 0.98);
+            border: 1px solid rgba(11, 31, 61, 0.08);
+            border-radius: 28px;
+            box-shadow: 0 18px 42px rgba(11, 31, 61, 0.08);
+          }
+
+          .associate-hero-card {
+            display: grid;
+            grid-template-columns: minmax(0, 1.06fr) minmax(320px, 0.94fr);
+            gap: 1.5rem;
+            align-items: center;
+            padding: clamp(1.4rem, 2.7vw, 2.1rem);
+            margin-bottom: 1.8rem;
+          }
+
+          .associate-kicker {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: #1a2e5d;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+          }
+
+          .associate-hero-copy h2,
+          .associate-section-heading h3 {
+            margin: 0;
+            color: #0b1f3d;
+            font-size: clamp(1.85rem, 2.8vw, 2.9rem);
+            font-weight: 700;
+            line-height: 1.1;
+            text-align: left;
+          }
+
+          .associate-hero-copy p,
+          .associate-section-heading p,
+          .associate-info-card p {
+            margin: 1rem 0 0;
+            color: rgba(11, 31, 61, 0.76);
+            line-height: 1.68;
+            text-align: left;
+          }
+
+          .associate-hero-copy p {
+            max-width: 38rem;
+          }
+
+          .associate-primary-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 1.3rem;
+            min-height: 3.25rem;
+            padding: 0.9rem 1.7rem;
+            border: 0;
+            border-radius: 999px;
+            background: #0b1f3d;
+            color: #ffffff;
+            font-weight: 700;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+          }
+
+          .associate-primary-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 26px rgba(11, 31, 61, 0.16);
+            opacity: 0.96;
+          }
+
+          .associate-hero-media {
+            overflow: hidden;
+            border-radius: 24px;
+            min-height: 100%;
+            align-self: stretch;
+          }
+
+          .associate-hero-image {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 350px;
+            max-height: 420px;
+            object-fit: cover;
+          }
+
+          .associate-intro-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+            gap: 1.25rem;
+            margin-bottom: 1.55rem;
+          }
+
+          .associate-info-card,
+          .associate-summary-card {
+            padding: clamp(1.2rem, 2vw, 1.6rem);
+          }
+
+          .associate-support-text {
+            max-width: 41rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(11, 31, 61, 0.1);
+          }
+
+          .associate-summary-card {
+            display: grid;
+            gap: 0.85rem;
+            align-content: start;
+            background:
+              linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(246, 249, 252, 0.98) 100%);
+          }
+
+          .associate-summary-item {
+            display: grid;
+            gap: 0.3rem;
+            min-height: 5.55rem;
+            padding: 0.95rem 1rem;
+            border: 1px solid rgba(11, 31, 61, 0.08);
+            border-radius: 20px;
+            background: #ffffff;
+          }
+
+          .associate-summary-item span,
+          .associate-result-card span,
+          .associate-inline-notes span {
+            color: rgba(11, 31, 61, 0.58);
+            font-size: 0.82rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+          }
+
+          .associate-summary-item strong,
+          .associate-result-card strong {
+            color: #0b1f3d;
+            font-size: 1.02rem;
+            line-height: 1.4;
+          }
+
+          .associate-journey-section,
+          .associate-tracking-section,
+          .associate-faq-section {
+            margin-bottom: 1.55rem;
+          }
+
+          .associate-section-heading-centered h3,
+          .associate-section-heading-centered p {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          .associate-section-heading-centered p {
+            max-width: 44rem;
+          }
+
+          .associate-journey-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+          }
+
+          .associate-step-card,
+          .associate-tracking-card,
+          .associate-result-card,
+          .associate-faq-item {
+            background: rgba(255, 255, 255, 0.98);
+            border: 1px solid rgba(11, 31, 61, 0.08);
+            border-radius: 24px;
+            box-shadow: 0 14px 32px rgba(11, 31, 61, 0.06);
+          }
+
+          .associate-step-card,
+          .associate-tracking-card {
+            padding: 1.15rem 1.1rem;
+          }
+
+          .associate-step-icon,
+          .associate-tracking-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            margin-bottom: 1rem;
+            border-radius: 18px;
+            background: rgba(31, 94, 255, 0.1);
+            color: #1f5eff;
+            font-size: 1.2rem;
+          }
+
+          .associate-step-card h4,
+          .associate-tracking-card h4 {
+            margin: 0 0 0.55rem;
+            color: #0b1f3d;
+            font-size: 1.08rem;
+            font-weight: 700;
+            text-align: left;
+          }
+
+          .associate-step-card p,
+          .associate-tracking-card p,
+          .associate-faq-panel p {
+            margin: 0;
+            color: rgba(11, 31, 61, 0.74);
+            line-height: 1.6;
+            text-align: left;
+          }
+
+          .associate-simulator-card {
+            display: grid;
+            grid-template-columns: minmax(0, 0.88fr) minmax(0, 1fr);
+            gap: 1.1rem;
+            align-items: start;
+            padding: clamp(1rem, 1.8vw, 1.35rem);
+            margin-bottom: 1.55rem;
+          }
+
+          .associate-simulator-copy {
+            display: grid;
+            align-content: start;
+            gap: 0.55rem;
+            max-width: 35.5rem;
+            padding: 0.1rem 0.35rem 0.1rem 0;
+          }
+
+          .associate-simulator-copy :global(.associate-section-heading) {
+            max-width: 35rem;
+          }
+
+          .associate-simulator-copy :global(.associate-section-heading h3) {
+            max-width: 34rem;
+            font-size: clamp(1.72rem, 2.35vw, 2.3rem);
+            line-height: 1.08;
+            letter-spacing: -0.02em;
+            white-space: nowrap;
+          }
+
+          .associate-simulator-lead {
+            max-width: 31.5rem;
+            margin-top: 0.7rem;
+            line-height: 1.62;
+          }
+
+          .associate-simulator-intro {
+            max-width: 28.5rem;
+            margin: 0;
+            color: rgba(11, 31, 61, 0.68);
+            font-size: 0.95rem;
+            line-height: 1.52;
+          }
+
+          .associate-inline-notes {
+            display: grid;
+            gap: 0.85rem;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            max-width: 32rem;
+            margin-top: 0.45rem;
+          }
+
+          .associate-inline-note-card {
+            display: grid;
+            align-content: start;
+            gap: 0.18rem;
+            min-height: 5.35rem;
+            padding: 0.8rem 0.9rem;
+            border: 1px solid rgba(11, 31, 61, 0.08);
+            border-radius: 16px;
+            background: rgba(246, 249, 252, 0.82);
+          }
+
+          .associate-inline-note-card strong {
+            color: #0b1f3d;
+            font-size: 0.92rem;
+            line-height: 1.45;
+            font-weight: 600;
+          }
+
+          .associate-note,
+          .associate-help-text {
+            margin: 0;
+            color: rgba(11, 31, 61, 0.6);
+            font-size: 0.88rem;
+            line-height: 1.48;
+            text-align: left;
+          }
+
+          .associate-note {
+            max-width: 30rem;
+            margin-top: 0.2rem;
+          }
+
+          .associate-simulator-panel {
+            padding: 0.9rem;
+            border-radius: 22px;
+            background: linear-gradient(180deg, rgba(246, 249, 252, 0.96) 0%, rgba(255, 255, 255, 0.98) 100%);
+            border: 1px solid rgba(11, 31, 61, 0.08);
+          }
+
+          .associate-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.8rem;
+          }
+
+          .associate-field {
+            display: grid;
+          }
+
+          .associate-label {
+            margin-bottom: 0.38rem;
+            color: #0b1f3d;
+            font-size: 0.9rem;
+            font-weight: 700;
+          }
+
+          :global(.associate-select) {
+            min-height: 3rem;
+            border-radius: 14px;
+            border: 1px solid rgba(11, 31, 61, 0.14);
+            color: #0b1f3d;
+            box-shadow: none;
+            padding-inline: 0.9rem 2rem;
+          }
+
+          :global(.associate-select:focus) {
+            border-color: rgba(31, 94, 255, 0.48);
+            box-shadow: 0 0 0 0.18rem rgba(31, 94, 255, 0.12);
+          }
+
+          .associate-results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.75rem;
+            margin-top: 0.8rem;
+          }
+
+          .associate-result-card {
+            display: grid;
+            gap: 0.22rem;
+            min-height: 5.75rem;
+            padding: 0.82rem 0.92rem;
+            align-content: center;
+            justify-items: flex-start;
+            text-align: left;
+            border-radius: 20px;
+          }
+
+          .associate-result-card-wide {
+            grid-column: 1 / -1;
+            min-height: 5.25rem;
+          }
+
+          .associate-result-card span {
+            font-size: 0.79rem;
+          }
+
+          .associate-result-card strong {
+            font-size: 1rem;
+            line-height: 1.35;
+          }
+
+          .associate-tracking-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+          }
+
+          .associate-faq-list {
+            display: grid;
+            gap: 0.85rem;
+            max-width: 56rem;
+            margin: 1rem auto 0;
+          }
+
+          .associate-faq-trigger {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem 1.1rem;
+            border: 0;
+            background: transparent;
+            color: #0b1f3d;
+            text-align: left;
+            font-size: 1rem;
+            font-weight: 700;
+          }
+
+          .associate-faq-trigger i {
+            color: #1f5eff;
+            font-size: 1rem;
+          }
+
+          .associate-faq-panel {
+            padding: 0 1.1rem 1.1rem;
+          }
+
+          @media (max-width: 1024px) {
+            .associate-hero-card,
+            .associate-simulator-card,
+            .associate-intro-grid {
+              grid-template-columns: 1fr;
+            }
+
+            .associate-simulator-copy {
+              padding-right: 0;
+              max-width: none;
+            }
+
+            .associate-simulator-copy :global(.associate-section-heading),
+            .associate-simulator-copy :global(.associate-section-heading h3),
+            .associate-simulator-lead,
+            .associate-simulator-intro,
+            .associate-inline-notes,
+            .associate-note {
+              max-width: none;
+            }
+
+            .associate-simulator-copy :global(.associate-section-heading h3) {
+              white-space: normal;
+            }
+
+            .associate-hero-image {
+              min-height: 300px;
+            }
+
+            .associate-journey-grid {
+              grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+          }
+
+          @media (max-width: 768px) {
+            :global(.page-title h1) {
+              color: #ffffff !important;
+              opacity: 1 !important;
+              text-shadow: 0 10px 24px rgba(11, 31, 61, 0.28) !important;
+            }
+
+            .associate-page {
+              padding-bottom: 3rem;
+            }
+
+            .associate-hero-card,
+            .associate-info-card,
+            .associate-summary-card,
+            .associate-simulator-card {
+              border-radius: 24px;
+            }
+
+            .associate-hero-copy h2,
+            .associate-section-heading h3 {
+              font-size: clamp(1.72rem, 7vw, 2.2rem);
+            }
+
+            .associate-hero-card {
+              padding: 1.25rem;
+            }
+
+            .associate-simulator-card {
+              padding: 1.2rem;
+            }
+
+            .associate-inline-notes,
+            .associate-form-grid,
+            .associate-results-grid,
+            .associate-journey-grid,
+            .associate-tracking-grid {
+              grid-template-columns: 1fr;
+            }
+
+            .associate-inline-note-card,
+            .associate-result-card,
+            .associate-result-card-wide {
+              min-height: unset;
+            }
+          }
+
+          @media (max-width: 430px) {
+            .associate-hero-card,
+            .associate-simulator-card,
+            .associate-info-card,
+            .associate-summary-card {
+              padding-left: 1rem;
+              padding-right: 1rem;
+            }
+
+            .associate-primary-button {
+              width: 100%;
+            }
+
+            .associate-hero-image {
+              min-height: 250px;
+            }
+
+            .associate-step-card,
+            .associate-tracking-card,
+            .associate-result-card {
+              padding: 0.85rem;
+            }
+          }
+        `}</style>
       </section>
     </main>
   )

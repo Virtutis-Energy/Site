@@ -47,6 +47,19 @@ const subdivisionIcons: Record<SubdivisionKey, string> = {
   operationsDepartment: 'bi bi-lightning-charge',
 }
 
+const compactSubdivisionLabels: Partial<Record<SubdivisionKey, { pt: string; en: string; es: string }>> = {
+  secretaryHr: {
+    pt: 'Recursos Humanos',
+    en: 'Human Resources',
+    es: 'Recursos Humanos',
+  },
+  accountingDepartment: {
+    pt: 'Contabilidade',
+    en: 'Accounting',
+    es: 'Contabilidad',
+  },
+}
+
 function getSubdivisionKey(name: string) {
   return subdivisionNameToKey[normalizeText(name)] ?? null
 }
@@ -99,9 +112,26 @@ export default function FormularioIngressanteContent() {
     return posA - posB
   })
 
-  const getSubdivisionLabel = (name: string) => {
+  const getSubdivisionCardLabel = (name: string) => {
     const key = getSubdivisionKey(name)
-    return key ? t.subdivisionsPage[key] : name
+    if (!key) {
+      return name
+    }
+
+    const compactLabel = compactSubdivisionLabels[key]
+    if (!compactLabel) {
+      return t.subdivisionsPage[key]
+    }
+
+    if (localeSegment === 'en-us') {
+      return compactLabel.en
+    }
+
+    if (localeSegment === 'es') {
+      return compactLabel.es
+    }
+
+    return compactLabel.pt
   }
 
   return (
@@ -259,7 +289,7 @@ export default function FormularioIngressanteContent() {
                     <div className="careers-subdivision-grid" role="group" aria-label={t.workWithUsPage.subdivisions}>
                       {subdivisoesOrdenadas.map((sub) => {
                         const subdivisionKey = getSubdivisionKey(sub.nome)
-                        const subdivisionLabel = getSubdivisionLabel(sub.nome)
+                        const subdivisionLabel = getSubdivisionCardLabel(sub.nome)
                         const isSelected = formData.subdivisoes.includes(sub.id)
                         const iconClass = subdivisionKey ? subdivisionIcons[subdivisionKey] : 'bi bi-grid'
 
@@ -334,7 +364,7 @@ export default function FormularioIngressanteContent() {
             display: inline-flex;
             align-items: center;
             margin-bottom: 1rem;
-            color: #1f5eff;
+            color: #1a2e5d;
             font-size: 0.82rem;
             font-weight: 700;
             letter-spacing: 0.08em;
@@ -558,6 +588,7 @@ export default function FormularioIngressanteContent() {
             font-size: 0.98rem;
             font-weight: 600;
             line-height: 1.45;
+            white-space: nowrap;
           }
 
           .careers-link-button {
@@ -620,6 +651,28 @@ export default function FormularioIngressanteContent() {
 
             .careers-subdivision-grid {
               grid-template-columns: 1fr;
+            }
+
+            .careers-subdivision-card {
+              gap: 0.7rem;
+              min-height: 4.5rem;
+              padding: 0.9rem 0.85rem;
+            }
+
+            .careers-subdivision-check {
+              width: 1.85rem;
+              height: 1.85rem;
+            }
+
+            .careers-subdivision-icon {
+              width: 2.35rem;
+              height: 2.35rem;
+              font-size: 0.96rem;
+            }
+
+            .careers-subdivision-text {
+              font-size: 0.84rem;
+              line-height: 1.2;
             }
 
             .careers-submit-button {

@@ -126,6 +126,11 @@ export default function SubdivisoesPageContent() {
       </div>
 
       <style jsx>{`
+        .container.py-5 {
+          padding-top: 2.5rem !important;
+          padding-bottom: 2.75rem !important;
+        }
+
         .subdivision-tabs {
           display: flex;
           justify-content: center;
@@ -157,10 +162,17 @@ export default function SubdivisoesPageContent() {
         .info-item {
           min-height: 260px;
           border-radius: 18px;
+          align-items: flex-start !important;
+          text-align: left !important;
+          padding: 1.55rem 1.4rem !important;
+        }
+
+        .info-item :global(i) {
+          margin-bottom: 0.8rem;
         }
 
         .info-box-title {
-          margin: 12px 0 0 0;
+          margin: 0;
           font-size: 1.35rem;
           font-weight: 700;
           color: #1c2430;
@@ -183,13 +195,19 @@ export default function SubdivisoesPageContent() {
           margin-top: 6px;
           margin-bottom: 0;
           text-align: left;
-          line-height: 1.6;
+          line-height: 1.62;
           word-break: normal;
           overflow-wrap: break-word;
-          hyphens: auto;
+          hyphens: none;
+          text-wrap: pretty;
         }
 
         @media (max-width: 768px) {
+          .container.py-5 {
+            padding-top: 1.75rem !important;
+            padding-bottom: 2rem !important;
+          }
+
           .subdivision-tabs {
             gap: 10px;
           }
@@ -200,11 +218,11 @@ export default function SubdivisoesPageContent() {
 
           .info-item {
             min-height: auto;
-            padding: 20px 18px;
+            padding: 18px 16px !important;
           }
 
           .info-box-title {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
           }
 
           .info-box-subtitle {
@@ -213,8 +231,8 @@ export default function SubdivisoesPageContent() {
           }
 
           .info-item p {
-            font-size: 0.95rem;
-            line-height: 1.55;
+            font-size: 0.94rem;
+            line-height: 1.58;
           }
         }
       `}</style>

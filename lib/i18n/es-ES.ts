@@ -119,60 +119,93 @@ export const esESTranslations: Translation = {
   },
   associatePage: {
     title: 'Asociado',
-    headline: 'Área del Asociado',
+    headline: 'Asocia tu planta a Virtutis Energy',
     body:
-      'El asociado acompaña la operación por niveles de planta y por rangos de potencia. La página resume cómo se conectan potencia, arrendamiento, emisión de Vitis y facturación, sin exponer en detalle toda la composición financiera.',
-    feature1Title: 'Niveles de planta',
-    feature1Text:
-      'Los niveles 1, 2 y 3 representan rangos progresivos de participación, con referencia financiera creciente para cada etapa.',
-    feature2Title: 'Potencias disponibles',
-    feature2Text:
-      'Las plantas se presentan en potencias de 20 kW, 40 kW y 60 kW, manteniendo la proporción operativa entre capacidad, arrendamiento y emisión de Vitis.',
-    feature3Title: 'Arrendamiento y Vitis',
-    feature3Text:
-      'El arrendamiento sigue una base proporcional a la potencia elegida, mientras que los proventos acompañan la cantidad de Vitis emitida por cada rango.',
-    feature4Title: 'Facturación del asociado',
-    feature4Text:
-      'La facturación estimada combina la potencia y el nivel seleccionados, utilizando la base operativa definida para la simulación.',
-    plantsTitle: 'Potencias y Niveles',
-    plantsText:
-      'Elige una potencia para visualizar una simulación resumida. Las tarjetas muestran solo la lógica principal de cada rango, sin abrir todos los valores de composición.',
+      'Conecta tu planta fotovoltaica al ecosistema de Virtutis Energy y acompaña arrendamientos, potencia, niveles operativos y estimaciones de facturación de forma digital.',
+    heroCta: 'Simular operación',
+    whatTitle: '¿Qué es ser asociado?',
+    whatText:
+      'El asociado es el propietario o responsable de una planta fotovoltaica que pone su capacidad energética a disposición para integrarse al ecosistema de Virtutis Energy. A partir de esa asociación, la planta puede conectarse a clientes, arrendamientos y operaciones acompañadas digitalmente por la plataforma.',
+    whatSupport:
+      'Esta relación permite visualizar la operación de la planta de forma más organizada, considerando potencia, niveles, arrendamientos, emisión de Vitis y estimaciones de facturación.',
+    journeyTitle: 'Cómo funciona para el asociado',
+    journeyText:
+      'Virtutis Energy organiza la integración de la planta al ecosistema para facilitar la lectura operativa, el arrendamiento y el acompañamiento digital.',
+    step1Title: 'Registra tu planta',
+    step1Text:
+      'Informa los datos de la planta, la potencia disponible y las condiciones operativas para iniciar el análisis de asociación.',
+    step2Title: 'Conéctate al ecosistema',
+    step2Text:
+      'Virtutis Energy organiza la operación para relacionar la planta con clientes, arrendamientos y oportunidades compatibles.',
+    step3Title: 'Acompaña la operación',
+    step3Text:
+      'Visualiza potencia, niveles, arrendamiento, Vitis vinculados y estimaciones de facturación de forma digital.',
     plantLabel: 'Planta',
     plantDescription: (power: string) =>
-      `Rango operativo de ${power}, vinculado a los niveles 1, 2 y 3 del área del asociado.`,
-    referenceValue: 'Resumen:',
+      `Rango operativo de ${power} vinculado a los niveles operativos del área del asociado.`,
+    referenceValue: 'Emisión vinculada',
     choosePlant: 'Seleccionar planta',
-    calculatorTitle: 'Simulación del asociado',
+    calculatorTitle: 'Simula la operación de tu planta',
     calculatorText:
-      'Selecciona una potencia y un nivel para visualizar un resumen básico de la operación del asociado.',
-    baseLeaseLabel: 'Arrendamiento:',
-    baseLeaseText: 'opciones disponibles para los rangos de potencia de la planta.',
-    baseLevelLabel: 'Niveles:',
-    baseLevelText: 'niveles 1, 2 y 3 disponibles para el asociado.',
-    currentPlantLabel: 'Planta actual:',
+      'Selecciona la potencia y el nivel de la planta para visualizar una estimación operativa de arrendamiento, proventos y facturación asociada.',
+    calculatorIntro: 'Completa los datos a continuación para simular un escenario operativo de la planta asociada.',
+    baseLeaseLabel: 'Arrendamiento',
+    baseLeaseText: 'Rangos disponibles según la potencia seleccionada para la planta asociada.',
+    baseLevelLabel: 'Niveles',
+    baseLevelText: 'Referencias operativas usadas para organizar la lectura de la simulación.',
+    currentPlantLabel: 'Potencia seleccionada',
     selectedPlant: 'Selecciona la planta',
+    selectedPlantLabel: 'Planta / potencia',
     selectPlantGuidance:
-      'Sin la API del servidor configurada, el área utiliza la referencia local de las plantas para mantener la lectura de la operación del asociado.',
-    associateLevel: 'Nivel de la planta',
+      'Elige la potencia de referencia para visualizar la estimación operativa de la planta asociada.',
+    associateLevel: 'Nivel operativo',
+    simulatorNote: 'Datos estimados con base en las referencias operativas disponibles.',
     leasedEnergy: 'Potencia y emisión',
     powerSummary: (power: number, vitis: number) => `${power} kW con emisión de ${vitis} Vitis`,
     levelLabel: (level: number) => `Nivel ${level}`,
     leaseRevenue: 'Arrendamiento estimado',
     vitisRevenue: 'Proventos',
-    levelRevenue: 'Facturación',
+    levelRevenue: 'Facturación estimada',
     managementFee: 'Tasa de gestión',
     managementFeePending: 'Por definir',
-    backendConfigError:
-      'La API del servidor no está configurada. Las plantas mostradas abajo están usando la referencia local de la página del asociado.',
-    service1Title: 'Arrendamientos',
+    trackingTitle: 'Lo que el asociado acompaña',
+    trackingText:
+      'La plataforma organiza información esencial de la planta para facilitar la lectura operativa de la asociación.',
+    service1Title: 'Potencia disponible',
     service1Text:
-      'El arrendamiento acompaña la potencia contratada y mantiene la proporción entre los rangos de 20 kW, 40 kW y 60 kW.',
-    service2Title: 'Pagos',
+      'Acompaña la capacidad de la planta asociada a la operación de Virtutis Energy.',
+    service2Title: 'Arrendamientos vinculados',
     service2Text:
-      'Los proventos se estiman a partir de la emisión de Vitis de cada potencia, usando la referencia unitaria definida para la simulación.',
-    service3Title: 'Operación',
+      'Visualiza cómo la capacidad de la planta puede relacionarse con los arrendamientos de los clientes.',
+    service3Title: 'Estimaciones de facturación',
     service3Text:
-      'La tasa de administración de la planta permanece como información temporal hasta la definición final de la regla operativa.',
+      'Consulta proyecciones operativas basadas en la potencia y el nivel seleccionados.',
+    service4Title: 'Gestión de la operación',
+    service4Text:
+      'Ten una visión organizada de la planta dentro del ecosistema de Virtutis Energy.',
+    faqTitle: 'Preguntas frecuentes',
+    faqText: 'Entiende el papel del asociado dentro de la operación de Virtutis Energy.',
+    faq1Question: '¿Quién es el asociado en Virtutis Energy?',
+    faq1Answer:
+      'El asociado es el propietario o responsable de una planta fotovoltaica que conecta su planta al ecosistema de Virtutis Energy para viabilizar operaciones, arrendamientos y acompañamiento digital.',
+    faq2Question: '¿El asociado es diferente del cliente?',
+    faq2Answer:
+      'Sí. El cliente busca ahorro en la factura de energía. El asociado pone una planta a disposición para integrarse a la operación de Virtutis Energy.',
+    faq3Question: '¿El asociado es diferente del inversionista?',
+    faq3Answer:
+      'Sí. El inversionista participa a través de oportunidades de inversión, como Vitis. El asociado está vinculado a la planta, su capacidad operativa, arrendamientos y estimaciones de facturación.',
+    faq4Question: '¿El asociado necesita usar la aplicación?',
+    faq4Answer:
+      'La aplicación permite acompañar información de la planta, estimaciones, niveles, arrendamientos y datos operativos de forma más organizada.',
+    faq5Question: '¿La facturación está garantizada?',
+    faq5Answer:
+      'No. Los valores presentados son estimaciones operativas y pueden variar según potencia, nivel, arrendamientos, condiciones de la planta y reglas aplicables.',
+    faq6Question: '¿Qué son los niveles de la planta?',
+    faq6Answer:
+      'Los niveles ayudan a organizar rangos operativos de la planta y sirven como referencia para simulaciones y estimaciones dentro del área del asociado.',
+    finalCtaTitle: 'Asocia tu planta al ecosistema de Virtutis Energy',
+    finalCtaText: 'Conecta tu operación a la plataforma y acompaña la información de la planta de forma más organizada.',
+    finalCtaButton: 'Contáctanos',
   },
   forms: {
     cpfCnpj: 'CPF/CNPJ',
@@ -203,64 +236,120 @@ export const esESTranslations: Translation = {
   },
   clientsPage: {
     title: 'Clientes',
+    heroTitle: 'Reduce tu factura de energía con Virtutis Energy',
+    heroText:
+      'Conéctate a plantas fotovoltaicas y acompaña tu ahorro de forma simple, digital y sin necesidad de instalar paneles solares en tu inmueble.',
+    heroCta: 'Abre tu cuenta',
+    heroImageAlt: 'Planta solar de Virtutis Energy',
+    simulatorTitle: 'Simula tu ahorro',
+    simulatorText: 'Ingresa el valor promedio de tu factura de energía y consulta una estimación de ahorro con Virtutis Energy.',
+    simulatorLabel: 'Valor promedio de la factura de energía',
     question: '¿Cuál es el valor promedio que sueles pagar en tu factura de energía?',
     billPlaceholder: 'Ingresa el valor de la factura',
     calculate: 'Calcular',
     economyResult: (value: string) => `¡Ahorro aproximado de R$ ${value} por mes!`,
     calculationError: 'Error al calcular.',
     serverError: 'Error al conectar con el servidor.',
-    feature1Title: 'Reducción de gastos',
-    feature1Text:
-      'Reducción de los gastos con energía eléctrica a partir de la contabilización de créditos de energía generados por la planta arrendada.',
-    feature2Title: 'Sin burocracia',
-    feature2Text:
-      'Ninguna burocracia en la construcción de plantas propias; toda la construcción y jurisdicción es responsabilidad de Virtutis Energy.',
-    feature3Title: 'Arrendamiento de espacios',
-    feature3Text:
-      'Explora ubicaciones arrendadas para implementar sistemas de generación de energía renovable, promoviendo sostenibilidad y eficiencia.',
-    feature4Title: 'Oportunidades en ubicaciones ideales',
-    feature4Text:
-      'Descubre oportunidades en ubicaciones estratégicas arrendadas para la construcción de plantas, impulsando la producción energética sostenible.',
-    service1Title: 'Ahorro de hasta el 30%',
-    service1Text:
-      'Al optar por nuestras plantas fotovoltaicas, puedes reducir tus gastos con energía eléctrica hasta en un 30%, obteniendo ventajas en el uso de nuestra energía solar.',
-    service2Title: 'Contratación en línea',
-    service2Text:
-      'Quienes estén interesados en ser Clientes y/o Inversionistas deben registrarse en nuestra base de datos. A partir de ese registro, nuestro equipo comercial se pondrá en contacto para explicar el funcionamiento de la planta y la adquisición de Vitis.',
-    service3Title: 'Sin obras',
-    service3Text:
-      'Con Virtutis Energy, garantizamos tranquilidad sin preocupaciones por obras o instalaciones eléctricas. Nuestras plantas fotovoltaicas ofrecen condiciones ideales para inversionistas y clientes, atendiendo diversas demandas de energía con eficiencia.',
-    service4Title: 'Sin permanencia obligatoria',
-    service4Text:
-      'Ofrecemos total libertad a los inversionistas de Virtutis Energy. Puedes retirar tu inversión en Vitis en cualquier momento, sin necesidad de esperar 20 años. Al invertir, recibes bonificaciones, pero al retirar, las bonificaciones son canceladas.',
-    service5Title: 'Primera mensualidad GRATIS',
-    service5Text:
-      'Garantizamos a nuestros clientes la primera mensualidad gratuita, siendo una oportunidad perfecta para conocer mejor nuestros productos y servicios.',
+    howItWorksTitle: 'Cómo funciona para el cliente',
+    howItWorksText:
+      'Virtutis Energy simplifica el acceso a la energía solar para quienes buscan ahorro sin instalar paneles en su propio inmueble.',
+    step1Title: 'Regístrate',
+    step1Text:
+      'Crea tu cuenta e informa tus datos para que Virtutis Energy pueda entender tu perfil de consumo.',
+    step2Title: 'Conéctate a una planta',
+    step2Text:
+      'Tu unidad consumidora puede vincularse a la energía generada por plantas fotovoltaicas conectadas a la operación de Virtutis Energy.',
+    step3Title: 'Acompaña tu ahorro',
+    step3Text:
+      'A través de la aplicación, puedes consultar información, servicios y oportunidades relacionadas con tu perfil de cliente.',
+    benefitsTitle: 'Beneficios para el cliente',
+    benefitsText: 'Una experiencia más simple, económica y digital para acceder a la energía solar con el soporte de Virtutis Energy.',
+    benefit1Title: 'Ahorro de hasta el 30%',
+    benefit1Text:
+      'Reduce tus gastos mensuales con energía eléctrica mediante la energía generada por plantas fotovoltaicas conectadas a Virtutis Energy.',
+    benefit2Title: 'Sin instalación de paneles',
+    benefit2Text:
+      'No necesitas hacer obras, instalar equipos ni cambiar la estructura de tu inmueble.',
+    benefit3Title: 'Contratación digital',
+    benefit3Text:
+      'El registro y el seguimiento se realizan de forma simple a través de la aplicación de Virtutis Energy.',
+    benefit4Title: 'Energía solar accesible',
+    benefit4Text:
+      'Accede a los beneficios de la energía limpia incluso sin tener una planta propia.',
+    benefit5Title: 'Seguimiento en la app',
+    benefit5Text:
+      'Consulta información, servicios y oportunidades vinculadas a tu perfil de cliente.',
+    benefit6Title: 'Primera mensualidad gratis',
+    benefit6Text:
+      'Conoce la experiencia de Virtutis Energy con una condición inicial más accesible.',
+    faqTitle: 'Preguntas frecuentes',
+    faqText: 'Entiende cómo funciona la experiencia del cliente en Virtutis Energy.',
+    faq1Question: '¿Necesito instalar paneles solares?',
+    faq1Answer:
+      'No. El cliente se conecta a la energía generada por plantas fotovoltaicas asociadas a la operación de Virtutis Energy, sin necesidad de obras ni instalación en el inmueble.',
+    faq2Question: '¿Cómo ocurre el ahorro?',
+    faq2Answer:
+      'El ahorro ocurre por medio de la compensación de créditos de energía, reduciendo el valor de la factura según las condiciones del servicio contratado.',
+    faq3Question: '¿Quién puede ser cliente?',
+    faq3Answer:
+      'Personas físicas o empresas que desean acceder a soluciones de energía solar de forma simple, digital y sin instalación propia.',
+    faq4Question: '¿Cómo acompaño mi información?',
+    faq4Answer:
+      'A través de la aplicación de Virtutis Energy, el cliente puede acceder a información, servicios y oportunidades vinculadas a su perfil.',
+    faq5Question: '¿Existe obra o instalación eléctrica?',
+    faq5Answer:
+      'No. La propuesta es permitir el acceso a la energía solar sin instalar paneles en el inmueble del cliente.',
+    faq6Question: '¿Cómo empiezo?',
+    faq6Answer:
+      'Solo debes abrir tu cuenta, completar tus datos y esperar el contacto o la orientación del equipo de Virtutis Energy.',
+    finalCtaTitle: 'Comienza tu camino con energía solar',
+    finalCtaText: 'Abre tu cuenta y acompaña las soluciones de Virtutis Energy desde la aplicación.',
   },
   investorsPage: {
     title: 'Inversionistas',
-    headline: 'Conviértete en inversionista de Virtutis Energy',
+    headline: 'Invierte en energía solar con Virtutis Energy',
+    heroText:
+      'Conoce los Vitis, simula oportunidades vinculadas a nuestras plantas fotovoltaicas y acompaña proyecciones de proventos de forma clara, digital y organizada.',
+    heroCta: 'Simular inversión',
+    heroImageAlt: 'Planta fotovoltaica de Virtutis Energy',
     vitisTitle: '¿Cómo funcionan los Vitis?',
     vitisText:
-      'Los Vitis son notas comerciales emitidas por las plantas de Virtutis Energy, proporcionando una rentabilidad de hasta 2,35% mensual en proventos. Con Vitis, los inversionistas disfrutan de total libertad para realizar aportes y cesiones cuando lo deseen, maximizando su flexibilidad financiera.',
+      'Los Vitis son notas comerciales emitidas por las plantas de Virtutis Energy, vinculadas a oportunidades de inversión en energía solar. A través de ellos, el inversionista puede acompañar aportes, cesiones y proyecciones de proventos mensuales según las condiciones de cada planta y del escenario elegido.',
+    vitisSupport:
+      'En determinados escenarios, los Vitis pueden presentar proyecciones de rentabilidad de hasta 2,35% mensual en proventos, conforme a las condiciones de la operación, de la planta y de los documentos aplicables.',
+    stepsTitle: 'Cómo funciona para el inversionista',
+    stepsIntro:
+      'Sigue oportunidades de inversión en energía solar de forma estructurada, digital y transparente.',
+    step1Title: 'Elige una oportunidad',
+    step1Text:
+      'Selecciona una planta disponible y entiende las condiciones presentadas para el escenario de inversión.',
+    step2Title: 'Simula tu aporte',
+    step2Text:
+      'Informa valor, cantidad de Vitis, período y nivel de la planta para visualizar una proyección de proventos.',
+    step3Title: 'Acompaña tus resultados',
+    step3Text:
+      'Consulta información, movimientos y proyecciones relacionadas con tu inversión de forma organizada.',
     levelsTitle: 'Cómo leer los niveles de planta',
     levelsIntro:
-      'Los niveles de planta organizan la operación de la inversión en rangos progresivos. Ayudan a entender cómo el porte de la planta, la cantidad de Vitis y el horizonte de retorno se relacionan dentro de la propuesta presentada al inversionista.',
+      'Los niveles ayudan a comparar escenarios operativos de la planta e interpretar la simulación según la cantidad de Vitis, el período y la proyección de retorno.',
     level1Title: 'Nivel 1',
     level1Text:
-      'El nivel 1 representa la puerta de entrada para la lectura de la planta. Funciona como una referencia inicial para quien desea visualizar la dinámica de la inversión con una base de participación más reducida.',
+      'Representa la puerta de entrada para leer la planta. Es una referencia inicial para visualizar la dinámica de la inversión en un escenario más ligero.',
     level2Title: 'Nivel 2',
     level2Text:
-      'El nivel 2 amplía esa referencia e indica un rango intermedio de operación. En esta etapa, el inversionista consigue comparar mejor la evolución entre volumen aportado, emisión de Vitis y proyección de rendimiento.',
+      'Indica un rango intermedio de operación, permitiendo comparar mejor volumen aportado, emisión de Vitis y proyección de rendimiento.',
     level3Title: 'Nivel 3',
     level3Text:
-      'El nivel 3 corresponde al rango más robusto dentro de la estructura comparativa de la planta. Sirve para leer escenarios con mayor intensidad operativa, ofreciendo una visión más amplia de la capacidad de la planta y del potencial acumulado a lo largo del período elegido.',
+      'Representa un rango más robusto dentro de la estructura comparativa de la planta, usado para escenarios con mayor intensidad operativa y mayor potencial acumulado.',
     levelsGuidance:
-      'En la práctica, los niveles no deben leerse de forma aislada. Lo ideal es observar el nivel junto con la planta seleccionada, la cantidad de Vitis y el plazo de la simulación, porque esa combinación es la que da contexto real al resultado estimado.',
-    simulatePrompt: 'Haz aquí tu simulación',
+      'En la práctica, los niveles no deben analizarse de forma aislada. Lo ideal es observar la planta seleccionada, la cantidad de Vitis, el período de la simulación y las condiciones presentadas al inversionista.',
+    simulatePrompt: 'Simula tu inversión',
+    simulateIntro:
+      'Elige una planta, informa el valor del aporte, la cantidad de Vitis y el período deseado para visualizar una estimación de proventos.',
     selectPlant: 'Selecciona la planta',
     selectPlantGuidance:
       'Elige primero una planta para habilitar la simulación y comparar los niveles dentro del rango operativo correspondiente.',
+    selectPlantLabel: 'Planta disponible',
     analysisTitle: 'Análisis de inversión',
     investedValue: 'Valor invertido',
     quantity: 'Cantidad de Vitis',
@@ -277,10 +366,35 @@ export const esESTranslations: Translation = {
     simulateButton: 'Simular inversión',
     accumulatedYield: 'Proventos acumulados',
     finalDate: 'Fecha final',
+    simulationSummary: 'Resumen de la simulación',
     chartTitle: 'Evolución mensual del rendimiento',
     chartDataset: 'Rendimiento total',
     chartYAxis: 'Rendimiento acumulado (R$)',
     chartXAxis: 'Meses',
+    faqTitle: 'Preguntas frecuentes',
+    faqIntro: 'Entiende los principales puntos antes de simular tu inversión.',
+    faq1Question: '¿Qué son los Vitis?',
+    faq1Answer:
+      'Los Vitis son notas comerciales emitidas por las plantas de Virtutis Energy, vinculadas a oportunidades de inversión en energía solar y proyecciones de proventos conforme a las condiciones de cada operación.',
+    faq2Question: '¿Cómo funciona la simulación?',
+    faq2Answer:
+      'La simulación utiliza información como la planta seleccionada, el valor invertido, la cantidad de Vitis, el nivel de la planta y el período elegido para estimar los proventos acumulados y la fecha final del escenario.',
+    faq3Question: '¿Qué significa el nivel de la planta?',
+    faq3Answer:
+      'Los niveles ayudan a organizar diferentes rangos de operación de la planta, permitiendo comparar escenarios de volumen aportado, emisión de Vitis y proyección de rendimiento.',
+    faq4Question: '¿Qué son los proventos?',
+    faq4Answer:
+      'Los proventos son los rendimientos generados a partir de una inversión realizada en Vitis. En Virtutis Energy, representan los valores proyectados para el inversionista según el escenario elegido, la planta vinculada, la cantidad de Vitis y las condiciones aplicables a la operación.',
+    faq5Question: '¿Puedo elegir la planta?',
+    faq5Answer:
+      'La selección depende de las oportunidades disponibles en el momento y de las condiciones presentadas por Virtutis Energy para cada planta.',
+    faq6Question: '¿Cómo empiezo a invertir?',
+    faq6Answer:
+      'El primer paso es seleccionar una oportunidad disponible, simular el escenario deseado y seguir las orientaciones de Virtutis Energy para continuar con la inversión.',
+    finalCtaTitle: 'Simula tu próxima inversión en energía solar',
+    finalCtaText:
+      'Conoce los Vitis disponibles, compara escenarios y acompaña proyecciones de proventos con Virtutis Energy.',
+    finalCtaButton: 'Simular inversión',
     fillFieldsAlert: 'Completa todos los campos correctamente.',
     errorPrefix: 'Error',
     serverError: 'Error al comunicarse con el servidor.',
@@ -359,15 +473,15 @@ export const esESTranslations: Translation = {
     employee: 'Empleado',
     partnerCollaborator: 'Socio-Colaborador',
     internLevelIDesc:
-      'Colabora con rutinas operativas con una carga mínima de 8 horas semanales, participando en proyectos prácticos para su desarrollo académico y profesional dentro de Virtutis Energy.',
+      'Colabora con rutinas operativas y participa en proyectos prácticos para su desarrollo académico y profesional dentro de Virtutis Energy. La carga horaria presencial puede ser de 8, 12, 16 o 20 horas semanales. La carga horaria total puede ser de 20h o 40h semanales, en modelo híbrido.',
     internLevelIIDesc:
-      'Actúa en proyectos de investigación, innovación o desarrollo institucional, con una carga mínima de 12 horas semanales, recibiendo incentivo según desempeño técnico y científico.',
+      'Actúa en proyectos de investigación, innovación o desarrollo institucional, recibiendo incentivo según su desempeño técnico y científico. La carga horaria presencial puede ser de 8, 12, 16 o 20 horas semanales. La carga horaria total puede ser de 20h o 40h semanales, en modelo híbrido.',
     employeeLevelIDesc:
-      'Integra el equipo de Virtutis Energy en distintas áreas con foco en aprendizaje intensivo y progresión hacia cargos estratégicos, con una carga mínima de 16 horas semanales.',
+      'Integra el equipo de Virtutis Energy en distintas áreas con foco en aprendizaje intensivo y progresión hacia cargos estratégicos. La carga horaria presencial puede ser de 8, 12, 16 o 20 horas semanales. La carga horaria total puede ser de 20h o 40h semanales, en modelo híbrido.',
     employeeLevelIIDesc:
-      'Desempeña funciones técnicas y administrativas dentro de su área, contribuyendo directamente a los resultados de la empresa, con una carga mínima de 20 horas semanales.',
+      'Desempeña funciones técnicas y administrativas dentro de su área, contribuyendo directamente a los resultados de la empresa. La carga horaria presencial puede ser de 8, 12, 16 o 20 horas semanales. La carga horaria total puede ser de 20h o 40h semanales, en modelo híbrido.',
     partnerCollaboratorDesc:
-      'Participa en las actividades estratégicas de la empresa, con involucramiento parcial, ofreciendo experiencia, red de contactos o capital, con una carga mínima de 24 horas semanales.',
+      'Participa en las actividades estratégicas de la empresa con involucramiento parcial, ofreciendo experiencia, red de contactos o capital. La carga horaria presencial puede ser de 8, 12, 16 o 20 horas semanales. La carga horaria total puede ser de 20h o 40h semanales, en modelo híbrido.',
   },
   privacyPage: {
     title: 'Política de Privacidad',

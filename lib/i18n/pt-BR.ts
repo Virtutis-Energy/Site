@@ -117,60 +117,93 @@ export const ptBRTranslations = {
   },
   associatePage: {
     title: 'Associado',
-    headline: 'Área do Associado',
+    headline: 'Associe sua usina à Virtutis Energy',
     body:
-      'O associado acompanha a operação por níveis de usina e por faixas de potência. A página resume como potência, locação, emissão de Vitis e faturamento se conectam, sem expor toda a composição financeira em detalhes.',
-    feature1Title: 'Níveis de usina',
-    feature1Text:
-      'Os níveis 1, 2 e 3 representam faixas progressivas de participação, com referência financeira crescente para cada etapa.',
-    feature2Title: 'Potências disponíveis',
-    feature2Text:
-      'As usinas são apresentadas nas potências de 20 kW, 40 kW e 60 kW, mantendo proporção operacional entre capacidade, locação e emissão de Vitis.',
-    feature3Title: 'Locação e Vitis',
-    feature3Text:
-      'A locação segue uma base proporcional à potência escolhida, enquanto os proventos acompanham a quantidade de Vitis emitida por cada faixa.',
-    feature4Title: 'Faturamento do associado',
-    feature4Text:
-      'O faturamento estimado combina potência e nível selecionados, usando a base operacional definida para a simulação.',
-    plantsTitle: 'Potências e Níveis',
-    plantsText:
-      'Escolha uma potência para visualizar uma simulação resumida. Os cards mostram apenas a lógica principal de cada faixa, sem abrir todos os valores de composição.',
+      'Conecte sua usina fotovoltaica ao ecossistema da Virtutis Energy e acompanhe locações, potência, níveis operacionais e estimativas de faturamento de forma digital.',
+    heroCta: 'Simular operação',
+    whatTitle: 'O que é ser associado?',
+    whatText:
+      'O associado é o proprietário ou responsável por uma usina fotovoltaica que disponibiliza sua capacidade energética para integração ao ecossistema da Virtutis Energy. A partir dessa associação, a usina pode ser conectada a clientes, locações e operações acompanhadas digitalmente pela plataforma.',
+    whatSupport:
+      'Essa relação permite que a operação da usina seja visualizada de forma mais organizada, considerando potência, níveis, locações, emissão de Vitis e estimativas de faturamento.',
+    journeyTitle: 'Como funciona para o associado',
+    journeyText:
+      'A Virtutis Energy organiza a integração da usina ao ecossistema para facilitar a leitura operacional, a locação e o acompanhamento digital.',
+    step1Title: 'Cadastre sua usina',
+    step1Text:
+      'Informe os dados da usina, potência disponível e condições operacionais para iniciar a análise de associação.',
+    step2Title: 'Conecte-se ao ecossistema',
+    step2Text:
+      'A Virtutis Energy organiza a operação para relacionar a usina a clientes, locações e oportunidades compatíveis.',
+    step3Title: 'Acompanhe a operação',
+    step3Text:
+      'Visualize potência, níveis, locação, Vitis vinculados e estimativas de faturamento de forma digital.',
     plantLabel: 'Usina',
     plantDescription: (power: string) =>
-      `Faixa operacional de ${power}, vinculada aos níveis de usinas 1, 2 e 3 da área do associado.`,
-    referenceValue: 'Resumo:',
+      `Faixa operacional de ${power} vinculada aos níveis operacionais da área do associado.`,
+    referenceValue: 'Emissão vinculada',
     choosePlant: 'Selecionar usina',
-    calculatorTitle: 'Simulação do associado',
+    calculatorTitle: 'Simule a operação da sua usina',
     calculatorText:
-      'Selecione uma potência e um nível para visualizar um resumo básico da operação do associado.',
-    baseLeaseLabel: 'Locação:',
-    baseLeaseText: 'opções disponíveis para as faixas de potência da usina.',
-    baseLevelLabel: 'Níveis:',
-    baseLevelText: 'níveis 1, 2 e 3 disponíveis para o associado.',
-    currentPlantLabel: 'Usina atual:',
+      'Selecione a potência e o nível da usina para visualizar uma estimativa operacional de locação, proventos e faturamento associado.',
+    calculatorIntro: 'Preencha os dados abaixo para simular um cenário operacional da usina associada.',
+    baseLeaseLabel: 'Locação',
+    baseLeaseText: 'Faixas disponíveis conforme a potência selecionada para a usina associada.',
+    baseLevelLabel: 'Níveis',
+    baseLevelText: 'Referências operacionais usadas para organizar a leitura da simulação.',
+    currentPlantLabel: 'Potência selecionada',
     selectedPlant: 'Selecione a usina',
+    selectedPlantLabel: 'Usina / potência',
     selectPlantGuidance:
-      'Sem a API do servidor configurada, a área usa a referência local das usinas para manter a leitura da operação do associado.',
-    associateLevel: 'Nível da usina',
+      'Escolha a potência de referência para visualizar a estimativa operacional da usina associada.',
+    associateLevel: 'Nível operacional',
+    simulatorNote: 'Dados estimados com base nas referências operacionais disponíveis.',
     leasedEnergy: 'Potência e emissão',
     powerSummary: (power: number, vitis: number) => `${power} kW com emissão de ${vitis} Vitis`,
     levelLabel: (level: number) => `Nível ${level}`,
     leaseRevenue: 'Aluguel estimado',
     vitisRevenue: 'Proventos',
-    levelRevenue: 'Faturamento',
+    levelRevenue: 'Faturamento estimado',
     managementFee: 'Taxa de gestão',
     managementFeePending: 'Em definição',
-    backendConfigError:
-      'A API do servidor nao está configurada. As usinas exibidas abaixo estao usando a referência local da página do associado.',
-    service1Title: 'Locações',
+    trackingTitle: 'O que o associado acompanha',
+    trackingText:
+      'A plataforma organiza informações essenciais da usina para facilitar a leitura operacional da associação.',
+    service1Title: 'Potência disponível',
     service1Text:
-      'A locação acompanha a potência contratada e mantém a proporção entre as faixas de 20 kW, 40 kW e 60 kW.',
-    service2Title: 'Pagamentos',
+      'Acompanhe a capacidade da usina associada à operação da Virtutis Energy.',
+    service2Title: 'Locações vinculadas',
     service2Text:
-      'Os proventos são estimados pela emissão de Vitis de cada potência, usando a referência unitária definida para a simulação.',
-    service3Title: 'Operação',
+      'Visualize como a capacidade da usina pode ser relacionada às locações dos clientes.',
+    service3Title: 'Estimativas de faturamento',
     service3Text:
-      'A taxa de gerenciamento da usina permanece como informação temporária até a definição final da regra operacional.',
+      'Consulte projeções operacionais baseadas na potência e nível selecionados.',
+    service4Title: 'Gestão da operação',
+    service4Text:
+      'Tenha uma visão organizada da usina dentro do ecossistema Virtutis Energy.',
+    faqTitle: 'Perguntas frequentes',
+    faqText: 'Entenda o papel do associado dentro da operação da Virtutis Energy.',
+    faq1Question: 'Quem é o associado na Virtutis Energy?',
+    faq1Answer:
+      'O associado é o proprietário ou responsável por uma usina fotovoltaica que conecta sua usina ao ecossistema da Virtutis Energy para viabilizar operações, locações e acompanhamento digital.',
+    faq2Question: 'O associado é diferente do cliente?',
+    faq2Answer:
+      'Sim. O cliente busca economia na conta de energia. O associado disponibiliza uma usina para ser integrada à operação da Virtutis Energy.',
+    faq3Question: 'O associado é diferente do investidor?',
+    faq3Answer:
+      'Sim. O investidor participa por meio de oportunidades de investimento, como Vitis. O associado está ligado à usina, sua capacidade operacional, locações e estimativas de faturamento.',
+    faq4Question: 'O associado precisa usar o aplicativo?',
+    faq4Answer:
+      'O aplicativo permite acompanhar informações da usina, estimativas, níveis, locações e dados operacionais de forma mais organizada.',
+    faq5Question: 'O faturamento é garantido?',
+    faq5Answer:
+      'Não. Os valores apresentados são estimativas operacionais e podem variar conforme potência, nível, locações, condições da usina e regras aplicáveis.',
+    faq6Question: 'O que são os níveis da usina?',
+    faq6Answer:
+      'Os níveis ajudam a organizar faixas operacionais da usina e servem como referência para simulações e estimativas dentro da área do associado.',
+    finalCtaTitle: 'Associe sua usina ao ecossistema Virtutis Energy',
+    finalCtaText: 'Conecte sua operação à plataforma e acompanhe informações da usina de forma mais organizada.',
+    finalCtaButton: 'Fale Conosco',
   },
   forms: {
     cpfCnpj: 'CPF/CNPJ',
@@ -201,64 +234,120 @@ export const ptBRTranslations = {
   },
   clientsPage: {
     title: 'Clientes',
+    heroTitle: 'Reduza sua conta de energia com a Virtutis Energy',
+    heroText:
+      'Conecte-se a usinas fotovoltaicas e acompanhe sua economia de forma simples, digital e sem precisar instalar placas solares no seu imóvel.',
+    heroCta: 'Abra sua conta',
+    heroImageAlt: 'Usina solar da Virtutis Energy',
+    simulatorTitle: 'Simule sua economia',
+    simulatorText: 'Informe o valor médio da sua conta de energia e veja uma estimativa de economia com a Virtutis Energy.',
+    simulatorLabel: 'Valor médio da conta de energia',
     question: 'Qual o valor médio que você costuma pagar em sua conta de energia?',
     billPlaceholder: 'Digite o valor da conta',
     calculate: 'Calcular',
     economyResult: (value: string) => `Economia de aproximadamente R$ ${value} por mês!`,
     calculationError: 'Erro ao calcular.',
     serverError: 'Erro ao conectar com o servidor.',
-    feature1Title: 'Redução dos gastos',
-    feature1Text:
-      'Redução dos gastos com Energia Elétrica, a partir da contabilização de créditos de energia gerados pela usina alugada.',
-    feature2Title: 'Sem Burocracia',
-    feature2Text:
-      'Nenhuma burocracia na construção de usinas próprias, toda a construção e jurisdição é responsabilidade da Virtutis Energy.',
-    feature3Title: 'Aluguel de Espaços',
-    feature3Text:
-      'Explore locais alugados para implementar sistemas de geração de energia renovável, promovendo sustentabilidade e eficiência.',
-    feature4Title: 'Oportunidades em Locais Ideais',
-    feature4Text:
-      'Descubra oportunidades em locais estratégicos alugados para construção de usinas, impulsionando a produção energética sustentável.',
-    service1Title: 'Economia de até 30%',
-    service1Text:
-      'Ao optar pelas nossas usinas fotovoltaicas, você pode reduzir seus gastos com energia elétrica em até 30%, obtendo assim vantagens no uso da nossa energia solar.',
-    service2Title: 'Contratação Online',
-    service2Text:
-      'Interessados em ser Clientes e/ou Investidores precisam se cadastrar em nossa base de dados. A partir desse cadastramento, nosso Setor Comercial entrará em contato para proceder com todo o funcionamento da usina e aquisição de Vitis.',
-    service3Title: 'Sem Obras',
-    service3Text:
-      'Com a Virtutis Energy, garantimos a tranquilidade sem preocupações com obras ou instalações elétricas. Nossas Usinas Fotovoltaicas oferecem condições ideais para investidores e clientes, atendendo a diversas demandas de energia com eficiência.',
-    service4Title: 'Sem Fidelização',
-    service4Text:
-      'Oferecemos liberdade total aos investidores da Virtutis Energy. Você pode retirar seu investimento nos Vitis a qualquer momento, sem a necessidade de esperar os 20 anos. Ao investir, você recebe bonificações, porém ao realizar a retirada, as bonificações são canceladas.',
-    service5Title: 'Primeira Mensalidade GRÁTIS',
-    service5Text:
-      'Garantimos a nossos clientes a primeira mensalidade gratuita, sendo assim uma oportunidade perfeita para conhecer melhor nossos produtos e serviços.',
+    howItWorksTitle: 'Como funciona para o cliente',
+    howItWorksText:
+      'A Virtutis Energy simplifica o acesso à energia solar para quem busca economia sem instalar placas no próprio imóvel.',
+    step1Title: 'Cadastre-se',
+    step1Text:
+      'Crie sua conta e informe seus dados para que a Virtutis Energy possa entender seu perfil de consumo.',
+    step2Title: 'Conecte-se a uma usina',
+    step2Text:
+      'Sua unidade consumidora pode ser vinculada à energia gerada por usinas fotovoltaicas conectadas à operação da Virtutis Energy.',
+    step3Title: 'Acompanhe sua economia',
+    step3Text:
+      'Pelo aplicativo, você acompanha informações, serviços e oportunidades relacionadas ao seu perfil de cliente.',
+    benefitsTitle: 'Benefícios para o cliente',
+    benefitsText: 'Uma jornada mais simples, econômica e digital para acessar energia solar com o suporte da Virtutis Energy.',
+    benefit1Title: 'Economia de até 30%',
+    benefit1Text:
+      'Reduza seus gastos mensais com energia elétrica por meio da energia gerada por usinas fotovoltaicas conectadas à Virtutis Energy.',
+    benefit2Title: 'Sem instalação de placas',
+    benefit2Text:
+      'Você não precisa fazer obras, instalar equipamentos ou alterar a estrutura do seu imóvel.',
+    benefit3Title: 'Contratação digital',
+    benefit3Text:
+      'O cadastro e o acompanhamento acontecem de forma simples pelo aplicativo da Virtutis Energy.',
+    benefit4Title: 'Energia solar acessível',
+    benefit4Text:
+      'Tenha acesso aos benefícios da energia limpa mesmo sem possuir uma usina própria.',
+    benefit5Title: 'Acompanhamento pelo app',
+    benefit5Text:
+      'Consulte informações, serviços e oportunidades vinculadas ao seu perfil de cliente.',
+    benefit6Title: 'Primeira mensalidade grátis',
+    benefit6Text:
+      'Conheça a experiência Virtutis Energy com uma condição inicial facilitada.',
+    faqTitle: 'Perguntas frequentes',
+    faqText: 'Entenda como funciona a experiência do cliente na Virtutis Energy.',
+    faq1Question: 'Preciso instalar placas solares?',
+    faq1Answer:
+      'Não. O cliente se conecta à energia gerada por usinas fotovoltaicas associadas à operação da Virtutis Energy, sem necessidade de obra ou instalação no imóvel.',
+    faq2Question: 'Como a economia acontece?',
+    faq2Answer:
+      'A economia ocorre por meio da compensação de créditos de energia, reduzindo o valor da conta conforme as condições do serviço contratado.',
+    faq3Question: 'Quem pode ser cliente?',
+    faq3Answer:
+      'Pessoas físicas ou empresas que desejam acessar soluções de energia solar de forma simples, digital e sem instalação própria.',
+    faq4Question: 'Como acompanho minhas informações?',
+    faq4Answer:
+      'Pelo aplicativo da Virtutis Energy, o cliente pode acessar informações, serviços e oportunidades vinculadas ao seu perfil.',
+    faq5Question: 'Existe obra ou instalação elétrica?',
+    faq5Answer:
+      'Não. A proposta é permitir acesso à energia solar sem instalação de placas no imóvel do cliente.',
+    faq6Question: 'Como começo?',
+    faq6Answer:
+      'Basta abrir sua conta, preencher seus dados e aguardar o contato ou direcionamento da equipe da Virtutis Energy.',
+    finalCtaTitle: 'Comece sua jornada com energia solar',
+    finalCtaText: 'Abra sua conta e acompanhe as soluções da Virtutis Energy pelo aplicativo.',
   },
   investorsPage: {
     title: 'Investidores',
-    headline: 'Venha ser Investidor Virtutis Energy',
+    headline: 'Invista em energia solar com a Virtutis Energy',
+    heroText:
+      'Conheça os Vitis, simule oportunidades vinculadas às nossas usinas fotovoltaicas e acompanhe projeções de proventos de forma clara, digital e organizada.',
+    heroCta: 'Simular investimento',
+    heroImageAlt: 'Usina fotovoltaica da Virtutis Energy',
     vitisTitle: 'Como funcionam os Vitis?',
     vitisText:
-      'Os Vitis são notas comerciais emitidas pelas usinas da Virtutis Energy, proporcionando uma rentabilidade de até 2,35% a.m., em proventos mensais. Com os Vitis, os investidores desfrutam de total liberdade para realizar aportes e cessões conforme desejarem, maximizando sua flexibilidade financeira!',
+      'Os Vitis são notas comerciais emitidas pelas usinas da Virtutis Energy, vinculadas a oportunidades de investimento em energia solar. Por meio deles, o investidor pode acompanhar aportes, cessões e projeções de proventos mensais conforme as condições de cada usina e do cenário escolhido.',
+    vitisSupport:
+      'Em determinados cenários, os Vitis podem apresentar projeções de rentabilidade de até 2,35% a.m. em proventos mensais, conforme as condições da operação, da usina e dos documentos aplicáveis.',
+    stepsTitle: 'Como funciona para o investidor',
+    stepsIntro:
+      'Acompanhe oportunidades de investimento em energia solar de forma estruturada, digital e transparente.',
+    step1Title: 'Escolha uma oportunidade',
+    step1Text:
+      'Selecione uma usina disponível e entenda as condições apresentadas para o cenário de investimento.',
+    step2Title: 'Simule seu aporte',
+    step2Text:
+      'Informe valor, quantidade de Vitis, período e nível da usina para visualizar uma projeção de proventos.',
+    step3Title: 'Acompanhe seus resultados',
+    step3Text:
+      'Consulte informações, movimentações e projeções relacionadas ao seu investimento de forma organizada.',
     levelsTitle: 'Como ler os níveis de usina',
     levelsIntro:
-      'Os níveis de usina organizam a operação do investimento em faixas progressivas. Eles ajudam a entender como porte da usina, quantidade de Vitis e horizonte de retorno se relacionam dentro da proposta apresentada ao investidor.',
+      'Os níveis ajudam a comparar cenários operacionais da usina e interpretar a simulação de acordo com a quantidade de Vitis, período e projeção de retorno.',
     level1Title: 'Nível 1',
     level1Text:
-      'O nível 1 representa a porta de entrada para a leitura da usina. Ele funciona como uma referência inicial para quem deseja visualizar a dinâmica do investimento com uma base mais enxuta de participação.',
+      'Representa a porta de entrada para leitura da usina. É uma referência inicial para visualizar a dinâmica do investimento em um cenário mais enxuto.',
     level2Title: 'Nível 2',
     level2Text:
-      'O nível 2 amplia essa referência e indica uma faixa intermediária de operação. Nessa etapa, o investidor consegue comparar melhor a evolução entre volume aportado, emissão de Vitis e projeção de rendimento.',
+      'Indica uma faixa intermediária de operação, permitindo comparar melhor volume aportado, emissão de Vitis e projeção de rendimento.',
     level3Title: 'Nível 3',
     level3Text:
-      'O nível 3 corresponde à faixa mais robusta dentro da estrutura comparativa da usina. Ele serve para leitura de cenários com maior intensidade operacional, oferecendo uma visão mais ampla da capacidade da usina e do potencial acumulado ao longo do período escolhido.',
+      'Representa uma faixa mais robusta dentro da estrutura comparativa da usina, usada para cenários com maior intensidade operacional e maior potencial acumulado.',
     levelsGuidance:
-      'Na prática, os níveis não devem ser lidos isoladamente. O ideal é observar o nível em conjunto com a usina selecionada, a quantidade de Vitis e o prazo da simulação, porque é essa combinação que dá contexto real ao resultado estimado.',
-    simulatePrompt: 'Faça aqui sua simulação',
+      'Na prática, os níveis não devem ser analisados isoladamente. O ideal é observar a usina selecionada, a quantidade de Vitis, o período da simulação e as condições apresentadas ao investidor.',
+    simulatePrompt: 'Simule seu investimento',
+    simulateIntro:
+      'Escolha uma usina, informe o valor do aporte, a quantidade de Vitis e o período desejado para visualizar uma estimativa de proventos.',
     selectPlant: 'Selecione a usina',
     selectPlantGuidance:
       'Escolha primeiro uma usina para liberar a simulação e comparar os níveis dentro da faixa operacional correspondente.',
+    selectPlantLabel: 'Usina disponível',
     analysisTitle: 'Análise de Investimento',
     investedValue: 'Valor Investido',
     quantity: 'Quantidade de Vitis',
@@ -275,10 +364,35 @@ export const ptBRTranslations = {
     simulateButton: 'Simular Investimento',
     accumulatedYield: 'Proventos Acumulados',
     finalDate: 'Data Final',
+    simulationSummary: 'Resumo da simulação',
     chartTitle: 'Evolução Mensal do Rendimento',
     chartDataset: 'Rendimento total',
     chartYAxis: 'Rendimento Acumulado (R$)',
     chartXAxis: 'Meses',
+    faqTitle: 'Perguntas frequentes',
+    faqIntro: 'Entenda os principais pontos antes de simular seu investimento.',
+    faq1Question: 'O que são Vitis?',
+    faq1Answer:
+      'Os Vitis são notas comerciais emitidas pelas usinas da Virtutis Energy, vinculadas a oportunidades de investimento em energia solar e projeções de proventos conforme as condições de cada operação.',
+    faq2Question: 'Como funciona a simulação?',
+    faq2Answer:
+      'A simulação utiliza informações como usina selecionada, valor investido, quantidade de Vitis, nível da usina e período escolhido para estimar os proventos acumulados e a data final do cenário.',
+    faq3Question: 'O que significa o nível da usina?',
+    faq3Answer:
+      'Os níveis ajudam a organizar diferentes faixas de operação da usina, permitindo comparar cenários de volume aportado, emissão de Vitis e projeção de rendimento.',
+    faq4Question: 'O que são proventos?',
+    faq4Answer:
+      'Proventos são os rendimentos gerados a partir do investimento realizado em Vitis. Na Virtutis Energy, eles representam os valores projetados para o investidor conforme o cenário escolhido, a usina vinculada, a quantidade de Vitis e as condições aplicáveis à operação.',
+    faq5Question: 'Posso escolher a usina?',
+    faq5Answer:
+      'A seleção depende das oportunidades disponíveis no momento e das condições apresentadas pela Virtutis Energy para cada usina.',
+    faq6Question: 'Como começo a investir?',
+    faq6Answer:
+      'O primeiro passo é selecionar uma oportunidade disponível, simular o cenário desejado e acompanhar as orientações da Virtutis Energy para seguir com o investimento.',
+    finalCtaTitle: 'Simule seu próximo investimento em energia solar',
+    finalCtaText:
+      'Conheça os Vitis disponíveis, compare cenários e acompanhe projeções de proventos com a Virtutis Energy.',
+    finalCtaButton: 'Simular investimento',
     fillFieldsAlert: 'Preencha todos os campos corretamente.',
     errorPrefix: 'Erro',
     serverError: 'Erro ao se comunicar com o servidor.',
@@ -357,15 +471,15 @@ export const ptBRTranslations = {
     employee: 'Funcionário',
     partnerCollaborator: 'Sócio-Colaborador',
     internLevelIDesc:
-      'Colabora com rotinas operacionais com carga horária mínima de 8 horas semanais, participando de projetos práticos para seu desenvolvimento acadêmico e profissional dentro da Virtutis Energy.',
+      'Colabora com rotinas operacionais e participa de projetos práticos para seu desenvolvimento acadêmico e profissional dentro da Virtutis Energy. Carga horária presencial de 8, 12, 16 ou 20 horas semanais. Carga horária total de 20h ou 40h semanais, em modelo híbrido.',
     internLevelIIDesc:
-      'Atua em projetos de pesquisa, inovação ou desenvolvimento institucional, com carga horária mínima de 12 horas semanais, recebendo incentivo mediante desempenho técnico e científico.',
+      'Atua em projetos de pesquisa, inovação ou desenvolvimento institucional, recebendo incentivo mediante desempenho técnico e científico. Carga horária presencial de 8, 12, 16 ou 20 horas semanais. Carga horária total de 20h ou 40h semanais, em modelo híbrido.',
     employeeLevelIDesc:
-      'Integra o time da Virtutis Energy em diversas áreas com foco em aprendizado intensivo e progressão para cargos estratégicos, com carga horária mínima de 16 horas semanais.',
+      'Integra o time da Virtutis Energy em diversas áreas com foco em aprendizado intensivo e progressão para cargos estratégicos. Carga horária presencial de 8, 12, 16 ou 20 horas semanais. Carga horária total de 20h ou 40h semanais, em modelo híbrido.',
     employeeLevelIIDesc:
-      'Desempenha funções técnicas e administrativas dentro de sua área, contribuindo diretamente com os resultados da empresa, com carga horária mínima de 20 horas semanais.',
+      'Desempenha funções técnicas e administrativas dentro de sua área, contribuindo diretamente com os resultados da empresa. Carga horária presencial de 8, 12, 16 ou 20 horas semanais. Carga horária total de 20h ou 40h semanais, em modelo híbrido.',
     partnerCollaboratorDesc:
-      'Participa das atividades estratégicas da empresa, com envolvimento parcial, oferecendo expertise, rede de contatos ou capital, com carga horária mínima de 24 horas semanais.',
+      'Participa das atividades estratégicas da empresa com envolvimento parcial, oferecendo expertise, rede de contatos ou capital. Carga horária presencial de 8, 12, 16 ou 20 horas semanais. Carga horária total de 20h ou 40h semanais, em modelo híbrido.',
   },
   privacyPage: {
     title: 'Política de Privacidade',
