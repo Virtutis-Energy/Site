@@ -153,11 +153,17 @@
         position: absolute;
         inset: 0;
         z-index: 1;
+        width: 100vw;
+        height: 100svh;
+        min-height: 100svh;
+        overflow: hidden;
     }
 
     .hero .hero-image img {
         width: 100%;
         height: 100%;
+        min-width: 100%;
+        min-height: 100%;
         object-fit: cover;
         object-position: center 56% !important;
         transform: scale(1.06);
@@ -543,20 +549,28 @@
 /* Final mobile hero override */
 @media (max-width: 768px) {
     .hero {
-        min-height: 100svh !important;
-        height: 100svh !important;
-        margin-bottom: 20px !important;
+        min-height: 114svh !important;
+        height: 114svh !important;
+        margin: 0 !important;
         overflow: hidden !important;
         position: relative !important;
+        padding: 0 !important;
     }
 
     .hero .info {
-        min-height: 100svh !important;
-        padding: 100px 16px 92px !important;
+        min-height: 114svh !important;
+        padding: 106px 16px 120px !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         text-align: center !important;
+    }
+
+    .hero .container,
+    .hero .info .container,
+    .hero-content {
+        position: relative !important;
+        z-index: 2 !important;
     }
 
     .hero-heading-group {
@@ -565,7 +579,7 @@
         align-items: center !important;
         justify-content: center !important;
         text-align: center !important;
-        transform: translateY(-36px) !important;
+        transform: translateY(-64px) !important;
     }
 
     .hero-title-wrap,
@@ -617,8 +631,11 @@
     .hero .hero-image {
         position: absolute !important;
         inset: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
+        width: 100vw !important;
+        height: 114svh !important;
+        min-height: 114svh !important;
+        overflow: hidden !important;
+        z-index: 0 !important;
     }
 
     .hero .hero-image picture,
@@ -628,16 +645,40 @@
         display: block !important;
     }
 
+    .hero .hero-image picture {
+        width: 100% !important;
+        height: 100% !important;
+    }
+
     .hero .hero-image img {
         object-fit: cover !important;
         object-position: center 50% !important;
-        transform: none !important;
+        min-width: 100% !important;
+        min-height: 100% !important;
+        transform: scale(1.08) !important;
     }
 }
 
 @media (max-width: 430px) {
+    .hero {
+        position: relative !important;
+        min-height: 116svh !important;
+        height: 116svh !important;
+        overflow: hidden !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
     .hero .info {
-        padding: 96px 14px 88px !important;
+        min-height: 116svh !important;
+        padding: 100px 14px 124px !important;
+    }
+
+    .hero .container,
+    .hero .info .container,
+    .hero-content {
+        position: relative !important;
+        z-index: 2 !important;
     }
 
     .hero-title-line {
@@ -667,7 +708,7 @@
 
     .hero-heading-group {
         max-width: min(100%, 328px) !important;
-        transform: translateY(-28px) !important;
+        transform: translateY(-54px) !important;
     }
 
     .hero .info .btn-get-started {
@@ -675,8 +716,30 @@
         margin-bottom: 16px !important;
     }
 
+    .hero .hero-image {
+        position: absolute !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 116svh !important;
+        min-height: 116svh !important;
+        overflow: hidden !important;
+        z-index: 0 !important;
+    }
+
+    .hero .hero-image picture {
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+
     .hero .hero-image img {
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-width: 100% !important;
+        min-height: 100% !important;
+        object-fit: cover !important;
         object-position: center 50% !important;
-        transform: none !important;
+        transform: scale(1.1) !important;
     }
 }
