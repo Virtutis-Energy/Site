@@ -51,7 +51,7 @@ export default function ClientesPageContent() {
     <main className="main">
       <div className="page-title dark-background" style={{ backgroundImage: 'url(/img/hero-carousel/ft2.jpg)' }}>
         <div className="container position-relative">
-          <h1 style={{ color: '#1A2E5D', opacity: 1 }}>{t.clientsPage.title}</h1>
+          <h1 style={{ color: '#FFFFFF', opacity: 1 }}>{t.clientsPage.title}</h1>
           <nav className="breadcrumbs">
             <ol>
               <li>
