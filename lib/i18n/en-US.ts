@@ -119,60 +119,93 @@ export const enUSTranslations: Translation = {
   },
   associatePage: {
     title: 'Associate',
-    headline: 'Associate Area',
+    headline: 'Connect your plant to Virtutis Energy',
     body:
-      'Associates follow operations by plant level and power range. This page summarizes how power, leasing, Vitis issuance, and revenue connect without exposing the full financial composition in detail.',
-    feature1Title: 'Plant levels',
-    feature1Text:
-      'Levels 1, 2, and 3 represent progressive participation ranges, with increasing financial references for each stage.',
-    feature2Title: 'Available capacities',
-    feature2Text:
-      'Plants are presented in 20 kW, 40 kW, and 60 kW capacities, keeping capacity, leasing, and Vitis issuance proportional.',
-    feature3Title: 'Leasing and Vitis',
-    feature3Text:
-      'Leasing follows a power-based reference, while returns track the amount of Vitis issued by each range.',
-    feature4Title: 'Associate revenue',
-    feature4Text:
-      'Estimated revenue combines the selected power and level using the operational base defined for the simulation.',
-    plantsTitle: 'Capacities and levels',
-    plantsText:
-      'Choose a capacity to view a summarized simulation. Cards show only the core logic for each range without opening every composition value.',
+      'Connect your photovoltaic plant to the Virtutis Energy ecosystem and track leases, plant capacity, operating levels, and estimated revenue in a digital way.',
+    heroCta: 'Simulate operation',
+    whatTitle: 'What does it mean to be an associate?',
+    whatText:
+      'The associate is the owner or person responsible for a photovoltaic plant who makes its energy capacity available for integration into the Virtutis Energy ecosystem. From that point on, the plant can be connected to clients, leases, and operations monitored digitally through the platform.',
+    whatSupport:
+      'This relationship allows the plant operation to be viewed in a more organized way, considering capacity, levels, leases, Vitis issuance, and estimated revenue.',
+    journeyTitle: 'How it works for the associate',
+    journeyText:
+      'Virtutis Energy structures the plant integration into the ecosystem to simplify operational reading, leasing, and digital monitoring.',
+    step1Title: 'Register your plant',
+    step1Text:
+      'Provide the plant data, available capacity, and operating conditions to begin the association review.',
+    step2Title: 'Connect to the ecosystem',
+    step2Text:
+      'Virtutis Energy organizes the operation to relate the plant to clients, leases, and compatible opportunities.',
+    step3Title: 'Track the operation',
+    step3Text:
+      'View capacity, levels, leasing, linked Vitis, and estimated revenue in a digital way.',
     plantLabel: 'Plant',
     plantDescription: (power: string) =>
-      `${power} operational range connected to associate area levels 1, 2, and 3.`,
-    referenceValue: 'Summary:',
+      `${power} operating range linked to the operational levels of the associate area.`,
+    referenceValue: 'Linked issuance',
     choosePlant: 'Select the plant',
-    calculatorTitle: 'Associate simulation',
+    calculatorTitle: 'Simulate your plant operation',
     calculatorText:
-      'Select a capacity and level to view a basic summary of the associate operation.',
-    baseLeaseLabel: 'Leasing:',
-    baseLeaseText: 'available options for the plant capacity ranges.',
-    baseLevelLabel: 'Levels:',
-    baseLevelText: 'levels 1, 2, and 3 available to associates.',
-    currentPlantLabel: 'Current plant:',
+      'Select the plant capacity and level to view an operational estimate of leasing, proceeds, and associated revenue.',
+    calculatorIntro: 'Fill in the fields below to simulate an operating scenario for the associated plant.',
+    baseLeaseLabel: 'Leasing',
+    baseLeaseText: 'Available ranges according to the capacity selected for the associated plant.',
+    baseLevelLabel: 'Levels',
+    baseLevelText: 'Operational references used to organize the reading of the simulation.',
+    currentPlantLabel: 'Selected capacity',
     selectedPlant: 'Select the plant',
+    selectedPlantLabel: 'Plant / capacity',
     selectPlantGuidance:
-      'Without the server API configured, this area uses the local plant reference to keep the associate operation view available.',
-    associateLevel: 'Plant level',
+      'Choose the reference capacity to view the operating estimate of the associated plant.',
+    associateLevel: 'Operational level',
+    simulatorNote: 'Estimated data based on the available operational references.',
     leasedEnergy: 'Capacity and issuance',
     powerSummary: (power: number, vitis: number) => `${power} kW with ${vitis} Vitis issued`,
     levelLabel: (level: number) => `Level ${level}`,
     leaseRevenue: 'Estimated rent',
-    vitisRevenue: 'Returns',
-    levelRevenue: 'Revenue',
+    vitisRevenue: 'Proceeds',
+    levelRevenue: 'Estimated revenue',
     managementFee: 'Management fee',
     managementFeePending: 'To be defined',
-    backendConfigError:
-      'The server API is not configured. The plants shown below are using the local reference from the associate page.',
-    service1Title: 'Leases',
+    trackingTitle: 'What the associate tracks',
+    trackingText:
+      'The platform organizes essential plant information to simplify the operational reading of the association.',
+    service1Title: 'Available capacity',
     service1Text:
-      'Leasing follows the contracted capacity and keeps the proportion between the 20 kW, 40 kW, and 60 kW ranges.',
-    service2Title: 'Payments',
+      'Track the capacity of the plant associated with Virtutis Energy operations.',
+    service2Title: 'Linked leases',
     service2Text:
-      'Returns are estimated from the Vitis issued by each capacity, using the unit reference defined for the simulation.',
-    service3Title: 'Operation',
+      'See how the plant capacity can be related to client leases.',
+    service3Title: 'Estimated revenue',
     service3Text:
-      'The plant management fee remains temporary information until the final operating rule is defined.',
+      'Consult operational projections based on the selected capacity and level.',
+    service4Title: 'Operation management',
+    service4Text:
+      'Keep an organized view of the plant inside the Virtutis Energy ecosystem.',
+    faqTitle: 'Frequently asked questions',
+    faqText: 'Understand the role of the associate within Virtutis Energy operations.',
+    faq1Question: 'Who is the associate at Virtutis Energy?',
+    faq1Answer:
+      'The associate is the owner or person responsible for a photovoltaic plant who connects the plant to the Virtutis Energy ecosystem to enable operations, leases, and digital monitoring.',
+    faq2Question: 'Is the associate different from the client?',
+    faq2Answer:
+      'Yes. The client seeks savings on the energy bill. The associate makes a plant available to be integrated into Virtutis Energy operations.',
+    faq3Question: 'Is the associate different from the investor?',
+    faq3Answer:
+      'Yes. The investor participates through investment opportunities such as Vitis. The associate is linked to the plant, its operating capacity, leases, and estimated revenue.',
+    faq4Question: 'Does the associate need to use the app?',
+    faq4Answer:
+      'The app allows the associate to track plant information, estimates, levels, leases, and operational data in a more organized way.',
+    faq5Question: 'Is the revenue guaranteed?',
+    faq5Answer:
+      'No. The values presented are operational estimates and may vary according to capacity, level, leases, plant conditions, and applicable rules.',
+    faq6Question: 'What are the plant levels?',
+    faq6Answer:
+      'Levels help organize operating ranges of the plant and serve as a reference for simulations and estimates within the associate area.',
+    finalCtaTitle: 'Connect your plant to the Virtutis Energy ecosystem',
+    finalCtaText: 'Connect your operation to the platform and follow plant information in a more organized way.',
+    finalCtaButton: 'Contact Us',
   },
   forms: {
     cpfCnpj: 'CPF/CNPJ',
@@ -203,64 +236,120 @@ export const enUSTranslations: Translation = {
   },
   clientsPage: {
     title: 'Clients',
+    heroTitle: 'Lower your energy bill with Virtutis Energy',
+    heroText:
+      'Connect to photovoltaic plants and track your savings in a simple, digital way without installing solar panels on your property.',
+    heroCta: 'Open your account',
+    heroImageAlt: 'Virtutis Energy solar plant',
+    simulatorTitle: 'Estimate your savings',
+    simulatorText: 'Enter the average amount of your energy bill and see an estimated saving with Virtutis Energy.',
+    simulatorLabel: 'Average energy bill amount',
     question: 'What is the average amount you usually pay on your electricity bill?',
     billPlaceholder: 'Enter your bill amount',
     calculate: 'Calculate',
     economyResult: (value: string) => `Estimated savings of R$ ${value} per month!`,
     calculationError: 'Unable to calculate.',
     serverError: 'Unable to connect to the server.',
-    feature1Title: 'Lower expenses',
-    feature1Text:
-      'Lower electricity expenses through the accounting of energy credits generated by the leased plant.',
-    feature2Title: 'No bureaucracy',
-    feature2Text:
-      'No bureaucracy involved in building your own plants; all construction and jurisdiction are the responsibility of Virtutis Energy.',
-    feature3Title: 'Space leasing',
-    feature3Text:
-      'Explore leased locations to implement renewable energy generation systems, promoting sustainability and efficiency.',
-    feature4Title: 'Opportunities in ideal locations',
-    feature4Text:
-      'Discover opportunities in strategically leased locations for plant construction, boosting sustainable energy production.',
-    service1Title: 'Up to 30% savings',
-    service1Text:
-      'By choosing our photovoltaic plants, you can reduce your electricity costs by up to 30%, gaining clear advantages from solar energy.',
-    service2Title: 'Online contracting',
-    service2Text:
-      'Anyone interested in becoming a Client and/or Investor needs to register in our database. After registration, our Commercial Team will contact you to explain the plant operation and Vitis acquisition process.',
-    service3Title: 'No construction work',
-    service3Text:
-      'With Virtutis Energy, you can enjoy peace of mind without worrying about construction work or electrical installations. Our photovoltaic plants offer ideal conditions for investors and clients, meeting different energy demands efficiently.',
-    service4Title: 'No lock-in',
-    service4Text:
-      'We offer total freedom to Virtutis Energy investors. You can withdraw your investment in Vitis at any time, without having to wait 20 years. When you invest, you receive bonuses, but those bonuses are cancelled if you withdraw.',
-    service5Title: 'First monthly payment FREE',
-    service5Text:
-      'We guarantee our clients the first monthly payment free of charge, creating the perfect opportunity to get to know our products and services better.',
+    howItWorksTitle: 'How it works for clients',
+    howItWorksText:
+      'Virtutis Energy simplifies access to solar energy for those looking for savings without installing panels on their own property.',
+    step1Title: 'Sign up',
+    step1Text:
+      'Create your account and share your details so Virtutis Energy can understand your consumption profile.',
+    step2Title: 'Connect to a plant',
+    step2Text:
+      'Your consumption unit can be linked to energy generated by photovoltaic plants connected to Virtutis Energy operations.',
+    step3Title: 'Track your savings',
+    step3Text:
+      'Through the app, you can follow information, services, and opportunities related to your client profile.',
+    benefitsTitle: 'Benefits for clients',
+    benefitsText: 'A simpler, more economical, and digital journey to access solar energy with Virtutis Energy support.',
+    benefit1Title: 'Up to 30% savings',
+    benefit1Text:
+      'Lower your monthly electricity costs through energy generated by photovoltaic plants connected to Virtutis Energy.',
+    benefit2Title: 'No panel installation',
+    benefit2Text:
+      'You do not need construction work, equipment installation, or structural changes to your property.',
+    benefit3Title: 'Digital contracting',
+    benefit3Text:
+      'Registration and ongoing follow-up happen in a simple way through the Virtutis Energy app.',
+    benefit4Title: 'Accessible solar energy',
+    benefit4Text:
+      'Access the advantages of clean energy even without owning your own plant.',
+    benefit5Title: 'App monitoring',
+    benefit5Text:
+      'Check information, services, and opportunities connected to your client profile.',
+    benefit6Title: 'First monthly payment free',
+    benefit6Text:
+      'Discover the Virtutis Energy experience with an easier initial condition.',
+    faqTitle: 'Frequently asked questions',
+    faqText: 'Understand how the client experience works at Virtutis Energy.',
+    faq1Question: 'Do I need to install solar panels?',
+    faq1Answer:
+      'No. Clients connect to energy generated by photovoltaic plants associated with Virtutis Energy operations, with no construction work or installation at the property.',
+    faq2Question: 'How do the savings happen?',
+    faq2Answer:
+      'Savings happen through the compensation of energy credits, reducing the bill amount according to the contracted service conditions.',
+    faq3Question: 'Who can become a client?',
+    faq3Answer:
+      'Individuals or companies that want access to solar energy solutions in a simple, digital way and without their own installation.',
+    faq4Question: 'How do I track my information?',
+    faq4Answer:
+      'Through the Virtutis Energy app, clients can access information, services, and opportunities linked to their profile.',
+    faq5Question: 'Is any construction work or electrical installation required?',
+    faq5Answer:
+      'No. The proposal is to provide access to solar energy without installing panels on the client’s property.',
+    faq6Question: 'How do I get started?',
+    faq6Answer:
+      'Just open your account, fill in your information, and wait for contact or guidance from the Virtutis Energy team.',
+    finalCtaTitle: 'Start your solar energy journey',
+    finalCtaText: 'Open your account and follow Virtutis Energy solutions through the app.',
   },
   investorsPage: {
     title: 'Investors',
-    headline: 'Become a Virtutis Energy Investor',
+    headline: 'Invest in solar energy with Virtutis Energy',
+    heroText:
+      'Learn about Vitis, simulate opportunities linked to our photovoltaic plants, and follow projected proceeds in a clear, digital, and organized way.',
+    heroCta: 'Simulate investment',
+    heroImageAlt: 'Virtutis Energy photovoltaic plant',
     vitisTitle: 'How do Vitis work?',
     vitisText:
-      'Vitis are commercial notes issued by Virtutis Energy plants, offering returns of up to 2.35% per month in monthly proceeds. With Vitis, investors enjoy full freedom to make contributions and transfers whenever they want, maximizing financial flexibility.',
+      'Vitis are commercial notes issued by Virtutis Energy plants, linked to solar energy investment opportunities. Through them, investors can follow contributions, transfers, and projected monthly proceeds according to the conditions of each plant and the selected scenario.',
+    vitisSupport:
+      'In certain scenarios, Vitis may present projected returns of up to 2.35% per month in monthly proceeds, depending on the conditions of the operation, the plant, and the applicable documents.',
+    stepsTitle: 'How it works for investors',
+    stepsIntro:
+      'Follow solar energy investment opportunities in a structured, digital, and transparent way.',
+    step1Title: 'Choose an opportunity',
+    step1Text:
+      'Select an available plant and understand the conditions presented for the investment scenario.',
+    step2Title: 'Simulate your contribution',
+    step2Text:
+      'Enter value, quantity of Vitis, period, and plant level to view a projected proceeds scenario.',
+    step3Title: 'Track your results',
+    step3Text:
+      'Consult information, movements, and projections related to your investment in an organized way.',
     levelsTitle: 'How to read plant levels',
     levelsIntro:
-      'Plant levels organize the investment operation into progressive ranges. They help explain how plant size, Vitis quantity, and return horizon relate to each other inside the proposal presented to the investor.',
+      'Levels help compare plant operating scenarios and interpret the simulation according to the quantity of Vitis, period, and projected return.',
     level1Title: 'Level 1',
     level1Text:
-      'Level 1 represents the entry point for reading the plant structure. It works as an initial reference for investors who want to understand the investment dynamics with a lighter participation base.',
+      'Represents the entry point for reading the plant. It is an initial reference to understand investment dynamics in a lighter scenario.',
     level2Title: 'Level 2',
     level2Text:
-      'Level 2 expands that reference and indicates an intermediate operating range. At this stage, the investor can compare more clearly the evolution between contributed volume, Vitis issuance, and projected yield.',
+      'Indicates an intermediate operating range, allowing a clearer comparison of contributed volume, Vitis issuance, and projected yield.',
     level3Title: 'Level 3',
     level3Text:
-      'Level 3 corresponds to the most robust range in the plant comparison structure. It is useful for reading scenarios with stronger operating intensity, offering a broader view of plant capacity and accumulated potential over the selected period.',
+      'Represents a more robust range within the plant comparison structure, used for scenarios with higher operating intensity and greater accumulated potential.',
     levelsGuidance:
-      'In practice, levels should not be read in isolation. The best way is to evaluate the level together with the selected plant, the amount of Vitis, and the simulation term, because that combination gives real context to the estimated result.',
-    simulatePrompt: 'Run your simulation here',
+      'In practice, levels should not be analyzed in isolation. The ideal approach is to observe the selected plant, the amount of Vitis, the simulation period, and the conditions presented to the investor.',
+    simulatePrompt: 'Simulate your investment',
+    simulateIntro:
+      'Choose a plant, enter the contribution amount, the quantity of Vitis, and the desired period to view an estimated proceeds scenario.',
     selectPlant: 'Select the plant',
     selectPlantGuidance:
       'Choose a plant first to enable the simulation and compare levels within the corresponding operating range.',
+    selectPlantLabel: 'Available plant',
     analysisTitle: 'Investment Analysis',
     investedValue: 'Invested Value',
     quantity: 'Quantity of Vitis',
@@ -277,10 +366,35 @@ export const enUSTranslations: Translation = {
     simulateButton: 'Simulate Investment',
     accumulatedYield: 'Accumulated Returns',
     finalDate: 'Final Date',
+    simulationSummary: 'Simulation summary',
     chartTitle: 'Monthly Return Growth',
     chartDataset: 'Total return',
     chartYAxis: 'Accumulated Return (R$)',
     chartXAxis: 'Months',
+    faqTitle: 'Frequently asked questions',
+    faqIntro: 'Understand the main points before simulating your investment.',
+    faq1Question: 'What are Vitis?',
+    faq1Answer:
+      'Vitis are commercial notes issued by Virtutis Energy plants, linked to solar energy investment opportunities and projected proceeds according to the conditions of each operation.',
+    faq2Question: 'How does the simulation work?',
+    faq2Answer:
+      'The simulation uses information such as the selected plant, invested value, quantity of Vitis, plant level, and chosen period to estimate accumulated proceeds and the final date of the scenario.',
+    faq3Question: 'What does the plant level mean?',
+    faq3Answer:
+      'Levels help organize different plant operating ranges, allowing comparisons between contributed volume, Vitis issuance, and projected yield scenarios.',
+    faq4Question: 'What are proceeds?',
+    faq4Answer:
+      'Proceeds are the earnings generated from an investment made in Vitis. At Virtutis Energy, they represent projected values for the investor according to the selected scenario, the linked power plant, the number of Vitis, and the applicable conditions of the operation.',
+    faq5Question: 'Can I choose the plant?',
+    faq5Answer:
+      'Selection depends on the opportunities available at the moment and the conditions presented by Virtutis Energy for each plant.',
+    faq6Question: 'How do I start investing?',
+    faq6Answer:
+      'The first step is to select an available opportunity, simulate the desired scenario, and follow Virtutis Energy guidance to proceed with the investment.',
+    finalCtaTitle: 'Simulate your next solar energy investment',
+    finalCtaText:
+      'Discover available Vitis, compare scenarios, and follow projected proceeds with Virtutis Energy.',
+    finalCtaButton: 'Simulate investment',
     fillFieldsAlert: 'Please fill in all fields correctly.',
     errorPrefix: 'Error',
     serverError: 'Unable to communicate with the server.',
@@ -359,15 +473,15 @@ export const enUSTranslations: Translation = {
     employee: 'Employee',
     partnerCollaborator: 'Partner Collaborator',
     internLevelIDesc:
-      'Supports operational routines with a minimum workload of 8 hours per week, participating in practical projects for academic and professional development within Virtutis Energy.',
+      'Supports operational routines and participates in practical projects for academic and professional development within Virtutis Energy. On-site workload can be 8, 12, 16, or 20 hours per week. Total workload can be 20 or 40 hours per week in a hybrid model.',
     internLevelIIDesc:
-      'Works on research, innovation, or institutional development projects with a minimum workload of 12 hours per week, receiving incentives based on technical and scientific performance.',
+      'Works on research, innovation, or institutional development projects, receiving incentives based on technical and scientific performance. On-site workload can be 8, 12, 16, or 20 hours per week. Total workload can be 20 or 40 hours per week in a hybrid model.',
     employeeLevelIDesc:
-      'Joins the Virtutis Energy team in several areas, focused on intensive learning and progression to strategic roles, with a minimum workload of 16 hours per week.',
+      'Joins the Virtutis Energy team in several areas with a focus on intensive learning and progression to strategic roles. On-site workload can be 8, 12, 16, or 20 hours per week. Total workload can be 20 or 40 hours per week in a hybrid model.',
     employeeLevelIIDesc:
-      'Performs technical and administrative duties within their area, directly contributing to company results, with a minimum workload of 20 hours per week.',
+      'Performs technical and administrative duties within their area, directly contributing to company results. On-site workload can be 8, 12, 16, or 20 hours per week. Total workload can be 20 or 40 hours per week in a hybrid model.',
     partnerCollaboratorDesc:
-      'Participates in the company strategic activities with partial involvement, offering expertise, networking, or capital, with a minimum workload of 24 hours per week.',
+      'Participates in the company strategic activities with partial involvement, offering expertise, networking, or capital. On-site workload can be 8, 12, 16, or 20 hours per week. Total workload can be 20 or 40 hours per week in a hybrid model.',
   },
   privacyPage: {
     title: 'Privacy Policy',

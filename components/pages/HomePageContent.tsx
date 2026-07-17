@@ -322,6 +322,11 @@ export default function HomePageContent() {
       <Script src="/styles/vendor/bootstrap/js/bootstrap.bundle.min.js" strategy="afterInteractive" />
 
       <style jsx>{`
+        :global(#get-started.section) {
+          background: #ffffff;
+          padding-bottom: 2.5rem;
+        }
+
         .home-open-account-section {
           position: relative;
           isolation: isolate;
@@ -513,7 +518,7 @@ export default function HomePageContent() {
           min-height: 0;
           padding: 16px 18px;
           border-radius: 20px;
-          background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+          background: #ffffff;
           border: 1px solid rgba(26, 46, 93, 0.1);
           box-shadow: 0 16px 30px rgba(15, 32, 70, 0.07);
           transition:
@@ -753,6 +758,34 @@ export default function HomePageContent() {
         }
 
         @media (max-width: 767px) {
+          :global(#get-started.section) {
+            padding-bottom: 1.5rem;
+          }
+
+          .hero-heading-group {
+            transform: translateY(-10svh);
+            max-width: min(100%, 29rem) !important;
+            gap: 18px !important;
+          }
+
+          .hero-title-wrap {
+            max-width: 100%;
+          }
+
+          .hero-heading-group :global(#name-hero) {
+            font-size: clamp(5.35rem, 21.5vw, 7.4rem);
+            font-weight: 800;
+            line-height: 0.8;
+            text-shadow: 0 14px 28px rgba(2, 8, 59, 0.42);
+          }
+
+          .hero-heading-group :global(#hero-subtitle) {
+            font-size: clamp(1.78rem, 8.4vw, 2.15rem);
+            font-weight: 600;
+            line-height: 1.08;
+            text-shadow: 0 10px 22px rgba(2, 8, 59, 0.34);
+          }
+
           .home-company-intro {
             gap: 18px;
             padding: 24px 18px 22px;
@@ -806,8 +839,8 @@ export default function HomePageContent() {
 
           .home-open-account-actions {
             justify-content: center;
-            margin-top: 14px;
-            margin-bottom: 10px;
+            margin-top: 26px;
+            margin-bottom: 18px;
           }
 
           .home-open-account-actions :global(.btn-get-started) {
@@ -866,6 +899,19 @@ export default function HomePageContent() {
         }
 
         @media (max-width: 430px) {
+          .hero-heading-group {
+            transform: translateY(-11svh);
+            max-width: min(100%, 24rem) !important;
+          }
+
+          .hero-heading-group :global(#name-hero) {
+            font-size: clamp(4.45rem, 18.8vw, 6.1rem);
+          }
+
+          .hero-heading-group :global(#hero-subtitle) {
+            font-size: clamp(1.62rem, 7.8vw, 1.9rem);
+          }
+
           .home-company-intro {
             gap: 16px;
             padding: 20px 14px 18px;
@@ -894,7 +940,12 @@ export default function HomePageContent() {
           }
 
           .home-open-account-panel {
-            gap: 18px;
+            gap: 14px;
+          }
+
+          .home-open-account-actions {
+            margin-top: 24px;
+            margin-bottom: 18px;
           }
 
           .home-open-account-copy h3 {

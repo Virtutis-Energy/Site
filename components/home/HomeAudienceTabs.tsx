@@ -134,11 +134,15 @@ export default function HomeAudienceTabs() {
       </div>
 
       <style jsx>{`
+        :global(#features.section) {
+          padding-top: 1.65rem;
+        }
+
         .home-audience-selector-wrap {
           display: flex;
           flex-direction: column;
           align-items: center;
-          margin-top: 12px;
+          margin-top: 0;
           margin-bottom: 18px;
         }
 
@@ -354,9 +358,13 @@ export default function HomeAudienceTabs() {
         }
 
         @media (max-width: 767px) {
+          :global(#features.section) {
+            padding-top: 0.85rem;
+          }
+
           .home-audience-selector-wrap {
-            margin-top: 8px;
-            margin-bottom: 18px;
+            margin-top: 0;
+            margin-bottom: 14px;
           }
 
           .home-audience-selector-label {
