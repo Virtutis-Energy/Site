@@ -40,7 +40,7 @@ const markers: Marker[] = [
 const highlightedCountryIds = new Set(markers.map((marker) => marker.countryId))
 
 export default function WorldPresenceMap() {
-  const { locale } = useLanguage()
+  const { locale, t } = useLanguage()
   const isEnglish = locale === 'en-US'
   const isSpanish = locale === 'es-ES'
   const [topology, setTopology] = useState<TopologyData | null>(null)
@@ -117,15 +117,16 @@ export default function WorldPresenceMap() {
     <div className="world-presence-card" data-aos="fade-up" data-aos-delay="150">
       <div className="world-presence-card__header">
         <div>
-          <span className="world-presence-card__eyebrow">{isEnglish ? 'International presence' : isSpanish ? 'Presencia internacional' : 'Presença internacional'}</span>
-          <h3>{isEnglish ? 'Virtutis Energy on a real world map' : isSpanish ? 'Virtutis Energy en un mapa mundial real' : 'Virtutis Energy em um mapa-múndi real'}</h3>
+          <span className="world-presence-card__eyebrow">{t.aboutPage.mapEyebrow}</span>
+          <h3>{t.aboutPage.mapTitle}</h3>
+          <p className="world-presence-card__description">{t.aboutPage.mapText}</p>
         </div>
-        <div className="world-presence-card__badge">{isEnglish ? '12 highlighted countries' : isSpanish ? '12 países destacados' : '12 países destacados'}</div>
+        <div className="world-presence-card__badge">{t.aboutPage.mapBadge}</div>
       </div>
 
       <div className="world-presence-layout">
         <div className="world-map-shell">
-          <svg className="world-map-svg" viewBox="0 0 1000 520" role="img" aria-label={isEnglish ? 'Real world map with highlighted countries' : isSpanish ? 'Mapa mundial real con países destacados' : 'Mapa mundial real com países destacados'}>
+          <svg className="world-map-svg" viewBox="0 0 1000 520" role="img" aria-label={t.aboutPage.mapAriaLabel}>
             <defs>
               <linearGradient id="ocean-fill" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#f6f7ff" />
@@ -180,7 +181,7 @@ export default function WorldPresenceMap() {
             <span className="world-presence-countries__check" aria-hidden="true">
               <img src="/img/logo.png" alt="" />
             </span>
-            <span>{isEnglish ? 'Countries with users of the Virtutis Energy app' : isSpanish ? 'Países con usuarios de la app de Virtutis Energy' : 'Países com usuários do app da Virtutis Energy'}</span>
+            <span>{t.aboutPage.mapDropdownLabel}</span>
             <i className={`bi ${isCountryListOpen ? 'bi-chevron-up' : 'bi-chevron-down'}`} aria-hidden="true"></i>
           </button>
 
@@ -196,6 +197,15 @@ export default function WorldPresenceMap() {
           )}
         </div>
       </div>
+
+      <style jsx>{`
+        .world-presence-card__description {
+          margin: 0.85rem 0 0;
+          max-width: 54ch;
+          color: rgba(11, 31, 61, 0.76);
+          line-height: 1.7;
+        }
+      `}</style>
     </div>
   )
 }
