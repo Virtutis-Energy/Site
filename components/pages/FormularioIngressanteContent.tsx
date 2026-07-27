@@ -47,18 +47,23 @@ const subdivisionIcons: Record<SubdivisionKey, string> = {
   operationsDepartment: 'bi bi-lightning-charge',
 }
 
-const compactSubdivisionLabels: Partial<Record<SubdivisionKey, { pt: string; en: string; es: string }>> = {
-  secretaryHr: {
-    pt: 'Recursos Humanos',
-    en: 'Human Resources',
-    es: 'Recursos Humanos',
+const subdivisionGroups: Array<{
+  titleKey: 'partnerAdmin' | 'generalManagement' | 'localManagement'
+  items: SubdivisionKey[]
+}> = [
+  {
+    titleKey: 'partnerAdmin',
+    items: ['secretaryEconomy', 'secretaryHr'],
   },
-  accountingDepartment: {
-    pt: 'Contabilidade',
-    en: 'Accounting',
-    es: 'Contabilidad',
+  {
+    titleKey: 'generalManagement',
+    items: ['administrativeSector', 'legalSector', 'structuralSector', 'technologySector', 'commercialSector'],
   },
-}
+  {
+    titleKey: 'localManagement',
+    items: ['accountingDepartment', 'landDepartment', 'projectsDepartment', 'worksDepartment', 'operationsDepartment'],
+  },
+]
 
 function getSubdivisionKey(name: string) {
   return subdivisionNameToKey[normalizeText(name)] ?? null
@@ -112,26 +117,20 @@ export default function FormularioIngressanteContent() {
     return posA - posB
   })
 
+  const subdivisoesPorChave = subdivisoesOrdenadas.reduce<Partial<Record<SubdivisionKey, (typeof subdivisoesOrdenadas)[number]>>>((acc, sub) => {
+    const key = getSubdivisionKey(sub.nome)
+    if (key) {
+      acc[key] = sub
+    }
+    return acc
+  }, {})
+
   const getSubdivisionCardLabel = (name: string) => {
     const key = getSubdivisionKey(name)
     if (!key) {
       return name
     }
-
-    const compactLabel = compactSubdivisionLabels[key]
-    if (!compactLabel) {
-      return t.subdivisionsPage[key]
-    }
-
-    if (localeSegment === 'en-us') {
-      return compactLabel.en
-    }
-
-    if (localeSegment === 'es') {
-      return compactLabel.es
-    }
-
-    return compactLabel.pt
+    return t.subdivisionsPage[key]
   }
 
   return (
@@ -286,31 +285,54 @@ export default function FormularioIngressanteContent() {
                   {loadingSub ? (
                     <p className="careers-loading-copy">{t.workWithUsPage.loadingSubdivisions}</p>
                   ) : (
-                    <div className="careers-subdivision-grid" role="group" aria-label={t.workWithUsPage.subdivisions}>
-                      {subdivisoesOrdenadas.map((sub) => {
-                        const subdivisionKey = getSubdivisionKey(sub.nome)
-                        const subdivisionLabel = getSubdivisionCardLabel(sub.nome)
-                        const isSelected = formData.subdivisoes.includes(sub.id)
-                        const iconClass = subdivisionKey ? subdivisionIcons[subdivisionKey] : 'bi bi-grid'
+                    <div className="careers-subdivision-groups" role="group" aria-label={t.workWithUsPage.subdivisions}>
+                      {subdivisionGroups.map((group) => {
+                        const groupedSubdivisions = group.items
+                          .map((key) => {
+                            const sub = subdivisoesPorChave[key]
+                            if (!sub) return null
+                            return { key, sub }
+                          })
+                          .filter((item): item is { key: SubdivisionKey; sub: (typeof subdivisoesOrdenadas)[number] } => item !== null)
+
+                        if (groupedSubdivisions.length === 0) {
+                          return null
+                        }
 
                         return (
-                          <label key={sub.id} className={`careers-subdivision-card${isSelected ? ' is-selected' : ''}`}>
-                            <input
-                              className="careers-subdivision-input"
-                              type="checkbox"
-                              name="subdivisoes"
-                              value={sub.id}
-                              onChange={handleChange}
-                              checked={isSelected}
-                            />
-                            <span className="careers-subdivision-check" aria-hidden="true">
-                              <i className={`bi ${isSelected ? 'bi-check2' : 'bi-plus'}`}></i>
-                            </span>
-                            <span className="careers-subdivision-icon" aria-hidden="true">
-                              <i className={iconClass}></i>
-                            </span>
-                            <span className="careers-subdivision-text">{subdivisionLabel}</span>
-                          </label>
+                          <div key={group.titleKey} className="careers-subdivision-group" aria-labelledby={`careers-group-${group.titleKey}`}>
+                            <div className="careers-subdivision-group__header">
+                              <h4 id={`careers-group-${group.titleKey}`}>{t.subdivisionsPage[group.titleKey]}</h4>
+                            </div>
+
+                            <div className="careers-subdivision-grid">
+                              {groupedSubdivisions.map(({ key, sub }) => {
+                                const subdivisionLabel = getSubdivisionCardLabel(sub.nome)
+                                const isSelected = formData.subdivisoes.includes(sub.id)
+                                const iconClass = subdivisionIcons[key]
+
+                                return (
+                                  <label key={sub.id} className={`careers-subdivision-card${isSelected ? ' is-selected' : ''}`}>
+                                    <input
+                                      className="careers-subdivision-input"
+                                      type="checkbox"
+                                      name="subdivisoes"
+                                      value={sub.id}
+                                      onChange={handleChange}
+                                      checked={isSelected}
+                                    />
+                                    <span className="careers-subdivision-check" aria-hidden="true">
+                                      <i className={`bi ${isSelected ? 'bi-check2' : 'bi-plus'}`}></i>
+                                    </span>
+                                    <span className="careers-subdivision-icon" aria-hidden="true">
+                                      <i className={iconClass}></i>
+                                    </span>
+                                    <span className="careers-subdivision-text">{subdivisionLabel}</span>
+                                  </label>
+                                )
+                              })}
+                            </div>
+                          </div>
                         )
                       })}
                     </div>
@@ -338,6 +360,7 @@ export default function FormularioIngressanteContent() {
 
         <style jsx>{`
           .careers-page {
+            --careers-submit-blue: #0b1f3d;
             background:
               radial-gradient(circle at top left, rgba(11, 31, 61, 0.04), transparent 38%),
               linear-gradient(180deg, #ffffff 0%, #f6f9fc 100%);
@@ -507,11 +530,33 @@ export default function FormularioIngressanteContent() {
             line-height: 1.7;
           }
 
+          .careers-subdivision-groups {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 0.55rem;
+          }
+
+          .careers-subdivision-group {
+            display: block;
+          }
+
+          .careers-subdivision-group__header h4 {
+            margin: 0;
+            color: #1a2e5d;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+          }
+
+          .careers-subdivision-group__header {
+            margin-bottom: 0.5rem;
+          }
+
           .careers-subdivision-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 1rem;
-            margin-top: 1rem;
           }
 
           .careers-subdivision-card {
@@ -579,7 +624,7 @@ export default function FormularioIngressanteContent() {
             width: 2.65rem;
             height: 2.65rem;
             background: rgba(31, 94, 255, 0.08);
-            color: #1f5eff;
+            color: var(--careers-submit-blue);
             font-size: 1.05rem;
           }
 
@@ -587,8 +632,9 @@ export default function FormularioIngressanteContent() {
             color: #0b1f3d;
             font-size: 0.98rem;
             font-weight: 600;
-            line-height: 1.45;
-            white-space: nowrap;
+            line-height: 1.35;
+            white-space: normal;
+            text-wrap: balance;
           }
 
           .careers-link-button {
@@ -612,7 +658,7 @@ export default function FormularioIngressanteContent() {
             border: 0;
             box-sizing: border-box;
             border-radius: 999px;
-            background: linear-gradient(135deg, #0b1f3d 0%, #1f5eff 100%);
+            background: linear-gradient(135deg, var(--careers-submit-blue) 0%, #1f5eff 100%);
             color: #fff;
             font-weight: 700;
             letter-spacing: 0.01em;
@@ -653,9 +699,21 @@ export default function FormularioIngressanteContent() {
               grid-template-columns: 1fr;
             }
 
+            .careers-subdivision-groups {
+              gap: 1.1rem;
+            }
+
+            .careers-subdivision-group {
+              display: block;
+            }
+
+            .careers-subdivision-group__header {
+              margin-bottom: 0.42rem;
+            }
+
             .careers-subdivision-card {
               gap: 0.7rem;
-              min-height: 4.5rem;
+              min-height: 4.9rem;
               padding: 0.9rem 0.85rem;
             }
 
@@ -671,8 +729,8 @@ export default function FormularioIngressanteContent() {
             }
 
             .careers-subdivision-text {
-              font-size: 0.84rem;
-              line-height: 1.2;
+              font-size: 0.86rem;
+              line-height: 1.25;
             }
 
             .careers-submit-button {
