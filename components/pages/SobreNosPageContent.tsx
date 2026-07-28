@@ -213,8 +213,8 @@ export default function SobreNosPageContent() {
 
                 <div className="about-contact-card__group">
                   <span className="about-contact-card__label">{t.forms.email}</span>
-                  <a href="mailto:dr.gr@virtutisenergy.com" className="about-contact-card__value">
-                    dr.gr@virtutisenergy.com
+                  <a href="mailto:vitinho@virtutisenergy.com" className="about-contact-card__value">
+                    vitinho@virtutisenergy.com
                   </a>
                 </div>
 
@@ -231,7 +231,6 @@ export default function SobreNosPageContent() {
 
           <section className="about-essence-section" data-aos="fade-up" data-aos-delay="160">
             <div className="about-section-heading about-section-heading-centered">
-              <span className="about-section-heading__eyebrow">{t.aboutPage.essenceEyebrow}</span>
               <h3>{t.aboutPage.essenceTitle}</h3>
             </div>
 
@@ -287,7 +286,7 @@ export default function SobreNosPageContent() {
             display: inline-flex;
             align-items: center;
             margin-bottom: 0.85rem;
-            color: #1a2e5d;
+            color: var(--accent-color);
             font-size: 0.82rem;
             font-weight: 700;
             letter-spacing: 0.08em;
@@ -297,7 +296,7 @@ export default function SobreNosPageContent() {
           .about-overview-copy h2,
           .about-section-heading h3 {
             margin: 0;
-            color: #0b1f3d;
+            color: #02083b;
             font-size: clamp(2.05rem, 4vw, 3.35rem);
             font-weight: 700;
             line-height: 1.05;
@@ -307,7 +306,7 @@ export default function SobreNosPageContent() {
           .about-section-heading p {
             margin: 1rem 0 0;
             max-width: 62ch;
-            color: rgba(11, 31, 61, 0.78);
+            color: rgba(2, 8, 59, 0.78);
             font-size: 1.02rem;
             line-height: 1.75;
           }
@@ -320,7 +319,7 @@ export default function SobreNosPageContent() {
           .about-overview-body p {
             margin: 0;
             max-width: 64ch;
-            color: rgba(11, 31, 61, 0.8);
+            color: rgba(2, 8, 59, 0.8);
             line-height: 1.8;
           }
 
@@ -341,12 +340,12 @@ export default function SobreNosPageContent() {
             grid-template-columns: auto minmax(0, 1fr);
             gap: 0.7rem;
             align-items: start;
-            color: rgba(11, 31, 61, 0.84);
+            color: rgba(2, 8, 59, 0.84);
             line-height: 1.65;
           }
 
           .about-overview-list i {
-            color: #1a2e5d;
+            color: var(--accent-color);
             font-size: 1rem;
             margin-top: 0.18rem;
           }
@@ -386,6 +385,14 @@ export default function SobreNosPageContent() {
           .about-essence-section {
             display: grid;
             gap: 1.6rem;
+          }
+
+          .about-essence-section {
+            gap: 0.9rem;
+          }
+
+          .about-essence-section .about-section-heading-centered {
+            margin: 0.45rem auto 0.35rem;
           }
 
           .about-contact-grid {
@@ -429,14 +436,14 @@ export default function SobreNosPageContent() {
 
           .about-contact-card__header h4 {
             margin: 0;
-            color: #0b1f3d;
+            color: #02083b;
             font-size: clamp(1.25rem, 1.9vw, 1.65rem);
             font-weight: 700;
           }
 
           .about-contact-card__header p {
             margin: 0.2rem 0 0;
-            color: rgba(11, 31, 61, 0.7);
+            color: rgba(2, 8, 59, 0.7);
             line-height: 1.45;
             font-size: 0.92rem;
           }
@@ -447,7 +454,7 @@ export default function SobreNosPageContent() {
           }
 
           .about-contact-card__label {
-            color: #1a2e5d;
+            color: var(--accent-color);
             font-size: 0.8rem;
             font-weight: 700;
             letter-spacing: 0.08em;
@@ -455,7 +462,7 @@ export default function SobreNosPageContent() {
           }
 
           .about-contact-card__value {
-            color: #0b1f3d;
+            color: #02083b;
             font-weight: 600;
             text-decoration: none;
             word-break: break-word;
@@ -464,7 +471,7 @@ export default function SobreNosPageContent() {
 
           .about-contact-card__text {
             margin: 0;
-            color: rgba(11, 31, 61, 0.78);
+            color: rgba(2, 8, 59, 0.78);
             line-height: 1.6;
             font-size: 0.95rem;
           }
@@ -478,19 +485,19 @@ export default function SobreNosPageContent() {
             min-height: 43px;
             padding: 0.68rem 0.88rem;
             border-radius: 999px;
-            background: #1a2e5d;
+            background: #02083b;
             color: #ffffff;
             font-weight: 700;
             font-size: 0.91rem;
             text-decoration: none;
-            box-shadow: 0 16px 34px rgba(26, 46, 93, 0.22);
+            box-shadow: 0 16px 34px rgba(2, 8, 59, 0.22);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
           }
 
           .about-contact-button:hover,
           .about-contact-button:focus-visible {
             transform: translateY(-1px);
-            box-shadow: 0 20px 38px rgba(26, 46, 93, 0.26);
+            box-shadow: 0 20px 38px rgba(2, 8, 59, 0.26);
           }
 
           .about-carousel-frame {
@@ -592,7 +599,7 @@ export default function SobreNosPageContent() {
             border-radius: 999px;
             border: none;
             background: rgba(255, 255, 255, 0.92);
-            color: #1a2e5d;
+            color: var(--accent-color);
             box-shadow: 0 12px 28px rgba(2, 8, 59, 0.1);
             display: inline-flex;
             align-items: center;
@@ -633,7 +640,7 @@ export default function SobreNosPageContent() {
 
           .about-carousel-dot.is-active {
             width: 28px;
-            background: #1a2e5d;
+            background: #02083b;
             transform: translateY(-1px);
           }
 

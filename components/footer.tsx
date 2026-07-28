@@ -41,6 +41,7 @@ export default function Footer() {
           <p>{t.footer.addressLine2}</p>
           <p>{t.footer.addressLine3}</p>
           <p>{t.footer.addressLine4}</p>
+          <p>{t.footer.addressPostalCode}</p>
           <p className="mb-4">{t.footer.taxId}</p>
           <img src="/img/LOGO_white.png" className="logo-tec" alt="Virtutis Energy" />
         </div>

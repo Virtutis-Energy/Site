@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { getBackendUrl, parseJsonResponse } from '@/lib/backend'
 
 export interface IngressantePayload {
-  cpf: string
   nome: string
   email: string
   telefone: string

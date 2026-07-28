@@ -9,7 +9,6 @@ import { useNiveisOperacao } from '@/hooks/useNiveisOperacao'
 import { getLocalizedPath } from '@/lib/i18n'
 
 const BASE_ASSOCIATE_REVENUE = 1392.05
-const VITIS_UNIT_VALUE = 3.2
 const plantOptions = [
   { id: '20', nome: '20 kW', power: 20, fraction: 1 / 3, vitis: 40, rentalPrice: 22.24 },
   { id: '40', nome: '40 kW', power: 40, fraction: 2 / 3, vitis: 80, rentalPrice: 44.48 },
@@ -60,8 +59,6 @@ export default function AssociadoPageContent() {
     [localeSegment]
   )
 
-  const leaseRevenue = selectedPlantData.rentalPrice
-  const vitisRevenue = selectedPlantData.vitis * VITIS_UNIT_VALUE
   const associateRevenue = BASE_ASSOCIATE_REVENUE * selectedPlantData.fraction * associateLevel
 
   const steps = [
@@ -236,25 +233,9 @@ export default function AssociadoPageContent() {
               <p className="associate-help-text">{t.associatePage.selectPlantGuidance}</p>
 
               <div className="associate-results-grid">
-                <article className="associate-result-card associate-result-card-wide">
-                  <span>{t.associatePage.leasedEnergy}</span>
-                  <strong>{t.associatePage.powerSummary(selectedPlantData.power, selectedPlantData.vitis)}</strong>
-                </article>
-                <article className="associate-result-card">
-                  <span>{t.associatePage.leaseRevenue}</span>
-                  <strong>{formatter.format(leaseRevenue)}</strong>
-                </article>
-                <article className="associate-result-card">
-                  <span>{t.associatePage.vitisRevenue}</span>
-                  <strong>{formatter.format(vitisRevenue)}</strong>
-                </article>
-                <article className="associate-result-card">
+                <article className="associate-result-card associate-result-card-featured">
                   <span>{t.associatePage.levelRevenue}</span>
                   <strong>{formatter.format(associateRevenue)}</strong>
-                </article>
-                <article className="associate-result-card">
-                  <span>{t.associatePage.managementFee}</span>
-                  <strong>{t.associatePage.managementFeePending}</strong>
                 </article>
               </div>
             </div>
@@ -343,7 +324,7 @@ export default function AssociadoPageContent() {
             display: inline-flex;
             align-items: center;
             margin-bottom: 1rem;
-            color: #1a2e5d;
+            color: var(--accent-color);
             font-size: 0.82rem;
             font-weight: 700;
             letter-spacing: 0.08em;
@@ -353,7 +334,7 @@ export default function AssociadoPageContent() {
           .associate-hero-copy h2,
           .associate-section-heading h3 {
             margin: 0;
-            color: #0b1f3d;
+            color: #02083b;
             font-size: clamp(1.85rem, 2.8vw, 2.9rem);
             font-weight: 700;
             line-height: 1.1;
@@ -364,7 +345,7 @@ export default function AssociadoPageContent() {
           .associate-section-heading p,
           .associate-info-card p {
             margin: 1rem 0 0;
-            color: rgba(11, 31, 61, 0.76);
+            color: rgba(2, 8, 59, 0.76);
             line-height: 1.68;
             text-align: left;
           }
@@ -382,7 +363,7 @@ export default function AssociadoPageContent() {
             padding: 0.9rem 1.7rem;
             border: 0;
             border-radius: 999px;
-            background: #0b1f3d;
+            background: #02083b;
             color: #ffffff;
             font-weight: 700;
             transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
@@ -390,7 +371,7 @@ export default function AssociadoPageContent() {
 
           .associate-primary-button:hover {
             transform: translateY(-1px);
-            box-shadow: 0 14px 26px rgba(11, 31, 61, 0.16);
+            box-shadow: 0 14px 26px rgba(2, 8, 59, 0.16);
             opacity: 0.96;
           }
 
@@ -425,7 +406,7 @@ export default function AssociadoPageContent() {
           .associate-support-text {
             max-width: 41rem;
             padding-top: 0.75rem;
-            border-top: 1px solid rgba(11, 31, 61, 0.1);
+            border-top: 1px solid rgba(2, 8, 59, 0.1);
           }
 
           .associate-summary-card {
@@ -449,7 +430,7 @@ export default function AssociadoPageContent() {
           .associate-summary-item span,
           .associate-result-card span,
           .associate-inline-notes span {
-            color: rgba(11, 31, 61, 0.58);
+            color: rgba(2, 8, 59, 0.58);
             font-size: 0.82rem;
             font-weight: 600;
             letter-spacing: 0.01em;
@@ -457,7 +438,7 @@ export default function AssociadoPageContent() {
 
           .associate-summary-item strong,
           .associate-result-card strong {
-            color: #0b1f3d;
+            color: #02083b;
             font-size: 1.02rem;
             line-height: 1.4;
           }
@@ -510,15 +491,15 @@ export default function AssociadoPageContent() {
             height: 3rem;
             margin-bottom: 1rem;
             border-radius: 18px;
-            background: rgba(31, 94, 255, 0.1);
-            color: #1f5eff;
+            background: rgba(2, 8, 59, 0.1);
+            color: #02083b;
             font-size: 1.2rem;
           }
 
           .associate-step-card h4,
           .associate-tracking-card h4 {
             margin: 0 0 0.55rem;
-            color: #0b1f3d;
+            color: #02083b;
             font-size: 1.08rem;
             font-weight: 700;
             text-align: left;
@@ -528,7 +509,7 @@ export default function AssociadoPageContent() {
           .associate-tracking-card p,
           .associate-faq-panel p {
             margin: 0;
-            color: rgba(11, 31, 61, 0.74);
+            color: rgba(2, 8, 59, 0.74);
             line-height: 1.6;
             text-align: left;
           }
@@ -571,7 +552,7 @@ export default function AssociadoPageContent() {
           .associate-simulator-intro {
             max-width: 28.5rem;
             margin: 0;
-            color: rgba(11, 31, 61, 0.68);
+            color: rgba(2, 8, 59, 0.68);
             font-size: 0.95rem;
             line-height: 1.52;
           }
@@ -596,7 +577,7 @@ export default function AssociadoPageContent() {
           }
 
           .associate-inline-note-card strong {
-            color: #0b1f3d;
+            color: #02083b;
             font-size: 0.92rem;
             line-height: 1.45;
             font-weight: 600;
@@ -605,7 +586,7 @@ export default function AssociadoPageContent() {
           .associate-note,
           .associate-help-text {
             margin: 0;
-            color: rgba(11, 31, 61, 0.6);
+            color: rgba(2, 8, 59, 0.6);
             font-size: 0.88rem;
             line-height: 1.48;
             text-align: left;
@@ -635,7 +616,7 @@ export default function AssociadoPageContent() {
 
           .associate-label {
             margin-bottom: 0.38rem;
-            color: #0b1f3d;
+            color: #02083b;
             font-size: 0.9rem;
             font-weight: 700;
           }
@@ -644,37 +625,38 @@ export default function AssociadoPageContent() {
             min-height: 3rem;
             border-radius: 14px;
             border: 1px solid rgba(11, 31, 61, 0.14);
-            color: #0b1f3d;
+            color: #02083b;
             box-shadow: none;
             padding-inline: 0.9rem 2rem;
           }
 
           :global(.associate-select:focus) {
-            border-color: rgba(31, 94, 255, 0.48);
-            box-shadow: 0 0 0 0.18rem rgba(31, 94, 255, 0.12);
+            border-color: rgba(2, 8, 59, 0.48);
+            box-shadow: 0 0 0 0.18rem rgba(2, 8, 59, 0.12);
           }
 
           .associate-results-grid {
             display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-template-columns: 1fr;
             gap: 0.75rem;
             margin-top: 0.8rem;
+            justify-items: center;
           }
 
           .associate-result-card {
             display: grid;
             gap: 0.22rem;
-            min-height: 5.75rem;
-            padding: 0.82rem 0.92rem;
+            width: min(100%, 22rem);
+            min-height: 5.9rem;
+            padding: 0.95rem 1rem;
             align-content: center;
             justify-items: flex-start;
             text-align: left;
             border-radius: 20px;
           }
 
-          .associate-result-card-wide {
-            grid-column: 1 / -1;
-            min-height: 5.25rem;
+          .associate-result-card-featured {
+            justify-self: center;
           }
 
           .associate-result-card span {
@@ -682,7 +664,7 @@ export default function AssociadoPageContent() {
           }
 
           .associate-result-card strong {
-            font-size: 1rem;
+            font-size: clamp(1.02rem, 1.8vw, 1.18rem);
             line-height: 1.35;
           }
 
@@ -709,14 +691,14 @@ export default function AssociadoPageContent() {
             padding: 1rem 1.1rem;
             border: 0;
             background: transparent;
-            color: #0b1f3d;
+            color: #02083b;
             text-align: left;
             font-size: 1rem;
             font-weight: 700;
           }
 
           .associate-faq-trigger i {
-            color: #1f5eff;
+            color: var(--accent-color);
             font-size: 1rem;
           }
 
@@ -762,7 +744,7 @@ export default function AssociadoPageContent() {
             :global(.page-title h1) {
               color: #ffffff !important;
               opacity: 1 !important;
-              text-shadow: 0 10px 24px rgba(11, 31, 61, 0.28) !important;
+              text-shadow: 0 10px 24px rgba(2, 8, 59, 0.28) !important;
             }
 
             .associate-page {
