@@ -128,7 +128,7 @@ export default function DigitalEcosystemSection() {
 
         .virtutis-ecosystem-description {
           margin: 0;
-          color: #1a2e5d;
+          color: var(--accent-color);
           font-size: 0.96rem;
           line-height: 1.7;
         }
@@ -163,16 +163,16 @@ export default function DigitalEcosystemSection() {
         }
 
         .virtutis-ecosystem-button--primary {
-          background: linear-gradient(135deg, #02083b 0%, #1a2e5d 100%);
+          background: #02083b;
           color: #fff;
-          box-shadow: 0 18px 34px rgba(26, 46, 93, 0.22);
+          box-shadow: 0 18px 34px rgba(2, 8, 59, 0.22);
         }
 
         .virtutis-ecosystem-button--secondary {
           background: #ffffff;
           border-color: rgba(163, 181, 203, 0.36);
-          color: #1a2e5d;
-          box-shadow: 0 10px 20px rgba(26, 46, 93, 0.06);
+          color: var(--accent-color);
+          box-shadow: 0 10px 20px rgba(2, 8, 59, 0.06);
         }
 
         .virtutis-ecosystem-highlights {
@@ -191,7 +191,7 @@ export default function DigitalEcosystemSection() {
           border-radius: 18px;
           background: #ffffff;
           border: 1px solid rgba(163, 181, 203, 0.32);
-          box-shadow: 0 10px 20px rgba(26, 46, 93, 0.07);
+          box-shadow: 0 10px 20px rgba(2, 8, 59, 0.07);
         }
 
         .virtutis-ecosystem-highlight-icon {
@@ -203,7 +203,7 @@ export default function DigitalEcosystemSection() {
           height: 38px;
           border-radius: 12px;
           background: rgba(163, 181, 203, 0.18);
-          color: #1a2e5d;
+          color: var(--accent-color);
           font-size: 0.9rem;
         }
 
@@ -216,7 +216,7 @@ export default function DigitalEcosystemSection() {
 
         .virtutis-ecosystem-highlight p {
           margin: 0;
-          color: #1a2e5d;
+          color: var(--accent-color);
           font-size: 0.84rem;
           line-height: 1.45;
           text-align: left;
@@ -255,7 +255,7 @@ export default function DigitalEcosystemSection() {
           max-width: 100%;
           filter:
             drop-shadow(0 35px 55px rgba(2, 8, 59, 0.28))
-            drop-shadow(0 12px 22px rgba(26, 46, 93, 0.18));
+            drop-shadow(0 12px 22px rgba(2, 8, 59, 0.18));
         }
 
         .virtutis-ecosystem-mascot {

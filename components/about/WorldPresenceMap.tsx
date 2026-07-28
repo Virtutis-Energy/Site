@@ -202,7 +202,7 @@ export default function WorldPresenceMap() {
         .world-presence-card__description {
           margin: 0.85rem 0 0;
           max-width: 54ch;
-          color: rgba(11, 31, 61, 0.76);
+          color: rgba(2, 8, 59, 0.76);
           line-height: 1.7;
         }
       `}</style>

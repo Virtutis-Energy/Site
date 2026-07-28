@@ -20,7 +20,7 @@ const benefitIcons = [
 export default function ClientesPageContent() {
   const router = useRouter()
   const { localeSegment, t } = useLanguage()
-  const { economia, handleCalculate } = useEconomia(t.clientsPage)
+  const { billValue, setBillValue, economia, error, handleCalculate } = useEconomia(t.clientsPage)
   const [activeFaq, setActiveFaq] = useState(0)
 
   const steps = [
@@ -93,12 +93,38 @@ export default function ClientesPageContent() {
                 {t.clientsPage.simulatorLabel}
               </label>
               <div className="clients-simulator-controls">
-                <input type="text" className="form-control clients-input" id="monthlyBill" placeholder={t.clientsPage.billPlaceholder} aria-label={t.clientsPage.simulatorLabel} />
+                <input
+                  type="text"
+                  className="form-control clients-input"
+                  id="monthlyBill"
+                  placeholder={t.clientsPage.billPlaceholder}
+                  aria-label={t.clientsPage.simulatorLabel}
+                  value={billValue}
+                  onChange={(event) => setBillValue(event.target.value)}
+                />
                 <button type="button" className="clients-secondary-button" onClick={handleCalculate}>
                   {t.clientsPage.calculate}
                 </button>
               </div>
-              {economia && <div className="clients-result-card">{economia}</div>}
+              {error ? <div className="clients-feedback-card clients-feedback-card--error">{error}</div> : null}
+              {economia ? (
+                <div className="clients-result-card">
+                  <div className="clients-result-grid">
+                    <div className="clients-result-item">
+                      <span className="clients-result-label">{t.clientsPage.currentBillLabel}</span>
+                      <strong>{economia.contaAtual}</strong>
+                    </div>
+                    <div className="clients-result-item">
+                      <span className="clients-result-label">{t.clientsPage.estimatedFinalCostLabel}</span>
+                      <strong>{economia.custoFinal}</strong>
+                    </div>
+                    <div className="clients-result-item clients-result-item--highlight">
+                      <span className="clients-result-label">{t.clientsPage.estimatedMonthlySavingsLabel}</span>
+                      <strong>{economia.economiaMensal}</strong>
+                    </div>
+                  </div>
+                </div>
+              ) : null}
             </form>
           </div>
 
@@ -202,7 +228,7 @@ export default function ClientesPageContent() {
             display: inline-flex;
             align-items: center;
             margin-bottom: 1rem;
-            color: #1a2e5d;
+            color: var(--accent-color);
             font-size: 0.82rem;
             font-weight: 700;
             letter-spacing: 0.08em;
@@ -212,7 +238,7 @@ export default function ClientesPageContent() {
           .clients-hero-copy h2,
           .clients-section-heading h3 {
             margin: 0;
-            color: #0b1f3d;
+            color: #02083b;
             font-size: clamp(1.9rem, 2.8vw, 2.85rem);
             font-weight: 700;
             line-height: 1.1;
@@ -222,7 +248,7 @@ export default function ClientesPageContent() {
           .clients-section-heading p {
             margin: 1rem 0 0;
             max-width: 42rem;
-            color: rgba(11, 31, 61, 0.75);
+            color: rgba(2, 8, 59, 0.75);
             line-height: 1.72;
             text-align: left;
           }
@@ -258,17 +284,17 @@ export default function ClientesPageContent() {
             margin-top: 1.25rem;
             min-height: 3.3rem;
             padding: 0.9rem 1.65rem;
-            background: #1a2e5d;
+            background: #02083b;
             color: #fff;
-            box-shadow: 0 16px 30px rgba(11, 31, 61, 0.18);
+            box-shadow: 0 16px 30px rgba(2, 8, 59, 0.18);
           }
 
           .clients-secondary-button {
             min-height: 3.3rem;
             padding: 0.85rem 1.55rem;
-            background: #0b1f3d;
+            background: #02083b;
             color: #fff;
-            box-shadow: 0 12px 24px rgba(11, 31, 61, 0.16);
+            box-shadow: 0 12px 24px rgba(2, 8, 59, 0.16);
             white-space: nowrap;
           }
 
@@ -304,7 +330,7 @@ export default function ClientesPageContent() {
           }
 
           .clients-label {
-            color: #0b1f3d;
+            color: #02083b;
             font-size: 0.92rem;
             font-weight: 600;
           }
@@ -319,28 +345,70 @@ export default function ClientesPageContent() {
           :global(.clients-input.form-control) {
             min-height: 3.3rem;
             padding: 0.9rem 1rem;
-            border: 1px solid rgba(11, 31, 61, 0.14);
+            border: 1px solid rgba(2, 8, 59, 0.14);
             border-radius: 16px;
             background: #fff;
-            color: #0b1f3d;
+            color: #02083b;
             box-shadow: none;
           }
 
           :global(.clients-input.form-control:focus) {
-            border-color: rgba(31, 94, 255, 0.6);
-            box-shadow: 0 0 0 4px rgba(31, 94, 255, 0.12);
+            border-color: rgba(2, 8, 59, 0.6);
+            box-shadow: 0 0 0 4px rgba(2, 8, 59, 0.12);
+          }
+
+          .clients-feedback-card,
+          .clients-result-card {
+            border-radius: 18px;
+            max-width: 100%;
+          }
+
+          .clients-feedback-card {
+            padding: 0.95rem 1.1rem;
+            border: 1px solid rgba(183, 28, 28, 0.12);
+            background: rgba(183, 28, 28, 0.06);
+            color: #8d1f1f;
+            font-weight: 600;
           }
 
           .clients-result-card {
-            display: inline-flex;
-            align-items: center;
-            width: fit-content;
-            max-width: 100%;
-            padding: 0.95rem 1.1rem;
-            border-radius: 18px;
-            background: rgba(31, 94, 255, 0.08);
-            color: #0b1f3d;
-            font-weight: 600;
+            padding: 1rem;
+            border: 1px solid rgba(11, 31, 61, 0.08);
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 12px 26px rgba(11, 31, 61, 0.06);
+          }
+
+          .clients-result-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0.9rem;
+          }
+
+          .clients-result-item {
+            display: grid;
+            gap: 0.3rem;
+            padding: 0.95rem 1rem;
+            border-radius: 16px;
+            background: rgba(2, 8, 59, 0.04);
+          }
+
+          .clients-result-item strong {
+            color: #02083b;
+            font-size: clamp(1rem, 1.8vw, 1.28rem);
+            line-height: 1.2;
+          }
+
+          .clients-result-item--highlight {
+            background: rgba(2, 8, 59, 0.1);
+            border: 1px solid rgba(2, 8, 59, 0.14);
+          }
+
+          .clients-result-label {
+            color: rgba(2, 8, 59, 0.68);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
           }
 
           .clients-steps-section,
@@ -387,15 +455,15 @@ export default function ClientesPageContent() {
             height: 2.8rem;
             margin-bottom: 1.05rem;
             border-radius: 16px;
-            background: rgba(31, 94, 255, 0.08);
-            color: #1f5eff;
+            background: rgba(2, 8, 59, 0.08);
+            color: #02083b;
             font-size: 1.1rem;
           }
 
           .clients-step-card h4,
           .clients-benefit-card h4 {
             margin: 0 0 0.65rem;
-            color: #0b1f3d;
+            color: #02083b;
             font-size: 1.1rem;
             font-weight: 700;
           }
@@ -404,7 +472,7 @@ export default function ClientesPageContent() {
           .clients-benefit-card p,
           .clients-faq-panel p {
             margin: 0;
-            color: rgba(11, 31, 61, 0.74);
+            color: rgba(2, 8, 59, 0.74);
             line-height: 1.68;
             text-align: left;
           }
@@ -425,7 +493,7 @@ export default function ClientesPageContent() {
             padding: 1.2rem 1.3rem;
             border: 0;
             background: transparent;
-            color: #0b1f3d;
+            color: #02083b;
             font-size: 1rem;
             font-weight: 600;
             text-align: left;
@@ -436,8 +504,8 @@ export default function ClientesPageContent() {
           }
 
           .clients-faq-item.is-open {
-            border-color: rgba(31, 94, 255, 0.32);
-            box-shadow: 0 16px 32px rgba(31, 94, 255, 0.08);
+            border-color: rgba(2, 8, 59, 0.32);
+            box-shadow: 0 16px 32px rgba(2, 8, 59, 0.08);
           }
 
           @media (max-width: 1199px) {
@@ -461,7 +529,7 @@ export default function ClientesPageContent() {
             :global(.page-title h1) {
               color: #ffffff !important;
               opacity: 1 !important;
-              text-shadow: 0 10px 24px rgba(11, 31, 61, 0.28) !important;
+              text-shadow: 0 10px 24px rgba(2, 8, 59, 0.28) !important;
             }
 
             .clients-hero-card,
@@ -471,7 +539,8 @@ export default function ClientesPageContent() {
             }
 
             .clients-simulator-controls,
-            .clients-benefits-grid {
+            .clients-benefits-grid,
+            .clients-result-grid {
               grid-template-columns: 1fr;
             }
 

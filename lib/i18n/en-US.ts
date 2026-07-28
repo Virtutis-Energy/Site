@@ -31,10 +31,11 @@ export const enUSTranslations: Translation = {
     languageSwitcherLabel: 'Language',
   },
   footer: {
-    addressLine1: 'Humberto Monte Ave, no number',
-    addressLine2: 'Block 334 - Entrepreneurship and Innovation Hub',
-    addressLine3: 'Pici Campus - Federal University of Ceara',
-    addressLine4: 'Pici, Fortaleza - CE. ZIP: 60440-593',
+    addressLine1: 'Av. Humberto Monte, s/n',
+    addressLine2: 'Bloco 334 - Condomínio de Empreendedorismo e Inovação',
+    addressLine3: 'Campus do Pici - Universidade Federal do Ceará',
+    addressLine4: 'Pici, Fortaleza - CE',
+    addressPostalCode: 'CEP: 60440-593',
     taxId: '40.121.761/0001-16',
   },
   home: {
@@ -270,8 +271,8 @@ export const enUSTranslations: Translation = {
     mapBadge: '12 highlighted countries',
     mapDropdownLabel: 'Countries with users of the Virtutis Energy app',
     mapAriaLabel: 'Real world map with highlighted countries',
-    essenceEyebrow: 'Symbolic identity',
-    essenceTitle: 'The essence of Virtutis',
+    essenceEyebrow: '',
+    essenceTitle: 'The source of the best energy',
     essenceText:
       'Virtutis carries the idea of strength, virtue, purpose, and continuous construction. The section below reinforces that symbolic meaning through the dove and the Latin text that accompany the brand identity.',
   },
@@ -288,6 +289,12 @@ export const enUSTranslations: Translation = {
     question: 'What is the average amount you usually pay on your electricity bill?',
     billPlaceholder: 'Enter your bill amount',
     calculate: 'Calculate',
+    currentBillLabel: 'Current bill amount',
+    estimatedFinalCostLabel: 'Estimated final cost with Virtutis Energy',
+    estimatedMonthlySavingsLabel: 'Estimated monthly savings',
+    emptyValueError: 'Enter the average amount of your energy bill.',
+    nonPositiveValueError: 'Enter a value greater than zero.',
+    invalidValueError: 'Enter a valid amount to run the simulation.',
     economyResult: (value: string) => `Estimated savings of R$ ${value} per month!`,
     calculationError: 'Unable to calculate.',
     serverError: 'Unable to connect to the server.',
@@ -452,8 +459,10 @@ export const enUSTranslations: Translation = {
     subdivisions: 'Departments (you can select more than one):',
     loadingSubdivisions: 'Loading departments...',
     learnMore: 'Learn more about working with us',
-    branchAddress: 'Humberto Monte Ave, no number, Fortaleza, CE',
-    headOfficeAddress: 'Barao de Studart Ave, 1980 - Aldeota, Fortaleza - CE, 60120-024',
+    branchAddress:
+      'Av. Humberto Monte, s/n\nBloco 334 - Condomínio de Empreendedorismo e Inovação\nCampus do Pici - Universidade Federal do Ceará\nPici, Fortaleza - CE\nCEP: 60440-593',
+    headOfficeAddress:
+      'Av. Humberto Monte, s/n\nBloco 334 - Condomínio de Empreendedorismo e Inovação\nCampus do Pici - Universidade Federal do Ceará\nPici, Fortaleza - CE\nCEP: 60440-593',
     introTitle: 'Be part of Virtutis Energy',
     introText:
       'We are looking for people who want to grow in a multidisciplinary environment connected to solar energy, technology, and innovation. Here, different teams work together to build solutions that drive Virtutis Energy expansion.',
@@ -463,6 +472,23 @@ export const enUSTranslations: Translation = {
     formIntro: 'Fill in your details so we can get to know your profile better.',
     areasTitle: 'Areas of interest',
     areasIntro: 'You can select more than one area of activity.',
+    toggleSelection: (area: string, selected: boolean) => (selected ? `Deselect area ${area}` : `Select area ${area}`),
+    showAreaDetails: (area: string) => `Show description for ${area}`,
+    hideAreaDetails: (area: string) => `Hide description for ${area}`,
+    bondsTitle: 'Learn about our engagements',
+    bondsIntro: 'Learn about the participation and professional development modalities available at Virtutis Energy.',
+    openBondDetails: (bond: string) => `Open information for ${bond}`,
+    closeBondDetails: (bond: string) => `Close information for ${bond}`,
+    bondInternLevel1Desc:
+      'Supports the company operational routines and participates in practical projects focused on academic and professional development within Virtutis Energy.\n\nOn-site workload can be 8, 12, 16, or 20 hours per week. Total workload can be 20 or 40 hours per week in a hybrid model.',
+    bondInternLevel2Desc:
+      'Works on research, innovation, or institutional development projects and may receive incentives according to technical and scientific performance.\n\nOn-site workload can be 8, 12, 16, or 20 hours per week. Total workload can be 20 or 40 hours per week in a hybrid model.',
+    bondEmployeeLevel1Desc:
+      'Joins the Virtutis Energy team in different areas, focusing on intensive learning, professional development, and progression to strategic roles.\n\nOn-site workload can be 8, 12, 16, or 20 hours per week. Total workload can be 20 or 40 hours per week in a hybrid model.',
+    bondEmployeeLevel2Desc:
+      'Performs technical and administrative duties within their area, contributing directly to Virtutis Energy activities and results.\n\nOn-site workload can be 8, 12, 16, or 20 hours per week. Total workload can be 20 or 40 hours per week in a hybrid model.',
+    bondPartnerCollaboratorDesc:
+      'Participates in the company strategic activities with partial involvement, contributing through experience, networking, or capital.\n\nOn-site workload can be 8, 12, 16, or 20 hours per week. Total workload can be 20 or 40 hours per week in a hybrid model.',
     submitCta: 'Submit application',
   },
   subdivisionsPage: {
@@ -473,39 +499,63 @@ export const enUSTranslations: Translation = {
     generalManagement: 'General Management',
     localManagement: 'Local Management',
     secretaryEconomy: 'Economics Office',
+    secretaryEconomyShortDesc:
+      'Establishes and monitors Virtutis Energy financial control, allocating resources to Offices, Sectors, and Departments according to the company planning and growth strategy.',
     secretaryEconomyDesc:
       'Responsible for establishing Virtutis Energy financial control, allocating and monitoring resources for offices, sectors, and departments according to the company growth strategy.',
     secretaryHr: 'Human Resources Office',
+    secretaryHrShortDesc:
+      'Responsible for internal relationships among Virtutis Energy members, onboarding new collaborators, and reallocating their roles and engagements.',
     secretaryHrDesc:
       'Responsible for internal relationships among Virtutis Energy members, onboarding new collaborators, and reallocating roles and engagements.',
     administrativeSector: 'Administrative Sector',
+    administrativeSectorShortDesc:
+      'Manages the company by following the attendance and productivity of members across Offices, Sectors, and Departments.',
     administrativeSectorDesc:
       'Responsible for managing the company through attendance and productivity control across offices, sectors, and departments.',
     legalSector: 'Legal Sector',
+    legalSectorShortDesc:
+      'Responsible for drafting contracts and monitoring the rules and regulations related to the energy generation market.',
     legalSectorDesc:
       'Responsible for drafting contracts and monitoring regulations related to the energy generation market.',
     structuralSector: 'Structural Sector',
+    structuralSectorShortDesc:
+      'Works on the company material structure, partnership development, and the personal and professional growth of Virtutis Energy members.',
     structuralSectorDesc:
       'Focused on material structuring, partnership building, and the personal and professional development of company members.',
     technologySector: 'Technology Sector',
+    technologySectorShortDesc:
+      'Collects, manages, and directs data efficiently and securely, developing solutions that strengthen Virtutis Energy positioning as an energy fintech.',
     technologySectorDesc:
       'Collects, manages, and directs data efficiently and securely, positioning Virtutis Energy in the market as an Energy Fintech.',
     commercialSector: 'Commercial Sector',
+    commercialSectorShortDesc:
+      'Leads relationships with clients and investors, organizes marketing actions, and communicates the company main updates.',
     commercialSectorDesc:
       'Leads relationships with clients and investors, organizes marketing actions, and shares company updates.',
     accountingDepartment: 'Accounting Department',
+    accountingDepartmentShortDesc:
+      'Manages cash flow related to plant leasing and Vitis contribution or transfer operations.',
     accountingDepartmentDesc:
       'Manages the cash flow related to Plant Leasing and Vitis contributions or transfers.',
     landDepartment: 'Land Department',
+    landDepartmentShortDesc:
+      'Prospects and adapts land intended for branch plants, including regularization, cleaning, and technical assessment.',
     landDepartmentDesc:
       'Responsible for prospecting and preparing land for branch plants, including regularization, cleaning, and technical analysis.',
     projectsDepartment: 'Projects Department',
+    projectsDepartmentShortDesc:
+      'Develops the basic and executive plant projects, detailing layout, technical aspects, and grid connection.',
     projectsDepartmentDesc:
       'Develops the basic and executive plant projects, detailing the layout and grid connection.',
     worksDepartment: 'Construction Department',
+    worksDepartmentShortDesc:
+      'Executes plant construction and manages the construction schedule, material inventory, and commissioning process.',
     worksDepartmentDesc:
       'Executes plant construction, manages the work schedule, inventory, and commissioning.',
     operationsDepartment: 'Operations Department',
+    operationsDepartmentShortDesc:
+      'Leads client relationships, monitors plant performance, and communicates the main operation-related updates.',
     operationsDepartmentDesc:
       'Leads client relationships, monitors plant performance, and communicates updates.',
     intern: 'Intern',

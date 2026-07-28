@@ -357,7 +357,7 @@ export default function InvestidoresPageContent() {
           .investors-hero-copy h2,
           .investors-section-heading h3 {
             margin: 0;
-            color: #0b1f3d;
+            color: #02083b;
             font-size: clamp(1.95rem, 3vw, 2.9rem);
             font-weight: 700;
             line-height: 1.1;
@@ -368,7 +368,7 @@ export default function InvestidoresPageContent() {
           .investors-support-text,
           .investors-simulator-guidance {
             margin: 1rem 0 0;
-            color: rgba(11, 31, 61, 0.75);
+            color: rgba(2, 8, 59, 0.75);
             line-height: 1.75;
             text-align: left;
           }
@@ -404,16 +404,16 @@ export default function InvestidoresPageContent() {
             padding: 0.85rem 1.5rem;
             border: 0;
             border-radius: 999px;
-            background: #0b1f3d;
+            background: #02083b;
             color: #fff;
             font-weight: 700;
-            box-shadow: 0 16px 30px rgba(11, 31, 61, 0.18);
+            box-shadow: 0 16px 30px rgba(2, 8, 59, 0.18);
             transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
           }
 
           .investors-primary-button:hover:not(:disabled) {
             transform: translateY(-1px);
-            box-shadow: 0 18px 34px rgba(11, 31, 61, 0.22);
+            box-shadow: 0 18px 34px rgba(2, 8, 59, 0.22);
           }
 
           .investors-primary-button:disabled {
@@ -460,7 +460,7 @@ export default function InvestidoresPageContent() {
 
           .investors-faq-panel p {
             margin: 0;
-            color: rgba(11, 31, 61, 0.74);
+            color: rgba(2, 8, 59, 0.74);
             line-height: 1.7;
             text-align: left;
           }
@@ -478,14 +478,14 @@ export default function InvestidoresPageContent() {
           .investors-label {
             display: inline-block;
             margin-bottom: 0.55rem;
-            color: #0b1f3d;
+            color: #02083b;
             font-size: 0.92rem;
             font-weight: 600;
           }
 
           .investors-help-text {
             margin: 0.8rem 0 0;
-            color: rgba(11, 31, 61, 0.68);
+            color: rgba(2, 8, 59, 0.68);
             line-height: 1.65;
           }
 
@@ -501,7 +501,7 @@ export default function InvestidoresPageContent() {
             align-items: center;
             gap: 0.6rem;
             margin: 0 0 1.4rem;
-            color: #0b1f3d;
+            color: #02083b;
             font-size: 1.15rem;
             font-weight: 700;
           }
@@ -520,17 +520,17 @@ export default function InvestidoresPageContent() {
           :global(.investors-select.form-select) {
             min-height: 3.25rem;
             padding: 0.9rem 1rem;
-            border: 1px solid rgba(11, 31, 61, 0.14);
+            border: 1px solid rgba(2, 8, 59, 0.14);
             border-radius: 16px;
             background: #fff;
-            color: #0b1f3d;
+            color: #02083b;
             box-shadow: none;
           }
 
           :global(.investors-input.form-control:focus),
           :global(.investors-select.form-select:focus) {
-            border-color: rgba(31, 94, 255, 0.6);
-            box-shadow: 0 0 0 4px rgba(31, 94, 255, 0.12);
+            border-color: rgba(2, 8, 59, 0.6);
+            box-shadow: 0 0 0 4px rgba(2, 8, 59, 0.12);
           }
 
           .investors-readonly {
@@ -541,7 +541,7 @@ export default function InvestidoresPageContent() {
             border: 1px solid rgba(11, 31, 61, 0.12);
             border-radius: 16px;
             background: #fff;
-            color: #0b1f3d;
+            color: #02083b;
             font-weight: 600;
           }
 
@@ -583,14 +583,14 @@ export default function InvestidoresPageContent() {
           .investors-result-card span {
             display: block;
             margin-bottom: 0.4rem;
-            color: rgba(11, 31, 61, 0.62);
+            color: rgba(2, 8, 59, 0.62);
             font-size: 0.82rem;
             font-weight: 600;
           }
 
           .investors-summary-card strong,
           .investors-result-card strong {
-            color: #0b1f3d;
+            color: #02083b;
             font-size: 1rem;
             font-weight: 700;
             word-break: break-word;
@@ -611,7 +611,7 @@ export default function InvestidoresPageContent() {
 
           .investors-chart-card h5 {
             margin: 0 0 1rem;
-            color: #0b1f3d;
+            color: #02083b;
             text-align: center;
             font-size: 1.05rem;
             font-weight: 700;
@@ -633,7 +633,7 @@ export default function InvestidoresPageContent() {
             padding: 1.2rem 1.3rem;
             border: 0;
             background: transparent;
-            color: #0b1f3d;
+            color: #02083b;
             font-size: 1rem;
             font-weight: 600;
             text-align: left;
@@ -644,8 +644,8 @@ export default function InvestidoresPageContent() {
           }
 
           .investors-faq-item.is-open {
-            border-color: rgba(31, 94, 255, 0.32);
-            box-shadow: 0 16px 32px rgba(31, 94, 255, 0.08);
+            border-color: rgba(2, 8, 59, 0.32);
+            box-shadow: 0 16px 32px rgba(2, 8, 59, 0.08);
           }
 
           @media (max-width: 1199px) {

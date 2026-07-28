@@ -44,7 +44,11 @@ export default function CadastroPageContent() {
               <div className="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
                 <i className="bi bi-geo-alt"></i>
                 <h3>{t.common.address}</h3>
-                <p>Av. Humberto Monte s/n, Fortaleza, CE</p>
+                <p>{t.footer.addressLine1}</p>
+                <p>{t.footer.addressLine2}</p>
+                <p>{t.footer.addressLine3}</p>
+                <p>{t.footer.addressLine4}</p>
+                <p>{t.footer.addressPostalCode}</p>
               </div>
             </div>
 

@@ -399,7 +399,7 @@ export default function HomePageContent() {
         .home-company-intro__supporting {
           margin: 0;
           width: 100%;
-          color: #1a2e5d;
+          color: var(--accent-color);
           font-size: 0.98rem;
           line-height: 1.74;
           text-align: left;
@@ -473,7 +473,7 @@ export default function HomePageContent() {
 
         .home-open-account-subtitle {
           margin: 14px 0 0;
-          color: #1a2e5d;
+          color: var(--accent-color);
           font-size: 1rem;
           line-height: 1.75;
           text-align: left;

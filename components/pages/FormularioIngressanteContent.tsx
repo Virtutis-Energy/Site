@@ -69,14 +69,44 @@ function getSubdivisionKey(name: string) {
   return subdivisionNameToKey[normalizeText(name)] ?? null
 }
 
+type SubdivisionDescriptionKey =
+  | 'secretaryEconomyShortDesc'
+  | 'secretaryHrShortDesc'
+  | 'administrativeSectorShortDesc'
+  | 'legalSectorShortDesc'
+  | 'structuralSectorShortDesc'
+  | 'technologySectorShortDesc'
+  | 'commercialSectorShortDesc'
+  | 'accountingDepartmentShortDesc'
+  | 'landDepartmentShortDesc'
+  | 'projectsDepartmentShortDesc'
+  | 'worksDepartmentShortDesc'
+  | 'operationsDepartmentShortDesc'
+
+const subdivisionDescriptionKeys: Record<SubdivisionKey, SubdivisionDescriptionKey> = {
+  secretaryEconomy: 'secretaryEconomyShortDesc',
+  secretaryHr: 'secretaryHrShortDesc',
+  administrativeSector: 'administrativeSectorShortDesc',
+  legalSector: 'legalSectorShortDesc',
+  structuralSector: 'structuralSectorShortDesc',
+  technologySector: 'technologySectorShortDesc',
+  commercialSector: 'commercialSectorShortDesc',
+  accountingDepartment: 'accountingDepartmentShortDesc',
+  landDepartment: 'landDepartmentShortDesc',
+  projectsDepartment: 'projectsDepartmentShortDesc',
+  worksDepartment: 'worksDepartmentShortDesc',
+  operationsDepartment: 'operationsDepartmentShortDesc',
+}
+
 export default function FormularioIngressanteContent() {
   const router = useRouter()
   const { localeSegment, t } = useLanguage()
   const { cadastrar, sucesso, erro, loading } = useCadastrarIngressante()
   const { subdivisoes, loading: loadingSub } = useSubdivisoes()
+  const [openSubdivision, setOpenSubdivision] = useState<SubdivisionKey | null>(null)
+  const [openBond, setOpenBond] = useState<string | null>(null)
 
   const [formData, setFormData] = useState({
-    cpf: '',
     nome: '',
     email: '',
     telefone: '',
@@ -106,6 +136,15 @@ export default function FormularioIngressanteContent() {
     await cadastrar(formData)
   }
 
+  const toggleSubdivisionSelection = (id: number) => {
+    setFormData((prev) => {
+      const isSelected = prev.subdivisoes.includes(id)
+      const subdivisoes = isSelected ? prev.subdivisoes.filter((item) => item !== id) : [...prev.subdivisoes, id]
+
+      return { ...prev, subdivisoes }
+    })
+  }
+
   const subdivisoesOrdenadas = [...subdivisoes].sort((a, b) => {
     const keyA = getSubdivisionKey(a.nome)
     const keyB = getSubdivisionKey(b.nome)
@@ -132,6 +171,46 @@ export default function FormularioIngressanteContent() {
     }
     return t.subdivisionsPage[key]
   }
+
+  const getSubdivisionCardDescription = (key: SubdivisionKey) => t.subdivisionsPage[subdivisionDescriptionKeys[key]]
+
+  const bondCards = [
+    {
+      id: 'intern-level-1',
+      title: t.subdivisionsPage.intern,
+      subtitle: t.subdivisionsPage.levelI,
+      description: t.workWithUsPage.bondInternLevel1Desc,
+      icon: 'bi bi-mortarboard',
+    },
+    {
+      id: 'intern-level-2',
+      title: t.subdivisionsPage.intern,
+      subtitle: t.subdivisionsPage.levelII,
+      description: t.workWithUsPage.bondInternLevel2Desc,
+      icon: 'bi bi-lightbulb',
+    },
+    {
+      id: 'employee-level-1',
+      title: t.subdivisionsPage.employee,
+      subtitle: t.subdivisionsPage.levelI,
+      description: t.workWithUsPage.bondEmployeeLevel1Desc,
+      icon: 'bi bi-person-workspace',
+    },
+    {
+      id: 'employee-level-2',
+      title: t.subdivisionsPage.employee,
+      subtitle: t.subdivisionsPage.levelII,
+      description: t.workWithUsPage.bondEmployeeLevel2Desc,
+      icon: 'bi bi-briefcase',
+    },
+    {
+      id: 'partner-collaborator',
+      title: t.subdivisionsPage.partnerCollaborator,
+      subtitle: null,
+      description: t.workWithUsPage.bondPartnerCollaboratorDesc,
+      icon: 'bi bi-people',
+    },
+  ]
 
   return (
     <main className="main">
@@ -229,22 +308,6 @@ export default function FormularioIngressanteContent() {
                 </div>
 
                 <div className="col-12 col-md-6">
-                  <label htmlFor="work-cpf" className="careers-label">
-                    {t.forms.cpf}
-                  </label>
-                  <input
-                    id="work-cpf"
-                    type="text"
-                    name="cpf"
-                    placeholder={t.forms.cpf}
-                    required
-                    className="form-control careers-input"
-                    value={formData.cpf}
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div className="col-12 col-md-6">
                   <label htmlFor="work-email" className="careers-label">
                     {t.forms.email}
                   </label>
@@ -312,23 +375,51 @@ export default function FormularioIngressanteContent() {
                                 const iconClass = subdivisionIcons[key]
 
                                 return (
-                                  <label key={sub.id} className={`careers-subdivision-card${isSelected ? ' is-selected' : ''}`}>
-                                    <input
-                                      className="careers-subdivision-input"
-                                      type="checkbox"
-                                      name="subdivisoes"
-                                      value={sub.id}
-                                      onChange={handleChange}
-                                      checked={isSelected}
-                                    />
-                                    <span className="careers-subdivision-check" aria-hidden="true">
-                                      <i className={`bi ${isSelected ? 'bi-check2' : 'bi-plus'}`}></i>
-                                    </span>
-                                    <span className="careers-subdivision-icon" aria-hidden="true">
-                                      <i className={iconClass}></i>
-                                    </span>
-                                    <span className="careers-subdivision-text">{subdivisionLabel}</span>
-                                  </label>
+                                  <article key={sub.id} className={`careers-subdivision-card${isSelected ? ' is-selected' : ''}`}>
+                                    <div className="careers-subdivision-main">
+                                      <button
+                                        type="button"
+                                        className="careers-subdivision-select"
+                                        aria-pressed={isSelected}
+                                        aria-label={t.workWithUsPage.toggleSelection(subdivisionLabel, isSelected)}
+                                        onClick={() => toggleSubdivisionSelection(sub.id)}
+                                      >
+                                        <span className="careers-subdivision-check" aria-hidden="true">
+                                          <i className={`bi ${isSelected ? 'bi-check2' : 'bi-plus'}`}></i>
+                                        </span>
+                                      </button>
+
+                                      <span className="careers-subdivision-icon" aria-hidden="true">
+                                        <i className={iconClass}></i>
+                                      </span>
+
+                                      <span className="careers-subdivision-text">{subdivisionLabel}</span>
+
+                                      <button
+                                        type="button"
+                                        className={`careers-subdivision-toggle${openSubdivision === key ? ' is-open' : ''}`}
+                                        aria-expanded={openSubdivision === key}
+                                        aria-controls={`careers-subdivision-panel-${sub.id}`}
+                                        aria-label={
+                                          openSubdivision === key
+                                            ? t.workWithUsPage.hideAreaDetails(subdivisionLabel)
+                                            : t.workWithUsPage.showAreaDetails(subdivisionLabel)
+                                        }
+                                        onClick={() => setOpenSubdivision(openSubdivision === key ? null : key)}
+                                      >
+                                        <i className="bi bi-chevron-down" aria-hidden="true"></i>
+                                      </button>
+                                    </div>
+
+                                    <div
+                                      id={`careers-subdivision-panel-${sub.id}`}
+                                      className={`careers-subdivision-details${openSubdivision === key ? ' is-open' : ''}`}
+                                    >
+                                      <div className="careers-subdivision-details__inner">
+                                        <p>{getSubdivisionCardDescription(key)}</p>
+                                      </div>
+                                    </div>
+                                  </article>
                                 )
                               })}
                             </div>
@@ -340,9 +431,51 @@ export default function FormularioIngressanteContent() {
                 </div>
 
                 <div className="col-12">
-                  <button onClick={() => router.push(getLocalizedPath(localeSegment, 'subdivisions'))} className="careers-link-button" type="button">
-                    {t.workWithUsPage.learnMore}
-                  </button>
+                  <div className="careers-bonds-section">
+                    <div className="careers-bonds-header">
+                      <h4>{t.workWithUsPage.bondsTitle}</h4>
+                      <p>{t.workWithUsPage.bondsIntro}</p>
+                    </div>
+
+                    <div className="careers-bonds-grid">
+                      {bondCards.map((bond, index) => {
+                        const isOpen = openBond === bond.id
+                        const isLast = index === bondCards.length - 1
+
+                        return (
+                          <article key={bond.id} className={`careers-bond-card${isOpen ? ' is-open' : ''}${isLast ? ' careers-bond-card--wide' : ''}`}>
+                            <div className="careers-bond-main">
+                              <span className="careers-bond-icon" aria-hidden="true">
+                                <i className={bond.icon}></i>
+                              </span>
+
+                              <div className="careers-bond-copy">
+                                <strong>{bond.title}</strong>
+                                {bond.subtitle ? <span>{bond.subtitle}</span> : null}
+                              </div>
+
+                              <button
+                                type="button"
+                                className={`careers-bond-toggle${isOpen ? ' is-open' : ''}`}
+                                aria-expanded={isOpen}
+                                aria-controls={`careers-bond-panel-${bond.id}`}
+                                aria-label={isOpen ? t.workWithUsPage.closeBondDetails(bond.title) : t.workWithUsPage.openBondDetails(bond.title)}
+                                onClick={() => setOpenBond(isOpen ? null : bond.id)}
+                              >
+                                <i className="bi bi-chevron-down" aria-hidden="true"></i>
+                              </button>
+                            </div>
+
+                            <div id={`careers-bond-panel-${bond.id}`} className={`careers-bond-details${isOpen ? ' is-open' : ''}`}>
+                              <div className="careers-bond-details__inner">
+                                <p>{bond.description}</p>
+                              </div>
+                            </div>
+                          </article>
+                        )
+                      })}
+                    </div>
+                  </div>
                 </div>
 
                 <div className="col-12 text-center">
@@ -360,18 +493,18 @@ export default function FormularioIngressanteContent() {
 
         <style jsx>{`
           .careers-page {
-            --careers-submit-blue: #0b1f3d;
+            --careers-submit-blue: #02083b;
             background:
-              radial-gradient(circle at top left, rgba(11, 31, 61, 0.04), transparent 38%),
+              radial-gradient(circle at top left, rgba(2, 8, 59, 0.04), transparent 38%),
               linear-gradient(180deg, #ffffff 0%, #f6f9fc 100%);
           }
 
           .careers-intro-card,
           .careers-form-shell {
             background: rgba(255, 255, 255, 0.98);
-            border: 1px solid rgba(11, 31, 61, 0.08);
+            border: 1px solid rgba(2, 8, 59, 0.08);
             border-radius: 28px;
-            box-shadow: 0 18px 42px rgba(11, 31, 61, 0.08);
+            box-shadow: 0 18px 42px rgba(2, 8, 59, 0.08);
           }
 
           .careers-intro-card {
@@ -387,7 +520,7 @@ export default function FormularioIngressanteContent() {
             display: inline-flex;
             align-items: center;
             margin-bottom: 1rem;
-            color: #1a2e5d;
+            color: var(--accent-color);
             font-size: 0.82rem;
             font-weight: 700;
             letter-spacing: 0.08em;
@@ -398,7 +531,7 @@ export default function FormularioIngressanteContent() {
           .careers-form-header h3,
           .careers-section-heading h3 {
             margin: 0;
-            color: #0b1f3d;
+            color: #02083b;
             font-size: clamp(1.85rem, 2.5vw, 2.5rem);
             font-weight: 700;
             line-height: 1.12;
@@ -408,7 +541,7 @@ export default function FormularioIngressanteContent() {
           .careers-form-header p {
             margin: 1rem 0 0;
             max-width: 36rem;
-            color: rgba(11, 31, 61, 0.76);
+            color: rgba(2, 8, 59, 0.76);
             font-size: 1rem;
             line-height: 1.8;
           }
@@ -416,7 +549,7 @@ export default function FormularioIngressanteContent() {
           .careers-intro-copy strong {
             display: block;
             margin-top: 1.1rem;
-            color: #0b1f3d;
+            color: #02083b;
             font-size: 1rem;
             line-height: 1.6;
           }
@@ -450,9 +583,9 @@ export default function FormularioIngressanteContent() {
             height: 100%;
             padding: 1.35rem 1.4rem;
             background: rgba(255, 255, 255, 0.95);
-            border: 1px solid rgba(11, 31, 61, 0.08);
+            border: 1px solid rgba(2, 8, 59, 0.08);
             border-radius: 22px;
-            box-shadow: 0 12px 28px rgba(11, 31, 61, 0.05);
+            box-shadow: 0 12px 28px rgba(2, 8, 59, 0.05);
           }
 
           .careers-unit-icon {
@@ -463,22 +596,23 @@ export default function FormularioIngressanteContent() {
             height: 3rem;
             flex-shrink: 0;
             border-radius: 16px;
-            background: rgba(31, 94, 255, 0.08);
-            color: #1f5eff;
+            background: rgba(2, 8, 59, 0.08);
+            color: #02083b;
             font-size: 1.2rem;
           }
 
           .careers-unit-copy h4 {
             margin: 0 0 0.35rem;
-            color: #0b1f3d;
+            color: #02083b;
             font-size: 1.1rem;
             font-weight: 700;
           }
 
           .careers-unit-copy p {
             margin: 0;
-            color: rgba(11, 31, 61, 0.7);
+            color: rgba(2, 8, 59, 0.7);
             line-height: 1.65;
+            white-space: pre-line;
           }
 
           .careers-form-shell {
@@ -498,7 +632,7 @@ export default function FormularioIngressanteContent() {
           .careers-label {
             display: inline-block;
             margin-bottom: 0.55rem;
-            color: #0b1f3d;
+            color: #02083b;
             font-size: 0.92rem;
             font-weight: 600;
           }
@@ -510,23 +644,23 @@ export default function FormularioIngressanteContent() {
           :global(.careers-input.form-control) {
             min-height: 3.5rem;
             padding: 0.9rem 1rem;
-            border: 1px solid rgba(11, 31, 61, 0.14);
+            border: 1px solid rgba(2, 8, 59, 0.14);
             border-radius: 16px;
             background: #fff;
-            color: #0b1f3d;
+            color: #02083b;
             box-shadow: none;
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
           }
 
           :global(.careers-input.form-control:focus) {
-            border-color: rgba(31, 94, 255, 0.6);
-            box-shadow: 0 0 0 4px rgba(31, 94, 255, 0.12);
+            border-color: rgba(2, 8, 59, 0.6);
+            box-shadow: 0 0 0 4px rgba(2, 8, 59, 0.12);
           }
 
           .careers-subdivision-header p,
           .careers-loading-copy {
             margin: 0;
-            color: rgba(11, 31, 61, 0.7);
+            color: rgba(2, 8, 59, 0.7);
             line-height: 1.7;
           }
 
@@ -543,7 +677,7 @@ export default function FormularioIngressanteContent() {
 
           .careers-subdivision-group__header h4 {
             margin: 0;
-            color: #1a2e5d;
+            color: var(--accent-color);
             font-size: 1rem;
             font-weight: 700;
             letter-spacing: 0.01em;
@@ -557,44 +691,57 @@ export default function FormularioIngressanteContent() {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
             gap: 1rem;
+            align-items: start;
           }
 
           .careers-subdivision-card {
             position: relative;
-            display: flex;
-            align-items: center;
-            gap: 0.9rem;
+            display: grid;
+            align-content: start;
             min-height: 5.35rem;
             padding: 1.05rem 1rem;
-            border: 1px solid rgba(11, 31, 61, 0.12);
+            border: 1px solid rgba(2, 8, 59, 0.12);
             border-radius: 20px;
             background: #fff;
-            cursor: pointer;
             transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
           }
 
           .careers-subdivision-card:hover {
             transform: translateY(-2px);
-            border-color: rgba(31, 94, 255, 0.3);
-            box-shadow: 0 12px 24px rgba(11, 31, 61, 0.06);
+            border-color: rgba(2, 8, 59, 0.3);
+            box-shadow: 0 12px 24px rgba(2, 8, 59, 0.06);
           }
 
           .careers-subdivision-card.is-selected {
-            border-color: rgba(31, 94, 255, 0.65);
-            background: linear-gradient(180deg, rgba(31, 94, 255, 0.07), rgba(31, 94, 255, 0.03));
-            box-shadow: 0 14px 28px rgba(31, 94, 255, 0.12);
-          }
-
-          .careers-subdivision-input {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            cursor: pointer;
+            border-color: rgba(2, 8, 59, 0.65);
+            background: linear-gradient(180deg, rgba(2, 8, 59, 0.07), rgba(2, 8, 59, 0.03));
+            box-shadow: 0 14px 28px rgba(2, 8, 59, 0.12);
           }
 
           .careers-subdivision-card:focus-within {
-            outline: 2px solid rgba(31, 94, 255, 0.55);
+            outline: 2px solid rgba(2, 8, 59, 0.55);
             outline-offset: 3px;
+          }
+
+          .careers-subdivision-main {
+            display: grid;
+            grid-template-columns: auto auto minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 0.9rem;
+          }
+
+          .careers-subdivision-select,
+          .careers-subdivision-toggle,
+          .careers-link-button {
+            border: 0;
+            background: transparent;
+            padding: 0;
+          }
+
+          .careers-subdivision-select {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
           }
 
           .careers-subdivision-check,
@@ -609,27 +756,27 @@ export default function FormularioIngressanteContent() {
           .careers-subdivision-check {
             width: 2rem;
             height: 2rem;
-            border: 1px solid rgba(11, 31, 61, 0.14);
-            color: rgba(11, 31, 61, 0.5);
-            background: rgba(11, 31, 61, 0.03);
+            border: 1px solid rgba(2, 8, 59, 0.14);
+            color: rgba(2, 8, 59, 0.5);
+            background: rgba(2, 8, 59, 0.03);
           }
 
           .careers-subdivision-card.is-selected .careers-subdivision-check {
-            border-color: #1f5eff;
-            background: #1f5eff;
+            border-color: #02083b;
+            background: #02083b;
             color: #fff;
           }
 
           .careers-subdivision-icon {
             width: 2.65rem;
             height: 2.65rem;
-            background: rgba(31, 94, 255, 0.08);
+            background: rgba(2, 8, 59, 0.08);
             color: var(--careers-submit-blue);
             font-size: 1.05rem;
           }
 
           .careers-subdivision-text {
-            color: #0b1f3d;
+            color: #02083b;
             font-size: 0.98rem;
             font-weight: 600;
             line-height: 1.35;
@@ -637,14 +784,179 @@ export default function FormularioIngressanteContent() {
             text-wrap: balance;
           }
 
-          .careers-link-button {
-            padding: 0;
-            border: 0;
-            background: transparent;
-            color: #1f5eff;
+          .careers-subdivision-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 999px;
+            color: var(--accent-color);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+          }
+
+          .careers-subdivision-toggle:hover {
+            background: rgba(2, 8, 59, 0.05);
+          }
+
+          .careers-subdivision-toggle.is-open {
+            transform: rotate(180deg);
+          }
+
+          .careers-subdivision-details {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.28s ease;
+          }
+
+          .careers-subdivision-details.is-open {
+            grid-template-rows: 1fr;
+          }
+
+          .careers-subdivision-details__inner {
+            min-height: 0;
+            overflow: hidden;
+          }
+
+          .careers-subdivision-details__inner p {
+            margin: 0.8rem 0 0;
+            padding-top: 0.8rem;
+            border-top: 1px solid rgba(2, 8, 59, 0.08);
+            color: rgba(2, 8, 59, 0.76);
+            font-size: 0.9rem;
+            line-height: 1.65;
+          }
+
+          .careers-bonds-section {
+            display: grid;
+            gap: 1rem;
+          }
+
+          .careers-bonds-header h4 {
+            margin: 0;
+            color: #02083b;
+            font-size: clamp(1.25rem, 2vw, 1.55rem);
+            font-weight: 700;
+          }
+
+          .careers-bonds-header p {
+            margin: 0.55rem 0 0;
+            max-width: 42rem;
+            color: rgba(2, 8, 59, 0.72);
+            line-height: 1.7;
+          }
+
+          .careers-bonds-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            align-items: start;
+          }
+
+          .careers-bond-card {
+            display: grid;
+            align-content: start;
+            padding: 1rem;
+            border: 1px solid rgba(2, 8, 59, 0.1);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 12px 28px rgba(2, 8, 59, 0.05);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+          }
+
+          .careers-bond-card.is-open {
+            border-color: rgba(2, 8, 59, 0.22);
+            box-shadow: 0 16px 30px rgba(2, 8, 59, 0.08);
+          }
+
+          .careers-bond-card--wide {
+            grid-column: 1 / -1;
+          }
+
+          .careers-bond-main {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 0.9rem;
+          }
+
+          .careers-bond-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: 16px;
+            background: rgba(2, 8, 59, 0.08);
+            color: var(--accent-color);
+            font-size: 1.05rem;
+            flex-shrink: 0;
+          }
+
+          .careers-bond-copy {
+            display: grid;
+            gap: 0.18rem;
+            min-width: 0;
+          }
+
+          .careers-bond-copy strong {
+            color: #02083b;
+            font-size: 1rem;
+            font-weight: 700;
+            line-height: 1.3;
+          }
+
+          .careers-bond-copy span {
+            color: rgba(2, 8, 59, 0.64);
+            font-size: 0.84rem;
             font-weight: 600;
-            text-decoration: underline;
-            text-underline-offset: 0.2rem;
+            letter-spacing: 0.02em;
+          }
+
+          .careers-bond-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            border: 0;
+            border-radius: 999px;
+            background: transparent;
+            color: var(--accent-color);
+            transition: transform 0.2s ease, background-color 0.2s ease;
+          }
+
+          .careers-bond-toggle:hover {
+            background: rgba(2, 8, 59, 0.05);
+          }
+
+          .careers-bond-toggle.is-open {
+            transform: rotate(180deg);
+          }
+
+          .careers-bond-details {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.28s ease;
+          }
+
+          .careers-bond-details.is-open {
+            grid-template-rows: 1fr;
+          }
+
+          .careers-bond-details__inner {
+            min-height: 0;
+            overflow: hidden;
+          }
+
+          .careers-bond-details__inner p {
+            margin: 0.8rem 0 0;
+            padding-top: 0.8rem;
+            border-top: 1px solid rgba(2, 8, 59, 0.08);
+            color: rgba(2, 8, 59, 0.76);
+            font-size: 0.92rem;
+            line-height: 1.68;
+            white-space: pre-line;
           }
 
           .careers-submit-button {
@@ -658,17 +970,17 @@ export default function FormularioIngressanteContent() {
             border: 0;
             box-sizing: border-box;
             border-radius: 999px;
-            background: linear-gradient(135deg, var(--careers-submit-blue) 0%, #1f5eff 100%);
+            background: var(--careers-submit-blue);
             color: #fff;
             font-weight: 700;
             letter-spacing: 0.01em;
-            box-shadow: 0 16px 30px rgba(11, 31, 61, 0.18);
+            box-shadow: 0 16px 30px rgba(2, 8, 59, 0.18);
             transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
           }
 
           .careers-submit-button:hover:not(:disabled) {
             transform: translateY(-1px);
-            box-shadow: 0 18px 34px rgba(11, 31, 61, 0.22);
+            box-shadow: 0 18px 34px rgba(2, 8, 59, 0.22);
           }
 
           .careers-submit-button:disabled {
@@ -679,6 +991,14 @@ export default function FormularioIngressanteContent() {
           @media (max-width: 1199px) {
             .careers-subdivision-grid {
               grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .careers-bonds-grid {
+              grid-template-columns: 1fr;
+            }
+
+            .careers-bond-card--wide {
+              grid-column: auto;
             }
           }
 
@@ -699,6 +1019,43 @@ export default function FormularioIngressanteContent() {
               grid-template-columns: 1fr;
             }
 
+            .careers-bonds-section {
+              gap: 0.85rem;
+            }
+
+            .careers-bonds-grid {
+              grid-template-columns: 1fr;
+            }
+
+            .careers-bond-card {
+              padding: 0.92rem 0.88rem;
+            }
+
+            .careers-bond-main {
+              gap: 0.72rem;
+            }
+
+            .careers-bond-icon {
+              width: 2.4rem;
+              height: 2.4rem;
+              font-size: 0.96rem;
+            }
+
+            .careers-bond-copy strong {
+              font-size: 0.94rem;
+            }
+
+            .careers-bond-copy span {
+              font-size: 0.78rem;
+            }
+
+            .careers-bond-details__inner p {
+              margin-top: 0.72rem;
+              padding-top: 0.72rem;
+              font-size: 0.84rem;
+              line-height: 1.58;
+            }
+
             .careers-subdivision-groups {
               gap: 1.1rem;
             }
@@ -712,9 +1069,13 @@ export default function FormularioIngressanteContent() {
             }
 
             .careers-subdivision-card {
-              gap: 0.7rem;
               min-height: 4.9rem;
               padding: 0.9rem 0.85rem;
+            }
+
+            .careers-subdivision-main {
+              gap: 0.7rem;
+              grid-template-columns: auto auto minmax(0, 1fr) auto;
             }
 
             .careers-subdivision-check {
@@ -731,6 +1092,13 @@ export default function FormularioIngressanteContent() {
             .careers-subdivision-text {
               font-size: 0.86rem;
               line-height: 1.25;
+            }
+
+            .careers-subdivision-details__inner p {
+              margin-top: 0.72rem;
+              padding-top: 0.72rem;
+              font-size: 0.84rem;
+              line-height: 1.55;
             }
 
             .careers-submit-button {
