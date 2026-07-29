@@ -140,6 +140,22 @@
     width: 385px;
   }
 
+  @media (max-width: 768px) {
+    .footer {
+      margin-bottom: 0;
+      background-color: #060606;
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    .footer:before {
+      background: #060606;
+    }
+
+    .footer .copyright {
+      padding-bottom: calc(25px + env(safe-area-inset-bottom, 0px));
+    }
+  }
+
 
   
   

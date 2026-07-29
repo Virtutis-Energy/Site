@@ -1,12 +1,36 @@
 // app/layout.tsx
 import './globals.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import type { Metadata, Viewport } from 'next'
 
 import { roboto, openSans, poppins } from './fonts' // seu novo arquivo de fontes
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Virtutis Energy',
   description: '',
+  manifest: '/manifest.webmanifest',
+  icons: {
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '570x591', type: 'image/png' },
+    ],
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: 'Virtutis Energy',
+  },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  themeColor: '#000000',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
