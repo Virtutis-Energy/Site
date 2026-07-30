@@ -283,11 +283,10 @@ export default function FormularioIngressanteContent() {
           </div>
 
           <div className="careers-form-shell" data-aos="fade-up" data-aos-delay="220">
-            <div className="careers-form-header">
-              <span className="careers-kicker">{t.workWithUsPage.formTitle}</span>
-              <h3>{t.workWithUsPage.formTitle}</h3>
-              <p>{t.workWithUsPage.formIntro}</p>
-            </div>
+                <div className="careers-form-header">
+                  <h3>{t.workWithUsPage.formTitle}</h3>
+                  <p>{t.workWithUsPage.formIntro}</p>
+                </div>
 
             <form onSubmit={handleSubmit} className="php-email-form careers-form">
               <div className="row g-4">

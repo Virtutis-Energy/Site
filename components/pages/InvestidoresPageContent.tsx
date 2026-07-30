@@ -4,58 +4,57 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-import { InvestChart } from '@/components/RendimentoChart'
 import { useLanguage } from '@/components/LanguageProvider'
-import { hasBackendUrl } from '@/lib/backend'
 import { getLocalizedPath } from '@/lib/i18n'
-import { useCupomValidator } from '@/hooks/useCupomValidator'
-import { useNiveisOperacao } from '@/hooks/useNiveisOperacao'
-import { useSimulacaoInvestimento } from '@/hooks/useSimulacaoInvestimento'
-import { useValorInvestido } from '@/hooks/useValorInvestido'
+
+const PROCEEDS_LEVELS = [
+  { level: 0, amountPerVitis: 0.4 },
+  { level: 1, amountPerVitis: 0.8 },
+  { level: 2, amountPerVitis: 1.6 },
+  { level: 3, amountPerVitis: 3.2 },
+] as const
+
+const brlFormatter = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL',
+})
 
 export default function InvestidoresPageContent() {
   const router = useRouter()
   const { localeSegment, t } = useLanguage()
-  const { usinas, backendUnavailable } = useNiveisOperacao()
-  const plantLevels = [1, 2, 3]
-  const backendConfigured = hasBackendUrl()
-
-  const [usinaSelecionada, setUsinaSelecionada] = useState<string>('default')
   const [quantidadeVitisInput, setQuantidadeVitisInput] = useState<string>('')
-  const [mesesInput, setMesesInput] = useState<string>('')
-  const [fatorNivelInput, setFatorNivelInput] = useState<string>('1')
-  const [cupom, setCupom] = useState<string>('')
+  const [simulatedQuantity, setSimulatedQuantity] = useState<number | null>(null)
+  const [simulationError, setSimulationError] = useState('')
   const [activeFaq, setActiveFaq] = useState(0)
 
-  const { cupomValido, desconto } = useCupomValidator(cupom)
-
-  const quantidadeVitis = Number(quantidadeVitisInput) || 0
-  const meses = Number(mesesInput) || 0
-  const nivel = Number(fatorNivelInput) || 0
-  const valorInvestido = useValorInvestido(usinas, usinaSelecionada, quantidadeVitis, desconto)
-
-  const { totalYield, dateResult, graficoDados, calcular } = useSimulacaoInvestimento()
+  const handleQuantityChange = (value: string) => {
+    setQuantidadeVitisInput(value)
+    setSimulationError('')
+    setSimulatedQuantity(null)
+  }
 
   const handleCalculate = () => {
-    if (!backendConfigured) {
-      alert(t.investorsPage.backendConfigError)
+    const normalizedValue = quantidadeVitisInput.trim()
+
+    if (!normalizedValue) {
+      setSimulationError(t.investorsPage.quantityRequiredError)
       return
     }
 
-    if (!quantidadeVitis || !meses || usinaSelecionada === 'default' || !nivel) {
-      alert(t.investorsPage.fillFieldsAlert)
+    if (!/^\d+$/.test(normalizedValue)) {
+      setSimulationError(t.investorsPage.quantityInvalidError)
       return
     }
 
-    calcular({
-      vitis: quantidadeVitis,
-      meses,
-      usina_id: usinaSelecionada,
-      nivel,
-      cupom,
-      errorPrefix: t.investorsPage.errorPrefix,
-      serverError: t.investorsPage.serverError,
-    })
+    const quantity = Number(normalizedValue)
+
+    if (!Number.isInteger(quantity) || quantity <= 0) {
+      setSimulationError(t.investorsPage.quantityPositiveError)
+      return
+    }
+
+    setSimulationError('')
+    setSimulatedQuantity(quantity)
   }
 
   const faqs = [
@@ -125,173 +124,73 @@ export default function InvestidoresPageContent() {
               <p>{t.investorsPage.simulateIntro}</p>
             </div>
 
-            {backendUnavailable && (
-              <div className="alert alert-warning mb-4" role="alert">
-                {t.investorsPage.backendConfigError}
-              </div>
-            )}
-
             <div className="investors-simulator-card">
-              <div className="investors-simulator-top">
-                <div className="investors-simulator-select">
-                  <label htmlFor="investor-plant" className="investors-label">
-                    {t.investorsPage.selectPlantLabel}
-                  </label>
-                  <select
-                    id="investor-plant"
-                    className="form-select investors-select"
-                    value={usinaSelecionada}
-                    onChange={(e) => setUsinaSelecionada(e.target.value)}
-                  >
-                    <option value="default">{t.investorsPage.selectPlant}</option>
-                    {usinas.map((usina) => (
-                      <option key={usina.id} value={usina.id}>
-                        {usina.nome}
-                      </option>
-                    ))}
-                  </select>
-                  {usinaSelecionada === 'default' && <p className="investors-help-text">{t.investorsPage.selectPlantGuidance}</p>}
-                </div>
-              </div>
-
-              <p className="investors-simulator-guidance">
-                {t.investorsPage.stepsIntro}
-              </p>
-
               <div className="investors-analysis-card">
                 <h4>
                   <i className="bi bi-calculator-fill" aria-hidden="true"></i>
                   {t.investorsPage.analysisTitle}
                 </h4>
 
-                <div className="investors-form-grid">
-                  <div className="investors-field">
-                    <label className="investors-label" htmlFor="vitisResult">
-                      {t.investorsPage.investedValue}
-                    </label>
-                    <div className="investors-readonly" id="vitisResult">
-                      {valorInvestido}
+                <div className="investors-form-layout">
+                  <div className="investors-form-grid investors-form-grid--single">
+                    <div className="investors-field">
+                      <label htmlFor="vitisInput" className="investors-label">
+                        {t.investorsPage.quantity}
+                      </label>
+                      <input
+                        type="text"
+                        inputMode="numeric"
+                        className="form-control investors-input"
+                        id="vitisInput"
+                        placeholder={t.investorsPage.quantityPlaceholder}
+                        value={quantidadeVitisInput}
+                        onChange={(e) => handleQuantityChange(e.target.value)}
+                      />
                     </div>
                   </div>
 
-                  <div className="investors-field">
-                    <label htmlFor="vitisInput" className="investors-label">
-                      {t.investorsPage.quantity}
-                    </label>
-                    <input
-                      type="number"
-                      className="form-control investors-input"
-                      id="vitisInput"
-                      placeholder="Ex: 1"
-                      value={quantidadeVitisInput}
-                      onChange={(e) => setQuantidadeVitisInput(e.target.value)}
-                      disabled={usinaSelecionada === 'default' || backendUnavailable}
-                    />
+                  <div className="investors-form-action">
+                    <button className="investors-primary-button investors-simulate-button" onClick={handleCalculate}>
+                      <i className="bi bi-graph-up-arrow" aria-hidden="true"></i>
+                      {t.investorsPage.simulateButton}
+                    </button>
                   </div>
+                </div>
 
-                  <div className="investors-field">
-                    <label htmlFor="monthsInput" className="investors-label">
-                      {t.investorsPage.period}
-                    </label>
-                    <input
-                      type="number"
-                      className="form-control investors-input"
-                      id="monthsInput"
-                      placeholder="Ex: 1"
-                      value={mesesInput}
-                      onChange={(e) => setMesesInput(e.target.value)}
-                      disabled={backendUnavailable}
-                    />
+                {simulationError ? (
+                  <div className="investors-feedback-card investors-feedback-card--error" role="alert">
+                    {simulationError}
                   </div>
+                ) : null}
 
-                  <div className="investors-field">
-                    <label htmlFor="fatorNivelInput" className="investors-label">
-                      {t.investorsPage.plantLevel}
-                    </label>
-                    <select
-                      className="form-select investors-select"
-                      id="fatorNivelInput"
-                      value={fatorNivelInput}
-                      onChange={(e) => setFatorNivelInput(e.target.value)}
-                      disabled={usinaSelecionada === 'default' || backendUnavailable}
-                    >
-                      {plantLevels.map((level) => (
-                        <option key={level} value={String(level)}>
-                          {t.investorsPage.levelOption(level)}
-                        </option>
+                {simulatedQuantity !== null ? (
+                  <>
+                    <div className="investors-results-grid investors-results-grid--levels">
+                      {PROCEEDS_LEVELS.map(({ level, amountPerVitis }) => (
+                        <div key={level} className="investors-result-card">
+                          <span className="investors-result-level">{t.investorsPage.levelOption(level)}</span>
+                          <strong className="investors-result-quantity">{simulatedQuantity} Vitis</strong>
+                          <p className="investors-result-caption">{t.investorsPage.estimatedProceedsLabel}</p>
+                          <strong className="investors-result-value">{brlFormatter.format(simulatedQuantity * amountPerVitis)}</strong>
+                        </div>
                       ))}
-                    </select>
-                  </div>
+                    </div>
 
-                  <div className="investors-field">
-                    <label htmlFor="cupom" className="investors-label">
-                      {t.investorsPage.coupon}
-                    </label>
-                    <input
-                      type="text"
-                      className="form-control investors-input"
-                      id="cupom"
-                      placeholder={t.investorsPage.optional}
-                      value={cupom}
-                      onChange={(e) => setCupom(e.target.value)}
-                      disabled={backendUnavailable}
-                    />
-
-                    {cupom !== '' && (
-                      <small className={`investors-coupon-feedback ${cupomValido ? 'is-valid' : 'is-invalid'}`}>
-                        {cupomValido === null ? t.investorsPage.validating : cupomValido ? t.investorsPage.validCoupon : t.investorsPage.invalidCoupon}
-                      </small>
-                    )}
-                  </div>
-                </div>
-
-                <div className="investors-summary-grid">
-                  <div className="investors-summary-card">
-                    <span>{t.investorsPage.selectPlantLabel}</span>
-                    <strong>{usinaSelecionada === 'default' ? t.investorsPage.selectPlant : usinas.find((usina) => String(usina.id) === usinaSelecionada)?.nome ?? t.investorsPage.selectPlant}</strong>
-                  </div>
-                  <div className="investors-summary-card">
-                    <span>{t.investorsPage.plantLevel}</span>
-                    <strong>{t.investorsPage.levelOption(nivel || 1)}</strong>
-                  </div>
-                  <div className="investors-summary-card">
-                    <span>{t.investorsPage.period}</span>
-                    <strong>{meses || 0}</strong>
-                  </div>
-                  <div className="investors-summary-card">
-                    <span>{t.investorsPage.quantity}</span>
-                    <strong>{quantidadeVitis || 0}</strong>
-                  </div>
-                </div>
-
-                <button className="investors-primary-button investors-simulate-button" onClick={handleCalculate} disabled={backendUnavailable}>
-                  <i className="bi bi-graph-up-arrow" aria-hidden="true"></i>
-                  {t.investorsPage.simulateButton}
-                </button>
-
-                <div className="investors-results-grid">
-                  <div className="investors-result-card">
-                    <span>{t.investorsPage.accumulatedYield}</span>
-                    <strong id="totalYield">{totalYield}</strong>
-                  </div>
-                  <div className="investors-result-card">
-                    <span>{t.investorsPage.finalDate}</span>
-                    <strong id="dateResult">{dateResult}</strong>
-                  </div>
-                </div>
-
-                {graficoDados.length > 0 && (
-                  <div className="investors-chart-card">
-                    <h5>{t.investorsPage.chartTitle}</h5>
-                    <InvestChart
-                      data={graficoDados}
-                      monthLabel={t.common.monthLabel}
-                      datasetLabel={t.investorsPage.chartDataset}
-                      yAxisLabel={t.investorsPage.chartYAxis}
-                      xAxisLabel={t.investorsPage.chartXAxis}
-                    />
-                  </div>
-                )}
+                    <div className="investors-app-note">
+                      <div className="investors-app-note__copy">
+                        <p>{t.investorsPage.downloadAppNotice}</p>
+                      </div>
+                      <a
+                        href={t.header.whatsappText}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="investors-download-link"
+                      >
+                        {t.header.downloadApp}
+                      </a>
+                    </div>
+                  </>
+                ) : null}
               </div>
             </div>
           </div>
@@ -365,8 +264,7 @@ export default function InvestidoresPageContent() {
 
           .investors-hero-copy p,
           .investors-section-heading p,
-          .investors-support-text,
-          .investors-simulator-guidance {
+          .investors-support-text {
             margin: 1rem 0 0;
             color: rgba(2, 8, 59, 0.75);
             line-height: 1.75;
@@ -470,23 +368,12 @@ export default function InvestidoresPageContent() {
             gap: 1.4rem;
           }
 
-          .investors-simulator-guidance {
-            max-width: 48rem;
-            margin-top: 0.25rem;
-          }
-
           .investors-label {
             display: inline-block;
             margin-bottom: 0.55rem;
             color: #02083b;
             font-size: 0.92rem;
             font-weight: 600;
-          }
-
-          .investors-help-text {
-            margin: 0.8rem 0 0;
-            color: rgba(2, 8, 59, 0.68);
-            line-height: 1.65;
           }
 
           .investors-analysis-card {
@@ -500,10 +387,17 @@ export default function InvestidoresPageContent() {
             display: flex;
             align-items: center;
             gap: 0.6rem;
-            margin: 0 0 1.4rem;
+            margin: 0 0 1.2rem;
             color: #02083b;
             font-size: 1.15rem;
             font-weight: 700;
+          }
+
+          .investors-form-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(220px, 0.38fr);
+            align-items: end;
+            gap: 1rem;
           }
 
           .investors-form-grid {
@@ -512,8 +406,17 @@ export default function InvestidoresPageContent() {
             gap: 1rem;
           }
 
+          .investors-form-grid--single {
+            grid-template-columns: minmax(0, 1fr);
+          }
+
           .investors-field {
             min-width: 0;
+          }
+
+          .investors-form-action {
+            display: flex;
+            align-items: flex-end;
           }
 
           :global(.investors-input.form-control),
@@ -533,72 +436,115 @@ export default function InvestidoresPageContent() {
             box-shadow: 0 0 0 4px rgba(2, 8, 59, 0.12);
           }
 
-          .investors-readonly {
-            display: flex;
-            align-items: center;
-            min-height: 3.25rem;
-            padding: 0.9rem 1rem;
-            border: 1px solid rgba(11, 31, 61, 0.12);
-            border-radius: 16px;
-            background: #fff;
-            color: #02083b;
-            font-weight: 600;
-          }
-
-          .investors-coupon-feedback {
-            display: inline-block;
-            margin-top: 0.45rem;
-            font-size: 0.86rem;
-          }
-
-          .investors-coupon-feedback.is-valid {
-            color: #198754;
-          }
-
-          .investors-coupon-feedback.is-invalid {
-            color: #dc3545;
-          }
-
-          .investors-summary-grid,
           .investors-results-grid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 0.9rem;
-            margin-top: 1.3rem;
+            gap: 1rem;
+            margin-top: 1.5rem;
           }
 
-          .investors-results-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+          .investors-results-grid--levels {
+            align-items: stretch;
           }
 
-          .investors-summary-card,
           .investors-result-card {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            min-height: 190px;
             padding: 1rem 1rem 1.05rem;
             border: 1px solid rgba(11, 31, 61, 0.08);
             border-radius: 18px;
             background: #fff;
           }
 
-          .investors-summary-card span,
-          .investors-result-card span {
+          .investors-result-level {
             display: block;
-            margin-bottom: 0.4rem;
+            margin-bottom: 0.45rem;
             color: rgba(2, 8, 59, 0.62);
             font-size: 0.82rem;
             font-weight: 600;
           }
 
-          .investors-summary-card strong,
-          .investors-result-card strong {
+          .investors-result-quantity {
             color: #02083b;
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: 700;
             word-break: break-word;
           }
 
+          .investors-result-caption {
+            margin: 0.95rem 0 0.35rem;
+            color: rgba(2, 8, 59, 0.76);
+            line-height: 1.45;
+            font-size: 0.9rem;
+            font-weight: 500;
+            white-space: normal;
+            text-align: left;
+          }
+
+          .investors-result-value {
+            margin-top: auto;
+            color: #02083b;
+            font-size: clamp(1.35rem, 2vw, 1.7rem);
+            font-weight: 800;
+            line-height: 1.1;
+            overflow-wrap: anywhere;
+          }
+
           .investors-simulate-button {
+            margin-top: 0;
             width: 100%;
-            margin-top: 1.4rem;
+            min-height: 3.25rem;
+          }
+
+          .investors-feedback-card {
+            margin-top: 0.9rem;
+            padding: 0.95rem 1rem;
+            border-radius: 16px;
+            border: 1px solid rgba(220, 53, 69, 0.18);
+            background: rgba(220, 53, 69, 0.06);
+            color: #b42318;
+            line-height: 1.55;
+          }
+
+          .investors-app-note {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 1.75rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid rgba(11, 31, 61, 0.08);
+          }
+
+          .investors-app-note__copy {
+            flex: 1 1 420px;
+            min-width: 0;
+          }
+
+          .investors-app-note p {
+            margin: 0;
+            color: rgba(2, 8, 59, 0.74);
+            line-height: 1.65;
+          }
+
+          .investors-download-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 3rem;
+            padding: 0.75rem 1.3rem;
+            border-radius: 999px;
+            border: 1px solid rgba(2, 8, 59, 0.12);
+            background: #fff;
+            color: #02083b;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+            flex-shrink: 0;
           }
 
           .investors-chart-card {
@@ -649,8 +595,7 @@ export default function InvestidoresPageContent() {
           }
 
           @media (max-width: 1199px) {
-            .investors-form-grid,
-            .investors-summary-grid {
+            .investors-results-grid {
               grid-template-columns: repeat(2, minmax(0, 1fr));
             }
           }
@@ -660,6 +605,19 @@ export default function InvestidoresPageContent() {
               grid-template-columns: 1fr;
               display: grid;
               gap: 1rem;
+            }
+
+            .investors-form-layout {
+              grid-template-columns: minmax(0, 1fr);
+            }
+
+            .investors-app-note {
+              align-items: flex-start;
+              flex-direction: column;
+            }
+
+            .investors-download-link {
+              width: auto;
             }
           }
 
@@ -672,14 +630,34 @@ export default function InvestidoresPageContent() {
             }
 
             .investors-form-grid,
-            .investors-summary-grid,
             .investors-results-grid {
+              grid-template-columns: 1fr;
+            }
+
+            .investors-form-layout {
               grid-template-columns: 1fr;
             }
 
             .investors-primary-button {
               width: 100%;
               max-width: 100%;
+            }
+
+            .investors-app-note {
+              align-items: stretch;
+              justify-content: flex-start;
+            }
+
+            .investors-download-link {
+              width: 100%;
+            }
+
+            .investors-result-card {
+              min-height: auto;
+            }
+
+            .investors-result-value {
+              overflow-wrap: break-word;
             }
 
             :global(.investors-hero-image) {
