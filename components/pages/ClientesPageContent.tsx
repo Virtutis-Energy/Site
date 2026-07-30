@@ -128,25 +128,6 @@ export default function ClientesPageContent() {
             </form>
           </div>
 
-          <div className="clients-steps-section" data-aos="fade-up" data-aos-delay="180">
-            <div className="clients-section-heading clients-section-heading-centered">
-              <h3>{t.clientsPage.howItWorksTitle}</h3>
-              <p>{t.clientsPage.howItWorksText}</p>
-            </div>
-
-            <div className="clients-steps-grid">
-              {steps.map((step, index) => (
-                <article key={step.title} className="clients-step-card">
-                  <span className="clients-step-icon" aria-hidden="true">
-                    <i className={stepIcons[index]}></i>
-                  </span>
-                  <h4>{step.title}</h4>
-                  <p>{step.text}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-
           <div className="clients-benefits-section" data-aos="fade-up" data-aos-delay="220">
             <div className="clients-section-heading clients-section-heading-centered">
               <h3>{t.clientsPage.benefitsTitle}</h3>
@@ -161,6 +142,25 @@ export default function ClientesPageContent() {
                   </span>
                   <h4>{benefit.title}</h4>
                   <p>{benefit.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="clients-steps-section" data-aos="fade-up" data-aos-delay="180">
+            <div className="clients-section-heading clients-section-heading-centered">
+              <h3>{t.clientsPage.howItWorksTitle}</h3>
+              <p>{t.clientsPage.howItWorksText}</p>
+            </div>
+
+            <div className="clients-steps-grid">
+              {steps.map((step, index) => (
+                <article key={step.title} className="clients-step-card">
+                  <span className="clients-step-icon" aria-hidden="true">
+                    <i className={stepIcons[index]}></i>
+                  </span>
+                  <h4>{step.title}</h4>
+                  <p>{step.text}</p>
                 </article>
               ))}
             </div>

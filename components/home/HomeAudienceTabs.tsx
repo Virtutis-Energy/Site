@@ -108,7 +108,10 @@ export default function HomeAudienceTabs() {
                     </p>
                   ))}
 
-                  <div className="home-audience-benefits" aria-label={`${tab.label} highlights`}>
+                  <div
+                    className={`home-audience-benefits${tab.id !== 'customer' ? ' home-audience-benefits--single-row' : ''}`}
+                    aria-label={`${tab.label} highlights`}
+                  >
                     {tab.benefits.map((benefit) => (
                       <span key={benefit} className="home-audience-benefit">
                         {benefit}
@@ -266,6 +269,17 @@ export default function HomeAudienceTabs() {
           margin-top: 14px;
         }
 
+        .home-audience-benefits--single-row {
+          flex-wrap: nowrap;
+        }
+
+        .home-audience-benefits--single-row .home-audience-benefit {
+          width: fit-content;
+          white-space: nowrap;
+          flex-shrink: 0;
+          font-size: 0.74rem;
+        }
+
         .home-audience-benefit {
           display: inline-flex;
           align-items: center;
@@ -340,6 +354,16 @@ export default function HomeAudienceTabs() {
 
           .home-audience-copy p {
             max-width: 60ch;
+          }
+
+          .home-audience-benefits--single-row {
+            flex-wrap: wrap;
+          }
+
+          .home-audience-benefits--single-row .home-audience-benefit {
+            width: fit-content;
+            white-space: normal;
+            flex-shrink: 1;
           }
 
           .home-audience-cta {
