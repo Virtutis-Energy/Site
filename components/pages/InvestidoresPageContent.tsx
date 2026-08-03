@@ -612,12 +612,22 @@ export default function InvestidoresPageContent() {
             }
 
             .investors-app-note {
-              align-items: flex-start;
               flex-direction: column;
+              align-items: flex-start;
+              justify-content: flex-start;
+              gap: 1.25rem;
+              height: auto;
+              min-height: 0;
+            }
+
+            .investors-app-note__copy {
+              flex: 0 0 auto;
+              min-height: 0;
             }
 
             .investors-download-link {
               width: auto;
+              margin-top: 0;
             }
           }
 
@@ -644,12 +654,24 @@ export default function InvestidoresPageContent() {
             }
 
             .investors-app-note {
+              flex-direction: column;
               align-items: stretch;
               justify-content: flex-start;
+              gap: 1.25rem;
+              height: auto;
+              min-height: 0;
+              margin-top: 1.5rem;
+              padding-top: 1.1rem;
+            }
+
+            .investors-app-note__copy {
+              flex: 0 0 auto;
+              min-height: 0;
             }
 
             .investors-download-link {
               width: 100%;
+              margin-top: 0;
             }
 
             .investors-result-card {
