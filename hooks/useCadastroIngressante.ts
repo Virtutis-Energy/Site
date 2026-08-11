@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { getBackendUrl, parseJsonResponse } from '@/lib/backend'
 
 export interface IngressantePayload {
-  nome: string
+  name: string
   email: string
-  telefone: string
-  subdivisoes: number[]
+  phone: string
+  subdivisions: number[]
 }
 
 export function useCadastrarIngressante() {
@@ -19,26 +19,17 @@ export function useCadastrarIngressante() {
     setSucesso(false)
 
     try {
-      const response = await fetch(getBackendUrl('/ingressante/cadastrar/'), {
+      const response = await fetch(getBackendUrl('/api/website/candidates/'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       })
 
-      const result = await parseJsonResponse<{
-        success?: boolean
-        errors?: Record<string, string> | string
-      }>(response)
-
-      if (response.ok && result.success) {
-        setSucesso(true)
-      } else {
-        setErro(
-          typeof result.errors === 'object'
-            ? Object.values(result.errors).join(', ')
-            : result.errors || 'Erro ao cadastrar'
-        )
+      if (!response.ok) {
+        await parseJsonResponse(response)
       }
+
+      setSucesso(true)
     } catch (e) {
       setErro(e instanceof Error ? e.message : 'Erro de conexão com o servidor.')
     } finally {
