@@ -8,125 +8,24 @@ import { useLanguage } from '@/components/LanguageProvider'
 import workWithUsTeamImage from '@/assets/Imagem-trabalhe-conosco.jpg'
 import { useCadastrarIngressante } from '@/hooks/useCadastroIngressante'
 import { useSubdivisoes } from '@/hooks/useSubdivisoes'
-import {
-  getLocalizedPath,
-  subdivisionNameAliases,
-  subdivisionOrder,
-  type SubdivisionKey,
-} from '@/lib/i18n'
-
-const normalizeText = (text: string) =>
-  text
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .trim()
-    .toLowerCase()
-
-const subdivisionNameToKey = Object.entries(subdivisionNameAliases).reduce<Record<string, SubdivisionKey>>(
-  (acc, [key, aliases]) => {
-    aliases.forEach((alias) => {
-      acc[normalizeText(alias)] = key as SubdivisionKey
-    })
-    return acc
-  },
-  {}
-)
-
-const subdivisionIcons: Record<SubdivisionKey, string> = {
-  secretaryEconomy: 'bi bi-pie-chart',
-  secretaryHr: 'bi bi-people',
-  administrativeSector: 'bi bi-building-gear',
-  legalSector: 'bi bi-shield-check',
-  structuralSector: 'bi bi-diagram-3',
-  technologySector: 'bi bi-cpu',
-  commercialSector: 'bi bi-briefcase',
-  accountingDepartment: 'bi bi-calculator',
-  landDepartment: 'bi bi-geo-alt',
-  projectsDepartment: 'bi bi-journal-richtext',
-  worksDepartment: 'bi bi-hammer',
-  operationsDepartment: 'bi bi-lightning-charge',
-}
-
-const subdivisionGroups: Array<{
-  titleKey: 'partnerAdmin' | 'generalManagement' | 'localManagement'
-  items: SubdivisionKey[]
-}> = [
-  {
-    titleKey: 'partnerAdmin',
-    items: ['secretaryEconomy', 'secretaryHr'],
-  },
-  {
-    titleKey: 'generalManagement',
-    items: ['administrativeSector', 'legalSector', 'structuralSector', 'technologySector', 'commercialSector'],
-  },
-  {
-    titleKey: 'localManagement',
-    items: ['accountingDepartment', 'landDepartment', 'projectsDepartment', 'worksDepartment', 'operationsDepartment'],
-  },
-]
-
-function getSubdivisionKey(name: string) {
-  return subdivisionNameToKey[normalizeText(name)] ?? null
-}
-
-type SubdivisionDescriptionKey =
-  | 'secretaryEconomyShortDesc'
-  | 'secretaryHrShortDesc'
-  | 'administrativeSectorShortDesc'
-  | 'legalSectorShortDesc'
-  | 'structuralSectorShortDesc'
-  | 'technologySectorShortDesc'
-  | 'commercialSectorShortDesc'
-  | 'accountingDepartmentShortDesc'
-  | 'landDepartmentShortDesc'
-  | 'projectsDepartmentShortDesc'
-  | 'worksDepartmentShortDesc'
-  | 'operationsDepartmentShortDesc'
-
-const subdivisionDescriptionKeys: Record<SubdivisionKey, SubdivisionDescriptionKey> = {
-  secretaryEconomy: 'secretaryEconomyShortDesc',
-  secretaryHr: 'secretaryHrShortDesc',
-  administrativeSector: 'administrativeSectorShortDesc',
-  legalSector: 'legalSectorShortDesc',
-  structuralSector: 'structuralSectorShortDesc',
-  technologySector: 'technologySectorShortDesc',
-  commercialSector: 'commercialSectorShortDesc',
-  accountingDepartment: 'accountingDepartmentShortDesc',
-  landDepartment: 'landDepartmentShortDesc',
-  projectsDepartment: 'projectsDepartmentShortDesc',
-  worksDepartment: 'worksDepartmentShortDesc',
-  operationsDepartment: 'operationsDepartmentShortDesc',
-}
+import { getLocalizedPath } from '@/lib/i18n'
 
 export default function FormularioIngressanteContent() {
   const router = useRouter()
   const { localeSegment, t } = useLanguage()
   const { cadastrar, sucesso, erro, loading } = useCadastrarIngressante()
   const { subdivisoes, loading: loadingSub } = useSubdivisoes()
-  const [openSubdivision, setOpenSubdivision] = useState<SubdivisionKey | null>(null)
   const [openBond, setOpenBond] = useState<string | null>(null)
 
   const [formData, setFormData] = useState({
-    nome: '',
+    name: '',
     email: '',
-    telefone: '',
-    subdivisoes: [] as number[],
+    phone: '',
+    subdivisions: [] as number[],
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, checked } = e.target
-
-    if (name === 'subdivisoes') {
-      const id = parseInt(value, 10)
-      setFormData((prev) => {
-        const novaLista = checked
-          ? [...prev.subdivisoes, id]
-          : prev.subdivisoes.filter((item) => item !== id)
-
-        return { ...prev, subdivisoes: novaLista }
-      })
-      return
-    }
+    const { name, value } = e.target
 
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
@@ -138,41 +37,12 @@ export default function FormularioIngressanteContent() {
 
   const toggleSubdivisionSelection = (id: number) => {
     setFormData((prev) => {
-      const isSelected = prev.subdivisoes.includes(id)
-      const subdivisoes = isSelected ? prev.subdivisoes.filter((item) => item !== id) : [...prev.subdivisoes, id]
+      const isSelected = prev.subdivisions.includes(id)
+      const subdivisions = isSelected ? prev.subdivisions.filter((item) => item !== id) : [...prev.subdivisions, id]
 
-      return { ...prev, subdivisoes }
+      return { ...prev, subdivisions }
     })
   }
-
-  const subdivisoesOrdenadas = [...subdivisoes].sort((a, b) => {
-    const keyA = getSubdivisionKey(a.nome)
-    const keyB = getSubdivisionKey(b.nome)
-    const indexA = keyA ? subdivisionOrder.indexOf(keyA) : -1
-    const indexB = keyB ? subdivisionOrder.indexOf(keyB) : -1
-    const posA = indexA === -1 ? Number.MAX_SAFE_INTEGER : indexA
-    const posB = indexB === -1 ? Number.MAX_SAFE_INTEGER : indexB
-
-    return posA - posB
-  })
-
-  const subdivisoesPorChave = subdivisoesOrdenadas.reduce<Partial<Record<SubdivisionKey, (typeof subdivisoesOrdenadas)[number]>>>((acc, sub) => {
-    const key = getSubdivisionKey(sub.nome)
-    if (key) {
-      acc[key] = sub
-    }
-    return acc
-  }, {})
-
-  const getSubdivisionCardLabel = (name: string) => {
-    const key = getSubdivisionKey(name)
-    if (!key) {
-      return name
-    }
-    return t.subdivisionsPage[key]
-  }
-
-  const getSubdivisionCardDescription = (key: SubdivisionKey) => t.subdivisionsPage[subdivisionDescriptionKeys[key]]
 
   const bondCards = [
     {
@@ -297,11 +167,11 @@ export default function FormularioIngressanteContent() {
                   <input
                     id="work-name"
                     type="text"
-                    name="nome"
+                    name="name"
                     placeholder={t.forms.name}
                     required
                     className="form-control careers-input"
-                    value={formData.nome}
+                    value={formData.name}
                     onChange={handleChange}
                   />
                 </div>
@@ -329,11 +199,11 @@ export default function FormularioIngressanteContent() {
                   <input
                     id="work-phone"
                     type="text"
-                    name="telefone"
+                    name="phone"
                     placeholder={t.forms.phone}
                     required
                     className="form-control careers-input"
-                    value={formData.telefone}
+                    value={formData.phone}
                     onChange={handleChange}
                   />
                 </div>
@@ -347,82 +217,32 @@ export default function FormularioIngressanteContent() {
                   {loadingSub ? (
                     <p className="careers-loading-copy">{t.workWithUsPage.loadingSubdivisions}</p>
                   ) : (
-                    <div className="careers-subdivision-groups" role="group" aria-label={t.workWithUsPage.subdivisions}>
-                      {subdivisionGroups.map((group) => {
-                        const groupedSubdivisions = group.items
-                          .map((key) => {
-                            const sub = subdivisoesPorChave[key]
-                            if (!sub) return null
-                            return { key, sub }
-                          })
-                          .filter((item): item is { key: SubdivisionKey; sub: (typeof subdivisoesOrdenadas)[number] } => item !== null)
-
-                        if (groupedSubdivisions.length === 0) {
-                          return null
-                        }
+                    <div className="careers-subdivision-grid" role="group" aria-label={t.workWithUsPage.subdivisions}>
+                      {subdivisoes.map((sub) => {
+                        const isSelected = formData.subdivisions.includes(sub.id)
 
                         return (
-                          <div key={group.titleKey} className="careers-subdivision-group" aria-labelledby={`careers-group-${group.titleKey}`}>
-                            <div className="careers-subdivision-group__header">
-                              <h4 id={`careers-group-${group.titleKey}`}>{t.subdivisionsPage[group.titleKey]}</h4>
+                          <article key={sub.id} className={`careers-subdivision-card${isSelected ? ' is-selected' : ''}`}>
+                            <div className="careers-subdivision-main">
+                              <button
+                                type="button"
+                                className="careers-subdivision-select"
+                                aria-pressed={isSelected}
+                                aria-label={t.workWithUsPage.toggleSelection(sub.name, isSelected)}
+                                onClick={() => toggleSubdivisionSelection(sub.id)}
+                              >
+                                <span className="careers-subdivision-check" aria-hidden="true">
+                                  <i className={`bi ${isSelected ? 'bi-check2' : 'bi-plus'}`}></i>
+                                </span>
+                              </button>
+
+                              <span className="careers-subdivision-icon" aria-hidden="true">
+                                <i className="bi bi-diagram-3"></i>
+                              </span>
+
+                              <span className="careers-subdivision-text">{sub.name}</span>
                             </div>
-
-                            <div className="careers-subdivision-grid">
-                              {groupedSubdivisions.map(({ key, sub }) => {
-                                const subdivisionLabel = getSubdivisionCardLabel(sub.nome)
-                                const isSelected = formData.subdivisoes.includes(sub.id)
-                                const iconClass = subdivisionIcons[key]
-
-                                return (
-                                  <article key={sub.id} className={`careers-subdivision-card${isSelected ? ' is-selected' : ''}`}>
-                                    <div className="careers-subdivision-main">
-                                      <button
-                                        type="button"
-                                        className="careers-subdivision-select"
-                                        aria-pressed={isSelected}
-                                        aria-label={t.workWithUsPage.toggleSelection(subdivisionLabel, isSelected)}
-                                        onClick={() => toggleSubdivisionSelection(sub.id)}
-                                      >
-                                        <span className="careers-subdivision-check" aria-hidden="true">
-                                          <i className={`bi ${isSelected ? 'bi-check2' : 'bi-plus'}`}></i>
-                                        </span>
-                                      </button>
-
-                                      <span className="careers-subdivision-icon" aria-hidden="true">
-                                        <i className={iconClass}></i>
-                                      </span>
-
-                                      <span className="careers-subdivision-text">{subdivisionLabel}</span>
-
-                                      <button
-                                        type="button"
-                                        className={`careers-subdivision-toggle${openSubdivision === key ? ' is-open' : ''}`}
-                                        aria-expanded={openSubdivision === key}
-                                        aria-controls={`careers-subdivision-panel-${sub.id}`}
-                                        aria-label={
-                                          openSubdivision === key
-                                            ? t.workWithUsPage.hideAreaDetails(subdivisionLabel)
-                                            : t.workWithUsPage.showAreaDetails(subdivisionLabel)
-                                        }
-                                        onClick={() => setOpenSubdivision(openSubdivision === key ? null : key)}
-                                      >
-                                        <i className="bi bi-chevron-down" aria-hidden="true"></i>
-                                      </button>
-                                    </div>
-
-                                    <div
-                                      id={`careers-subdivision-panel-${sub.id}`}
-                                      className={`careers-subdivision-details${openSubdivision === key ? ' is-open' : ''}`}
-                                    >
-                                      <div className="careers-subdivision-details__inner">
-                                        <p>{getSubdivisionCardDescription(key)}</p>
-                                      </div>
-                                    </div>
-                                  </article>
-                                )
-                              })}
-                            </div>
-                          </div>
+                          </article>
                         )
                       })}
                     </div>
