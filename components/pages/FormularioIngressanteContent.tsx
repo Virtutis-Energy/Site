@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { useLanguage } from '@/components/LanguageProvider'
 import workWithUsTeamImage from '@/assets/Imagem-trabalhe-conosco.jpg'
@@ -10,18 +10,78 @@ import { useCadastrarIngressante } from '@/hooks/useCadastroIngressante'
 import { useSubdivisoes } from '@/hooks/useSubdivisoes'
 import { getLocalizedPath } from '@/lib/i18n'
 
+const normalizeSubdivisionName = (name: string) =>
+  name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim().toLowerCase().replace(/\s+/g, ' ')
+
+const subdivisionDescriptions: Record<string, string> = {
+  'secretaria de economia': 'Responsável pelo planejamento e acompanhamento econômico da Virtutis Energy, pelo controle de recursos e pela organização das informações financeiras necessárias às atividades da empresa.',
+  'secretaria de recursos humanos': 'Responsável pelo relacionamento interno entre os membros da Virtutis Energy, pela integração de novos colaboradores e pelo remanejamento de seus vínculos e cargos.',
+  'setor administrativo': 'Responsável pela organização dos processos administrativos da Virtutis Energy, pelo acompanhamento das atividades internas e pelo suporte às demandas necessárias ao funcionamento da empresa.',
+  'setor juridico': 'Responsável pelo acompanhamento das questões jurídicas da Virtutis Energy, pela elaboração e análise de documentos e contratos e pelo suporte jurídico às atividades da empresa.',
+  'setor estrutural': 'Responsável pelo planejamento e desenvolvimento da estrutura física e operacional da Virtutis Energy, pelo acompanhamento das necessidades estruturais e pelo suporte à implantação de novos projetos.',
+  'setor tecnologico': 'Responsável pelo desenvolvimento e manutenção das soluções tecnológicas da Virtutis Energy, pela gestão dos sistemas e plataformas e pelo suporte às demandas de tecnologia da empresa.',
+  'setor comercial': 'Responsável pelo relacionamento comercial da Virtutis Energy, pela prospecção de novos clientes e parceiros e pelo desenvolvimento de oportunidades de negócio.',
+  'departamento de contabilidade': 'Responsável pelo acompanhamento contábil das operações da Virtutis Energy, pela organização das informações contábeis e pelo suporte ao cumprimento das obrigações da empresa.',
+  'departamento de terrenos': 'Responsável pela prospecção e análise de terrenos para implantação das usinas da Virtutis Energy, pelo levantamento das informações necessárias e pelo acompanhamento das áreas selecionadas.',
+  'departamento de projetos': 'Responsável pelo desenvolvimento e acompanhamento dos projetos das usinas da Virtutis Energy, pela organização das informações técnicas e pelo suporte às etapas necessárias para sua implantação.',
+  'departamento de obras': 'Responsável pelo acompanhamento da execução das obras das usinas da Virtutis Energy, pela organização das atividades de implantação e pelo suporte ao cumprimento dos projetos definidos.',
+  'departamento de operacao': 'Responsável pelo acompanhamento da operação das usinas da Virtutis Energy, pelo monitoramento de seu funcionamento e pelo suporte às demandas necessárias para manter sua operação adequada.',
+}
+
+const subdivisionGroups = [
+  {
+    id: 'socio-administracao',
+    title: 'Sócio-Administração',
+    names: ['secretaria de economia', 'secretaria de recursos humanos'],
+  },
+  {
+    id: 'direcao-geral',
+    title: 'Direção Geral',
+    names: ['setor administrativo', 'setor juridico', 'setor estrutural', 'setor tecnologico', 'setor comercial'],
+  },
+  {
+    id: 'gerencia-local',
+    title: 'Gerência Local',
+    names: ['departamento de contabilidade', 'departamento de terrenos', 'departamento de projetos', 'departamento de obras', 'departamento de operacao'],
+  },
+]
+
+const emptyFormData = {
+  name: '',
+  email: '',
+  phone: '',
+  subdivisions: [] as number[],
+}
+
+type SubmittedApplication = {
+  name: string
+  email: string
+  phone: string
+  subdivisionNames: string[]
+}
+
 export default function FormularioIngressanteContent() {
   const router = useRouter()
   const { localeSegment, t } = useLanguage()
   const { cadastrar, sucesso, erro, loading } = useCadastrarIngressante()
   const { subdivisoes, loading: loadingSub } = useSubdivisoes()
   const [openBond, setOpenBond] = useState<string | null>(null)
+  const [openSubdivision, setOpenSubdivision] = useState<string | null>(null)
+  const [pendingSubmission, setPendingSubmission] = useState<SubmittedApplication | null>(null)
+  const [submittedApplication, setSubmittedApplication] = useState<SubmittedApplication | null>(null)
+  const submissionHasStarted = useRef(false)
 
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subdivisions: [] as number[],
+  const [formData, setFormData] = useState(emptyFormData)
+
+  const groupedSubdivisions = subdivisionGroups.map((group) => ({
+    ...group,
+    subdivisions: subdivisoes.filter((sub) => group.names.includes(normalizeSubdivisionName(sub.name))),
+  }))
+  const groupedSubdivisionNames = new Set(subdivisionGroups.flatMap((group) => group.names))
+  const otherSubdivisions = subdivisoes.filter((sub) => {
+    const name = normalizeSubdivisionName(sub.name)
+
+    return name !== 'socio administracao' && !groupedSubdivisionNames.has(name)
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -30,9 +90,41 @@ export default function FormularioIngressanteContent() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
+  useEffect(() => {
+    if (!submissionHasStarted.current || loading) return
+
+    if (sucesso && pendingSubmission) {
+      setSubmittedApplication(pendingSubmission)
+      setPendingSubmission(null)
+      setFormData(emptyFormData)
+      setOpenSubdivision(null)
+      submissionHasStarted.current = false
+    }
+
+    if (erro) {
+      setPendingSubmission(null)
+      submissionHasStarted.current = false
+    }
+  }, [erro, loading, pendingSubmission, sucesso])
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    submissionHasStarted.current = true
+    setPendingSubmission({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      subdivisionNames: subdivisoes.filter((sub) => formData.subdivisions.includes(sub.id)).map((sub) => sub.name),
+    })
     await cadastrar(formData)
+  }
+
+  const handleNewApplication = () => {
+    setSubmittedApplication(null)
+    setPendingSubmission(null)
+    setFormData(emptyFormData)
+    setOpenSubdivision(null)
+    submissionHasStarted.current = false
   }
 
   const toggleSubdivisionSelection = (id: number) => {
@@ -153,6 +245,46 @@ export default function FormularioIngressanteContent() {
           </div>
 
           <div className="careers-form-shell" data-aos="fade-up" data-aos-delay="220">
+            {submittedApplication ? (
+              <div className="careers-confirmation" role="status">
+                <div className="careers-confirmation-icon" aria-hidden="true">
+                  <i className="bi bi-check2"></i>
+                </div>
+                <h3>Candidatura enviada com sucesso!</h3>
+                <p className="careers-confirmation-intro">Recebemos seus dados e agradecemos pelo interesse em fazer parte da Virtutis Energy.</p>
+
+                <div className="careers-confirmation-summary">
+                  <h4>Dados da candidatura</h4>
+                  <dl>
+                    <div>
+                      <dt>Nome</dt>
+                      <dd>{submittedApplication.name}</dd>
+                    </div>
+                    <div>
+                      <dt>E-mail</dt>
+                      <dd><a href={`mailto:${submittedApplication.email}`}>{submittedApplication.email}</a></dd>
+                    </div>
+                    <div>
+                      <dt>Telefone</dt>
+                      <dd>{submittedApplication.phone}</dd>
+                    </div>
+                    <div>
+                      <dt>Áreas de interesse</dt>
+                      <dd>
+                        <ul>
+                          {submittedApplication.subdivisionNames.map((name) => <li key={name}>{name}</li>)}
+                        </ul>
+                      </dd>
+                    </div>
+                  </dl>
+                </div>
+
+                <button type="button" className="careers-submit-button careers-confirmation-button" onClick={handleNewApplication}>
+                  Enviar outra candidatura
+                </button>
+              </div>
+            ) : (
+              <>
                 <div className="careers-form-header">
                   <h3>{t.workWithUsPage.formTitle}</h3>
                   <p>{t.workWithUsPage.formIntro}</p>
@@ -217,34 +349,93 @@ export default function FormularioIngressanteContent() {
                   {loadingSub ? (
                     <p className="careers-loading-copy">{t.workWithUsPage.loadingSubdivisions}</p>
                   ) : (
-                    <div className="careers-subdivision-grid" role="group" aria-label={t.workWithUsPage.subdivisions}>
-                      {subdivisoes.map((sub) => {
-                        const isSelected = formData.subdivisions.includes(sub.id)
+                    <div className="careers-subdivision-groups" aria-label={t.workWithUsPage.subdivisions}>
+                      {groupedSubdivisions.map((group) => (
+                        <div key={group.id} className="careers-subdivision-group" aria-labelledby={`careers-subdivision-group-${group.id}`}>
+                          <div className="careers-subdivision-group__header">
+                            <h4 id={`careers-subdivision-group-${group.id}`}>{group.title}</h4>
+                          </div>
+                          <div className="careers-subdivision-grid" role="group" aria-label={group.title}>
+                            {group.subdivisions.map((sub) => {
+                              const isSelected = formData.subdivisions.includes(sub.id)
+                              const subdivisionName = normalizeSubdivisionName(sub.name)
+                              const description = subdivisionDescriptions[subdivisionName]
+                              const isOpen = openSubdivision === subdivisionName
 
-                        return (
-                          <article key={sub.id} className={`careers-subdivision-card${isSelected ? ' is-selected' : ''}`}>
-                            <div className="careers-subdivision-main">
-                              <button
-                                type="button"
-                                className="careers-subdivision-select"
-                                aria-pressed={isSelected}
-                                aria-label={t.workWithUsPage.toggleSelection(sub.name, isSelected)}
-                                onClick={() => toggleSubdivisionSelection(sub.id)}
-                              >
-                                <span className="careers-subdivision-check" aria-hidden="true">
-                                  <i className={`bi ${isSelected ? 'bi-check2' : 'bi-plus'}`}></i>
-                                </span>
-                              </button>
+                              return (
+                                <article key={sub.id} className={`careers-subdivision-card${isSelected ? ' is-selected' : ''}${isOpen ? ' is-open' : ''}`}>
+                                  <div className="careers-subdivision-main">
+                                    <button type="button" className="careers-subdivision-select" aria-pressed={isSelected} aria-label={t.workWithUsPage.toggleSelection(sub.name, isSelected)} onClick={() => toggleSubdivisionSelection(sub.id)}>
+                                      <span className="careers-subdivision-check" aria-hidden="true">
+                                        <i className={`bi ${isSelected ? 'bi-check2' : 'bi-plus'}`}></i>
+                                      </span>
+                                    </button>
+                                    <span className="careers-subdivision-icon" aria-hidden="true">
+                                      <i className="bi bi-diagram-3"></i>
+                                    </span>
+                                    <span className="careers-subdivision-text">{sub.name}</span>
+                                    {description ? (
+                                      <button type="button" className={`careers-subdivision-toggle${isOpen ? ' is-open' : ''}`} aria-expanded={isOpen} aria-controls={`careers-subdivision-panel-${subdivisionName}`} aria-label={isOpen ? `Fechar especificação de ${sub.name}` : `Abrir especificação de ${sub.name}`} onClick={() => setOpenSubdivision(isOpen ? null : subdivisionName)}>
+                                        <i className="bi bi-chevron-down" aria-hidden="true"></i>
+                                      </button>
+                                    ) : null}
+                                  </div>
+                                  {description ? (
+                                    <div id={`careers-subdivision-panel-${subdivisionName}`} className={`careers-subdivision-details${isOpen ? ' is-open' : ''}`}>
+                                      <div className="careers-subdivision-details__inner">
+                                        <p>{description}</p>
+                                      </div>
+                                    </div>
+                                  ) : null}
+                                </article>
+                              )
+                            })}
+                          </div>
+                        </div>
+                      ))}
+                      {otherSubdivisions.length > 0 ? (
+                        <div className="careers-subdivision-group" aria-labelledby="careers-subdivision-group-other">
+                          <div className="careers-subdivision-group__header">
+                            <h4 id="careers-subdivision-group-other">Outras áreas</h4>
+                          </div>
+                          <div className="careers-subdivision-grid" role="group" aria-label="Outras áreas">
+                            {otherSubdivisions.map((sub) => {
+                              const isSelected = formData.subdivisions.includes(sub.id)
+                              const subdivisionName = normalizeSubdivisionName(sub.name)
+                              const description = subdivisionDescriptions[subdivisionName]
+                              const isOpen = openSubdivision === subdivisionName
 
-                              <span className="careers-subdivision-icon" aria-hidden="true">
-                                <i className="bi bi-diagram-3"></i>
-                              </span>
-
-                              <span className="careers-subdivision-text">{sub.name}</span>
-                            </div>
-                          </article>
-                        )
-                      })}
+                              return (
+                                <article key={sub.id} className={`careers-subdivision-card${isSelected ? ' is-selected' : ''}${isOpen ? ' is-open' : ''}`}>
+                                  <div className="careers-subdivision-main">
+                                    <button type="button" className="careers-subdivision-select" aria-pressed={isSelected} aria-label={t.workWithUsPage.toggleSelection(sub.name, isSelected)} onClick={() => toggleSubdivisionSelection(sub.id)}>
+                                      <span className="careers-subdivision-check" aria-hidden="true">
+                                        <i className={`bi ${isSelected ? 'bi-check2' : 'bi-plus'}`}></i>
+                                      </span>
+                                    </button>
+                                    <span className="careers-subdivision-icon" aria-hidden="true">
+                                      <i className="bi bi-diagram-3"></i>
+                                    </span>
+                                    <span className="careers-subdivision-text">{sub.name}</span>
+                                    {description ? (
+                                      <button type="button" className={`careers-subdivision-toggle${isOpen ? ' is-open' : ''}`} aria-expanded={isOpen} aria-controls={`careers-subdivision-panel-${subdivisionName}`} aria-label={isOpen ? `Fechar especificação de ${sub.name}` : `Abrir especificação de ${sub.name}`} onClick={() => setOpenSubdivision(isOpen ? null : subdivisionName)}>
+                                        <i className="bi bi-chevron-down" aria-hidden="true"></i>
+                                      </button>
+                                    ) : null}
+                                  </div>
+                                  {description ? (
+                                    <div id={`careers-subdivision-panel-${subdivisionName}`} className={`careers-subdivision-details${isOpen ? ' is-open' : ''}`}>
+                                      <div className="careers-subdivision-details__inner">
+                                        <p>{description}</p>
+                                      </div>
+                                    </div>
+                                  ) : null}
+                                </article>
+                              )
+                            })}
+                          </div>
+                        </div>
+                      ) : null}
                     </div>
                   )}
                 </div>
@@ -302,11 +493,12 @@ export default function FormularioIngressanteContent() {
                     {loading ? t.common.sending : t.workWithUsPage.submitCta}
                   </button>
 
-                  {sucesso && <p className="text-success mt-3">{t.common.successMessage}</p>}
                   {erro && <p className="text-danger mt-3">{erro}</p>}
                 </div>
               </div>
             </form>
+              </>
+            )}
           </div>
         </div>
 
@@ -442,6 +634,98 @@ export default function FormularioIngressanteContent() {
             margin-bottom: 1.7rem;
           }
 
+          .careers-confirmation {
+            max-width: 44rem;
+            margin: 0 auto;
+            text-align: center;
+          }
+
+          .careers-confirmation-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 3.25rem;
+            height: 3.25rem;
+            margin-bottom: 1rem;
+            border-radius: 50%;
+            background: rgba(2, 8, 59, 0.08);
+            color: #02083b;
+            font-size: 1.55rem;
+          }
+
+          .careers-confirmation h3 {
+            margin: 0;
+            color: #02083b;
+            font-size: clamp(1.7rem, 2.4vw, 2.2rem);
+            font-weight: 700;
+            line-height: 1.2;
+          }
+
+          .careers-confirmation-intro {
+            max-width: 37rem;
+            margin: 0.85rem auto 1.6rem;
+            color: rgba(2, 8, 59, 0.72);
+            line-height: 1.7;
+          }
+
+          .careers-confirmation-summary {
+            padding: 1.35rem;
+            border: 1px solid rgba(2, 8, 59, 0.1);
+            border-radius: 20px;
+            background: #fff;
+            text-align: left;
+          }
+
+          .careers-confirmation-summary h4 {
+            margin: 0 0 1rem;
+            color: #02083b;
+            font-size: 1.05rem;
+            font-weight: 700;
+          }
+
+          .careers-confirmation-summary dl {
+            display: grid;
+            gap: 0.95rem;
+            margin: 0;
+          }
+
+          .careers-confirmation-summary dl > div {
+            display: grid;
+            gap: 0.18rem;
+          }
+
+          .careers-confirmation-summary dt {
+            color: rgba(2, 8, 59, 0.62);
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+          }
+
+          .careers-confirmation-summary dd {
+            margin: 0;
+            color: #02083b;
+            font-weight: 600;
+            overflow-wrap: anywhere;
+          }
+
+          .careers-confirmation-summary a {
+            color: #02083b;
+            text-decoration-color: rgba(2, 8, 59, 0.35);
+            text-underline-offset: 0.16em;
+          }
+
+          .careers-confirmation-summary ul {
+            display: grid;
+            gap: 0.3rem;
+            margin: 0;
+            padding-left: 1.15rem;
+          }
+
+          .careers-confirmation-button {
+            margin-top: 1.5rem;
+          }
+
           .careers-form {
             background: transparent;
             padding: 0;
@@ -550,7 +834,6 @@ export default function FormularioIngressanteContent() {
           }
 
           .careers-subdivision-select,
-          .careers-subdivision-toggle,
           .careers-link-button {
             border: 0;
             background: transparent;
@@ -561,6 +844,27 @@ export default function FormularioIngressanteContent() {
             display: inline-flex;
             align-items: center;
             justify-content: center;
+          }
+
+          .careers-subdivision-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.5rem;
+            height: 1.5rem;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            background: transparent;
+            color: rgba(2, 8, 59, 0.58);
+          }
+
+          .careers-subdivision-toggle i {
+            transition: transform 0.2s ease;
+          }
+
+          .careers-subdivision-toggle.is-open i {
+            transform: rotate(180deg);
           }
 
           .careers-subdivision-check,
@@ -603,29 +907,11 @@ export default function FormularioIngressanteContent() {
             text-wrap: balance;
           }
 
-          .careers-subdivision-toggle {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 2rem;
-            height: 2rem;
-            border-radius: 999px;
-            color: var(--accent-color);
-            transition: transform 0.2s ease, background-color 0.2s ease;
-          }
-
-          .careers-subdivision-toggle:hover {
-            background: rgba(2, 8, 59, 0.05);
-          }
-
-          .careers-subdivision-toggle.is-open {
-            transform: rotate(180deg);
-          }
-
           .careers-subdivision-details {
             display: grid;
             grid-template-rows: 0fr;
-            transition: grid-template-rows 0.28s ease;
+            overflow: hidden;
+            transition: grid-template-rows 0.2s ease;
           }
 
           .careers-subdivision-details.is-open {
@@ -634,16 +920,16 @@ export default function FormularioIngressanteContent() {
 
           .careers-subdivision-details__inner {
             min-height: 0;
-            overflow: hidden;
           }
 
-          .careers-subdivision-details__inner p {
-            margin: 0.8rem 0 0;
-            padding-top: 0.8rem;
-            border-top: 1px solid rgba(2, 8, 59, 0.08);
-            color: rgba(2, 8, 59, 0.76);
+          .careers-subdivision-details p {
+            margin: 0.9rem 0 0;
+            padding-top: 0.9rem;
+            border-top: 1px solid rgba(2, 8, 59, 0.1);
+            color: rgba(2, 8, 59, 0.72);
             font-size: 0.9rem;
-            line-height: 1.65;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
           }
 
           .careers-bonds-section {
@@ -834,8 +1120,29 @@ export default function FormularioIngressanteContent() {
               padding: 1.3rem;
             }
 
+            .careers-confirmation-summary {
+              padding: 1.1rem;
+            }
+
+            .careers-confirmation-button {
+              width: min(100%, 16.5rem);
+            }
+
             .careers-subdivision-grid {
               grid-template-columns: 1fr;
+              gap: 1rem;
+            }
+
+            .careers-subdivision-groups {
+              gap: 1.1rem;
+            }
+
+            .careers-subdivision-group {
+              display: block;
+            }
+
+            .careers-subdivision-group__header {
+              margin-bottom: 0.42rem;
             }
 
             .careers-bonds-section {
@@ -875,18 +1182,6 @@ export default function FormularioIngressanteContent() {
               line-height: 1.58;
             }
 
-            .careers-subdivision-groups {
-              gap: 1.1rem;
-            }
-
-            .careers-subdivision-group {
-              display: block;
-            }
-
-            .careers-subdivision-group__header {
-              margin-bottom: 0.42rem;
-            }
-
             .careers-subdivision-card {
               min-height: 4.9rem;
               padding: 0.9rem 0.85rem;
@@ -913,11 +1208,9 @@ export default function FormularioIngressanteContent() {
               line-height: 1.25;
             }
 
-            .careers-subdivision-details__inner p {
-              margin-top: 0.72rem;
-              padding-top: 0.72rem;
+            .careers-subdivision-details p {
               font-size: 0.84rem;
-              line-height: 1.55;
+              line-height: 1.58;
             }
 
             .careers-submit-button {
