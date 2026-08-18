@@ -12,6 +12,7 @@ import { useCadastroInvestidor } from '@/hooks/useCadastroInvestidor'
 import { useLanguage } from '@/components/LanguageProvider'
 import HomeAudienceTabs from '@/components/home/HomeAudienceTabs'
 import DigitalEcosystemSection from '@/components/home/DigitalEcosystemSection'
+import { getAppDownloadHref } from '@/lib/appDownload'
 
 export default function HomePageContent() {
   const { t, localeSegment } = useLanguage()
@@ -23,7 +24,7 @@ export default function HomePageContent() {
   })
 
   // Troque aqui caso o link oficial de download do app mude no futuro.
-  const downloadAppHref = t.header.whatsappText
+  const downloadAppHref = getAppDownloadHref(t.header.appDownloadMessage)
   const openAccountDownloadLabel = t.header.downloadApp
 
   const { cadastrar, loading, sucesso, erro } = useCadastroInvestidor()
@@ -202,7 +203,7 @@ export default function HomePageContent() {
                       }}
                     >
                       <a
-                        href={t.header.whatsappText}
+                        href={downloadAppHref}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="btn-get-started"

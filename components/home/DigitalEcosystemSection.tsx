@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useLanguage } from '@/components/LanguageProvider'
+import { getAppDownloadHref } from '@/lib/appDownload'
 import telaApp from '@/assets/Tela_app.png'
 import vitinho from '@/assets/vitinho.png'
 
@@ -21,7 +22,7 @@ export default function DigitalEcosystemSection() {
 
             <div className="virtutis-ecosystem-actions">
               <a
-                href={t.header.whatsappText}
+                href={getAppDownloadHref(t.header.appDownloadMessage)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="virtutis-ecosystem-button virtutis-ecosystem-button--primary"

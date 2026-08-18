@@ -26,8 +26,7 @@ export const esESTranslations: Translation = {
   },
   header: {
     downloadApp: 'Descargar la App',
-    whatsappText:
-      'https://wa.me/5585984831512?text=Hola%2C%20me%20gustar%C3%ADa%20descargar%20la%20App%20de%20Virtutis%20Energy.',
+    appDownloadMessage: '¡Hola! Me gustaría descargar la aplicación de Virtutis Energy!',
     languageSwitcherLabel: 'Idioma',
   },
   footer: {
