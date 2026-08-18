@@ -14,7 +14,7 @@ const plantOptions = [
   { id: '40', nome: '40 kW', power: 40, fraction: 2 / 3, vitis: 80, rentalPrice: 44.48 },
   { id: '60', nome: '60 kW', power: 60, fraction: 1, vitis: 120, rentalPrice: 66.73 },
 ]
-const plantLevels = [1, 2, 3]
+const plantLevels = [0, 1, 2, 3]
 const stepIcons = ['bi bi-building-add', 'bi bi-diagram-3', 'bi bi-bar-chart-line'] as const
 const trackingIcons = ['bi bi-lightning-charge', 'bi bi-link-45deg', 'bi bi-cash-coin', 'bi bi-grid-1x2'] as const
 
@@ -59,7 +59,7 @@ export default function AssociadoPageContent() {
     [localeSegment]
   )
 
-  const associateRevenue = BASE_ASSOCIATE_REVENUE * selectedPlantData.fraction * associateLevel
+  const associateRevenue = associateLevel === 0 ? 0 : BASE_ASSOCIATE_REVENUE * selectedPlantData.fraction * associateLevel
 
   const steps = [
     { title: t.associatePage.step1Title, text: t.associatePage.step1Text },
