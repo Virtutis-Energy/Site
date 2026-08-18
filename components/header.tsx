@@ -9,6 +9,7 @@ import {
     getRouteKeyFromPath,
     type LocaleSegment,
 } from '@/lib/i18n'
+import { getAppDownloadHref } from '@/lib/appDownload'
 
 export default function Header() {
     const router = useRouter()
@@ -117,7 +118,7 @@ export default function Header() {
                         <li><button onClick={() => { router.push(getLocalizedPath(localeSegment, 'associate')); closeMobileNav(); }}>{t.common.associate}</button></li>
                         <li id="contact-cad">
                             <a
-                                href={t.header.whatsappText}
+                                href={getAppDownloadHref(t.header.appDownloadMessage)}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={closeMobileNav}

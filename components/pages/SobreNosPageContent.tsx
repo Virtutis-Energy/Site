@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useLanguage } from '@/components/LanguageProvider'
 import { getLocalizedPath } from '@/lib/i18n'
+import { getAppDownloadHref } from '@/lib/appDownload'
 import WorldPresenceMap from '@/components/about/WorldPresenceMap'
 import fotoCarrosel from '@/assets/foto_carrosel.jpeg'
 import fotoCarrosel2 from '@/assets/foto_carrosel2.jpeg'
@@ -218,7 +219,7 @@ export default function SobreNosPageContent() {
                   </a>
                 </div>
 
-                <a href={t.header.whatsappText} target="_blank" rel="noopener noreferrer" className="about-contact-button">
+                <a href={getAppDownloadHref(t.header.appDownloadMessage)} target="_blank" rel="noopener noreferrer" className="about-contact-button">
                   {t.aboutPage.contactButton}
                 </a>
               </div>

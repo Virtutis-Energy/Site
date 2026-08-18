@@ -6,6 +6,7 @@ import { useState } from 'react'
 
 import { useLanguage } from '@/components/LanguageProvider'
 import { getLocalizedPath } from '@/lib/i18n'
+import { getAppDownloadHref } from '@/lib/appDownload'
 
 const PROCEEDS_LEVELS = [
   { level: 0, amountPerVitis: 0.4 },
@@ -181,7 +182,7 @@ export default function InvestidoresPageContent() {
                         <p>{t.investorsPage.downloadAppNotice}</p>
                       </div>
                       <a
-                        href={t.header.whatsappText}
+                        href={getAppDownloadHref(t.header.appDownloadMessage)}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="investors-download-link"
