@@ -157,7 +157,7 @@ export default function HomeAudienceTabs() {
           margin: 0 0 12px;
           padding: 8px 14px 14px;
           color: #0f2350;
-          font-size: 1rem;
+          font-size: 1.3rem;
           font-weight: 700;
           letter-spacing: -0.01em;
           text-align: center;
