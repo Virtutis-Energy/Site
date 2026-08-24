@@ -226,6 +226,8 @@ export default function HomePageContent() {
           </div>
         </section>
 
+        <HomeAudienceTabs />
+
         <section id="get-started" className="get-started section">
           <div className="container">
             <div className="row justify-content-between gy-4 home-open-account-section">
@@ -306,8 +308,6 @@ export default function HomePageContent() {
             </div>
           </div>
         </section>
-
-        <HomeAudienceTabs />
       </main>
 
       <a href="#" id="scroll-top" className="scroll-top d-flex align-items-center justify-content-center">

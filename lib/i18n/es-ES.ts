@@ -54,7 +54,7 @@ export const esESTranslations: Translation = {
     aboutStatLabelBottom: 'Experiencia en expansión',
     aboutStatValueBottom: 'Operación moderna con visión global y acceso intuitivo.',
     aboutAppAlt: 'Pantalla de la aplicación de Virtutis Energy en un smartphone',
-    audienceSelectorLabel: 'Selecciona cómo deseas conectarte con Virtutis Energy',
+    audienceSelectorLabel: 'Nuestras Áreas de Actuación',
     aboutHighlights: [
       {
         title: 'Consulta tu saldo',
