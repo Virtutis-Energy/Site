@@ -54,7 +54,7 @@ export const enUSTranslations: Translation = {
     aboutStatLabelBottom: 'Experience in expansion',
     aboutStatValueBottom: 'A modern operation with global vision and intuitive access.',
     aboutAppAlt: 'Virtutis Energy app screen displayed on a smartphone',
-    audienceSelectorLabel: 'Select how you want to connect with Virtutis Energy',
+    audienceSelectorLabel: 'Our Areas of Activity',
     aboutHighlights: [
       {
         title: 'Track your balance',
