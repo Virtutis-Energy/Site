@@ -2,8 +2,8 @@ export const ptBRTranslations = {
   common: {
     home: 'Home',
     about: 'Sobre nós',
-    clients: 'Clientes',
-    investors: 'Investidores',
+    clients: 'Cliente',
+    investors: 'Investidor',
     associate: 'Associado',
     contact: 'Fale Conosco',
     privacy: 'Política de Privacidade',
