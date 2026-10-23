@@ -2,8 +2,8 @@ export const ptBRTranslations = {
   common: {
     home: 'Home',
     about: 'Sobre nós',
-    clients: 'Clientes',
-    investors: 'Investidores',
+    clients: 'Cliente',
+    investors: 'Investidor',
     associate: 'Associado',
     contact: 'Fale Conosco',
     privacy: 'Política de Privacidade',
@@ -24,8 +24,7 @@ export const ptBRTranslations = {
   },
   header: {
     downloadApp: 'Baixe o App',
-    whatsappText:
-      'https://wa.me/5585984831512?text=Hello%2C%20I%20would%20like%20to%20download%20the%20Virtutis%20Energy%20app%21',
+    appDownloadMessage: 'Olá, gostaria de baixar o aplicativo da Virtutis Energy!',
     languageSwitcherLabel: 'Idioma',
   },
   footer: {
@@ -53,7 +52,7 @@ export const ptBRTranslations = {
     aboutStatLabelBottom: 'Experiência em expansão',
     aboutStatValueBottom: 'Operação moderna com visão global e acesso intuitivo.',
     aboutAppAlt: 'Tela do aplicativo da Virtutis Energy em um smartphone',
-    audienceSelectorLabel: 'Selecione como deseja se conectar à Virtutis Energy',
+    audienceSelectorLabel: 'Nossas Áreas de Atuação',
     aboutHighlights: [
       {
         title: 'Acompanhe seu saldo',

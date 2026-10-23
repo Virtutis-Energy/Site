@@ -26,8 +26,7 @@ export const enUSTranslations: Translation = {
   },
   header: {
     downloadApp: 'Download the App',
-    whatsappText:
-      'https://wa.me/5585984831512?text=Hello%2C%20I%20would%20like%20to%20download%20the%20Virtutis%20Energy%20app%21',
+    appDownloadMessage: 'Hello, I would like to download the Virtutis Energy app!',
     languageSwitcherLabel: 'Language',
   },
   footer: {
@@ -55,7 +54,7 @@ export const enUSTranslations: Translation = {
     aboutStatLabelBottom: 'Experience in expansion',
     aboutStatValueBottom: 'A modern operation with global vision and intuitive access.',
     aboutAppAlt: 'Virtutis Energy app screen displayed on a smartphone',
-    audienceSelectorLabel: 'Select how you want to connect with Virtutis Energy',
+    audienceSelectorLabel: 'Our Areas of Activity',
     aboutHighlights: [
       {
         title: 'Track your balance',

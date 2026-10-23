@@ -160,7 +160,6 @@ export default function WorldPresenceMap() {
                   className="world-map-marker__line"
                   d={`M ${marker.x} ${marker.y} Q ${(marker.x + marker.labelX) / 2} ${marker.labelY - 8} ${marker.labelX} ${marker.labelY}`}
                 />
-                <circle className="world-map-marker__pulse" cx={marker.x} cy={marker.y} r="14" />
                 <circle className="world-map-marker__halo" cx={marker.x} cy={marker.y} r="8.5" />
                 <circle className="world-map-marker__dot" cx={marker.x} cy={marker.y} r="4.5" />
                 <text className="world-map-label" x={marker.labelX} y={marker.labelY}>
